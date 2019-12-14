@@ -7,7 +7,7 @@ import model.Model;
 import view.View;
 
 public class Main extends Application {
-    
+
     @Override
     public void start(Stage primaryStage) throws Exception {
         Model model = new Model();

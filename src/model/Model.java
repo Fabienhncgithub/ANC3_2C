@@ -19,8 +19,8 @@ public class Model extends Observable {
     private List<String> doneList = new ArrayList<>();
 
     public Model() {
-             initialize();
-             notif(TypeNotif.INIT);
+        initialize();
+        notif(TypeNotif.INIT);
     }
 
     public List<String> getToDoList() {
@@ -99,5 +99,5 @@ public class Model extends Observable {
         setChanged();
         notifyObservers(typeNotif);
     }
- 
+
 }
