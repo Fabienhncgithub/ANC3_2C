@@ -5,8 +5,6 @@
  */
 package ctrl;
 
-import model.Model;
-
 
 public class Ctrl {
     private final Model model;
