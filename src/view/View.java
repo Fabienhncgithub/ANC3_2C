@@ -1,6 +1,5 @@
 package view;
 
-import ctrl.Ctrl;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.Parent;
@@ -13,9 +12,8 @@ import javafx.scene.input.KeyCode;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
-import model.Model;
+import viewModel.ViewModel;
 
-import java.util.Observable;
 import java.util.Observer;
 
 public class View extends VBox implements Observer {
@@ -43,10 +41,10 @@ public class View extends VBox implements Observer {
     private final VBox cBox = new VBox();
     private final VBox rBox = new VBox();
     private final VBox addBox = new VBox();
-    private final Ctrl ctrl;
+    private final ViewModel viewModel;
 
-    public View(Stage primaryStage, Ctrl ctrl) {
-        this.ctrl = ctrl;
+    public View(Stage primaryStage, ViewModel viewModel) {
+        this.viewModel = viewModel;
         configComponents();
         configListeners();
         Parent root = setRoot();
@@ -81,30 +79,30 @@ public class View extends VBox implements Observer {
 
     private void configListeners() {
         addButton.setOnAction(e -> {
-            ctrl.addToDo(addText.getText());
+            viewModel.addToDo(addText.getText());
         });
 
         setToDo.setOnAction(e -> {
             int index = doneList.getSelectionModel().getSelectedIndex();
-            ctrl.setToDo(index);
+            viewModel.setToDo(index);
         });
 
         setDone.setOnAction(e -> {
             int index = toDoList.getSelectionModel().getSelectedIndex();
-            ctrl.setDone(index);
+            viewModel.setDone(index);
         });
 
         toDoList.setOnMouseClicked(e -> {
             int index = toDoList.getSelectionModel().getSelectedIndex();
             if (e.getClickCount() == 2) {
-                ctrl.setDone(index);
+                viewModel.setDone(index);
             }
         });
 
         doneList.setOnMouseClicked(e -> {
             int index = doneList.getSelectionModel().getSelectedIndex();
             if (e.getClickCount() == 2) {
-                ctrl.setToDo(index);
+                viewModel.setToDo(index);
             }
         });
 
@@ -118,7 +116,7 @@ public class View extends VBox implements Observer {
 
         addText.setOnKeyPressed(e -> {
             if (e.getCode().equals(KeyCode.ENTER)) {
-                ctrl.addToDo(addText.getText());
+                viewModel.addToDo(addText.getText());
             }
         });
 
@@ -141,26 +139,6 @@ public class View extends VBox implements Observer {
         root.getChildren().addAll(addBox, lBox, cBox, rBox);
         return root;
     }
-
-    @Override
-    public void update(Observable o, Object arg) {
-        Model model = (Model) o;
-        Model.TypeNotif typeNotif = (Model.TypeNotif) arg;
-        switch (typeNotif) {
-            case INIT:
-                toDoList.getItems().setAll(model.getToDoList());
-                break;
-            case ADD_TODO:
-                toDoList.getItems().clear();
-                toDoList.getItems().addAll(model.getToDoList());
-                break;
-            case UPDATE_LISTS:
-                toDoList.getItems().clear();
-                toDoList.getItems().addAll(model.getToDoList());
-                doneList.getItems().clear();
-                doneList.getItems().addAll(model.getDoneList());
-                break;
-        }
     }
 
 }

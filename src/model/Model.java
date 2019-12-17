@@ -4,14 +4,13 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 
 import java.util.List;
-import java.util.Observable;
 
 
-public class Model extends Observable {
+public class Model {
 
     private static final int MIN_WORD_LENGTH = 3;
-    private final ObservableList<String> toDoList = new FXCollections.observableArrayList();
-    private final ObservableList<String> doneList = new FXCollections.observableArrayList();
+    private final ObservableList<String> toDoList = FXCollections.observableArrayList();
+    private final ObservableList<String> doneList = FXCollections.observableArrayList();
 
     public Model() {
         initialize();
