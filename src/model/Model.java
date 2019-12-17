@@ -1,32 +1,20 @@
 package model;
 
-import java.util.ArrayList;
-import java.util.Collections;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
+
 import java.util.List;
 import java.util.Observable;
 
 
 public class Model extends Observable {
 
-    public enum TypeNotif {
-        INIT, ADD_TODO, UPDATE_LISTS
-    }
-
     private static final int MIN_WORD_LENGTH = 3;
-    private List<String> toDoList = new ArrayList<>();
-    private List<String> doneList = new ArrayList<>();
+    private final ObservableList<String> toDoList = new FXCollections.observableArrayList();
+    private final ObservableList<String> doneList = new FXCollections.observableArrayList();
 
     public Model() {
         initialize();
-        notif(TypeNotif.INIT);
-    }
-
-    public List<String> getToDoList() {
-        return Collections.unmodifiableList(toDoList);
-    }
-
-    public List<String> getDoneList() {
-        return Collections.unmodifiableList(doneList);
     }
 
     public Model(List<String> list) {
@@ -35,6 +23,14 @@ public class Model extends Observable {
                 toDoList.add(elem);
             }
         }
+    }
+
+    public ObservableList<String> getToDoList() {
+        return FXCollections.unmodifiableObservableList(toDoList);
+    }
+
+    public ObservableList<String> getDoneList() {
+        return FXCollections.unmodifiableObservableList(doneList);
     }
 
     public void initialize() {
@@ -49,9 +45,8 @@ public class Model extends Observable {
     }
 
     public boolean addToDo(String word) {
-        if (word.length() >= MIN_WORD_LENGTH && !toDoList.contains(word.toUpperCase()) && !doneList.contains(word.toUpperCase())) {
+        if (word.length() >= MIN_WORD_LENGTH && !toDoList.contains(word) && !doneList.contains(word)) {
             toDoList.add(word);
-            notif(TypeNotif.ADD_TODO);
             return true;
         }
         return false;
@@ -61,19 +56,15 @@ public class Model extends Observable {
         if (validIndexDone(index)) {
             doneList.add(toDoList.get(index));
             toDoList.remove(index);
-            notif(TypeNotif.UPDATE_LISTS);
         } else {
             System.out.println("Invalid transfer Exception");
         }
-
     }
 
     public void setToDo(int index) {
         if (validIndexToDo(index)) {
             toDoList.add(doneList.get(index));
             doneList.remove(index);
-            notif(TypeNotif.UPDATE_LISTS);
-
         } else {
             System.out.println("Invalid transfer Exception");
         }
@@ -85,11 +76,6 @@ public class Model extends Observable {
 
     public boolean validIndexDone(int index) {
         return index >= 0 && index <= this.toDoList.size();
-    }
-
-    public void notif(TypeNotif typeNotif) {
-        setChanged();
-        notifyObservers(typeNotif);
     }
 
 }
