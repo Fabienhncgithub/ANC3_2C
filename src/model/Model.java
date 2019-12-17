@@ -49,7 +49,7 @@ public class Model extends Observable {
     }
 
     public boolean addToDo(String word) {
-        if (word.length() >= MIN_WORD_LENGTH && !toDoList.contains(word.toUpperCase()) && !doneList.contains(word.toUpperCase())) {
+        if (word.length() >= MIN_WORD_LENGTH && !toDoList.contains(word) && !doneList.contains(word)) {
             toDoList.add(word);
             notif(TypeNotif.ADD_TODO);
             return true;
