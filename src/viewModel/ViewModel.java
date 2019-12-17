@@ -5,10 +5,7 @@
  */
 package viewModel;
 
-import javafx.beans.property.BooleanProperty;
-import javafx.beans.property.IntegerProperty;
-import javafx.beans.property.SimpleBooleanProperty;
-import javafx.beans.property.SimpleIntegerProperty;
+import javafx.beans.property.*;
 import model.Model;
 
 
@@ -16,18 +13,27 @@ public class ViewModel {
 
     private final IntegerProperty numLineSelectedToDo = new SimpleIntegerProperty(-1);
     private final IntegerProperty numLineSelectedDone = new SimpleIntegerProperty(-1);
-    private final BooleanProperty btToDo = new SimpleBooleanProperty();
-    private final BooleanProperty btDone = new SimpleBooleanProperty();
-    private final BooleanProperty btAdd = new SimpleBooleanProperty();
-    private final BooleanProperty focusAddLine = new SimpleBooleanProperty();
+    private final BooleanProperty btToDoEnabled = new SimpleBooleanProperty();
+
+    public boolean isBtDoneEnabled() {
+        return btDoneEnabled.get();
+    }
+
+    public BooleanProperty btDoneEnabledProperty() {
+        return btDoneEnabled;
+    }
+
+    private final BooleanProperty btDoneEnabled = new SimpleBooleanProperty();
+    private final BooleanProperty btAddEnabled = new SimpleBooleanProperty();
+    private final StringProperty textToAdd = new SimpleStringProperty();
 
     private final Model model;
 
     public ViewModel(Model model) {
         this.model = model;
-        btDone.bind(numLineSelectedToDo.isNotEqualTo(-1));
-        btToDo.bind(numLineSelectedDone.isNotEqualTo(-1));
-//        btAdd.bind(focusAddLine.isNotEqualTo());
+        btDoneEnabled.bind(numLineSelectedToDo.isNotEqualTo(-1));
+        btToDoEnabled.bind(numLineSelectedDone.isNotEqualTo(-1));
+        btAddEnabled.bind(textToAdd.length().greaterThan(2));
     }
 
     public IntegerProperty numLineSelectedToDoProperty() {

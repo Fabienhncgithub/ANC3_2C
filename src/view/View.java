@@ -16,7 +16,7 @@ import viewModel.ViewModel;
 
 import java.util.Observer;
 
-public class View extends VBox implements Observer {
+public class View extends VBox {
 
 //    private static final List<String> INIT_DATA = Arrays.asList( TODO un constructeur vide et un avec init_data
 //            "Jouer à SuperMario",
@@ -51,6 +51,7 @@ public class View extends VBox implements Observer {
         Scene scene = new Scene(root, 600, 400);
         primaryStage.setTitle("Liste ToDo");
         primaryStage.setScene(scene);
+        setDone.disableProperty().bind(viewModel.btDoneEnabledProperty().not());
     }
 
     private void configComponents() {
