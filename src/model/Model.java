@@ -5,8 +5,6 @@ import java.util.Collections;
 import java.util.List;
 import java.util.Observable;
 
-import static java.util.stream.Collectors.toList;
-
 
 public class Model extends Observable {
 
@@ -51,13 +49,7 @@ public class Model extends Observable {
     }
 
     public boolean addToDo(String word) {
-        List<String> upperToDoList = toDoList.stream()
-                .map(w -> w.toUpperCase())
-                .collect(toList());
-        List<String> upperDoneList = doneList.stream()
-                .map(w -> w.toUpperCase())
-                .collect(toList());
-        if (word.length() >= MIN_WORD_LENGTH && !upperToDoList.contains(word.toUpperCase()) && !upperDoneList.contains(word.toUpperCase())) {
+        if (word.length() >= MIN_WORD_LENGTH && !toDoList.contains(word.toUpperCase()) && !doneList.contains(word.toUpperCase())) {
             toDoList.add(word);
             notif(TypeNotif.ADD_TODO);
             return true;
