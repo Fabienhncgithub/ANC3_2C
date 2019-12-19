@@ -48,7 +48,6 @@ public class View extends VBox {
         Scene scene = new Scene(root, 600, 400);
         primaryStage.setTitle("Liste ToDo");
         primaryStage.setScene(scene);
-        setDone.disableProperty().bind(viewModel.btDoneEnabledProperty().not());
     }
 
     private void configComponents() {
@@ -84,6 +83,9 @@ public class View extends VBox {
         toDoList.setItems(viewModel.toDoListProperty());
         doneList.setItems(viewModel.doneListProperty());
         addText.textProperty().bindBidirectional(viewModel.textToAddProperty());
+        addButton.disableProperty().bind(viewModel.btAddEnabledProperty().not());
+        setToDo.disableProperty().bind(viewModel.btToDoEnabledProperty().not());
+        setDone.disableProperty().bind(viewModel.btDoneEnabledProperty().not());
     }
 
     private void configViewModelBindings() {
@@ -106,45 +108,29 @@ public class View extends VBox {
         });
 
         setToDo.setOnAction(e -> {
-            int index = doneList.getSelectionModel().getSelectedIndex();
-            viewModel.setToDo(index);
+            viewModel.setToDo();
         });
 
         setDone.setOnAction(e -> {
-            int index = toDoList.getSelectionModel().getSelectedIndex();
-            viewModel.setDone(index);
+            viewModel.setDone();
         });
 
         toDoList.setOnMouseClicked(e -> {
-            int index = toDoList.getSelectionModel().getSelectedIndex();
             if (e.getClickCount() == 2) {
-                viewModel.setDone(index);
+                viewModel.setDone();
             }
         });
 
         doneList.setOnMouseClicked(e -> {
-            int index = doneList.getSelectionModel().getSelectedIndex();
             if (e.getClickCount() == 2) {
-                viewModel.setToDo(index);
+                viewModel.setToDo();
             }
-        });
-
-        toDoList.getSelectionModel().selectedIndexProperty().addListener((obs, old, act) -> {
-            setDone.setDisable((int) act == -1);
-        });
-
-        doneList.getSelectionModel().selectedIndexProperty().addListener((obs, old, act) -> {
-            setToDo.setDisable((int) act == -1);
         });
 
         addText.setOnKeyPressed(e -> {
             if (e.getCode().equals(KeyCode.ENTER)) {
                 viewModel.addToDo(addText.getText());
             }
-        });
-
-        addText.textProperty().addListener((obs, old, act) -> {
-            addButton.setDisable(act.length() <= 2);
         });
 
         addText.focusedProperty().addListener((obs, old, act) -> {

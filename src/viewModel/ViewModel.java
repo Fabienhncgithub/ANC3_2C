@@ -19,13 +19,16 @@ public class ViewModel {
     private final BooleanProperty btAddEnabled = new SimpleBooleanProperty();
     private final StringProperty textToAdd = new SimpleStringProperty();
 
-
-    public boolean isBtDoneEnabled() {
-        return btDoneEnabled.get();
+    public BooleanProperty btAddEnabledProperty() {
+        return btAddEnabled;
     }
 
     public BooleanProperty btDoneEnabledProperty() {
         return btDoneEnabled;
+    }
+
+    public BooleanProperty btToDoEnabledProperty() {
+        return btToDoEnabled;
     }
 
     private final Model model;
@@ -42,7 +45,7 @@ public class ViewModel {
     }
 
     public IntegerProperty numLineSelectedDoneProperty() {
-        return numLineSelectedToDo;
+        return numLineSelectedDone;
     }
 
     public ObservableList toDoListProperty() {
@@ -59,14 +62,19 @@ public class ViewModel {
 
 
     public void addToDo(String text) {
-        model.addToDo(text);
-        textToAdd.set("");
+        if (model.addToDo(text)){
+            textToAdd.set("");
+        }
     }
 
-    public void setToDo(int line) { model.setToDo(line);
+    public void setToDo() {
+        int index = numLineSelectedDone.get();
+        model.setToDo(index);
     }
 
-    public void setDone(int line) { model.setDone(line);
+    public void setDone() {
+        int index = numLineSelectedToDo.get();
+        model.setDone(index);
     }
 
 }

@@ -70,11 +70,11 @@ public class Model {
     }
 
     public boolean validIndexToDo(int index) {
-        return index >= 0 && index <= this.doneList.size();
+        return index >= 0 && index <= this.doneList.size()-1;
     }
 
     public boolean validIndexDone(int index) {
-        return index >= 0 && index <= this.toDoList.size();
+        return index >= 0 && index <= this.toDoList.size()-1;
     }
 
 }
