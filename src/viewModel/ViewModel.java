@@ -6,6 +6,7 @@
 package viewModel;
 
 import javafx.beans.property.*;
+import javafx.collections.ObservableList;
 import model.Model;
 
 
@@ -14,6 +15,10 @@ public class ViewModel {
     private final IntegerProperty numLineSelectedToDo = new SimpleIntegerProperty(-1);
     private final IntegerProperty numLineSelectedDone = new SimpleIntegerProperty(-1);
     private final BooleanProperty btToDoEnabled = new SimpleBooleanProperty();
+    private final BooleanProperty btDoneEnabled = new SimpleBooleanProperty();
+    private final BooleanProperty btAddEnabled = new SimpleBooleanProperty();
+    private final StringProperty textToAdd = new SimpleStringProperty();
+
 
     public boolean isBtDoneEnabled() {
         return btDoneEnabled.get();
@@ -22,10 +27,6 @@ public class ViewModel {
     public BooleanProperty btDoneEnabledProperty() {
         return btDoneEnabled;
     }
-
-    private final BooleanProperty btDoneEnabled = new SimpleBooleanProperty();
-    private final BooleanProperty btAddEnabled = new SimpleBooleanProperty();
-    private final StringProperty textToAdd = new SimpleStringProperty();
 
     private final Model model;
 
@@ -40,13 +41,26 @@ public class ViewModel {
         return numLineSelectedToDo;
     }
 
-
-    public ViewModel(Model model) {
-        this.model = model;
+    public IntegerProperty numLineSelectedDoneProperty() {
+        return numLineSelectedToDo;
     }
+
+    public ObservableList toDoListProperty() {
+        return model.getToDoList();
+    }
+
+    public ObservableList doneListProperty() {
+        return model.getDoneList();
+    }
+
+    public StringProperty textToAddProperty() {
+        return textToAdd;
+    }
+
 
     public void addToDo(String text) {
         model.addToDo(text);
+        textToAdd.set("");
     }
 
     public void setToDo(int line) { model.setToDo(line);

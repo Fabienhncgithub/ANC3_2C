@@ -4,17 +4,12 @@ import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.Button;
-import javafx.scene.control.Label;
-import javafx.scene.control.ListView;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
 import javafx.scene.input.KeyCode;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 import viewModel.ViewModel;
-
-import java.util.Observer;
 
 public class View extends VBox {
 
@@ -41,11 +36,13 @@ public class View extends VBox {
     private final VBox cBox = new VBox();
     private final VBox rBox = new VBox();
     private final VBox addBox = new VBox();
+
     private final ViewModel viewModel;
 
     public View(Stage primaryStage, ViewModel viewModel) {
         this.viewModel = viewModel;
         configComponents();
+        configBindings();
         configListeners();
         Parent root = setRoot();
         Scene scene = new Scene(root, 600, 400);
@@ -77,6 +74,31 @@ public class View extends VBox {
         setDone.setDisable(true);
         addButton.setDisable(true);
     }
+
+    private void configBindings() {
+        configDataBindings();
+        configViewModelBindings();
+    }
+
+    private void configDataBindings() {
+        toDoList.setItems(viewModel.toDoListProperty());
+        doneList.setItems(viewModel.doneListProperty());
+        addText.textProperty().bindBidirectional(viewModel.textToAddProperty());
+    }
+
+    private void configViewModelBindings() {
+        viewModel.numLineSelectedToDoProperty().bind(getListToDoViewModel().selectedIndexProperty());
+        viewModel.numLineSelectedDoneProperty().bind(getListDoneViewModel().selectedIndexProperty());
+    }
+
+    private SelectionModel<String> getListToDoViewModel() {
+        return toDoList.getSelectionModel();
+    }
+
+    private SelectionModel<String> getListDoneViewModel() {
+        return doneList.getSelectionModel();
+    }
+
 
     private void configListeners() {
         addButton.setOnAction(e -> {
@@ -140,6 +162,4 @@ public class View extends VBox {
         root.getChildren().addAll(addBox, lBox, cBox, rBox);
         return root;
     }
-    }
-
 }
