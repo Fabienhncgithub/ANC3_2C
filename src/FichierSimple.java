@@ -1,16 +1,24 @@
-public class FichierSimple extends Fichier {
-    private final int taille;
+import java.nio.file.Files;
+import java.util.Date;
 
-    public FichierSimple(String nom, int taille) {
-        super(nom);
-        this.taille = taille;
+public class FichierSimple extends Fichier {
+
+
+    public FichierSimple(String nom, Date modifDate, Etat etat) {
+        super(nom,modifDate,etat);
     }
 
     @Override
     public int taille() {
         return taille;
     }
-    
+
+    @Override
+    public boolean isDirectory() {
+        return false;
+    }
+
+
     @Override
     protected String formatAffichage(int decalage) {
         return super.formatAffichage(decalage) + getNom() + " - taille : " + taille() + "\n";

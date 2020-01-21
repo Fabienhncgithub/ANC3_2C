@@ -2,17 +2,34 @@ import java.util.Date;
 
 public abstract class Fichier {
     private final String nom;
-    private boolean type;
     private Date modifDate;
-    private long size;
     private Etat etat;
-    private String chemin;
 
-    public Fichier(String nom) {
+    public Fichier(String nom, Date modifDate, Etat etat) {
         this.nom = nom;
+        this.modifDate = modifDate;
+        this.etat = etat;
     }
-    
-    public String getNom() { return nom; }
+
+    public abstract boolean isDirectory();
+
+    public abstract int taille();
+
+    public abstract void ajoutFichier(Fichier f);
+
+    public Date getModifDate() {
+        return modifDate;
+    }
+
+
+    public Etat getEtat() {
+        return etat;
+    }
+
+
+    public String getNom() {
+        return nom;
+    }
 
     protected String formatAffichage(int decalage) {
         String res = "";
@@ -20,13 +37,11 @@ public abstract class Fichier {
             res += "\t";
         return res;
     }
-    
+
     @Override
     public String toString() {
         return formatAffichage(0);
     }
-    
-    public abstract int taille();
-    public abstract void ajoutFichier(Fichier f);
-    
+
+
 }
