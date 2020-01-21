@@ -12,6 +12,8 @@ import java.util.Scanner;
 public class Model {
 
     public static void main(String[] args) {
+        Fichier f1 = CopyBuilder.make("TestBC/RootBC_Left");
+        Fichier f2 = CopyBuilder.make("TestBC/RootBC_Right");
         System.out.println("Ce programme d'exemple montre l'affichage de la date de dernière modification.\n" +
                 "La date d'un dossier sera la date de son contenu le plus récent.\n");
         System.out.print("Entrez le nom du fichier (ou dossier) (<ENTER> pour le dossier courant) : ");
@@ -49,7 +51,6 @@ public class Model {
         return result;
     }
 
-    // TEST CALCULE TAILLE!!!
     static long size(Path path) throws IOException {
         long result = 0;
         if (Files.isDirectory(path)) {
@@ -64,8 +65,5 @@ public class Model {
         return result;
     }
 
-    public enum ETAT {
-        ORPHAN, SAME, NEWER, OLDER, PARTIAL_SAME
-    }
 // a afficher :  chemin, nom, type (D pour dossier...), date, taille, tag
 }

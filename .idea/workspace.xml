@@ -1,41 +1,25 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="0c777b5d-34a2-47ef-b49f-5789669eb0c3" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/TestBC/RootBC_Left/PartialSame/ContentSameFileButOtherFolder/SameFileButDifferentLocation.txt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/TestBC/RootBC_Left/PartialSame/LeftNewer/NewerInLeft/NewerInLeft.txt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/TestBC/RootBC_Left/PartialSame/LeftNewer/NewerInLeft/SameInNewerInLeft.txt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/TestBC/RootBC_Left/PartialSame/LeftNewer/Same/Same.txt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/TestBC/RootBC_Left/PartialSame/OnlyLeft/OnlyLeft.txt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/TestBC/RootBC_Left/PartialSame/OnlyLeft/SubOnlyLeft/OnlyLeftInSubOnlyLeft.txt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/TestBC/RootBC_Left/PartialSame/Same/SameFileInSame.txt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/TestBC/RootBC_Left/PartialSame/Same/SubSame/SameFileInSubSame.txt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/TestBC/RootBC_Left/PartialSame/SameFolderContentDiffDate/NewerLeft.txt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/TestBC/RootBC_Left/PartialSame/SameFolderContentDiffDate/NewerRight.txt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/TestBC/RootBC_Left/Same/SubSame/sameFile.txt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/TestBC/RootBC_Left/Same/sameFile.txt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/TestBC/RootBC_Left/SameFolderName/OnlyLeft.txt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/TestBC/RootBC_Right/PartialSame/ContentSameFileButOtherFolder/SubOnlyRight/SameFileButDifferentLocation.txt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/TestBC/RootBC_Right/PartialSame/LeftNewer/NewerInLeft/NewerInLeft.txt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/TestBC/RootBC_Right/PartialSame/LeftNewer/NewerInLeft/SameInNewerInLeft.txt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/TestBC/RootBC_Right/PartialSame/LeftNewer/Same/Same.txt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/TestBC/RootBC_Right/PartialSame/OnlyRight/OnlyRight.txt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/TestBC/RootBC_Right/PartialSame/OnlyRight/SubOnlyRight/OnlyRightInSubOnlyRight.txt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/TestBC/RootBC_Right/PartialSame/Same/SameFileInSame.txt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/TestBC/RootBC_Right/PartialSame/Same/SubSame/SameFileInSubSame.txt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/TestBC/RootBC_Right/PartialSame/SameFolderContentDiffDate/NewerLeft.txt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/TestBC/RootBC_Right/PartialSame/SameFolderContentDiffDate/NewerRight.txt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/TestBC/RootBC_Right/Same/SubSame/sameFile.txt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/TestBC/RootBC_Right/Same/sameFile.txt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/TestBC/RootBC_Right/SameFolderName/OnlyRight.txt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/TestBC/RootBC_Right/SameNameFileFolder" afterDir="false" />
+    <list default="true" id="0c777b5d-34a2-47ef-b49f-5789669eb0c3" name="Default Changelist" comment="TestBC folder added">
+      <change afterPath="$PROJECT_DIR$/src/CopyBuilder.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/Etat.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Fichier.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Fichier.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Model.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Model.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Class" />
+        <option value="Enum" />
+      </list>
+    </option>
   </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
@@ -68,22 +52,13 @@
     <property name="project.structure.side.proportion" value="0.2" />
   </component>
   <component name="RecentsManager">
+    <key name="CreateClassDialog.RecentsKey">
+      <recent name="" />
+    </key>
     <key name="CopyFile.RECENT_KEYS">
       <recent name="C:\Users\GV\Documents\IntelliJ_Projects\anc3_2c_fabien_giacomo" />
       <recent name="C:\Users\GV\Documents\IntelliJ_Projects\anc3_2c_fabien_giacomo\src" />
     </key>
-  </component>
-  <component name="RunDashboard">
-    <option name="ruleStates">
-      <list>
-        <RuleState>
-          <option name="name" value="ConfigurationTypeDashboardGroupingRule" />
-        </RuleState>
-        <RuleState>
-          <option name="name" value="StatusDashboardGroupingRule" />
-        </RuleState>
-      </list>
-    </option>
   </component>
   <component name="RunManager" selected="Application.Model">
     <configuration name="Main" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
@@ -112,6 +87,18 @@
         <item itemvalue="Application.Main" />
       </list>
     </recent_temporary>
+  </component>
+  <component name="ServiceViewManager">
+    <option name="viewStates">
+      <list>
+        <serviceView>
+          <treeState>
+            <expand />
+            <select />
+          </treeState>
+        </serviceView>
+      </list>
+    </option>
   </component>
   <component name="SvnConfiguration">
     <configuration />
@@ -183,6 +170,27 @@
     <option name="localTasksCounter" value="9" />
     <servers />
   </component>
+  <component name="Vcs.Log.History.Properties">
+    <option name="COLUMN_ORDER">
+      <list>
+        <option value="0" />
+        <option value="2" />
+        <option value="3" />
+        <option value="1" />
+      </list>
+    </option>
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="1">
+          <value>
+            <State />
+          </value>
+        </entry>
+      </map>
+    </option>
+  </component>
   <component name="VcsManagerConfiguration">
     <option name="CHECK_CODE_CLEANUP_BEFORE_PROJECT_COMMIT" value="true" />
     <MESSAGE value="MVC (V2) implemented" />
@@ -211,10 +219,10 @@
       <screen x="0" y="0" width="1366" height="738" />
     </state>
     <state x="71" y="115" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog/0.0.1366.738@0.0.1366.738" timestamp="1576320152495" />
-    <state x="226" y="8" width="861" height="620" key="CommitChangelistDialog2" timestamp="1579628923850">
+    <state x="226" y="8" width="861" height="620" key="CommitChangelistDialog2" timestamp="1579636143474">
       <screen x="0" y="0" width="1366" height="738" />
     </state>
-    <state x="226" y="8" width="861" height="620" key="CommitChangelistDialog2/0.0.1366.738/1366.0.1280.994@0.0.1366.738" timestamp="1579628923850" />
+    <state x="226" y="8" width="861" height="620" key="CommitChangelistDialog2/0.0.1366.738/1366.0.1280.994@0.0.1366.738" timestamp="1579636143474" />
     <state x="0" y="0" key="CommitChangelistDialog2/0.0.1366.738@0.0.1366.738" timestamp="1576320935439" />
     <state x="92" y="92" width="1182" height="554" key="DiffContextDialog" timestamp="1576605069567">
       <screen x="0" y="0" width="1366" height="738" />
@@ -224,34 +232,38 @@
       <screen x="0" y="0" width="1366" height="738" />
     </state>
     <state x="463" y="123" key="FileChooserDialogImpl/0.0.1366.738/1366.0.1280.994@0.0.1366.738" timestamp="1576609766248" />
-    <state width="1323" height="182" key="GridCell.Tab.0.bottom" timestamp="1579628848903">
+    <state width="1323" height="182" key="GridCell.Tab.0.bottom" timestamp="1579633037640">
       <screen x="0" y="0" width="1366" height="738" />
     </state>
-    <state width="1323" height="182" key="GridCell.Tab.0.bottom/0.0.1366.738/1366.0.1280.994@0.0.1366.738" timestamp="1579628848903" />
+    <state width="1323" height="182" key="GridCell.Tab.0.bottom/0.0.1366.738/1366.0.1280.994@0.0.1366.738" timestamp="1579633037640" />
     <state width="1323" height="182" key="GridCell.Tab.0.bottom/0.0.1366.738@0.0.1366.738" timestamp="1578472618255" />
     <state width="2005" height="308" key="GridCell.Tab.0.bottom/0.0.2048.1122@0.0.2048.1122" timestamp="1576389627602" />
-    <state width="1323" height="182" key="GridCell.Tab.0.center" timestamp="1579628848903">
+    <state width="1323" height="182" key="GridCell.Tab.0.center" timestamp="1579633037640">
       <screen x="0" y="0" width="1366" height="738" />
     </state>
-    <state width="1323" height="182" key="GridCell.Tab.0.center/0.0.1366.738/1366.0.1280.994@0.0.1366.738" timestamp="1579628848903" />
+    <state width="1323" height="182" key="GridCell.Tab.0.center/0.0.1366.738/1366.0.1280.994@0.0.1366.738" timestamp="1579633037640" />
     <state width="1323" height="182" key="GridCell.Tab.0.center/0.0.1366.738@0.0.1366.738" timestamp="1578472618255" />
     <state width="2005" height="308" key="GridCell.Tab.0.center/0.0.2048.1122@0.0.2048.1122" timestamp="1576389627602" />
-    <state width="1323" height="182" key="GridCell.Tab.0.left" timestamp="1579628848903">
+    <state width="1323" height="182" key="GridCell.Tab.0.left" timestamp="1579633037640">
       <screen x="0" y="0" width="1366" height="738" />
     </state>
-    <state width="1323" height="182" key="GridCell.Tab.0.left/0.0.1366.738/1366.0.1280.994@0.0.1366.738" timestamp="1579628848903" />
+    <state width="1323" height="182" key="GridCell.Tab.0.left/0.0.1366.738/1366.0.1280.994@0.0.1366.738" timestamp="1579633037640" />
     <state width="1323" height="182" key="GridCell.Tab.0.left/0.0.1366.738@0.0.1366.738" timestamp="1578472618255" />
     <state width="2005" height="308" key="GridCell.Tab.0.left/0.0.2048.1122@0.0.2048.1122" timestamp="1576389627602" />
-    <state width="1323" height="182" key="GridCell.Tab.0.right" timestamp="1579628848903">
+    <state width="1323" height="182" key="GridCell.Tab.0.right" timestamp="1579633037640">
       <screen x="0" y="0" width="1366" height="738" />
     </state>
-    <state width="1323" height="182" key="GridCell.Tab.0.right/0.0.1366.738/1366.0.1280.994@0.0.1366.738" timestamp="1579628848903" />
+    <state width="1323" height="182" key="GridCell.Tab.0.right/0.0.1366.738/1366.0.1280.994@0.0.1366.738" timestamp="1579633037640" />
     <state width="1323" height="182" key="GridCell.Tab.0.right/0.0.1366.738@0.0.1366.738" timestamp="1578472618255" />
     <state width="2005" height="308" key="GridCell.Tab.0.right/0.0.2048.1122@0.0.2048.1122" timestamp="1576389627602" />
     <state x="395" y="84" key="MultipleFileMergeDialog" timestamp="1576606913529">
       <screen x="0" y="0" width="1366" height="738" />
     </state>
     <state x="395" y="84" key="MultipleFileMergeDialog/0.0.1366.738/1366.0.1280.994@0.0.1366.738" timestamp="1576606913529" />
+    <state x="362" y="81" key="RollbackChangesDialog" timestamp="1579632038724">
+      <screen x="0" y="0" width="1366" height="738" />
+    </state>
+    <state x="362" y="81" key="RollbackChangesDialog/0.0.1366.738/1366.0.1280.994@0.0.1366.738" timestamp="1579632038724" />
     <state x="163" y="0" key="SettingsEditor" timestamp="1576319861182">
       <screen x="0" y="0" width="1366" height="738" />
     </state>
@@ -269,10 +281,10 @@
       <screen x="0" y="0" width="1366" height="738" />
     </state>
     <state x="492" y="285" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2/0.0.1366.738/1366.0.1280.994@0.0.1366.738" timestamp="1579628219129" />
-    <state x="263" y="155" width="703" height="420" key="git4idea.merge.GitPullDialog" timestamp="1579628005995">
+    <state x="263" y="155" width="703" height="420" key="git4idea.merge.GitPullDialog" timestamp="1579632054480">
       <screen x="0" y="0" width="1366" height="738" />
     </state>
-    <state x="263" y="155" width="703" height="420" key="git4idea.merge.GitPullDialog/0.0.1366.738/1366.0.1280.994@0.0.1366.738" timestamp="1579628005995" />
+    <state x="263" y="155" width="703" height="420" key="git4idea.merge.GitPullDialog/0.0.1366.738/1366.0.1280.994@0.0.1366.738" timestamp="1579632054480" />
     <state x="0" y="163" key="git4idea.merge.GitPullDialog/0.0.1366.738@0.0.1366.738" timestamp="1576621727942" />
     <state x="65" y="0" key="new project wizard" timestamp="1576332809223">
       <screen x="0" y="0" width="1366" height="738" />

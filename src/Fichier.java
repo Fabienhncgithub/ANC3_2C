@@ -1,5 +1,12 @@
+import java.util.Date;
+
 public abstract class Fichier {
     private final String nom;
+    private boolean type;
+    private Date modifDate;
+    private long size;
+    private Etat etat;
+    private String chemin;
 
     public Fichier(String nom) {
         this.nom = nom;
