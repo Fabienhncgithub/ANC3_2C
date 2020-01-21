@@ -51,13 +51,15 @@ public class Model {
 
     // TEST CALCULE TAILLE!!!
     static long size(Path path) throws IOException {
-        long result = Files.size(path);
+        long result = 0;
         if (Files.isDirectory(path)) {
             try (DirectoryStream<Path> dir = Files.newDirectoryStream(path)) {
                 for (Path p : dir) {
                     result += size(p);
                 }
             }
+        } else {
+            result = Files.size(path);
         }
         return result;
     }
