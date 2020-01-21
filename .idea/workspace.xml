@@ -1,9 +1,34 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="0c777b5d-34a2-47ef-b49f-5789669eb0c3" name="Default Changelist" comment="MVVM implementation done!!!">
-      <change afterPath="$PROJECT_DIR$/.idea/uiDesigner.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+    <list default="true" id="0c777b5d-34a2-47ef-b49f-5789669eb0c3" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/TestBC/RootBC_Left/PartialSame/ContentSameFileButOtherFolder/SameFileButDifferentLocation.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/TestBC/RootBC_Left/PartialSame/LeftNewer/NewerInLeft/NewerInLeft.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/TestBC/RootBC_Left/PartialSame/LeftNewer/NewerInLeft/SameInNewerInLeft.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/TestBC/RootBC_Left/PartialSame/LeftNewer/Same/Same.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/TestBC/RootBC_Left/PartialSame/OnlyLeft/OnlyLeft.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/TestBC/RootBC_Left/PartialSame/OnlyLeft/SubOnlyLeft/OnlyLeftInSubOnlyLeft.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/TestBC/RootBC_Left/PartialSame/Same/SameFileInSame.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/TestBC/RootBC_Left/PartialSame/Same/SubSame/SameFileInSubSame.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/TestBC/RootBC_Left/PartialSame/SameFolderContentDiffDate/NewerLeft.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/TestBC/RootBC_Left/PartialSame/SameFolderContentDiffDate/NewerRight.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/TestBC/RootBC_Left/Same/SubSame/sameFile.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/TestBC/RootBC_Left/Same/sameFile.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/TestBC/RootBC_Left/SameFolderName/OnlyLeft.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/TestBC/RootBC_Right/PartialSame/ContentSameFileButOtherFolder/SubOnlyRight/SameFileButDifferentLocation.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/TestBC/RootBC_Right/PartialSame/LeftNewer/NewerInLeft/NewerInLeft.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/TestBC/RootBC_Right/PartialSame/LeftNewer/NewerInLeft/SameInNewerInLeft.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/TestBC/RootBC_Right/PartialSame/LeftNewer/Same/Same.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/TestBC/RootBC_Right/PartialSame/OnlyRight/OnlyRight.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/TestBC/RootBC_Right/PartialSame/OnlyRight/SubOnlyRight/OnlyRightInSubOnlyRight.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/TestBC/RootBC_Right/PartialSame/Same/SameFileInSame.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/TestBC/RootBC_Right/PartialSame/Same/SubSame/SameFileInSubSame.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/TestBC/RootBC_Right/PartialSame/SameFolderContentDiffDate/NewerLeft.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/TestBC/RootBC_Right/PartialSame/SameFolderContentDiffDate/NewerRight.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/TestBC/RootBC_Right/Same/SubSame/sameFile.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/TestBC/RootBC_Right/Same/sameFile.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/TestBC/RootBC_Right/SameFolderName/OnlyRight.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/TestBC/RootBC_Right/SameNameFileFolder" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -12,6 +37,7 @@
   </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+    <option name="RESET_MODE" value="MIXED" />
     <option name="UPDATE_TYPE" value="MERGE" />
   </component>
   <component name="IgnoredFileRootStore">
@@ -34,7 +60,7 @@
     <property name="ASKED_SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/src" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="project.structure.last.edited" value="Project" />
     <property name="project.structure.proportion" value="0.15" />
     <property name="project.structure.side.proportion" value="0.2" />
@@ -42,6 +68,7 @@
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
       <recent name="C:\Users\GV\Documents\IntelliJ_Projects\anc3_2c_fabien_giacomo" />
+      <recent name="C:\Users\GV\Documents\IntelliJ_Projects\anc3_2c_fabien_giacomo\src" />
     </key>
   </component>
   <component name="RunManager" selected="Application.Model">
@@ -144,7 +171,14 @@
       <option name="project" value="LOCAL" />
       <updated>1576771362861</updated>
     </task>
-    <option name="localTasksCounter" value="8" />
+    <task id="LOCAL-00008" summary="Iteration 1 - Beginning">
+      <created>1579628442708</created>
+      <option name="number" value="00008" />
+      <option name="presentableId" value="LOCAL-00008" />
+      <option name="project" value="LOCAL" />
+      <updated>1579628442708</updated>
+    </task>
+    <option name="localTasksCounter" value="9" />
     <servers />
   </component>
   <component name="VcsManagerConfiguration">
@@ -157,7 +191,8 @@
     <MESSAGE value="implementing MVVM (working on the ViewModel)" />
     <MESSAGE value="the program is now runnable (still implementing MVVM)" />
     <MESSAGE value="MVVM implementation done!!!" />
-    <option name="LAST_COMMIT_MESSAGE" value="MVVM implementation done!!!" />
+    <MESSAGE value="Iteration 1 - Beginning" />
+    <option name="LAST_COMMIT_MESSAGE" value="Iteration 1 - Beginning" />
     <option name="OPTIMIZE_IMPORTS_BEFORE_PROJECT_COMMIT" value="true" />
     <option name="REARRANGE_BEFORE_PROJECT_COMMIT" value="true" />
   </component>
@@ -174,10 +209,10 @@
       <screen x="0" y="0" width="1366" height="738" />
     </state>
     <state x="71" y="115" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog/0.0.1366.738@0.0.1366.738" timestamp="1576320152495" />
-    <state x="226" y="8" width="861" height="620" key="CommitChangelistDialog2" timestamp="1576771361486">
+    <state x="226" y="8" width="861" height="620" key="CommitChangelistDialog2" timestamp="1579628923850">
       <screen x="0" y="0" width="1366" height="738" />
     </state>
-    <state x="226" y="8" width="861" height="620" key="CommitChangelistDialog2/0.0.1366.738/1366.0.1280.994@0.0.1366.738" timestamp="1576771361486" />
+    <state x="226" y="8" width="861" height="620" key="CommitChangelistDialog2/0.0.1366.738/1366.0.1280.994@0.0.1366.738" timestamp="1579628923850" />
     <state x="0" y="0" key="CommitChangelistDialog2/0.0.1366.738@0.0.1366.738" timestamp="1576320935439" />
     <state x="92" y="92" width="1182" height="554" key="DiffContextDialog" timestamp="1576605069567">
       <screen x="0" y="0" width="1366" height="738" />
@@ -187,28 +222,28 @@
       <screen x="0" y="0" width="1366" height="738" />
     </state>
     <state x="463" y="123" key="FileChooserDialogImpl/0.0.1366.738/1366.0.1280.994@0.0.1366.738" timestamp="1576609766248" />
-    <state width="1323" height="182" key="GridCell.Tab.0.bottom" timestamp="1578472618255">
+    <state width="1323" height="182" key="GridCell.Tab.0.bottom" timestamp="1579628848903">
       <screen x="0" y="0" width="1366" height="738" />
     </state>
-    <state width="1323" height="182" key="GridCell.Tab.0.bottom/0.0.1366.738/1366.0.1280.994@0.0.1366.738" timestamp="1576771178076" />
+    <state width="1323" height="182" key="GridCell.Tab.0.bottom/0.0.1366.738/1366.0.1280.994@0.0.1366.738" timestamp="1579628848903" />
     <state width="1323" height="182" key="GridCell.Tab.0.bottom/0.0.1366.738@0.0.1366.738" timestamp="1578472618255" />
     <state width="2005" height="308" key="GridCell.Tab.0.bottom/0.0.2048.1122@0.0.2048.1122" timestamp="1576389627602" />
-    <state width="1323" height="182" key="GridCell.Tab.0.center" timestamp="1578472618255">
+    <state width="1323" height="182" key="GridCell.Tab.0.center" timestamp="1579628848903">
       <screen x="0" y="0" width="1366" height="738" />
     </state>
-    <state width="1323" height="182" key="GridCell.Tab.0.center/0.0.1366.738/1366.0.1280.994@0.0.1366.738" timestamp="1576771178076" />
+    <state width="1323" height="182" key="GridCell.Tab.0.center/0.0.1366.738/1366.0.1280.994@0.0.1366.738" timestamp="1579628848903" />
     <state width="1323" height="182" key="GridCell.Tab.0.center/0.0.1366.738@0.0.1366.738" timestamp="1578472618255" />
     <state width="2005" height="308" key="GridCell.Tab.0.center/0.0.2048.1122@0.0.2048.1122" timestamp="1576389627602" />
-    <state width="1323" height="182" key="GridCell.Tab.0.left" timestamp="1578472618255">
+    <state width="1323" height="182" key="GridCell.Tab.0.left" timestamp="1579628848903">
       <screen x="0" y="0" width="1366" height="738" />
     </state>
-    <state width="1323" height="182" key="GridCell.Tab.0.left/0.0.1366.738/1366.0.1280.994@0.0.1366.738" timestamp="1576771178076" />
+    <state width="1323" height="182" key="GridCell.Tab.0.left/0.0.1366.738/1366.0.1280.994@0.0.1366.738" timestamp="1579628848903" />
     <state width="1323" height="182" key="GridCell.Tab.0.left/0.0.1366.738@0.0.1366.738" timestamp="1578472618255" />
     <state width="2005" height="308" key="GridCell.Tab.0.left/0.0.2048.1122@0.0.2048.1122" timestamp="1576389627602" />
-    <state width="1323" height="182" key="GridCell.Tab.0.right" timestamp="1578472618255">
+    <state width="1323" height="182" key="GridCell.Tab.0.right" timestamp="1579628848903">
       <screen x="0" y="0" width="1366" height="738" />
     </state>
-    <state width="1323" height="182" key="GridCell.Tab.0.right/0.0.1366.738/1366.0.1280.994@0.0.1366.738" timestamp="1576771178076" />
+    <state width="1323" height="182" key="GridCell.Tab.0.right/0.0.1366.738/1366.0.1280.994@0.0.1366.738" timestamp="1579628848903" />
     <state width="1323" height="182" key="GridCell.Tab.0.right/0.0.1366.738@0.0.1366.738" timestamp="1578472618255" />
     <state width="2005" height="308" key="GridCell.Tab.0.right/0.0.2048.1122@0.0.2048.1122" timestamp="1576389627602" />
     <state x="395" y="84" key="MultipleFileMergeDialog" timestamp="1576606913529">
@@ -219,10 +254,14 @@
       <screen x="0" y="0" width="1366" height="738" />
     </state>
     <state x="163" y="0" key="SettingsEditor/0.0.1366.738@0.0.1366.738" timestamp="1576319861182" />
-    <state x="347" y="115" key="Vcs.Push.Dialog.v2" timestamp="1576771371316">
+    <state x="530" y="286" key="VCS.ChangelistChooser" timestamp="1579628871079">
       <screen x="0" y="0" width="1366" height="738" />
     </state>
-    <state x="347" y="115" key="Vcs.Push.Dialog.v2/0.0.1366.738/1366.0.1280.994@0.0.1366.738" timestamp="1576771371316" />
+    <state x="530" y="286" key="VCS.ChangelistChooser/0.0.1366.738/1366.0.1280.994@0.0.1366.738" timestamp="1579628871079" />
+    <state x="347" y="115" key="Vcs.Push.Dialog.v2" timestamp="1579628811727">
+      <screen x="0" y="0" width="1366" height="738" />
+    </state>
+    <state x="347" y="115" key="Vcs.Push.Dialog.v2/0.0.1366.738/1366.0.1280.994@0.0.1366.738" timestamp="1579628811727" />
     <state x="0" y="101" key="Vcs.Push.Dialog.v2/0.0.1366.738@0.0.1366.738" timestamp="1576320940444" />
     <state x="492" y="285" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2" timestamp="1579628219129">
       <screen x="0" y="0" width="1366" height="738" />
