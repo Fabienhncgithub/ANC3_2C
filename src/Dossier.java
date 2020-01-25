@@ -12,6 +12,11 @@ public class Dossier extends Fichier {
     }
 
     @Override
+    public char type() {
+        return 'D';
+    }
+
+    @Override
     public boolean isDirectory() {
         return true;
     }

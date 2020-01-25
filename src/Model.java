@@ -27,7 +27,7 @@ public class Model {
         }
         try {
             Path path = Paths.get(nom).toRealPath();
-            Fichier f = new Dossier(path);
+            Fichier f = new FichierSimple(path);
             System.out.println("La taille du fichier (dossier) " + path + " est " +
                     f.taille(path));
         } catch (IOException e) {

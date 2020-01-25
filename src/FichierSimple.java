@@ -9,6 +9,11 @@ public class FichierSimple extends Fichier {
     }
 
     @Override
+    public char type() {
+        return 'F';
+    }
+
+    @Override
     public boolean isDirectory() {
         return false;
     }
