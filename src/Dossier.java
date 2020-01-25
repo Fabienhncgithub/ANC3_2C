@@ -1,21 +1,27 @@
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 public class Dossier extends Fichier {
 
     private final List<Fichier> fichiers = new ArrayList<>();
 
-    public Dossier(String nom) {
-        super(nom);
+    public Dossier(String nom, Date modifDate, Etat etat, String path) {
+        super(nom, modifDate, etat, path);
     }
 
     @Override
-    public int taille() {
-        int res = 0;
-        for (Fichier f : fichiers)
-            res += f.taille();
-        return res;
+    public boolean isDirectory() {
+        return true;
     }
+
+//    @Override
+//    public int taille() {
+//        int res = 0;
+//        for (Fichier f : fichiers)
+//            res += f.taille();
+//        return res;
+//    }
 
     @Override
     protected String formatAffichage(int decalage) {
