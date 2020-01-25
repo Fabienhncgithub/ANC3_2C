@@ -1,13 +1,14 @@
+import java.io.IOException;
+import java.nio.file.Path;
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 
 public class Dossier extends Fichier {
 
     private final List<Fichier> fichiers = new ArrayList<>();
 
-    public Dossier(String nom, Date modifDate, Etat etat, String path) {
-        super(nom, modifDate, etat, path);
+    public Dossier(Path path) {
+        super(path);
     }
 
     @Override
@@ -24,11 +25,11 @@ public class Dossier extends Fichier {
 //    }
 
     @Override
-    protected String formatAffichage(int decalage) {
+    protected String formatAffichage(int decalage) throws IOException {
         StringBuilder res = new StringBuilder();
         res.append(super.formatAffichage(decalage))
                 .append(getNom())
-                .append(" - taille : ").append(taille())
+                .append(" - taille : ").append(taille(getPath()))
                 .append(" - contient : ").append("\n");
         for (Fichier f : fichiers)
             res.append(f.formatAffichage(decalage + 1));

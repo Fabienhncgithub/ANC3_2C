@@ -27,8 +27,9 @@ public class Model {
         }
         try {
             Path path = Paths.get(nom).toRealPath();
+            Fichier f = new Dossier(path);
             System.out.println("La taille du fichier (dossier) " + path + " est " +
-                    size(path));
+                    f.taille(path));
         } catch (IOException e) {
             System.out.println("Le fichier (dossier) " + e.getMessage() + " n'existe pas");
         }
@@ -51,19 +52,21 @@ public class Model {
         return result;
     }
 
-    static long size(Path path) throws IOException {
-        long result = 0;
-        if (Files.isDirectory(path)) {
-            try (DirectoryStream<Path> dir = Files.newDirectoryStream(path)) {
-                for (Path p : dir) {
-                    result += size(p);
-                }
-            }
-        } else {
-            result = Files.size(path);
-        }
-        return result;
-    }
+
+//
+//    static long size(Path path) throws IOException {
+//        long result = 0;
+//        if (Files.isDirectory(path)) {
+//            try (DirectoryStream<Path> dir = Files.newDirectoryStream(path)) {
+//                for (Path p : dir) {
+//                    result += size(p);
+//                }
+//            }
+//        } else {
+//            result = Files.size(path);
+//        }
+//        return result;
+//    }
 
 // a afficher :  chemin, nom, type (D pour dossier...), date, taille, tag
 }

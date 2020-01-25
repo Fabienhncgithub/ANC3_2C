@@ -1,3 +1,4 @@
+import java.io.File;
 import java.io.IOException;
 import java.nio.file.DirectoryStream;
 import java.nio.file.Files;
@@ -7,14 +8,18 @@ import java.util.Date;
 public abstract class Fichier {
     private final String nom;
     private Date modifDate;
-    private Etat etat;
+    private boolean typeDossier;
     private Path path;
 
-    public Fichier(String nom, Date modifDate, Etat etat, Path path) {
-        this.nom = nom;
-        this.modifDate = modifDate;
-        this.etat = etat;
-        this.path = path;
+    public Fichier(Path path) {
+        this(path.toFile());
+    }
+
+    public Fichier(File fichier) {
+        this.nom = fichier.getName();
+        this.modifDate = new Date(fichier.lastModified()*1000);
+        this.typeDossier = fichier.isDirectory();
+        this.path = fichier.toPath();
     }
 
     public abstract boolean isDirectory();
@@ -45,17 +50,15 @@ public abstract class Fichier {
         return modifDate;
     }
 
-
-    public Etat getEtat() {
-        return etat;
+    public boolean isTypeDossier() {
+        return typeDossier;
     }
-
 
     public String getNom() {
         return nom;
     }
 
-    protected String formatAffichage(int decalage) {
+    protected String formatAffichage(int decalage) throws IOException {
         String res = "";
         for (int i = 0; i < decalage; ++i)
             res += "\t";
@@ -64,7 +67,13 @@ public abstract class Fichier {
 
     @Override
     public String toString() {
-        return formatAffichage(0);
+        String res = "toString Fichier";
+        try {
+            return formatAffichage(0);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        return res;
     }
 
 

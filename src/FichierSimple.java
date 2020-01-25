@@ -1,10 +1,11 @@
-import java.util.Date;
+import java.io.IOException;
+import java.nio.file.Path;
 
 public class FichierSimple extends Fichier {
 
 
-    public FichierSimple(String nom, Date modifDate, Etat etat, String path) {
-        super(nom, modifDate, etat, path);
+    public FichierSimple(Path path) {
+        super(path);
     }
 
     @Override
@@ -14,7 +15,7 @@ public class FichierSimple extends Fichier {
 
 
     @Override
-    protected String formatAffichage(int decalage) {
+    protected String formatAffichage(int decalage) throws IOException {
         return super.formatAffichage(decalage) + getNom() + " - taille : " + taille(getPath()) + "\n";
     }
 
