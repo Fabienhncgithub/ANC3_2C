@@ -12,8 +12,8 @@ import java.util.Scanner;
 public class Model {
 
     public static void main(String[] args) {
-//        Fichier f1 = CopyBuilder.make("TestBC/RootBC_Left");
-//        Fichier f2 = CopyBuilder.make("TestBC/RootBC_Right");
+        Fichier f1 = CopyBuilder.make("TestBC/RootBC_Left");
+        Fichier f2 = CopyBuilder.make("TestBC/RootBC_Right");
         System.out.println("Ce programme d'exemple montre l'affichage de la date de dernière modification.\n" +
                 "La date d'un dossier sera la date de son contenu le plus récent.\n");
         System.out.print("Entrez le nom du fichier (ou dossier) (<ENTER> pour le dossier courant) : ");

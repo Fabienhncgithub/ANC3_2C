@@ -22,6 +22,7 @@ public abstract class Fichier {
         this.path = fichier.toPath();
     }
 
+
     public abstract char type();
 
     public abstract boolean isDirectory();
