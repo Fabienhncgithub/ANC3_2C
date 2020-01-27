@@ -1,3 +1,4 @@
+import java.io.File;
 import java.io.IOException;
 import java.nio.file.Path;
 import java.util.ArrayList;
@@ -9,6 +10,10 @@ public class Dossier extends Fichier {
 
     public Dossier(Path path) {
         super(path);
+    }
+
+    public Dossier(File file) {
+        super(file);
     }
 
     @Override
