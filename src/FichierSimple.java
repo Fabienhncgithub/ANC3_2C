@@ -32,7 +32,15 @@ private long taille;
 
     @Override
     protected String formatAffichage(int decalage) throws IOException {
-        return super.formatAffichage(decalage) + getNom() + " - taille : " + taille() + "\n";
+        StringBuilder res = new StringBuilder();
+        res.append(super.formatAffichage(decalage))
+                .append(getNom())
+                .append(" - nom : ").append(getNom())
+                .append(" - type : ").append(this.type())
+                .append(" - date : ").append(getModifDate())
+                .append(" - taille : ").append(taille())
+                .append(" - contient : ").append("\n");
+        return res.toString();
     }
 
     @Override

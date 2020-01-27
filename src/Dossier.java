@@ -58,7 +58,7 @@ public class Dossier extends Fichier {
         res.append(super.formatAffichage(decalage))
                 .append(getNom())
                 .append(" - nom : ").append(getNom())
-                .append(" - type : ").append(type())
+                .append(" - type : ").append(this.type())
                 .append(" - date : ").append(getModifDate())
                 .append(" - taille : ").append(taille())
                 .append(" - contient : ").append("\n");
