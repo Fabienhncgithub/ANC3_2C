@@ -16,6 +16,9 @@ public class Model {
         Fichier f2 = CopyBuilder.build("TestBC/RootBC_Right");
         System.out.println(f1);
         System.out.println(f2);
+
+//        Fichier f3 = new CopyBuilder().setNom("DossierTest").setModifDate();
+
         System.out.println("Ce programme d'exemple montre l'affichage de la date de dernière modification.\n" +
                 "La date d'un dossier sera la date de son contenu le plus récent.\n");
         System.out.print("Entrez le nom du fichier (ou dossier) (<ENTER> pour le dossier courant) : ");
@@ -31,7 +34,7 @@ public class Model {
             Path path = Paths.get(nom).toRealPath();
             Fichier f = new FichierSimple(path);
             System.out.println("La taille du fichier (dossier) " + path + " est " +
-                    f.taille(path));
+                    f.taille());
         } catch (IOException e) {
             System.out.println("Le fichier (dossier) " + e.getMessage() + " n'existe pas");
         }

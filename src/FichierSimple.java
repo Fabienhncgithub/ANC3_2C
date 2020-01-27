@@ -18,15 +18,20 @@ public class FichierSimple extends Fichier {
         return false;
     }
 
+    @Override
+    public long taille() {
+        return taille();
+    }
+
 
     @Override
     protected String formatAffichage(int decalage) throws IOException {
-        return super.formatAffichage(decalage) + getNom() + " - taille : " + taille(getPath()) + "\n";
+        return super.formatAffichage(decalage) + getNom() + " - taille : " + taille() + "\n";
     }
 
     @Override
     public void ajoutFichier(Fichier f) {
-        throw new UnsupportedOperationException("Not supported."); 
+        throw new UnsupportedOperationException("Not supported.");
     }
 
 }

@@ -1,7 +1,5 @@
 import java.io.File;
 import java.io.IOException;
-import java.nio.file.DirectoryStream;
-import java.nio.file.Files;
 import java.nio.file.Path;
 import java.util.Date;
 
@@ -22,6 +20,14 @@ public abstract class Fichier {
         this.path = fichier.toPath();
     }
 
+    public Fichier(String nom, Date modifDate, boolean typeDossier, Path path) {
+        this.nom = nom;
+        this.modifDate = modifDate;
+        this.typeDossier = typeDossier;
+        this.path = path;
+        ajoutFichier(this);
+    }
+
 
     public abstract char type();
 
@@ -31,30 +37,12 @@ public abstract class Fichier {
         return path;
     }
 
-    public long taille(Path path) throws IOException {
-        long result = 0;
-        if (Files.isDirectory(path)) {
-            try (DirectoryStream<Path> dir = Files.newDirectoryStream(path)) {
-                for (Path p : dir) {
-                    result += taille(p);
-                }
-            } catch (IOException e) {
-                throw new IOException();
-            }
-        } else {
-            result = Files.size(path);
-        }
-        return result;
-    }
+    public abstract long taille() ;
 
     public abstract void ajoutFichier(Fichier f);
 
     public Date getModifDate() {
         return modifDate;
-    }
-
-    public boolean isTypeDossier() {
-        return typeDossier;
     }
 
     public String getNom() {
