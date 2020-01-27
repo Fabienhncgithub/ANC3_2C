@@ -9,8 +9,12 @@ public class Dossier extends Fichier {
 
     private final List<Fichier> contenu = new ArrayList<>();
 
-    public Dossier(Path path) {
-        super(path);
+    public Dossier(String nom) {
+        super(nom);
+    }
+
+    public List<Fichier> getContenu() {
+        return contenu;
     }
 
     public Dossier(File file) {

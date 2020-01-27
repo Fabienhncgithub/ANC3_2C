@@ -1,41 +1,28 @@
-import java.io.File;
+import java.io.IOException;
+import java.nio.file.DirectoryStream;
+import java.nio.file.Files;
 import java.nio.file.Path;
-import java.util.Date;
-import java.util.List;
+import java.nio.file.attribute.BasicFileAttributes;
 
 public class CopyBuilder {
-    private String nom;
-    private Date modifDate;
-    private boolean typeDossier;
-    private Path path;
-    private static List<Fichier> contenu;
+    static Fichier build(Path path) throws IOException {
+        BasicFileAttributes attrs = Files.readAttributes(path, BasicFileAttributes.class);
+        Fichier result = new FichierSimple(path.getFileName().toString(), attrs.size());
 
-    public static Dossier build(String path) {
-        File file = new File(path);
-        return new Dossier(file);
-    }
-
-    public CopyBuilder setNom(String nom) {
-        this.nom = nom;
-        return this;
-    }
-
-    public CopyBuilder setModifDate(Date modifDate) {
-        this.modifDate = modifDate;
-        return this;
-    }
-
-    public CopyBuilder setTypeDossier(boolean typeDossier) {
-        this.typeDossier = typeDossier;
-        return this;
-    }
-
-    public CopyBuilder setPath(Path path) {
-        this.path = path;
-        return this;
-    }
-
-    Dossier buildD() {
-        return new Dossier(nom, modifDate, typeDossier, path);
+        if (Files.isDirectory(path)) {
+            try (DirectoryStream<Path> dir = Files.newDirectoryStream(path)) {
+                for (Path p : dir) {
+                    Dossier d = new Dossier(p.getFileName().toString());
+                    result = new Dossier(p.getFileName().toString());
+                    d.ajoutFichier(build(p));
+                    System.out.println(d.getContenu());
+//                    if (tmp.isAfter(result)) {
+//                        result = tmp;
+//                    }
+//                    System.out.println(build(p).formatAffichage(0));
+                }
+            }
+        }
+        return result;
     }
 }

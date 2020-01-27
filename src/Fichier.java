@@ -1,6 +1,7 @@
 import java.io.File;
 import java.io.IOException;
 import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.util.Date;
 
 public abstract class Fichier {
@@ -11,6 +12,10 @@ public abstract class Fichier {
 
     public Fichier(Path path) {
         this(path.toFile());
+    }
+
+    public Fichier(String nom) {
+        this.nom = nom;
     }
 
     public Fichier(File fichier) {
@@ -56,6 +61,10 @@ public abstract class Fichier {
         return res;
     }
 
+    public Path stringToPath() throws IOException {
+        return Paths.get(getNom()).toRealPath();
+    }
+
     @Override
     public String toString() {
         String res = "toString Fichier";
@@ -65,10 +74,5 @@ public abstract class Fichier {
             e.printStackTrace();
         }
         return res;
-    }
-
-
-    static class FileBuilder {
-
     }
 }

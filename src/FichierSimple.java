@@ -3,9 +3,15 @@ import java.nio.file.Path;
 
 public class FichierSimple extends Fichier {
 
+private long taille;
 
     public FichierSimple(Path path) {
         super(path);
+    }
+
+    public FichierSimple(String nom, long taille) {
+        super(nom);
+        this.taille = taille;
     }
 
     @Override
@@ -20,7 +26,7 @@ public class FichierSimple extends Fichier {
 
     @Override
     public long taille() {
-        return taille();
+        return taille;
     }
 
 
