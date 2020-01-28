@@ -8,6 +8,8 @@ public class Model {
             Fichier f2 = new CopyBuilder().build(new Dossier("TestBC/RootBC_Right").stringToPath());
             System.out.println(f1);
             System.out.println(f2);
+            f1.formatAffichage(1);
+            f2.formatAffichage(1);
         } catch (IOException e) {
             e.getMessage();
         }
