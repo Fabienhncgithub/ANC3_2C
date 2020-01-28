@@ -1,4 +1,3 @@
-import java.io.File;
 import java.io.IOException;
 import java.nio.file.Path;
 import java.nio.file.Paths;
@@ -9,29 +8,29 @@ public abstract class Fichier {
     private Date modifDate;
     private boolean typeDossier;
     private Path path;
-
-    public Fichier(Path path) {
-        this(path.toFile());
-    }
+//
+//    public Fichier(Path path) {
+//        this(path.toFile());
+//    }
 
     public Fichier(String nom) {
         this.nom = nom;
     }
-
-    public Fichier(File fichier) {
-        this.nom = fichier.getName();
-        this.modifDate = new Date(fichier.lastModified()*1000);
-        this.typeDossier = fichier.isDirectory();
-        this.path = fichier.toPath();
-    }
-
-    public Fichier(String nom, Date modifDate, boolean typeDossier, Path path) {
-        this.nom = nom;
-        this.modifDate = modifDate;
-        this.typeDossier = typeDossier;
-        this.path = path;
-        ajoutFichier(this);
-    }
+//
+//    public Fichier(File fichier) {
+//        this.nom = fichier.getName();
+//        this.modifDate = new Date(fichier.lastModified()*1000);
+//        this.typeDossier = fichier.isDirectory();
+//        this.path = fichier.toPath();
+//    }
+//
+//    public Fichier(String nom, Date modifDate, boolean typeDossier, Path path) {
+//        this.nom = nom;
+//        this.modifDate = modifDate;
+//        this.typeDossier = typeDossier;
+//        this.path = path;
+//        ajoutFichier(this);
+//    }
 
 
     public abstract char type();
@@ -74,10 +73,5 @@ public abstract class Fichier {
             e.printStackTrace();
         }
         return res;
-    }
-
-
-    static class FileBuilder {
-
     }
 }

@@ -38,7 +38,7 @@ public class FichierSimple extends Fichier {
                 .append(" - type : ").append(this.type())
                 .append(" - date : ").append(getModifDate(getPath()))
                 .append(" - taille : ").append(taille())
-                .append(" - contient : ").append("\n");
+                .append("\n");
         return res.toString();
     }
 
