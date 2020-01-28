@@ -1,29 +1,33 @@
+import java.io.File;
 import java.io.IOException;
 import java.nio.file.Path;
 import java.nio.file.Paths;
-import java.time.LocalDateTime;
+import java.util.Date;
 
 public abstract class Fichier {
     private final String nom;
-    private LocalDateTime modifDate;
+    private Date modifDate;
     private boolean typeDossier;
     private Path path;
 
-    public Fichier(String nom) throws IOException {
-        this.nom = nom;
-        this.path = stringToPath();
+    public Fichier(Path path) {
+        this(path.toFile());
     }
 
-//    public Fichier(File fichier) throws IOException {
-//        this.nom = fichier.getName();
-//        this.modifDate = getModifDate(this.path);
-//        this.typeDossier = fichier.isDirectory();
-//        this.path = fichier.toPath();
-//    }
-
-    public Fichier(String nom, LocalDateTime modifDate, boolean typeDossier, Path path) throws IOException {
+    public Fichier(String nom) {
         this.nom = nom;
-        this.modifDate = getModifDate(this.path);
+    }
+
+    public Fichier(File fichier) {
+        this.nom = fichier.getName();
+        this.modifDate = new Date(fichier.lastModified()*1000);
+        this.typeDossier = fichier.isDirectory();
+        this.path = fichier.toPath();
+    }
+
+    public Fichier(String nom, Date modifDate, boolean typeDossier, Path path) {
+        this.nom = nom;
+        this.modifDate = modifDate;
         this.typeDossier = typeDossier;
         this.path = path;
         ajoutFichier(this);
@@ -42,7 +46,9 @@ public abstract class Fichier {
 
     public abstract void ajoutFichier(Fichier f);
 
-    public abstract LocalDateTime getModifDate(Path path) throws IOException;
+    public Date getModifDate() {
+        return modifDate;
+    }
 
     public String getNom() {
         return nom;
@@ -56,7 +62,7 @@ public abstract class Fichier {
     }
 
     public Path stringToPath() throws IOException {
-        return Paths.get(getNom()).toAbsolutePath();
+        return Paths.get(getNom()).toRealPath();
     }
 
     @Override
@@ -68,5 +74,10 @@ public abstract class Fichier {
             e.printStackTrace();
         }
         return res;
+    }
+
+
+    static class FileBuilder {
+
     }
 }

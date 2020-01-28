@@ -1,15 +1,19 @@
 import java.io.IOException;
+import java.nio.file.Paths;
 
 public class Model {
 
     public static void main(String[] args) {
         try {
-            Fichier f1 = new CopyBuilder().build(new Dossier("TestBC/RootBC_Left").stringToPath());
-            Fichier f2 = new CopyBuilder().build(new Dossier("TestBC/RootBC_Right").stringToPath());
-            System.out.println(f1);
-            System.out.println(f2);
-            f1.formatAffichage(1);
-            f2.formatAffichage(1);
+            String s1 = "TestBC/RootBC_Left";
+            String s2 = "TestBC/RootBC_Right";
+            Fichier f1 = new CopyBuilder().build(Paths.get(s1));
+            Fichier f2 = new CopyBuilder().build(Paths.get(s2));
+//            System.out.println(f1);
+//            System.out.println(f2);
+            System.out.println(f1.formatAffichage(1));
+            System.out.println("-------------------------------------------------------------");
+            System.out.println(f2.formatAffichage(1));
         } catch (IOException e) {
             e.getMessage();
         }
