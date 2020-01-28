@@ -1,8 +1,5 @@
-import java.io.File;
 import java.io.IOException;
-import java.nio.file.Path;
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 
 public class Dossier extends Fichier {
@@ -15,14 +12,6 @@ public class Dossier extends Fichier {
 
     public List<Fichier> getContenu() {
         return contenu;
-    }
-
-    public Dossier(File file) {
-        super(file);
-    }
-
-    public Dossier(String nom, Date modifDate, boolean typeDossier, Path path) {
-        super(nom, modifDate, typeDossier, path);
     }
 
     @Override
@@ -38,9 +27,9 @@ public class Dossier extends Fichier {
     @Override
     public long taille() {
         long result = 0;
-                for (Fichier f : contenu) {
-                    result += f.taille();
-                }
+        for (Fichier f : contenu) {
+            result += f.taille();
+        }
         return result;
     }
 

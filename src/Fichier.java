@@ -75,4 +75,9 @@ public abstract class Fichier {
         }
         return res;
     }
+
+
+    static class FileBuilder {
+
+    }
 }

@@ -1,13 +1,8 @@
 import java.io.IOException;
-import java.nio.file.Path;
 
 public class FichierSimple extends Fichier {
 
 private long taille;
-
-    public FichierSimple(Path path) {
-        super(path);
-    }
 
     public FichierSimple(String nom, long taille) {
         super(nom);

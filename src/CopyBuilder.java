@@ -11,11 +11,14 @@ public class CopyBuilder {
         if (Files.isDirectory(path)) {
             try (DirectoryStream<Path> dir = Files.newDirectoryStream(path)) {
                 for (Path p : dir) {
-                    Dossier d = new Dossier(p.getFileName().toString());
-                    result = d;
-//                    d.ajoutFichier(build(p));
-//                    System.out.println(d.getContenu());
-                    System.out.println(result);
+                    if (Files.isDirectory(p)){
+                        result = new Dossier(p.getFileName().toString());
+                        result.ajoutFichier(build(p));
+                    }else {
+                        result = new FichierSimple(p.getFileName().toString(), attrs.size());
+                    }
+                    System.out.println(result.formatAffichage(1));
+//                    System.out.println(result);
                 }
             }
         }
