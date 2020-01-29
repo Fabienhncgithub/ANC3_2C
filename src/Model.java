@@ -40,38 +40,7 @@ public class Model {
 //        }
 //
 //    }
-//
-//    static LocalDateTime lastModificationTime(Path path) throws IOException {
-//        BasicFileAttributes attrs = Files.readAttributes(path, BasicFileAttributes.class);
-//        LocalDateTime result = attrs.lastModifiedTime().toInstant().atZone(ZoneId.systemDefault()).toLocalDateTime();
-//        if (Files.isDirectory(path)) {
-//            try (DirectoryStream<Path> dir = Files.newDirectoryStream(path)) {
-//                for (Path p : dir) {
-//                    LocalDateTime tmp = lastModificationTime(p);
-//                    if (tmp.isAfter(result)) {
-//                        result = tmp;
-//                    }
-//                }
-//            }
-//        }
-//        return result;
-    }
-
-
-//
-//    static long size(Path path) throws IOException {
-//        long result = 0;
-//        if (Files.isDirectory(path)) {
-//            try (DirectoryStream<Path> dir = Files.newDirectoryStream(path)) {
-//                for (Path p : dir) {
-//                    result += size(p);
-//                }
-//            }
-//        } else {
-//            result = Files.size(path);
-//        }
-//        return result;
-//    }
 
 // a afficher :  chemin, nom, type (D pour dossier...), date, taille, tag
+    }
 }

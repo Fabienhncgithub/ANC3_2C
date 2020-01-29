@@ -5,6 +5,7 @@ import java.nio.file.Path;
 import java.nio.file.attribute.BasicFileAttributes;
 import java.time.LocalDateTime;
 import java.time.ZoneId;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -12,22 +13,13 @@ public class Dossier extends Fichier {
 
     private final List<Fichier> contenu = new ArrayList<>();
 
-    public Dossier(String nom) throws IOException {
-        super(nom);
-    }
-
-    public List<Fichier> getContenu() {
-        return contenu;
+    public Dossier(String nom, Path path) {
+        super(nom, path);
     }
 
     @Override
     public char type() {
-        return 'D';
-    }
-
-    @Override
-    public boolean isDirectory() {
-        return true;
+        return 'D'; // D pour Dossier
     }
 
 //    @Override
@@ -51,7 +43,7 @@ public class Dossier extends Fichier {
     protected String formatAffichage(int decalage) throws IOException {
         StringBuilder res = new StringBuilder();
         res.append(super.formatAffichage(decalage))
-                .append(" - nom : ").append(getNom())
+                .append(getNom())
                 .append(" - type : ").append(this.type())
                 .append(" - date : ").append(getModifDate(getPath()))
                 .append(" - taille : ").append(taille())
@@ -70,7 +62,7 @@ public class Dossier extends Fichier {
     public LocalDateTime getModifDate(Path path) throws IOException {
         BasicFileAttributes attrs = Files.readAttributes(path, BasicFileAttributes.class);
         LocalDateTime result = attrs.lastModifiedTime().toInstant().atZone(ZoneId.systemDefault()).toLocalDateTime();
-        if (Files.isDirectory(this.getPath())) {
+        if (Files.isDirectory(path)) {
             try (DirectoryStream<Path> dir = Files.newDirectoryStream(path)) {
                 for (Path p : dir) {
                     LocalDateTime tmp = getModifDate(p);

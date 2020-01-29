@@ -4,24 +4,21 @@ import java.nio.file.Path;
 import java.nio.file.attribute.BasicFileAttributes;
 import java.time.LocalDateTime;
 import java.time.ZoneId;
+import java.time.format.DateTimeFormatter;
 
 public class FichierSimple extends Fichier {
 
     private long taille;
 
-    public FichierSimple(String nom, long taille) throws IOException {
-        super(nom);
+    public FichierSimple(String nom, long taille, FileTime fileTime, Path path) throws IOException {
+        super(nom, path);
         this.taille = taille;
+        setModifDate(fileTime.toInstant().atZone(ZoneId.systemDefault()).toLocalDateTime());
     }
 
     @Override
     public char type() {
-        return 'F';
-    }
-
-    @Override
-    public boolean isDirectory() {
-        return false;
+        return 'F'; //F pour Fichier
     }
 
     @Override
@@ -29,14 +26,13 @@ public class FichierSimple extends Fichier {
         return taille;
     }
 
-
     @Override
     protected String formatAffichage(int decalage) throws IOException {
         StringBuilder res = new StringBuilder();
         res.append(super.formatAffichage(decalage))
                 .append(" - nom : ").append(getNom())
                 .append(" - type : ").append(this.type())
-                .append(" - date : ").append(getModifDate(getPath()))
+                .append(" - date : ").append(getModifDate(getPath()).format(DateTimeFormatter.ofPattern("dd/MM/yyyy HH:mm:ss")))
                 .append(" - taille : ").append(taille())
                 .append("\n");
         return res.toString();
