@@ -26,22 +26,26 @@ public class FichierSimple extends Fichier {
         return taille;
     }
 
-    public Etat getEtat(Fichier fs) throws IOException {
-        if (this.getNom() == fs.getNom()) {
-            if (this.getModifDate(this.getPath().subpath(5,7)).isEqual(fs.getModifDate(fs.getPath().subpath(5,7)))){
+    public void changeEtat(Fichier fs) throws IOException {
+        System.out.println(this.getNom());
+        System.out.println(fs.getNom());
+        System.out.println(this.getModifDate(this.getPath()));
+        System.out.println(fs.getModifDate(this.getPath()));
+        if (this.getNom().equals(fs.getNom())) {
+            if (this.getModifDate(this.getPath()).isEqual(fs.getModifDate(fs.getPath()))){
                 fs.setEtat(Etat.SAME);
-                return Etat.SAME;
+                this.setEtat(Etat.SAME);
             }else {
-                if (this.getModifDate(this.getPath().subpath(5, 7)).isAfter(fs.getModifDate(fs.getPath().subpath(5,7)))) {
+                if (this.getModifDate(this.getPath().subpath(8,9)).isAfter(fs.getModifDate(fs.getPath().subpath(8,9)))) {
                     fs.setEtat(Etat.OLDER);
-                    return Etat.NEWER;
+                    this.setEtat(Etat.NEWER);
                 }else{
                     fs.setEtat(Etat.NEWER);
-                    return Etat.OLDER;
+                    this.setEtat(Etat.OLDER);
                 }
             }
         }
-        return Etat.ORPHAN;
+        this.setEtat(Etat.ORPHAN);
     }
 
     @Override
@@ -52,6 +56,7 @@ public class FichierSimple extends Fichier {
                 .append(" - type : ").append(this.type())
                 .append(" - date : ").append(getModifDate(getPath()).format(DateTimeFormatter.ofPattern("dd/MM/yyyy HH:mm:ss")))
                 .append(" - taille : ").append(taille())
+                .append(" - etat : ").append(getEtat())
                 .append("\n");
         return res.toString();
     }

@@ -58,7 +58,7 @@ public class Dossier extends Fichier {
     }
 
     @Override
-    public Etat getEtat(Fichier fs) throws IOException {
+    public void changeEtat(Fichier fs) throws IOException {
 //        if (this.getNom() == fs.getNom()) {
 //            if (this.getModifDate(this.getPath().subpath(5,7)).isEqual(fs.getModifDate(fs.getPath().subpath(3,4)))){
 //                fs.setEtat(Etat.SAME);
@@ -73,7 +73,6 @@ public class Dossier extends Fichier {
 //                }
 //            }
 //        }
-        return Etat.ORPHAN;
     }
 
     @Override

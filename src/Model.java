@@ -7,15 +7,21 @@ public class Model {
         try { //    subPath     0   1       2           3                   4           5       6
             String s1 = "C:\\Users\\GV\\Documents\\IntelliJ_Projects\\Iteration1_ANC3\\TestBC\\RootBC_Left";
             String s2 = "C:\\Users\\GV\\Documents\\IntelliJ_Projects\\Iteration1_ANC3\\TestBC\\RootBC_Right";
+            String pathSameFileL = "C:\\Users\\GV\\Documents\\IntelliJ_Projects\\anc3_2c_fabien_giacomo\\TestBC\\RootBC_Left\\Same\\sameFile.txt";
+            String pathSameFileR = "C:\\Users\\GV\\Documents\\IntelliJ_Projects\\anc3_2c_fabien_giacomo\\TestBC\\RootBC_Right\\Same\\sameFile.txt";
             Fichier f1 = new CopyBuilder().build(Paths.get(s1));
             Fichier f2 = new CopyBuilder().build(Paths.get(s2));
+            Fichier pathSameFileLf = new CopyBuilder().build(Paths.get(pathSameFileL));
+            Fichier pathSameFileRf = new CopyBuilder().build(Paths.get(pathSameFileR));
 //            System.out.println(f1);
 //            System.out.println("-------------------------------------------------------------");
 //            System.out.println(f2);
-
             System.out.println(Paths.get(s1).subpath(5,7));
-//            for (Fichier f : )
-            System.out.println(f1.getEtat(f2));
+//            Files.list(Paths.get(s1))
+//                    .forEach(System.out::println);
+            System.out.println(pathSameFileLf);
+            pathSameFileLf.changeEtat(pathSameFileRf);
+            System.out.println(pathSameFileLf);
 
         } catch (IOException e) {
             e.getMessage();

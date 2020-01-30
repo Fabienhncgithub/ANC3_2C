@@ -6,7 +6,7 @@ public abstract class Fichier {
     private final String nom;
     private LocalDateTime modifDate;
     private Path path;
-    private Etat etat = Etat.ORPHAN;
+    private Etat etat = Etat.INDEFINED;
     private int finalIdxSubPath = 7;
 
     public Fichier(String nom, Path path) {
@@ -34,6 +34,10 @@ public abstract class Fichier {
         return nom;
     }
 
+    public Etat getEtat() {
+        return etat;
+    }
+
     protected String formatAffichage(int decalage) throws IOException {
         String res = "";
         for (int i = 0; i < decalage; ++i)
@@ -45,7 +49,7 @@ public abstract class Fichier {
 //        return Paths.get(getNom()).toRealPath();
 //    }
 
-    public abstract Etat getEtat(Fichier fs) throws IOException;
+    public abstract void changeEtat(Fichier fs) throws IOException;
 
     @Override
     public String toString() {
