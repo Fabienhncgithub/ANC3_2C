@@ -6,6 +6,8 @@ public abstract class Fichier {
     private final String nom;
     private LocalDateTime modifDate;
     private Path path;
+    private Etat etat = Etat.ORPHAN;
+    private int finalIdxSubPath = 7;
 
     public Fichier(String nom, Path path) {
         this.nom = nom;
@@ -43,6 +45,8 @@ public abstract class Fichier {
 //        return Paths.get(getNom()).toRealPath();
 //    }
 
+    public abstract Etat getEtat(Fichier fs) throws IOException;
+
     @Override
     public String toString() {
         String res = "toString Fichier";
@@ -52,5 +56,9 @@ public abstract class Fichier {
             e.printStackTrace();
         }
         return res;
+    }
+
+    public void setEtat(Etat etat){
+        this.etat = etat;
     }
 }

@@ -13,6 +13,10 @@ public class Dossier extends Fichier {
 
     private final List<Fichier> contenu = new ArrayList<>();
 
+    public List<Fichier> getContenu() {
+        return contenu;
+    }
+
     public Dossier(String nom, Path path) {
         super(nom, path);
     }
@@ -51,6 +55,25 @@ public class Dossier extends Fichier {
         for (Fichier f : contenu)
             res.append(f.formatAffichage(decalage + 1));
         return res.toString();
+    }
+
+    @Override
+    public Etat getEtat(Fichier fs) throws IOException {
+//        if (this.getNom() == fs.getNom()) {
+//            if (this.getModifDate(this.getPath().subpath(5,7)).isEqual(fs.getModifDate(fs.getPath().subpath(3,4)))){
+//                fs.setEtat(Etat.SAME);
+//                return Etat.SAME;
+//            }else {
+//                if (this.getModifDate(this.getPath().subpath(5, 7)).isAfter(fs.getModifDate(fs.getPath().subpath(3, 4)))) {
+//                    fs.setEtat(Etat.OLDER);
+//                    return Etat.NEWER;
+//                }else{
+//                    fs.setEtat(Etat.NEWER);
+//                    return Etat.OLDER;
+//                }
+//            }
+//        }
+        return Etat.ORPHAN;
     }
 
     @Override

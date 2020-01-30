@@ -26,6 +26,24 @@ public class FichierSimple extends Fichier {
         return taille;
     }
 
+    public Etat getEtat(Fichier fs) throws IOException {
+        if (this.getNom() == fs.getNom()) {
+            if (this.getModifDate(this.getPath().subpath(5,7)).isEqual(fs.getModifDate(fs.getPath().subpath(5,7)))){
+                fs.setEtat(Etat.SAME);
+                return Etat.SAME;
+            }else {
+                if (this.getModifDate(this.getPath().subpath(5, 7)).isAfter(fs.getModifDate(fs.getPath().subpath(5,7)))) {
+                    fs.setEtat(Etat.OLDER);
+                    return Etat.NEWER;
+                }else{
+                    fs.setEtat(Etat.NEWER);
+                    return Etat.OLDER;
+                }
+            }
+        }
+        return Etat.ORPHAN;
+    }
+
     @Override
     protected String formatAffichage(int decalage) throws IOException {
         StringBuilder res = new StringBuilder();

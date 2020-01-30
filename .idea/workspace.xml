@@ -1,13 +1,18 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="0c777b5d-34a2-47ef-b49f-5789669eb0c3" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/src/Director.java" afterDir="false" />
+    <list default="true" id="0c777b5d-34a2-47ef-b49f-5789669eb0c3" name="Default Changelist" comment="method taille()">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/CopyBuilder.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/CopyBuilder.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Dossier.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Dossier.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Fichier.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Fichier.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/FichierSimple.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/FichierSimple.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Model.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Model.java" afterDir="false" />
+    </list>
+    <list id="40b2938f-2337-400f-9d68-60fbdb45432a" name="Revert &quot;working on build() output&quot;" comment="Revert &quot;working on build() output&quot;&#10;&#10;This reverts commit 1a99efc5">
+      <change beforePath="$PROJECT_DIR$/src/CopyBuilder.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/CopyBuilder.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Dossier.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Dossier.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/FichierSimple.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/FichierSimple.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -19,6 +24,7 @@
       <list>
         <option value="Enum" />
         <option value="Class" />
+        <option value="UML Class" />
       </list>
     </option>
   </component>
@@ -34,6 +40,29 @@
       </set>
     </option>
   </component>
+  <component name="LineStatusTrackerManager">
+    <file path="$PROJECT_DIR$/src/CopyBuilder.java">
+      <ranges>
+        <range start1="10" end1="12" start2="10" end2="11" changelist="40b2938f-2337-400f-9d68-60fbdb45432a" />
+        <range start1="25" end1="41" start2="24" end2="24" changelist="0c777b5d-34a2-47ef-b49f-5789669eb0c3" />
+      </ranges>
+    </file>
+    <file path="$PROJECT_DIR$/src/Dossier.java">
+      <ranges>
+        <range start1="14" end1="14" start2="14" end2="18" changelist="0c777b5d-34a2-47ef-b49f-5789669eb0c3" />
+        <range start1="24" end1="32" start2="28" end2="28" changelist="40b2938f-2337-400f-9d68-60fbdb45432a" />
+        <range start1="47" end1="48" start2="43" end2="44" changelist="40b2938f-2337-400f-9d68-60fbdb45432a" />
+        <range start1="54" end1="54" start2="50" end2="69" changelist="0c777b5d-34a2-47ef-b49f-5789669eb0c3" />
+      </ranges>
+    </file>
+    <file path="$PROJECT_DIR$/src/FichierSimple.java">
+      <ranges>
+        <range start1="3" end1="4" start2="3" end2="4" changelist="40b2938f-2337-400f-9d68-60fbdb45432a" />
+        <range start1="28" end1="28" start2="28" end2="46" changelist="0c777b5d-34a2-47ef-b49f-5789669eb0c3" />
+        <range start1="47" end1="50" start2="65" end2="66" changelist="40b2938f-2337-400f-9d68-60fbdb45432a" />
+      </ranges>
+    </file>
+  </component>
   <component name="ProjectId" id="1UyD5uFTC8cUstsOumulDwutkl1" />
   <component name="ProjectLevelVcsManager">
     <ConfirmationsSetting value="2" id="Add" />
@@ -44,13 +73,16 @@
     <option name="showLibraryContents" value="true" />
   </component>
   <component name="PropertiesComponent">
+    <property name="ASKED_ADD_EXTERNAL_FILES" value="true" />
     <property name="ASKED_SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
+    <property name="DefaultPlantUmlFileTemplate" value="UML Class" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$" />
-    <property name="project.structure.last.edited" value="Project" />
+    <property name="project.structure.last.edited" value="Modules" />
     <property name="project.structure.proportion" value="0.15" />
     <property name="project.structure.side.proportion" value="0.2" />
+    <property name="settings.editor.selected.configurable" value="preferences.pluginManager" />
   </component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
@@ -175,7 +207,91 @@
       <option name="project" value="LOCAL" />
       <updated>1579636169795</updated>
     </task>
-    <option name="localTasksCounter" value="10" />
+    <task id="LOCAL-00010" summary="modifying the composite DP">
+      <created>1579962463450</created>
+      <option name="number" value="00010" />
+      <option name="presentableId" value="LOCAL-00010" />
+      <option name="project" value="LOCAL" />
+      <updated>1579962463450</updated>
+    </task>
+    <task id="LOCAL-00011" summary="constructor implementation with path parameter (problem : when creating a new Fichier cannot know if Dossier or FichierSimple)">
+      <created>1579967498055</created>
+      <option name="number" value="00011" />
+      <option name="presentableId" value="LOCAL-00011" />
+      <option name="project" value="LOCAL" />
+      <updated>1579967498055</updated>
+    </task>
+    <task id="LOCAL-00012" summary="method build in CopyBuilder implemented (it returns a Dossier)">
+      <created>1580122250620</created>
+      <option name="number" value="00012" />
+      <option name="presentableId" value="LOCAL-00012" />
+      <option name="project" value="LOCAL" />
+      <updated>1580122250620</updated>
+    </task>
+    <task id="LOCAL-00013" summary="implementation final list&lt;Fichier&gt;">
+      <created>1580133264710</created>
+      <option name="number" value="00013" />
+      <option name="presentableId" value="LOCAL-00013" />
+      <option name="project" value="LOCAL" />
+      <updated>1580133264710</updated>
+    </task>
+    <task id="LOCAL-00014" summary="CopyBuilder cleaned!">
+      <created>1580138031368</created>
+      <option name="number" value="00014" />
+      <option name="presentableId" value="LOCAL-00014" />
+      <option name="project" value="LOCAL" />
+      <updated>1580138031368</updated>
+    </task>
+    <task id="LOCAL-00015" summary="working on CopyBuilder">
+      <created>1580140653897</created>
+      <option name="number" value="00015" />
+      <option name="presentableId" value="LOCAL-00015" />
+      <option name="project" value="LOCAL" />
+      <updated>1580140653897</updated>
+    </task>
+    <task id="LOCAL-00016" summary="working on build() output">
+      <created>1580223670063</created>
+      <option name="number" value="00016" />
+      <option name="presentableId" value="LOCAL-00016" />
+      <option name="project" value="LOCAL" />
+      <updated>1580223670063</updated>
+    </task>
+    <task id="LOCAL-00017" summary="method taille() implementation try but NOT WORKING!">
+      <created>1580239828550</created>
+      <option name="number" value="00017" />
+      <option name="presentableId" value="LOCAL-00017" />
+      <option name="project" value="LOCAL" />
+      <updated>1580239828550</updated>
+    </task>
+    <task id="LOCAL-00018" summary="method taille()">
+      <created>1580241886427</created>
+      <option name="number" value="00018" />
+      <option name="presentableId" value="LOCAL-00018" />
+      <option name="project" value="LOCAL" />
+      <updated>1580241886427</updated>
+    </task>
+    <task id="LOCAL-00019" summary="formatAffiche() improved">
+      <created>1580243088348</created>
+      <option name="number" value="00019" />
+      <option name="presentableId" value="LOCAL-00019" />
+      <option name="project" value="LOCAL" />
+      <updated>1580243088348</updated>
+    </task>
+    <task id="LOCAL-00020" summary="TestBC.zip added to preserve the original dates">
+      <created>1580244140865</created>
+      <option name="number" value="00020" />
+      <option name="presentableId" value="LOCAL-00020" />
+      <option name="project" value="LOCAL" />
+      <updated>1580244140865</updated>
+    </task>
+    <task id="LOCAL-00021" summary="method of lastmodifDate works">
+      <created>1580301197150</created>
+      <option name="number" value="00021" />
+      <option name="presentableId" value="LOCAL-00021" />
+      <option name="project" value="LOCAL" />
+      <updated>1580301197150</updated>
+    </task>
+    <option name="localTasksCounter" value="22" />
     <servers />
   </component>
   <component name="Vcs.Log.History.Properties">
@@ -201,6 +317,7 @@
   </component>
   <component name="VcsManagerConfiguration">
     <option name="CHECK_CODE_CLEANUP_BEFORE_PROJECT_COMMIT" value="true" />
+    <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
     <MESSAGE value="MVC (V2) implemented" />
     <MESSAGE value="use of streams in addToDo() in order to prevent adding a new task without regard of the upperCase" />
     <MESSAGE value="upperCase functionality removed (because not requested)" />
@@ -211,19 +328,33 @@
     <MESSAGE value="MVVM implementation done!!!" />
     <MESSAGE value="Iteration 1 - Beginning" />
     <MESSAGE value="Implementing Builder DP" />
-    <option name="LAST_COMMIT_MESSAGE" value="Implementing Builder DP" />
+    <MESSAGE value="modifying the composite DP" />
+    <MESSAGE value="constructor implementation with path parameter (problem : when creating a new Fichier cannot know if Dossier or FichierSimple)" />
+    <MESSAGE value="method build in CopyBuilder implemented (it returns a Dossier)" />
+    <MESSAGE value="implementation final list&lt;Fichier&gt;" />
+    <MESSAGE value="CopyBuilder cleaned!" />
+    <MESSAGE value="working on CopyBuilder" />
+    <MESSAGE value="working on build() output" />
+    <MESSAGE value="method taille() implementation try but NOT WORKING!" />
+    <MESSAGE value="method taille()" />
+    <MESSAGE value="formatAffiche() improved" />
+    <MESSAGE value="TestBC.zip added to preserve the original dates" />
+    <MESSAGE value="method of lastmodifDate works" />
+    <option name="LAST_COMMIT_MESSAGE" value="method of lastmodifDate works" />
     <option name="OPTIMIZE_IMPORTS_BEFORE_PROJECT_COMMIT" value="true" />
     <option name="REARRANGE_BEFORE_PROJECT_COMMIT" value="true" />
   </component>
   <component name="WindowStateProjectService">
-    <state x="0" y="30" key="#Project_Structure" timestamp="1576321920313">
+    <state x="0" y="30" key="#Project_Structure" timestamp="1580237140039">
       <screen x="0" y="0" width="1366" height="738" />
     </state>
+    <state x="0" y="30" key="#Project_Structure/0.0.1366.738/1366.0.1280.994@0.0.1366.738" timestamp="1580237140039" />
     <state x="0" y="30" key="#Project_Structure/0.0.1366.738@0.0.1366.738" timestamp="1576321920313" />
-    <state x="488" y="79" key="#com.intellij.ide.util.MemberChooser" timestamp="1579962057515">
+    <state x="488" y="79" key="#com.intellij.ide.util.MemberChooser" timestamp="1580394810701">
       <screen x="0" y="0" width="1366" height="738" />
     </state>
-    <state x="488" y="79" key="#com.intellij.ide.util.MemberChooser/0.0.1366.738@0.0.1366.738" timestamp="1579962057515" />
+    <state x="488" y="79" key="#com.intellij.ide.util.MemberChooser/0.0.1366.738/1366.0.1280.994@0.0.1366.738" timestamp="1580236504090" />
+    <state x="488" y="79" key="#com.intellij.ide.util.MemberChooser/0.0.1366.738@0.0.1366.738" timestamp="1580394810701" />
     <state x="434" y="0" key="#com.intellij.refactoring.rename.AutomaticRenamingDialog" timestamp="1576612810740">
       <screen x="0" y="0" width="1366" height="738" />
     </state>
@@ -232,102 +363,119 @@
       <screen x="0" y="0" width="1366" height="738" />
     </state>
     <state x="71" y="115" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog/0.0.1366.738@0.0.1366.738" timestamp="1576320152495" />
-    <state x="226" y="8" width="861" height="620" key="CommitChangelistDialog2" timestamp="1579636168920">
+    <state x="191" y="0" width="861" height="620" key="CommitChangelistDialog2" timestamp="1580395798995">
       <screen x="0" y="0" width="1366" height="738" />
     </state>
-    <state x="226" y="8" width="861" height="620" key="CommitChangelistDialog2/0.0.1366.738/1366.0.1280.994@0.0.1366.738" timestamp="1579636168920" />
-    <state x="0" y="0" key="CommitChangelistDialog2/0.0.1366.738@0.0.1366.738" timestamp="1576320935439" />
-    <state x="92" y="92" width="1182" height="554" key="DiffContextDialog" timestamp="1576605069567">
+    <state x="235" y="26" width="861" height="620" key="CommitChangelistDialog2/0.0.1366.738/1366.0.1280.994@0.0.1366.738" timestamp="1580244139927" />
+    <state x="191" y="0" key="CommitChangelistDialog2/0.0.1366.738@0.0.1366.738" timestamp="1580395798995" />
+    <state x="115" y="90" width="1182" height="554" key="DiffContextDialog" timestamp="1580240069114">
       <screen x="0" y="0" width="1366" height="738" />
     </state>
-    <state x="92" y="92" width="1182" height="554" key="DiffContextDialog/0.0.1366.738/1366.0.1280.994@0.0.1366.738" timestamp="1576605069567" />
+    <state x="115" y="90" width="1182" height="554" key="DiffContextDialog/0.0.1366.738/1366.0.1280.994@0.0.1366.738" timestamp="1580240069114" />
+    <state x="92" y="92" width="1182" height="554" key="DiffContextDialog/0.0.1366.738@0.0.1366.738" timestamp="1580228751385" />
     <state x="463" y="123" key="FileChooserDialogImpl" timestamp="1576609766248">
       <screen x="0" y="0" width="1366" height="738" />
     </state>
     <state x="463" y="123" key="FileChooserDialogImpl/0.0.1366.738/1366.0.1280.994@0.0.1366.738" timestamp="1576609766248" />
-    <state width="1323" height="227" key="GridCell.Tab.0.bottom" timestamp="1579950875917">
+    <state width="1323" height="124" key="GridCell.Tab.0.bottom" timestamp="1580395783559">
       <screen x="0" y="0" width="1366" height="738" />
     </state>
-    <state width="1323" height="182" key="GridCell.Tab.0.bottom/0.0.1366.738/1366.0.1280.994@0.0.1366.738" timestamp="1579633037640" />
-    <state width="1323" height="227" key="GridCell.Tab.0.bottom/0.0.1366.738@0.0.1366.738" timestamp="1579950875917" />
+    <state width="1323" height="180" key="GridCell.Tab.0.bottom/0.0.1366.738/1366.0.1280.994@0.0.1366.738" timestamp="1580243267508" />
+    <state width="1323" height="124" key="GridCell.Tab.0.bottom/0.0.1366.738@0.0.1366.738" timestamp="1580395783559" />
     <state width="2005" height="308" key="GridCell.Tab.0.bottom/0.0.2048.1122@0.0.2048.1122" timestamp="1576389627602" />
-    <state width="1323" height="227" key="GridCell.Tab.0.center" timestamp="1579950875917">
+    <state width="1323" height="124" key="GridCell.Tab.0.center" timestamp="1580395783559">
       <screen x="0" y="0" width="1366" height="738" />
     </state>
-    <state width="1323" height="182" key="GridCell.Tab.0.center/0.0.1366.738/1366.0.1280.994@0.0.1366.738" timestamp="1579633037640" />
-    <state width="1323" height="227" key="GridCell.Tab.0.center/0.0.1366.738@0.0.1366.738" timestamp="1579950875917" />
+    <state width="1323" height="180" key="GridCell.Tab.0.center/0.0.1366.738/1366.0.1280.994@0.0.1366.738" timestamp="1580243267508" />
+    <state width="1323" height="124" key="GridCell.Tab.0.center/0.0.1366.738@0.0.1366.738" timestamp="1580395783559" />
     <state width="2005" height="308" key="GridCell.Tab.0.center/0.0.2048.1122@0.0.2048.1122" timestamp="1576389627602" />
-    <state width="1323" height="227" key="GridCell.Tab.0.left" timestamp="1579950875917">
+    <state width="1323" height="124" key="GridCell.Tab.0.left" timestamp="1580395783559">
       <screen x="0" y="0" width="1366" height="738" />
     </state>
-    <state width="1323" height="182" key="GridCell.Tab.0.left/0.0.1366.738/1366.0.1280.994@0.0.1366.738" timestamp="1579633037640" />
-    <state width="1323" height="227" key="GridCell.Tab.0.left/0.0.1366.738@0.0.1366.738" timestamp="1579950875917" />
+    <state width="1323" height="180" key="GridCell.Tab.0.left/0.0.1366.738/1366.0.1280.994@0.0.1366.738" timestamp="1580243267508" />
+    <state width="1323" height="124" key="GridCell.Tab.0.left/0.0.1366.738@0.0.1366.738" timestamp="1580395783559" />
     <state width="2005" height="308" key="GridCell.Tab.0.left/0.0.2048.1122@0.0.2048.1122" timestamp="1576389627602" />
-    <state width="1323" height="227" key="GridCell.Tab.0.right" timestamp="1579950875917">
+    <state width="1323" height="124" key="GridCell.Tab.0.right" timestamp="1580395783559">
       <screen x="0" y="0" width="1366" height="738" />
     </state>
-    <state width="1323" height="182" key="GridCell.Tab.0.right/0.0.1366.738/1366.0.1280.994@0.0.1366.738" timestamp="1579633037640" />
-    <state width="1323" height="227" key="GridCell.Tab.0.right/0.0.1366.738@0.0.1366.738" timestamp="1579950875917" />
+    <state width="1323" height="180" key="GridCell.Tab.0.right/0.0.1366.738/1366.0.1280.994@0.0.1366.738" timestamp="1580243267508" />
+    <state width="1323" height="124" key="GridCell.Tab.0.right/0.0.1366.738@0.0.1366.738" timestamp="1580395783559" />
     <state width="2005" height="308" key="GridCell.Tab.0.right/0.0.2048.1122@0.0.2048.1122" timestamp="1576389627602" />
-    <state width="1323" height="227" key="GridCell.Tab.1.bottom" timestamp="1579950875917">
+    <state width="1323" height="227" key="GridCell.Tab.1.bottom" timestamp="1580291746942">
       <screen x="0" y="0" width="1366" height="738" />
     </state>
-    <state width="1323" height="227" key="GridCell.Tab.1.bottom/0.0.1366.738@0.0.1366.738" timestamp="1579950875917" />
-    <state width="1323" height="227" key="GridCell.Tab.1.center" timestamp="1579950875917">
+    <state width="1323" height="227" key="GridCell.Tab.1.bottom/0.0.1366.738/1366.0.1280.994@0.0.1366.738" timestamp="1580239727123" />
+    <state width="1323" height="227" key="GridCell.Tab.1.bottom/0.0.1366.738@0.0.1366.738" timestamp="1580291746942" />
+    <state width="1323" height="227" key="GridCell.Tab.1.center" timestamp="1580291746942">
       <screen x="0" y="0" width="1366" height="738" />
     </state>
-    <state width="1323" height="227" key="GridCell.Tab.1.center/0.0.1366.738@0.0.1366.738" timestamp="1579950875917" />
-    <state width="1323" height="227" key="GridCell.Tab.1.left" timestamp="1579950875917">
+    <state width="1323" height="227" key="GridCell.Tab.1.center/0.0.1366.738/1366.0.1280.994@0.0.1366.738" timestamp="1580239727123" />
+    <state width="1323" height="227" key="GridCell.Tab.1.center/0.0.1366.738@0.0.1366.738" timestamp="1580291746942" />
+    <state width="1323" height="227" key="GridCell.Tab.1.left" timestamp="1580291746942">
       <screen x="0" y="0" width="1366" height="738" />
     </state>
-    <state width="1323" height="227" key="GridCell.Tab.1.left/0.0.1366.738@0.0.1366.738" timestamp="1579950875917" />
-    <state width="1323" height="227" key="GridCell.Tab.1.right" timestamp="1579950875917">
+    <state width="1323" height="227" key="GridCell.Tab.1.left/0.0.1366.738/1366.0.1280.994@0.0.1366.738" timestamp="1580239727123" />
+    <state width="1323" height="227" key="GridCell.Tab.1.left/0.0.1366.738@0.0.1366.738" timestamp="1580291746942" />
+    <state width="1323" height="227" key="GridCell.Tab.1.right" timestamp="1580291746942">
       <screen x="0" y="0" width="1366" height="738" />
     </state>
-    <state width="1323" height="227" key="GridCell.Tab.1.right/0.0.1366.738@0.0.1366.738" timestamp="1579950875917" />
-    <state x="395" y="84" key="MultipleFileMergeDialog" timestamp="1576606913529">
+    <state width="1323" height="227" key="GridCell.Tab.1.right/0.0.1366.738/1366.0.1280.994@0.0.1366.738" timestamp="1580239727123" />
+    <state width="1323" height="227" key="GridCell.Tab.1.right/0.0.1366.738@0.0.1366.738" timestamp="1580291746942" />
+    <state x="395" y="84" key="MultipleFileMergeDialog" timestamp="1580239974960">
       <screen x="0" y="0" width="1366" height="738" />
     </state>
-    <state x="395" y="84" key="MultipleFileMergeDialog/0.0.1366.738/1366.0.1280.994@0.0.1366.738" timestamp="1576606913529" />
-    <state x="362" y="81" key="RollbackChangesDialog" timestamp="1579632038724">
+    <state x="395" y="84" key="MultipleFileMergeDialog/0.0.1366.738/1366.0.1280.994@0.0.1366.738" timestamp="1580239974960" />
+    <state x="362" y="81" key="RollbackChangesDialog" timestamp="1580239855773">
       <screen x="0" y="0" width="1366" height="738" />
     </state>
-    <state x="362" y="81" key="RollbackChangesDialog/0.0.1366.738/1366.0.1280.994@0.0.1366.738" timestamp="1579632038724" />
-    <state x="163" y="0" key="SettingsEditor" timestamp="1576319861182">
+    <state x="362" y="81" key="RollbackChangesDialog/0.0.1366.738/1366.0.1280.994@0.0.1366.738" timestamp="1580239855773" />
+    <state x="362" y="81" key="RollbackChangesDialog/0.0.1366.738@0.0.1366.738" timestamp="1580228740965" />
+    <state x="163" y="0" key="SettingsEditor" timestamp="1580237817397">
       <screen x="0" y="0" width="1366" height="738" />
     </state>
+    <state x="163" y="0" key="SettingsEditor/0.0.1366.738/1366.0.1280.994@0.0.1366.738" timestamp="1580237817397" />
     <state x="163" y="0" key="SettingsEditor/0.0.1366.738@0.0.1366.738" timestamp="1576319861182" />
+    <state width="498" height="446" key="SwitcherDM" timestamp="1579964141903">
+      <screen x="0" y="0" width="1366" height="738" />
+    </state>
+    <state width="498" height="446" key="SwitcherDM/0.0.1366.738@0.0.1366.738" timestamp="1579964141903" />
     <state x="530" y="286" key="VCS.ChangelistChooser" timestamp="1579628871079">
       <screen x="0" y="0" width="1366" height="738" />
     </state>
     <state x="530" y="286" key="VCS.ChangelistChooser/0.0.1366.738/1366.0.1280.994@0.0.1366.738" timestamp="1579628871079" />
-    <state x="347" y="115" key="Vcs.Push.Dialog.v2" timestamp="1579636171733">
+    <state x="42" y="96" width="816" height="535" key="Vcs.Push.Dialog.v2" timestamp="1580301199212">
       <screen x="0" y="0" width="1366" height="738" />
     </state>
-    <state x="347" y="115" key="Vcs.Push.Dialog.v2/0.0.1366.738/1366.0.1280.994@0.0.1366.738" timestamp="1579636171733" />
-    <state x="0" y="101" key="Vcs.Push.Dialog.v2/0.0.1366.738@0.0.1366.738" timestamp="1576320940444" />
-    <state x="492" y="285" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2" timestamp="1579957460320">
+    <state x="347" y="115" key="Vcs.Push.Dialog.v2/0.0.1366.738/1366.0.1280.994@0.0.1366.738" timestamp="1580244142740" />
+    <state x="42" y="96" width="816" height="535" key="Vcs.Push.Dialog.v2/0.0.1366.738@0.0.1366.738" timestamp="1580301199212" />
+    <state x="492" y="285" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2" timestamp="1580117900789">
       <screen x="0" y="0" width="1366" height="738" />
     </state>
     <state x="492" y="285" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2/0.0.1366.738/1366.0.1280.994@0.0.1366.738" timestamp="1579628219129" />
-    <state x="492" y="285" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2/0.0.1366.738@0.0.1366.738" timestamp="1579957460320" />
+    <state x="492" y="285" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2/0.0.1366.738@0.0.1366.738" timestamp="1580117900789" />
     <state x="0" y="163" width="703" height="420" key="git4idea.merge.GitPullDialog" timestamp="1579958081852">
       <screen x="0" y="0" width="1366" height="738" />
     </state>
     <state x="263" y="155" width="703" height="420" key="git4idea.merge.GitPullDialog/0.0.1366.738/1366.0.1280.994@0.0.1366.738" timestamp="1579632054480" />
     <state x="0" y="163" key="git4idea.merge.GitPullDialog/0.0.1366.738@0.0.1366.738" timestamp="1579958081852" />
-    <state x="65" y="0" key="new project wizard" timestamp="1576332809223">
+    <state x="65" y="0" key="new project wizard" timestamp="1580288982974">
       <screen x="0" y="0" width="1366" height="738" />
     </state>
-    <state x="65" y="0" key="new project wizard/0.0.1366.738@0.0.1366.738" timestamp="1576332809223" />
-    <state x="425" y="0" key="refactoring.ChangeSignatureDialog" timestamp="1576610698655">
+    <state x="65" y="0" key="new project wizard/0.0.1366.738/1366.0.1280.994@0.0.1366.738" timestamp="1580237576020" />
+    <state x="65" y="0" key="new project wizard/0.0.1366.738@0.0.1366.738" timestamp="1580288982974" />
+    <state x="425" y="0" key="refactoring.ChangeSignatureDialog" timestamp="1580120617867">
       <screen x="0" y="0" width="1366" height="738" />
     </state>
     <state x="425" y="0" key="refactoring.ChangeSignatureDialog/0.0.1366.738/1366.0.1280.994@0.0.1366.738" timestamp="1576610698655" />
-    <state x="339" y="165" width="672" height="677" key="run.anything.popup" timestamp="1578405372233">
+    <state x="425" y="0" key="refactoring.ChangeSignatureDialog/0.0.1366.738@0.0.1366.738" timestamp="1580120617867" />
+    <state x="339" y="165" width="672" height="677" key="run.anything.popup" timestamp="1580139139340">
       <screen x="0" y="0" width="1366" height="738" />
     </state>
     <state x="339" y="165" width="672" height="677" key="run.anything.popup/0.0.1366.738/1366.0.1280.994@0.0.1366.738" timestamp="1576769684390" />
-    <state x="339" y="165" width="672" height="677" key="run.anything.popup/0.0.1366.738@0.0.1366.738" timestamp="1578405372233" />
+    <state x="339" y="165" width="672" height="677" key="run.anything.popup/0.0.1366.738@0.0.1366.738" timestamp="1580139139340" />
+    <state x="346" y="59" width="672" height="678" key="search.everywhere.popup" timestamp="1580237504802">
+      <screen x="0" y="0" width="1366" height="738" />
+    </state>
+    <state x="346" y="59" width="672" height="678" key="search.everywhere.popup/0.0.1366.738/1366.0.1280.994@0.0.1366.738" timestamp="1580237504802" />
   </component>
 </project>

@@ -4,16 +4,19 @@ import java.nio.file.Paths;
 public class Model {
 
     public static void main(String[] args) {
-        try {
-            String s1 = "TestBC/RootBC_Left";
-            String s2 = "TestBC/RootBC_Right";
+        try { //    subPath     0   1       2           3                   4           5       6
+            String s1 = "C:\\Users\\GV\\Documents\\IntelliJ_Projects\\Iteration1_ANC3\\TestBC\\RootBC_Left";
+            String s2 = "C:\\Users\\GV\\Documents\\IntelliJ_Projects\\Iteration1_ANC3\\TestBC\\RootBC_Right";
             Fichier f1 = new CopyBuilder().build(Paths.get(s1));
             Fichier f2 = new CopyBuilder().build(Paths.get(s2));
 //            System.out.println(f1);
+//            System.out.println("-------------------------------------------------------------");
 //            System.out.println(f2);
-            System.out.println(f1.formatAffichage(1));
-            System.out.println("-------------------------------------------------------------");
-            System.out.println(f2.formatAffichage(1));
+
+            System.out.println(Paths.get(s1).subpath(5,7));
+//            for (Fichier f : )
+            System.out.println(f1.getEtat(f2));
+
         } catch (IOException e) {
             e.getMessage();
         }
