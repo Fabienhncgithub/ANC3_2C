@@ -36,7 +36,7 @@ public class FichierSimple extends Fichier {
                 fs.setEtat(Etat.SAME);
                 this.setEtat(Etat.SAME);
             }else {
-                if (this.getModifDate(this.getPath().subpath(8,9)).isAfter(fs.getModifDate(fs.getPath().subpath(8,9)))) {
+                if (this.getModifDate(this.getPath()).isAfter(fs.getModifDate(fs.getPath()))) {
                     fs.setEtat(Etat.OLDER);
                     this.setEtat(Etat.NEWER);
                 }else{
