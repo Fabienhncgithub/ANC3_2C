@@ -3,17 +3,8 @@
   <component name="ChangeListManager">
     <list default="true" id="0c777b5d-34a2-47ef-b49f-5789669eb0c3" name="Default Changelist" comment="method taille()">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/CopyBuilder.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/CopyBuilder.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Dossier.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Dossier.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Fichier.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Fichier.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/FichierSimple.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/FichierSimple.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Model.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Model.java" afterDir="false" />
     </list>
-    <list id="40b2938f-2337-400f-9d68-60fbdb45432a" name="Revert &quot;working on build() output&quot;" comment="Revert &quot;working on build() output&quot;&#10;&#10;This reverts commit 1a99efc5">
-      <change beforePath="$PROJECT_DIR$/src/CopyBuilder.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/CopyBuilder.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Dossier.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Dossier.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/FichierSimple.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/FichierSimple.java" afterDir="false" />
-    </list>
+    <list id="40b2938f-2337-400f-9d68-60fbdb45432a" name="Revert &quot;working on build() output&quot;" comment="Revert &quot;working on build() output&quot;&#10;&#10;This reverts commit 1a99efc5" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -40,29 +31,6 @@
       </set>
     </option>
   </component>
-  <component name="LineStatusTrackerManager">
-    <file path="$PROJECT_DIR$/src/CopyBuilder.java">
-      <ranges>
-        <range start1="10" end1="12" start2="10" end2="11" changelist="40b2938f-2337-400f-9d68-60fbdb45432a" />
-        <range start1="25" end1="41" start2="24" end2="24" changelist="0c777b5d-34a2-47ef-b49f-5789669eb0c3" />
-      </ranges>
-    </file>
-    <file path="$PROJECT_DIR$/src/Dossier.java">
-      <ranges>
-        <range start1="14" end1="14" start2="14" end2="18" changelist="0c777b5d-34a2-47ef-b49f-5789669eb0c3" />
-        <range start1="24" end1="32" start2="28" end2="28" changelist="40b2938f-2337-400f-9d68-60fbdb45432a" />
-        <range start1="47" end1="48" start2="43" end2="44" changelist="40b2938f-2337-400f-9d68-60fbdb45432a" />
-        <range start1="54" end1="54" start2="50" end2="69" changelist="0c777b5d-34a2-47ef-b49f-5789669eb0c3" />
-      </ranges>
-    </file>
-    <file path="$PROJECT_DIR$/src/FichierSimple.java">
-      <ranges>
-        <range start1="3" end1="4" start2="3" end2="4" changelist="40b2938f-2337-400f-9d68-60fbdb45432a" />
-        <range start1="28" end1="28" start2="28" end2="46" changelist="0c777b5d-34a2-47ef-b49f-5789669eb0c3" />
-        <range start1="47" end1="50" start2="65" end2="66" changelist="40b2938f-2337-400f-9d68-60fbdb45432a" />
-      </ranges>
-    </file>
-  </component>
   <component name="ProjectId" id="1UyD5uFTC8cUstsOumulDwutkl1" />
   <component name="ProjectLevelVcsManager">
     <ConfirmationsSetting value="2" id="Add" />
@@ -78,6 +46,8 @@
     <property name="DefaultPlantUmlFileTemplate" value="UML Class" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
+    <property name="WebServerToolWindowFactoryState" value="false" />
+    <property name="aspect.path.notification.shown" value="true" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="project.structure.last.edited" value="Modules" />
     <property name="project.structure.proportion" value="0.15" />
@@ -143,6 +113,7 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1576319761174</updated>
+      <workItem from="1580500684629" duration="347000" />
     </task>
     <task id="LOCAL-00001" summary="MVC (V2) implemented">
       <created>1576320322618</created>
@@ -293,6 +264,9 @@
     </task>
     <option name="localTasksCounter" value="22" />
     <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="1" />
   </component>
   <component name="Vcs.Log.History.Properties">
     <option name="COLUMN_ORDER">
@@ -448,6 +422,10 @@
     </state>
     <state x="347" y="115" key="Vcs.Push.Dialog.v2/0.0.1366.738/1366.0.1280.994@0.0.1366.738" timestamp="1580244142740" />
     <state x="42" y="96" width="816" height="535" key="Vcs.Push.Dialog.v2/0.0.1366.738@0.0.1366.738" timestamp="1580301199212" />
+    <state x="517" y="345" key="com.intellij.ide.util.TipDialog" timestamp="1580500686433">
+      <screen x="0" y="23" width="1680" height="980" />
+    </state>
+    <state x="517" y="345" key="com.intellij.ide.util.TipDialog/0.23.1680.980/89.-1417.2560.1417@0.23.1680.980" timestamp="1580500686433" />
     <state x="492" y="285" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2" timestamp="1580117900789">
       <screen x="0" y="0" width="1366" height="738" />
     </state>

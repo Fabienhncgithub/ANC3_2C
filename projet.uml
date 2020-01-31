@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Diagram>
+  <ID>JAVA</ID>
+  <OriginalElement />
+  <nodes>
+    <node x="238.0" y="839.0">META-INF</node>
+    <node x="0.0" y="839.0">groovyjarjarasm</node>
+    <node x="427.0" y="839.0">groovy</node>
+    <node x="0.0" y="449.0">FichierSimple</node>
+    <node x="659.0" y="0.0">Etat</node>
+    <node x="602.0" y="839.0">org</node>
+    <node x="341.0" y="449.0">Dossier</node>
+    <node x="0.0" y="741.0">Model</node>
+    <node x="211.0" y="741.0">CopyBuilder</node>
+    <node x="420.0" y="741.0">groovyjarjarcommonscli</node>
+    <node x="182.5" y="0.0">Fichier</node>
+    <node x="707.0" y="741.0">groovyjarjarantlr</node>
+  </nodes>
+  <notes />
+  <edges>
+    <edge source="FichierSimple" target="Fichier">
+      <point x="0.0" y="-123.5" />
+      <point x="160.5" y="424.0" />
+      <point x="250.75" y="424.0" />
+      <point x="-68.25" y="199.5" />
+    </edge>
+    <edge source="Dossier" target="Fichier">
+      <point x="0.0" y="-123.5" />
+      <point x="477.5" y="424.0" />
+      <point x="387.25" y="424.0" />
+      <point x="68.25" y="199.5" />
+    </edge>
+  </edges>
+  <settings layout="Hierarchic Group" zoom="1.0" x="802.5" y="500.0" />
+  <SelectedNodes />
+  <Categories>
+    <Category>Fields</Category>
+    <Category>Methods</Category>
+    <Category>Properties</Category>
+    <Category>Inner Classes</Category>
+    <Category>Constructors</Category>
+  </Categories>
+  <SCOPE>All</SCOPE>
+  <VISIBILITY>private</VISIBILITY>
+</Diagram>
+
