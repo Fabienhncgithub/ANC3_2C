@@ -59,20 +59,28 @@ public class Dossier extends Fichier {
 
     @Override
     public void changeEtat(Fichier fs) throws IOException {
-//        if (this.getNom() == fs.getNom()) {
-//            if (this.getModifDate(this.getPath().subpath(5,7)).isEqual(fs.getModifDate(fs.getPath().subpath(3,4)))){
-//                fs.setEtat(Etat.SAME);
-//                return Etat.SAME;
-//            }else {
-//                if (this.getModifDate(this.getPath().subpath(5, 7)).isAfter(fs.getModifDate(fs.getPath().subpath(3, 4)))) {
-//                    fs.setEtat(Etat.OLDER);
-//                    return Etat.NEWER;
-//                }else{
-//                    fs.setEtat(Etat.NEWER);
-//                    return Etat.OLDER;
+        if (fs instanceof Dossier) {
+            Dossier other = (Dossier) fs;
+            if (this.contenu.containsAll(other.contenu)) {
+                System.out.println("those dir are the same");
+            }else{
+                System.out.println("those dir dont containt the same files");
+//                if (this.getNom() == fs.getNom()) {
+//                    if (this.getModifDate(this.getPath().subpath(5, 7)).isEqual(fs.getModifDate(fs.getPath().subpath(3, 4)))) {
+//                        fs.setEtat(Etat.SAME);
+//                        this.setEtat(Etat.SAME);
+//                    } else {
+//                        if (this.getModifDate(this.getPath().subpath(5, 7)).isAfter(fs.getModifDate(fs.getPath().subpath(3, 4)))) {
+//                            fs.setEtat(Etat.OLDER);
+//                            this.setEtat(Etat.NEWER);
+//                        } else {
+//                            fs.setEtat(Etat.NEWER);
+//                            this.setEtat(Etat.OLDER);
+//                        }
+//                    }
 //                }
-//            }
-//        }
+            }
+        }
     }
 
     @Override

@@ -7,12 +7,12 @@ public class Model {
         try { //    subPath     0   1       2           3                   4           5       6
             String s1 = "C:\\Users\\GV\\Documents\\IntelliJ_Projects\\Iteration1_ANC3\\TestBC\\RootBC_Left";
             String s2 = "C:\\Users\\GV\\Documents\\IntelliJ_Projects\\Iteration1_ANC3\\TestBC\\RootBC_Right";
-            String pathSameFileL = "C:\\Users\\GV\\Documents\\IntelliJ_Projects\\anc3_2c_fabien_giacomo\\TestBC\\RootBC_Right\\SameFolderName\\OnlyRight.txt";
-            String pathSameFileR = "C:\\Users\\GV\\Documents\\IntelliJ_Projects\\anc3_2c_fabien_giacomo\\TestBC\\RootBC_Left\\SameFolderName\\OnlyLeft.txt";
+            String pathFileR = "TestBC\\RootBC_Right\\SameFolderName";
+            String pathFileL = "TestBC\\RootBC_Left\\SameFolderName";
             Fichier f1 = new CopyBuilder().build(Paths.get(s1));
             Fichier f2 = new CopyBuilder().build(Paths.get(s2));
-            Fichier pathSameFileLf = new CopyBuilder().build(Paths.get(pathSameFileL));
-            Fichier pathSameFileRf = new CopyBuilder().build(Paths.get(pathSameFileR));
+            Fichier pathSameFileLf = new CopyBuilder().build(Paths.get(pathFileL));
+            Fichier pathSameFileRf = new CopyBuilder().build(Paths.get(pathFileR));
 //            System.out.println(f1);
 //            System.out.println("-------------------------------------------------------------");
 //            System.out.println(f2);
@@ -27,15 +27,8 @@ public class Model {
             pathSameFileRf.changeEtat(pathSameFileLf);
             System.out.println(pathSameFileLf);
             System.out.println(pathSameFileRf);
+        } catch (IOException e) {           e.getMessage();        }
 
-        } catch (IOException e) {
-            e.getMessage();
-        }
-
-//
-//        System.out.println("Ce programme d'exemple montre l'affichage de la date de dernière modification.\n" +
-//                "La date d'un dossier sera la date de son contenu le plus récent.\n");
-//        System.out.print("Entrez le nom du fichier (ou dossier) (<ENTER> pour le dossier courant) : ");
 //        String nom = new Scanner(System.in).nextLine();
 //        try {
 //            Path path = Paths.get(nom).toRealPath();
@@ -43,8 +36,7 @@ public class Model {
 //                    lastModificationTime(path).format(DateTimeFormatter.ofPattern("dd/MM/yyyy HH:mm:ss")));
 //        } catch (IOException e) {
 //            System.out.println("Le fichier (dossier) " + e.getMessage() + " n'existe pas");
-//        }
-//        try {
+//        }try {
 //            Path path = Paths.get(nom).toRealPath();
 //            Fichier f = new FichierSimple(path);
 //            System.out.println("La taille du fichier (dossier) " + path + " est " +
@@ -52,9 +44,6 @@ public class Model {
 //        } catch (IOException e) {
 //            System.out.println("Le fichier (dossier) " + e.getMessage() + " n'existe pas");
 //        }
-//
 //    }
-
-// a afficher :  chemin, nom, type (D pour dossier...), date, taille, tag
     }
 }
