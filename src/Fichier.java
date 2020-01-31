@@ -49,6 +49,11 @@ public abstract class Fichier {
 //        return Paths.get(getNom()).toRealPath();
 //    }
 
+    public String getLastDirName(Path path){
+        int nameCount = path.getNameCount();
+        return path.getName(nameCount-2).toString();
+    }
+
     public abstract void changeEtat(Fichier fs) throws IOException;
 
     @Override

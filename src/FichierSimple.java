@@ -27,26 +27,31 @@ public class FichierSimple extends Fichier {
     }
 
     public void changeEtat(Fichier fs) throws IOException {
-        System.out.println(this.getNom());
-        System.out.println(fs.getNom());
-        System.out.println(this.getModifDate(this.getPath()));
-        System.out.println(fs.getModifDate(this.getPath()));
-        if (this.getNom().equals(fs.getNom())) {
-            if (this.getModifDate(this.getPath()).isEqual(fs.getModifDate(fs.getPath()))){
-                fs.setEtat(Etat.SAME);
-                this.setEtat(Etat.SAME);
-            }else {
-                if (this.getModifDate(this.getPath()).isAfter(fs.getModifDate(fs.getPath()))) {
-                    fs.setEtat(Etat.OLDER);
-                    this.setEtat(Etat.NEWER);
-                }else{
-                    fs.setEtat(Etat.NEWER);
-                    this.setEtat(Etat.OLDER);
+//        System.out.println(this.getNom());
+//        System.out.println(fs.getNom());
+//        System.out.println(this.getModifDate(this.getPath()));
+//        System.out.println(fs.getModifDate(this.getPath()));
+        if (this.getLastDirName(getPath()).equals(fs.getLastDirName(fs.getPath()))) {
+            System.out.println(this.getLastDirName(getPath()));
+            if (this.getNom().equals(fs.getNom())) {
+                if (this.getModifDate(this.getPath()).isEqual(fs.getModifDate(fs.getPath()))) {
+                    fs.setEtat(Etat.SAME);
+                    this.setEtat(Etat.SAME);
+                } else {
+                    if (this.getModifDate(this.getPath()).isAfter(fs.getModifDate(fs.getPath()))) {
+                        fs.setEtat(Etat.OLDER);
+                        this.setEtat(Etat.NEWER);
+                    } else {
+                        fs.setEtat(Etat.NEWER);
+                        this.setEtat(Etat.OLDER);
+                    }
                 }
+            } else {
+                this.setEtat(Etat.ORPHAN);
             }
         }
-        this.setEtat(Etat.ORPHAN);
     }
+
 
     @Override
     protected String formatAffichage(int decalage) throws IOException {
