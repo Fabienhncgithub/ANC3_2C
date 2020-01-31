@@ -24,6 +24,7 @@ public class Model {
 
             System.out.println(pathSameFileLf);
             pathSameFileLf.changeEtat(pathSameFileRf);
+            pathSameFileRf.changeEtat(pathSameFileLf);
             System.out.println(pathSameFileLf);
             System.out.println(pathSameFileRf);
 

@@ -49,7 +49,7 @@ public abstract class Fichier {
 //        return Paths.get(getNom()).toRealPath();
 //    }
 
-    public String getLastDirName(Path path){
+    public String getLastDirName(Path path){ //TODO at the moment it checks only the parent name and not the entire path... so 2 folders in different places...
         int nameCount = path.getNameCount();
         return path.getName(nameCount-2).toString();
     }
