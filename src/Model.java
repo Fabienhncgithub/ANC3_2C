@@ -7,8 +7,8 @@ public class Model {
         try { //    subPath     0   1       2           3                   4           5       6
             String s1 = "TestBC/RootBC_Left";
             String s2 = "TestBC/RootBC_Right";
-            String pathFileR = "TestBC/RootBC_Right/SameFolderName";
-            String pathFileL = "TestBC/RootBC_Left/SameFolderName";
+            String pathFileR = "TestBC/RootBC_Right/";
+            String pathFileL = "TestBC/RootBC_Left/";
             Fichier f1 = new CopyBuilder().build(Paths.get(s1));
             Fichier f2 = new CopyBuilder().build(Paths.get(s2));
             Fichier pathSameFileLf = new CopyBuilder().build(Paths.get(pathFileL));

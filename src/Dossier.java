@@ -8,10 +8,18 @@ import java.time.ZoneId;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
+import java.util.TreeMap;
 
 public class Dossier extends Fichier {
+    private  Map<String, Integer> nomEnfant = new TreeMap<>();
+    private  List<Fichier> contenu = new ArrayList<>();
 
-    private final List<Fichier> contenu = new ArrayList<>();
+    public void rempliNomEnfant(){
+        for(Fichier f : contenu) {
+            nomEnfant.put(f.getNom(), contenu.indexOf(f));
+        }
+    }
 
     public List<Fichier> getContenu() {
         return contenu;
@@ -49,33 +57,62 @@ public class Dossier extends Fichier {
             res.append(f.formatAffichage(decalage + 1));
         return res.toString();
     }
-//
+
+    public void compareTopFolders(Dossier d){
+
+        if (d instanceof Dossier) {
+            Dossier other = d;
+
+
+
+        for(Fichier enfant : this.contenu){
+            if(nomEnfant.containsKey(this.getNom())){
+
+            }
+
+        }
+
+    }}
+
+
     @Override
     public void changeEtat(Fichier fs) throws IOException {
+
         if (fs instanceof Dossier) {
             Dossier other = (Dossier) fs;
 
 
-            while (this.getEtat().equals(Etat.INDEFINED)) {
-                if (this.contenu.size() == 0 && other.contenu.size() == 0) {
-                    this.setEtat(Etat.SAME);
-                    other.setEtat(Etat.SAME);
-                } else if (this.contenu.size() == 0) {
-                    this.setEtat(Etat.PARTIAL_SAME);
-                    other.setEtat(Etat.PARTIAL_SAME);
-                    other.setAllChildrenOrphan();
-                } else if (other.contenu.size() == 0) {
-                    other.setEtat(Etat.PARTIAL_SAME);
-                    this.setEtat(Etat.PARTIAL_SAME);
-                    this.setAllChildrenOrphan();
-                }
 
+            if(this.getNom() == other.getNom()) {
+
+                while (this.getEtat().equals(Etat.INDEFINED)) {
+                    System.out.println("test");
+                    if (this.contenu.size() == 0 && other.contenu.size() == 0) {
+                        System.out.println("test1");
+                        this.setEtat(Etat.SAME);
+                        other.setEtat(Etat.SAME);
+                    } else if (this.contenu.size() == 0) {
+                        System.out.println("test2");
+                        this.setEtat(Etat.PARTIAL_SAME);
+                        other.setEtat(Etat.PARTIAL_SAME);
+                        other.setAllChildrenOrphan();
+                    } else if (other.contenu.size() == 0) {
+                        System.out.println("test3");
+                        other.setEtat(Etat.PARTIAL_SAME);
+                        this.setEtat(Etat.PARTIAL_SAME);
+                        this.setAllChildrenOrphan();
+                    }
+
+                }
             }
+          //  System.out.println("This Folder are not the same");
+
 
         }
     }
 
     private void setAllChildrenOrphan() {
+
         for (Fichier f : this.contenu) {
             if (f.type() == 'F' && f.getEtat() == Etat.INDEFINED ) {
                 f.setEtat(Etat.ORPHAN);
