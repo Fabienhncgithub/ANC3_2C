@@ -1,5 +1,10 @@
 import java.io.IOException;
+import java.nio.file.DirectoryStream;
+import java.nio.file.Files;
 import java.nio.file.Path;
+import java.nio.file.attribute.BasicFileAttributes;
+import java.time.LocalDateTime;
+import java.time.ZoneId;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.List;
@@ -38,38 +43,56 @@ public class Dossier extends Fichier {
                 .append(" - type : ").append(this.type())
                 .append(" - date : ").append(getModifDate(this.getPath()).format(DateTimeFormatter.ofPattern("dd/MM/yyyy HH:mm:ss")))
                 .append(" - taille : ").append(taille())
+                .append(" - etat : ").append(getEtat())
                 .append(" - contient : ").append("\n");
         for (Fichier f : contenu)
             res.append(f.formatAffichage(decalage + 1));
         return res.toString();
     }
-
+//
     @Override
     public void changeEtat(Fichier fs) throws IOException {
         if (fs instanceof Dossier) {
             Dossier other = (Dossier) fs;
 
 
-            while( this.getEtat().equals(Etat.INDEFINED)){
-                    if(this.contenu.size() == 0 && other.contenu.size() == 0){
-                        this.setEtat(Etat.SAME);
-                        other.setEtat(Etat.SAME);
-                    }else if(this.contenu.size() == 0){
-                        this.setEtat(Etat.PARTIAL_SAME);
-                        other.setEtat(Etat.PARTIAL_SAME);
-                        
-                        for(Fichier f : other.contenu){
-                            f.setEtat(Etat.ORPHAN);
-                        }
-
-                    }else{
-
-
-                    }
-
-                    }
+            while (this.getEtat().equals(Etat.INDEFINED)) {
+                if (this.contenu.size() == 0 && other.contenu.size() == 0) {
+                    this.setEtat(Etat.SAME);
+                    other.setEtat(Etat.SAME);
+                } else if (this.contenu.size() == 0) {
+                    this.setEtat(Etat.PARTIAL_SAME);
+                    other.setEtat(Etat.PARTIAL_SAME);
+                    other.setAllChildrenOrphan();
+                } else if (other.contenu.size() == 0) {
+                    other.setEtat(Etat.PARTIAL_SAME);
+                    this.setEtat(Etat.PARTIAL_SAME);
+                    this.setAllChildrenOrphan();
+                }
 
             }
+
+        }
+    }
+
+    private void setAllChildrenOrphan() {
+        for (Fichier f : this.contenu) {
+            if (f.type() == 'F' && f.getEtat() == Etat.INDEFINED ) {
+                f.setEtat(Etat.ORPHAN);
+                String parent = f.getLastDirName(f.getPath());
+                for (Fichier fParent : this.contenu) {
+                    if (fParent.getNom() == parent) {
+                        Dossier d = (Dossier) fParent;
+                        d.setAllChildrenOrphan();
+                    }
+                }
+            } else if (f.type() == 'D' && f.getEtat() == Etat.INDEFINED){
+                f.setEtat(Etat.ORPHAN);
+                Dossier d = (Dossier) f;
+                d.setAllChildrenOrphan();
+            }
+        }
+    }
 
 
 //            Etat tmpEtat = Etat.INDEFINED;
@@ -95,7 +118,7 @@ public class Dossier extends Fichier {
 //                        }
 //
 //                }
-            }
+//            }
 
 
 
@@ -117,8 +140,8 @@ public class Dossier extends Fichier {
 //                        }
 //                    }
 //                }
-            }
-        }
+//            }
+//        }
 
     @Override
     public void ajoutFichier(Fichier f) {
