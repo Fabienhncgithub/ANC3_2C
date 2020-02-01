@@ -26,14 +26,6 @@ public class Dossier extends Fichier {
         return 'D'; // D pour Dossier
     }
 
-//    @Override
-//    public int taille() {
-//        int res = 0;
-//        for (Fichier f : fichiers)
-//            res += f.taille();
-//        return res;
-//    }
-
     @Override
     public long taille() {
         long result = 0;
@@ -49,7 +41,7 @@ public class Dossier extends Fichier {
         res.append(super.formatAffichage(decalage))
                 .append(getNom())
                 .append(" - type : ").append(this.type())
-                .append(" - date : ").append(getModifDate(getPath()))
+                .append(" - date : ").append(getModifDate(this.getPath()).format(DateTimeFormatter.ofPattern("dd/MM/yyyy HH:mm:ss")))
                 .append(" - taille : ").append(taille())
                 .append(" - contient : ").append("\n");
         for (Fichier f : contenu)
