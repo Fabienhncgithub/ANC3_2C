@@ -17,7 +17,7 @@ public class Model {
 //            System.out.println("-------------------------------------------------------------");
 //            System.out.println(f2);
 
-//            System.out.println(Paths.get(s1).subpath(5,7));
+//            System.out.println(Paths.get(s1).subpath(7,7));
 //
 //            Files.list(Paths.get(s1))
 //                    .filter(Files.isDirectory());
