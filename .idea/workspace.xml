@@ -1,11 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="0c777b5d-34a2-47ef-b49f-5789669eb0c3" name="Default Changelist" comment="method taille()">
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+    <list default="true" id="0c777b5d-34a2-47ef-b49f-5789669eb0c3" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/Itération 1/Diagramme de classe.png" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/CopyBuilder.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/CopyBuilder.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Model.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Model.java" afterDir="false" />
     </list>
     <list id="40b2938f-2337-400f-9d68-60fbdb45432a" name="Revert &quot;working on build() output&quot;" comment="Revert &quot;working on build() output&quot;&#10;&#10;This reverts commit 1a99efc5" />
     <option name="SHOW_DIALOG" value="false" />
@@ -14,7 +12,7 @@
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
   <component name="CoverageViewManager">
-    <option name="myElementSize" value="249" />
+    <option name="myElementSize" value="258" />
   </component>
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
@@ -268,7 +266,14 @@
       <option name="project" value="LOCAL" />
       <updated>1580301197150</updated>
     </task>
-    <option name="localTasksCounter" value="22" />
+    <task id="LOCAL-00022" summary="Relative path implemented">
+      <created>1580569598782</created>
+      <option name="number" value="00022" />
+      <option name="presentableId" value="LOCAL-00022" />
+      <option name="project" value="LOCAL" />
+      <updated>1580569598783</updated>
+    </task>
+    <option name="localTasksCounter" value="23" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -320,7 +325,8 @@
     <MESSAGE value="formatAffiche() improved" />
     <MESSAGE value="TestBC.zip added to preserve the original dates" />
     <MESSAGE value="method of lastmodifDate works" />
-    <option name="LAST_COMMIT_MESSAGE" value="method of lastmodifDate works" />
+    <MESSAGE value="Relative path implemented" />
+    <option name="LAST_COMMIT_MESSAGE" value="Relative path implemented" />
     <option name="OPTIMIZE_IMPORTS_BEFORE_PROJECT_COMMIT" value="true" />
     <option name="REARRANGE_BEFORE_PROJECT_COMMIT" value="true" />
   </component>
@@ -348,11 +354,12 @@
       <screen x="0" y="0" width="1366" height="738" />
     </state>
     <state x="71" y="115" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog/0.0.1366.738@0.0.1366.738" timestamp="1576320152495" />
-    <state x="191" y="0" width="861" height="620" key="CommitChangelistDialog2" timestamp="1580395798995">
-      <screen x="0" y="0" width="1366" height="738" />
+    <state x="235" y="23" width="861" height="620" key="CommitChangelistDialog2" timestamp="1580569598600">
+      <screen x="0" y="23" width="1680" height="980" />
     </state>
     <state x="235" y="26" width="861" height="620" key="CommitChangelistDialog2/0.0.1366.738/1366.0.1280.994@0.0.1366.738" timestamp="1580244139927" />
     <state x="191" y="0" key="CommitChangelistDialog2/0.0.1366.738@0.0.1366.738" timestamp="1580395798995" />
+    <state x="235" y="23" key="CommitChangelistDialog2/0.23.1680.980@0.23.1680.980" timestamp="1580569598600" />
     <state x="115" y="90" width="1182" height="554" key="DiffContextDialog" timestamp="1580240069114">
       <screen x="0" y="0" width="1366" height="738" />
     </state>
@@ -436,11 +443,12 @@
       <screen x="0" y="0" width="1366" height="738" />
     </state>
     <state x="530" y="286" key="VCS.ChangelistChooser/0.0.1366.738/1366.0.1280.994@0.0.1366.738" timestamp="1579628871079" />
-    <state x="42" y="96" width="816" height="535" key="Vcs.Push.Dialog.v2" timestamp="1580301199212">
-      <screen x="0" y="0" width="1366" height="738" />
+    <state x="52" y="150" width="816" height="535" key="Vcs.Push.Dialog.v2" timestamp="1580569603902">
+      <screen x="0" y="23" width="1680" height="980" />
     </state>
     <state x="347" y="115" key="Vcs.Push.Dialog.v2/0.0.1366.738/1366.0.1280.994@0.0.1366.738" timestamp="1580244142740" />
     <state x="42" y="96" width="816" height="535" key="Vcs.Push.Dialog.v2/0.0.1366.738@0.0.1366.738" timestamp="1580301199212" />
+    <state x="52" y="150" key="Vcs.Push.Dialog.v2/0.23.1680.980@0.23.1680.980" timestamp="1580569603902" />
     <state x="517" y="345" key="com.intellij.ide.util.TipDialog" timestamp="1580565484067">
       <screen x="0" y="23" width="1680" height="980" />
     </state>
