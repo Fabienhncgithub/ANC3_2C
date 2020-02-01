@@ -7,7 +7,6 @@ import java.nio.file.attribute.BasicFileAttributes;
 public class CopyBuilder {
     static Fichier build(Path path) throws IOException {
         Fichier result;
-        System.out.println("test");
         if (Files.isDirectory(path)) {
             result = new Dossier(path.getFileName().toString(), path);
             try (DirectoryStream<Path> dir = Files.newDirectoryStream(path)) {
