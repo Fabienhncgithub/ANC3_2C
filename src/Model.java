@@ -7,12 +7,12 @@ public class Model {
         try { //    subPath     0   1       2           3                   4           5       6
             String s1 = "TestBC/RootBC_Left";
             String s2 = "TestBC/RootBC_Right";
-            String pathFileR = "TestBC/RootBC_Right/";
-            String pathFileL = "TestBC/RootBC_Left/";
+            String rootRight = "TestBC/RootBC_Right/";
+            String rootLeft = "TestBC/RootBC_Left/";
             Fichier f1 = new CopyBuilder().build(Paths.get(s1));
             Fichier f2 = new CopyBuilder().build(Paths.get(s2));
-            Fichier pathSameFileLf = new CopyBuilder().build(Paths.get(pathFileL));
-            Fichier pathSameFileRf = new CopyBuilder().build(Paths.get(pathFileR));
+            Fichier dirLeft = new CopyBuilder().build(Paths.get(rootLeft));
+            Fichier dirRight = new CopyBuilder().build(Paths.get(rootRight));
 //           System.out.println(f1);
 //            System.out.println("-------------------------------------------------------------");
 //           System.out.println(f2);
@@ -22,11 +22,15 @@ public class Model {
 //            Files.list(Paths.get(s1))
 //                    .filter(Files.isDirectory());
 
-            System.out.println(pathSameFileLf);
-            pathSameFileRf.changeEtat(pathSameFileLf);
-            pathSameFileLf.changeEtat(pathSameFileRf);
-            System.out.println(pathSameFileLf);
-            System.out.println(pathSameFileRf);
+//            System.out.println(dirLeft);
+//            System.out.println(dirRight);
+//            System.out.println(((Dossier)dirLeft).getNomEnfant().keySet());
+//            System.out.println(((Dossier)dirLeft).getLastPathElement(dirLeft.getPath()));
+            ((Dossier)dirLeft).compareTopFolders((Dossier)dirRight);
+//            dirRight.changeEtat(dirLeft);
+//            dirLeft.changeEtat(dirRight);
+            System.out.println(dirLeft);
+            System.out.println(dirRight);
         } catch (IOException e) {           e.getMessage();        }
 
 //        String nom = new Scanner(System.in).nextLine();

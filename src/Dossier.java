@@ -10,23 +10,40 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 import java.util.TreeMap;
+import java.util.stream.Collectors;
 
 public class Dossier extends Fichier {
-    private  Map<String, Integer> nomEnfant = new TreeMap<>();
-    private  List<Fichier> contenu = new ArrayList<>();
+    private Map<String, Integer> nomEnfant = new TreeMap<>();
+    private List<Fichier> contenu = new ArrayList<>();
 
-    public void rempliNomEnfant(){
-        for(Fichier f : contenu) {
-            nomEnfant.put(f.getNom(), contenu.indexOf(f));
+    public Dossier(String nom, Path path) throws IOException {
+        super(nom, path);
+                List<Path> tmpPathsList = Files.list(path).collect(Collectors.toList());
+        for(int i = 0; i < (tmpPathsList.size()); i++){
+            nomEnfant.put(getLastPathElement(tmpPathsList.get(i)), i);
         }
+//        for (int i = 0; i < contenu.size(); i++) {
+//            nomEnfant.put(contenu.get(i).getNom(), i);
+//        }
+    }
+
+    public Map<String, Integer> getNomEnfant() {
+        return nomEnfant;
+    }
+
+//    public void rempliNomEnfant() {
+//        for (Fichier f : contenu) {
+//            nomEnfant.put(f.getNom(), contenu.indexOf(f));
+//        }
+//    }
+
+    public String getLastPathElement(Path path){
+        int nameCount = path.getNameCount();
+        return path.getName(nameCount -1).toString();
     }
 
     public List<Fichier> getContenu() {
         return contenu;
-    }
-
-    public Dossier(String nom, Path path) {
-        super(nom, path);
     }
 
     @Override
@@ -58,21 +75,21 @@ public class Dossier extends Fichier {
         return res.toString();
     }
 
-    public void compareTopFolders(Dossier d){
-
-        if (d instanceof Dossier) {
-            Dossier other = d;
-
-
-
-        for(Fichier enfant : this.contenu){
-            if(nomEnfant.containsKey(this.getNom())){
-
+    public void compareTopFolders(Dossier d) throws IOException {
+        for (Fichier enfant : this.contenu) {
+            System.out.println(d.nomEnfant.keySet());
+            if (d.nomEnfant.containsKey(enfant.getNom())) {
+                enfant.changeEtat(d.contenu.get(d.nomEnfant.get(enfant.getNom())));
+            } else {
+                if (enfant.type() == 'F') {
+                    System.out.println("orphanforever");
+                    enfant.setEtat(Etat.ORPHAN);
+                } else {
+                    ((Dossier) enfant).setAllChildrenOrphan();
+                }
             }
-
         }
-
-    }}
+    }
 
 
     @Override
@@ -82,8 +99,7 @@ public class Dossier extends Fichier {
             Dossier other = (Dossier) fs;
 
 
-
-            if(this.getNom() == other.getNom()) {
+            if (this.getNom() == other.getNom()) {
 
                 while (this.getEtat().equals(Etat.INDEFINED)) {
                     System.out.println("test");
@@ -105,7 +121,7 @@ public class Dossier extends Fichier {
 
                 }
             }
-          //  System.out.println("This Folder are not the same");
+            //  System.out.println("This Folder are not the same");
 
 
         }
@@ -114,7 +130,7 @@ public class Dossier extends Fichier {
     private void setAllChildrenOrphan() {
 
         for (Fichier f : this.contenu) {
-            if (f.type() == 'F' && f.getEtat() == Etat.INDEFINED ) {
+            if (f.type() == 'F' && f.getEtat() == Etat.INDEFINED) {
                 f.setEtat(Etat.ORPHAN);
                 String parent = f.getLastDirName(f.getPath());
                 for (Fichier fParent : this.contenu) {
@@ -123,7 +139,7 @@ public class Dossier extends Fichier {
                         d.setAllChildrenOrphan();
                     }
                 }
-            } else if (f.type() == 'D' && f.getEtat() == Etat.INDEFINED){
+            } else if (f.type() == 'D' && f.getEtat() == Etat.INDEFINED) {
                 f.setEtat(Etat.ORPHAN);
                 Dossier d = (Dossier) f;
                 d.setAllChildrenOrphan();
@@ -156,7 +172,6 @@ public class Dossier extends Fichier {
 //
 //                }
 //            }
-
 
 
 //            if (this.contenu.containsAll(other.contenu)) {
