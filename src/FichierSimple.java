@@ -28,7 +28,7 @@ public class FichierSimple extends Fichier {
 
     public void changeEtat(Fichier fs) throws IOException {
         if (this.getLastDirName(getPath()).equals(fs.getLastDirName(fs.getPath()))) { // TODO check getLastDirName()
-            System.out.println(this.getLastDirName(getPath()));
+           // System.out.println(this.getLastDirName(getPath()));
             if (this.getNom().equals(fs.getNom())) {
                 if (this.getModifDate(this.getPath()).isEqual(fs.getModifDate(fs.getPath()))) {
                     fs.setEtat(Etat.SAME);

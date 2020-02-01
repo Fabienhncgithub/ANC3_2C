@@ -1,10 +1,5 @@
 import java.io.IOException;
-import java.nio.file.DirectoryStream;
-import java.nio.file.Files;
 import java.nio.file.Path;
-import java.nio.file.attribute.BasicFileAttributes;
-import java.time.LocalDateTime;
-import java.time.ZoneId;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.List;
@@ -53,10 +48,61 @@ public class Dossier extends Fichier {
     public void changeEtat(Fichier fs) throws IOException {
         if (fs instanceof Dossier) {
             Dossier other = (Dossier) fs;
-            if (this.contenu.containsAll(other.contenu)) {
-                System.out.println("those dir are the same");
-            }else{
-                System.out.println("those dir dont containt the same files");
+
+
+            while( this.getEtat().equals(Etat.INDEFINED)){
+                    if(this.contenu.size() == 0 && other.contenu.size() == 0){
+                        this.setEtat(Etat.SAME);
+                        other.setEtat(Etat.SAME);
+                    }else if(this.contenu.size() == 0){
+                        this.setEtat(Etat.PARTIAL_SAME);
+                        other.setEtat(Etat.PARTIAL_SAME);
+                        
+                        for(Fichier f : other.contenu){
+                            f.setEtat(Etat.ORPHAN);
+                        }
+
+                    }else{
+
+
+                    }
+
+                    }
+
+            }
+
+
+//            Etat tmpEtat = Etat.INDEFINED;
+//            for(Fichier fichierDirA: this.contenu){
+//                for(Fichier fichierDirB  : other.contenu){
+//                        if(fichierDirA.getEtat().equals(fichierDirB.getEtat())){
+//                            if(this.getEtat().equals(Etat.SAME)){
+//                                if (Etat.values().equals(Etat.SAME) && ) {
+//                                    tmpEtat = Etat.SAME;
+//                                } else if (Etat.values().equals(Etat.PARTIAL_SAME)) {
+//                                    tmpEtat = Etat.PARTIAL_SAME;
+//                                } else if (Etat.values().equals(Etat.ORPHAN)) {
+//                                    tmpEtat = Etat.ORPHAN;
+//                                }
+//
+//
+//                                }else if(){
+//
+//
+//                            }
+//
+//
+//                        }
+//
+//                }
+            }
+
+
+
+//            if (this.contenu.containsAll(other.contenu)) {
+//                System.out.println("those dir are the same");
+//            }else{
+//                System.out.println("those dir dont containt the same files");
 //                if (this.getNom() == fs.getNom()) {
 //                    if (this.getModifDate(this.getPath().subpath(5, 7)).isEqual(fs.getModifDate(fs.getPath().subpath(3, 4)))) {
 //                        fs.setEtat(Etat.SAME);
@@ -73,7 +119,6 @@ public class Dossier extends Fichier {
 //                }
             }
         }
-    }
 
     @Override
     public void ajoutFichier(Fichier f) {
