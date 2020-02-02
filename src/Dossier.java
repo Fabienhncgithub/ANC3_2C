@@ -135,8 +135,12 @@ public class Dossier extends Fichier {
                     }
                 }
             }
+            else if(!other.getNomEnfant().containsKey(this.getNom())){
+                    this.setEtat(Etat.ORPHAN);
+                }
+            }
         }
-    }
+
 
 
     private void setAllChildrenOrphan() {
