@@ -67,9 +67,7 @@ public abstract class Fichier {
         return res;
     }
 
-
     public void setEtat(Etat etat){
         this.etat = etat;
     }
-
 }

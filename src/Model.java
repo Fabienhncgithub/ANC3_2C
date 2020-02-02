@@ -30,6 +30,7 @@ public class Model {
 //            dirRight.changeEtat(dirLeft);
 //            dirLeft.changeEtat(dirRight);
             System.out.println(dirLeft);
+            System.out.println("----------------------------------------------------------");
             System.out.println(dirRight);
         } catch (IOException e) {           e.getMessage();        }
 

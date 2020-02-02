@@ -10,7 +10,7 @@ public class FichierSimple extends Fichier {
 
     private long taille;
 
-    public FichierSimple(String nom, long taille, FileTime fileTime, Path path) throws IOException {
+    public FichierSimple(String nom, long taille, FileTime fileTime, Path path) {
         super(nom, path);
         this.taille = taille;
         setModifDate(fileTime.toInstant().atZone(ZoneId.systemDefault()).toLocalDateTime());
@@ -53,7 +53,7 @@ public class FichierSimple extends Fichier {
     protected String formatAffichage(int decalage) throws IOException {
         StringBuilder res = new StringBuilder();
         res.append(super.formatAffichage(decalage))
-                .append(" - nom : ").append(getNom())
+                .append(" ").append(getNom())
                 .append(" - type : ").append(this.type())
                 .append(" - date : ").append(getModifDate(getPath()).format(DateTimeFormatter.ofPattern("dd/MM/yyyy HH:mm:ss")))
                 .append(" - taille : ").append(taille())
