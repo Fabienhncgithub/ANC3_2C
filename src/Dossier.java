@@ -90,56 +90,77 @@ public class Dossier extends Fichier {
         }
     }
 
-    @Override
-    public void changeEtat(Fichier fs) throws IOException {
+
+    public void determinateEquals(Fichier fs) {
         if (fs instanceof Dossier) {
             Dossier other = (Dossier) fs;
             if (this.getNom().equals(other.getNom())) {
-                while (this.getEtat().equals(Etat.INDEFINED)) {
-                    if (this.contenu.size() == 0 && other.contenu.size() == 0) {
-                        this.setEtat(Etat.SAME);
-                        other.setEtat(Etat.SAME);
-                    } else if (this.contenu.size() == 0) {
-                        this.setEtat(Etat.PARTIAL_SAME);
-                        other.setEtat(Etat.PARTIAL_SAME);
-                        other.setAllChildrenOrphan();
-                    } else if (other.contenu.size() == 0) {
-                        other.setEtat(Etat.PARTIAL_SAME);
-                        this.setEtat(Etat.PARTIAL_SAME);
-                        this.setAllChildrenOrphan();
-                    } else {
-                        for (Fichier fichier : this.contenu) {
-                            if (other.nomEnfant.containsKey(fichier.getNom())) {
-                                for (Fichier f : other.contenu) {
-                                    if (fichier.getNom().equals(f.getNom()))
-                                        if (fichier.type() == f.type()) {
-                                            fichier.changeEtat(other.contenu.get(other.nomEnfant.get(f.getNom())));
-                                        }
-                                }
-                            } else {
-                                fichier.setEtat(Etat.ORPHAN);
-                            }
-                            if (this.toBeOrphan()) {
-                                this.setEtat(Etat.ORPHAN);
-                            } else if (this.toBeSame()) {
-                                this.setEtat(Etat.SAME);
-                            } else if (this.oldOrNew() == Etat.OLDER) {
-                                this.setEtat(Etat.OLDER);
-                            } else if (this.oldOrNew() == Etat.NEWER){
-                                this.setEtat(Etat.NEWER);
-                            } else {
-                                this.setEtat(Etat.PARTIAL_SAME);
-                            }
-                        }
-                        // System.out.println("tous les fichier du dossier sont definis");
-                    }
-                }
-            }
-            else if(!other.getNomEnfant().containsKey(this.getNom())){
-                    this.setEtat(Etat.ORPHAN);
+                if (this.contenu.size() == 0 && other.contenu.size() == 0) {
+                    this.setEtat(Etat.SAME);
+                    other.setEtat(Etat.SAME);
+
                 }
             }
         }
+    }
+
+    public void determinatePartial_Same(Fichier fs) {
+        if (fs instanceof Dossier) {
+            Dossier other = (Dossier) fs;
+            if (this.contenu.size() == 0) {
+                this.setEtat(Etat.PARTIAL_SAME);
+                other.setEtat(Etat.PARTIAL_SAME);
+                other.setAllChildrenOrphan();
+            } else if (other.contenu.size() == 0) {
+                other.setEtat(Etat.PARTIAL_SAME);
+                this.setEtat(Etat.PARTIAL_SAME);
+                this.setAllChildrenOrphan();
+
+            }
+        }
+    }
+
+
+    public void determineFichier(Fichier fs) {
+        if (this.toBeOrphan()) {
+            this.setEtat(Etat.ORPHAN);
+        } else if (this.toBeSame()) {
+            this.setEtat(Etat.SAME);
+        } else if (this.oldOrNew() == Etat.OLDER) {
+            this.setEtat(Etat.OLDER);
+        } else if (this.oldOrNew() == Etat.NEWER) {
+            this.setEtat(Etat.NEWER);
+        } else {
+            this.setEtat(Etat.PARTIAL_SAME);
+        }
+    }
+
+    @Override
+
+    public void changeEtat(Fichier fs) throws IOException {
+        if (fs instanceof Dossier) {
+            Dossier other = (Dossier) fs;
+
+            determinateEquals(fs);
+            determinatePartial_Same(fs);
+
+            for (Fichier fichier : this.contenu) {
+                if (other.nomEnfant.containsKey(fichier.getNom())) {
+                    for (Fichier f : other.contenu) {
+                        if (fichier.getNom().equals(f.getNom()))
+                            if (fichier.type() == f.type()) {
+
+                                fichier.changeEtat(other.contenu.get(other.nomEnfant.get(f.getNom())));
+                            }
+                    }
+                } else {
+                    fichier.setEtat(Etat.ORPHAN);
+                }
+                determineFichier(fs);
+            }
+        }
+    }
+
 
 
 
@@ -220,12 +241,12 @@ public class Dossier extends Fichier {
                 fOlder++;
             }
         }
-            if (fNewer > fOlder) {
-                return Etat.NEWER;
-            } else {
-                return Etat.OLDER;
-            }
+        if (fNewer > fOlder) {
+            return Etat.NEWER;
+        } else {
+            return Etat.OLDER;
         }
+    }
 
 
 //            if (this.contenu.containsAll(other.contenu)) {
@@ -249,26 +270,26 @@ public class Dossier extends Fichier {
 //            }
 //        }
 
-        @Override
-        public void ajoutFichier (Fichier f){
-            contenu.add(f);
-        }
+    @Override
+    public void ajoutFichier(Fichier f) {
+        contenu.add(f);
+    }
 
-        @Override
-        public LocalDateTime getModifDate (Path path) throws IOException {
-            BasicFileAttributes attrs = Files.readAttributes(path, BasicFileAttributes.class);
-            LocalDateTime result = attrs.lastModifiedTime().toInstant().atZone(ZoneId.systemDefault()).toLocalDateTime();
-            if (Files.isDirectory(path)) {
-                try (DirectoryStream<Path> dir = Files.newDirectoryStream(path)) {
-                    for (Path p : dir) {
-                        LocalDateTime tmp = getModifDate(p);
-                        if (tmp.isAfter(result)) {
-                            result = tmp;
-                        }
+    @Override
+    public LocalDateTime getModifDate(Path path) throws IOException {
+        BasicFileAttributes attrs = Files.readAttributes(path, BasicFileAttributes.class);
+        LocalDateTime result = attrs.lastModifiedTime().toInstant().atZone(ZoneId.systemDefault()).toLocalDateTime();
+        if (Files.isDirectory(path)) {
+            try (DirectoryStream<Path> dir = Files.newDirectoryStream(path)) {
+                for (Path p : dir) {
+                    LocalDateTime tmp = getModifDate(p);
+                    if (tmp.isAfter(result)) {
+                        result = tmp;
                     }
                 }
             }
-            return result;
         }
+        return result;
     }
+}
 
