@@ -97,6 +97,8 @@ public class Dossier extends Fichier {
             Dossier other = (Dossier) fs;
                 if (this.getNom().equals(other.getNom())) {
                 while (this.getEtat().equals(Etat.INDEFINED)) {
+
+
                     if (this.contenu.size() == 0 && other.contenu.size() == 0) {
                         this.setEtat(Etat.SAME);
                         other.setEtat(Etat.SAME);
@@ -109,14 +111,22 @@ public class Dossier extends Fichier {
                         this.setEtat(Etat.PARTIAL_SAME);
                         this.setAllChildrenOrphan();
                     }else{
+
+
                         for(Fichier fichier : this.contenu){
                             if(other.nomEnfant.containsKey(fichier.getNom())) {
-                                fichier.changeEtat(other.contenu.get(other.nomEnfant.get(this.getNom())));
-                            }else{
+                                for (Fichier f : other.contenu) {
+                                   if(fichier.getNom().equals(f.getNom()))
+                                         if(fichier.type() == f.type()) {
+
+                                                     fichier.changeEtat(other.contenu.get(other.nomEnfant.get(f.getNom())));
+                                       }
+                                }
+                           }else{
                                 fichier.setEtat(Etat.ORPHAN);
                             }
-                        }
-                    }
+
+
                    if(this.toBeOrphan()){
                        this.setEtat(Etat.ORPHAN);
                    }else if(this.toBeSame()){
@@ -130,15 +140,11 @@ public class Dossier extends Fichier {
                    }
 
                 }
-                    System.out.println("tous les fichier du dossier sont definis");
-
+                   // System.out.println("tous les fichier du dossier sont definis");
                     }
-
             }
               System.out.println(fs);
-
-
-        }
+        }}}
 
 
     private void setAllChildrenOrphan() {
