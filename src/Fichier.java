@@ -6,7 +6,7 @@ public abstract class Fichier {
     private final String nom;
     private LocalDateTime modifDate;
     private Path path;
-    private Etat etat = Etat.INDEFINED;
+    private Etat etat = Etat.UNDEFINED;
     private int finalIdxSubPath = 7;
 
     public Fichier(String nom, Path path) {

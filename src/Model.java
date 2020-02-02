@@ -20,7 +20,8 @@ public class Model {
   //          System.out.println(Paths.get(s1).subpath(7,7));
 //
 //            Files.list(Paths.get(s1))
-//                    .filter(Files.isDirectory());
+//                    .filter(Files.isDirectory())
+//            .collect(Collectors.toList());
 
 //            System.out.println(dirLeft);
 //            System.out.println(dirRight);
