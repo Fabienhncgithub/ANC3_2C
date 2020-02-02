@@ -22,9 +22,6 @@ public class Dossier extends Fichier {
         for(int i = 0; i < (tmpPathsList.size()); i++){
             nomEnfant.put(getLastPathElement(tmpPathsList.get(i)), i);
         }
-//        for (int i = 0; i < contenu.size(); i++) {
-//            nomEnfant.put(contenu.get(i).getNom(), i);
-//        }
     }
 
     public Map<String, Integer> getNomEnfant() {
@@ -77,9 +74,12 @@ public class Dossier extends Fichier {
 
     public void compareTopFolders(Dossier d) throws IOException {
         for (Fichier enfant : this.contenu) {
-            System.out.println(d.nomEnfant.keySet());
             if (d.nomEnfant.containsKey(enfant.getNom())) {
-                enfant.changeEtat(d.contenu.get(d.nomEnfant.get(enfant.getNom())));
+                if(enfant.type() == d.contenu.get((d.nomEnfant.get(enfant.getNom()))).type()){
+                    enfant.changeEtat(d.contenu.get(d.nomEnfant.get(enfant.getNom())));
+                }else{
+                    enfant.setEtat(Etat.ORPHAN);
+                }
             } else {
                 if (enfant.type() == 'F') {
                     System.out.println("orphanforever");
@@ -91,41 +91,55 @@ public class Dossier extends Fichier {
         }
     }
 
-
     @Override
     public void changeEtat(Fichier fs) throws IOException {
-
         if (fs instanceof Dossier) {
             Dossier other = (Dossier) fs;
-
-
-            if (this.getNom() == other.getNom()) {
-
+                if (this.getNom().equals(other.getNom())) {
                 while (this.getEtat().equals(Etat.INDEFINED)) {
-                    System.out.println("test");
                     if (this.contenu.size() == 0 && other.contenu.size() == 0) {
-                        System.out.println("test1");
                         this.setEtat(Etat.SAME);
                         other.setEtat(Etat.SAME);
                     } else if (this.contenu.size() == 0) {
-                        System.out.println("test2");
                         this.setEtat(Etat.PARTIAL_SAME);
                         other.setEtat(Etat.PARTIAL_SAME);
                         other.setAllChildrenOrphan();
                     } else if (other.contenu.size() == 0) {
-                        System.out.println("test3");
                         other.setEtat(Etat.PARTIAL_SAME);
                         this.setEtat(Etat.PARTIAL_SAME);
                         this.setAllChildrenOrphan();
+                    }else{
+                        for(Fichier fichier : this.contenu){
+                            if(other.nomEnfant.containsKey(fichier.getNom())) {
+                                fichier.changeEtat(other.contenu.get(other.nomEnfant.get(this.getNom())));
+                            }else{
+                                fichier.setEtat(Etat.ORPHAN);
+                            }
+                        }
                     }
+                   if(this.toBeOrphan()){
+                       this.setEtat(Etat.ORPHAN);
+                   }else if(this.toBeSame()){
+                       this.setEtat(Etat.SAME);
+                   } else if(this.toBePartialSame()){
+                       this.setEtat(Etat.PARTIAL_SAME);
+                   }else if(this.oldOrNew() == Etat.OLDER){
+                       this.setEtat(Etat.OLDER);
+                    }else{
+                        this.setEtat(Etat.NEWER);
+                   }
 
                 }
+                    System.out.println("tous les fichier du dossier sont definis");
+
+                    }
+
             }
-            //  System.out.println("This Folder are not the same");
+              System.out.println(fs);
 
 
         }
-    }
+
 
     private void setAllChildrenOrphan() {
 
@@ -147,31 +161,71 @@ public class Dossier extends Fichier {
         }
     }
 
-
-//            Etat tmpEtat = Etat.INDEFINED;
-//            for(Fichier fichierDirA: this.contenu){
-//                for(Fichier fichierDirB  : other.contenu){
-//                        if(fichierDirA.getEtat().equals(fichierDirB.getEtat())){
-//                            if(this.getEtat().equals(Etat.SAME)){
-//                                if (Etat.values().equals(Etat.SAME) && ) {
-//                                    tmpEtat = Etat.SAME;
-//                                } else if (Etat.values().equals(Etat.PARTIAL_SAME)) {
-//                                    tmpEtat = Etat.PARTIAL_SAME;
-//                                } else if (Etat.values().equals(Etat.ORPHAN)) {
-//                                    tmpEtat = Etat.ORPHAN;
+//    public void changeEtatDossier (Dossier d){
+//                Etat tmpEtat = Etat.INDEFINED;
+//                for(Fichier fichierDirA: this.contenu){
+//                    for(Fichier fichierDirB  : d.contenu){
+//                            if(fichierDirA.getEtat().equals(fichierDirB.getEtat())){
+//                                if(this.getEtat().equals(Etat.SAME)){
+//                                        tmpEtat=Etat.SAME;
+//                                    }else if(this.getEtat().equals(Etat.PARTIAL_SAME)){
+//                                        tmpEtat=Etat.PARTIAL_SAME;
+//                                    }else if(this.getEtat().equals(Etat.ORPHAN)){
+//                                        tmpEtat=Etat.ORPHAN;
+//
 //                                }
-//
-//
-//                                }else if(){
-//
-//
 //                            }
-//
-//
-//                        }
-//
+//                    }
 //                }
-//            }
+//    }
+
+    public boolean toBeOrphan(){
+        Etat tmpEtat = Etat.ORPHAN;
+        for (Fichier f : this.contenu){
+            if(f.getEtat() != Etat.ORPHAN){
+                return false;
+            }
+        }
+        return true;
+    }
+
+    public boolean toBeSame(){
+        Etat tmpEtat = Etat.SAME;
+        for (Fichier f : this.contenu){
+            if(f.getEtat() != Etat.SAME){
+                return false;
+            }
+        }
+        return true;
+    }
+
+    public boolean toBePartialSame(){
+        Etat tmpEtat = Etat.ORPHAN;
+        for (Fichier f : this.contenu){
+            if(f.getEtat() != Etat.ORPHAN){
+                return false;
+            }
+        }
+        return true;
+    }
+
+    public Etat oldOrNew(){
+        int fNewer = 0;
+        int fOlder = 0;
+        for (Fichier f : this.contenu){
+            if(f.getEtat() == Etat.NEWER){
+                fNewer++;
+            }else if(f.getEtat() == Etat.OLDER){
+                fOlder++;
+            }
+        }
+        if(fNewer>fOlder){
+            return Etat.NEWER;
+        }else{
+            return Etat.OLDER;
+        }
+    }
+
 
 
 //            if (this.contenu.containsAll(other.contenu)) {
