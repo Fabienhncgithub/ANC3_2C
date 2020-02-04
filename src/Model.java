@@ -24,7 +24,7 @@ public class Model {
 //            System.out.println(((Dossier)dirLeft).getNomEnfant().keySet());
 //            System.out.println(((Dossier)dirLeft).getLastPathElement(dirLeft.getPath()));
 //            ((Dossier)dirLeft).compareTopFolders((Dossier)dirRight);
-            dirRight.changeEtat(dirLeft);
+            dirLeft.changeEtat(dirRight);
 //            dirLeft.changeEtat(dirRight);
             System.out.println(dirLeft);
             System.out.println("----------------------------------------------------------");
