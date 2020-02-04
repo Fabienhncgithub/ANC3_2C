@@ -1,3 +1,5 @@
+package model;
+
 import javafx.application.Application;
 import javafx.beans.property.SimpleObjectProperty;
 import javafx.scene.Scene;
@@ -11,7 +13,9 @@ import java.nio.file.Paths;
 
 public class Model extends Application {
 
-    public static void main(String[] args) { launch(args);}
+    public static void main(String[] args) {
+        launch(args);
+    }
 
     @Override
     public void start(Stage primaryStage) throws Exception {
@@ -22,10 +26,16 @@ public class Model extends Application {
         TreeTableView treeTableView = new TreeTableView(makeTreeRoot(dirLeft));
         TreeTableView treeTableView2 = new TreeTableView(makeTreeRoot(dirRight));
         TreeTableColumn<Fichier, Fichier>
+
                 nameCol = new TreeTableColumn<>("Nom"),
+                typeCol = new TreeTableColumn<>("Type"),
+                dateCol = new TreeTableColumn<>("Date modif"),
                 sizeCol = new TreeTableColumn<>("Taille");
 
+
         nameCol.setCellValueFactory(r -> new SimpleObjectProperty<>(r.getValue().getValue()));
+        typeCol.setCellValueFactory(r -> new SimpleObjectProperty<>(r.getValue().getValue()));
+        dateCol.setCellValueFactory(r -> new SimpleObjectProperty<>(r.getValue().getValue()));
         sizeCol.setCellValueFactory(r -> new SimpleObjectProperty<>(r.getValue().getValue()));
 
         nameCol.setPrefWidth(250);
@@ -33,17 +43,27 @@ public class Model extends Application {
         nameCol.setCellFactory((param) -> {
             return new NomFichierCell();
         });
+        typeCol.setCellFactory((param) -> {
+            return new TypeFichierCell();
+        });
+        dateCol.setCellFactory((param) -> {
+            return new DateModifFichierCell();
+        });
         sizeCol.setCellFactory((param) -> {
             return new TailleFichierCell();
         });
-        treeTableView.getColumns().setAll(nameCol, sizeCol);
+
+
+        treeTableView.getColumns().setAll(nameCol,typeCol, dateCol, sizeCol);
 
         StackPane root = new StackPane();
+        StackPane root2 = new StackPane();
         root.getChildren().add(treeTableView);
+        root2.getChildren().add(treeTableView2);
 
         Scene scene = new Scene(root, 300, 250);
 
-        primaryStage.setTitle("ExempleTreeTableView");
+        primaryStage.setTitle("Beyon Compare");
         primaryStage.setScene(scene);
         primaryStage.show();
     }

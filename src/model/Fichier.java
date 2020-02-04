@@ -1,3 +1,5 @@
+package model;
+
 import java.io.IOException;
 import java.nio.file.Path;
 import java.time.LocalDateTime;
@@ -27,7 +29,7 @@ public abstract class Fichier {
         return path;
     }
 
-    public abstract long taille() ;
+    public abstract long taille();
 
     public abstract void ajoutFichier(Fichier f);
 
@@ -41,6 +43,10 @@ public abstract class Fichier {
         return etat;
     }
 
+    public void setEtat(Etat etat) {
+        this.etat = etat;
+    }
+
     protected String formatAffichage(int decalage) throws IOException {
         String res = "";
         for (int i = 0; i < decalage; ++i)
@@ -48,9 +54,9 @@ public abstract class Fichier {
         return res;
     }
 
-    public String getLastDirName(Path path){ //TODO at the moment it checks only the parent name and not the entire path... so 2 folders in different places...
+    public String getLastDirName(Path path) { //TODO at the moment it checks only the parent name and not the entire path... so 2 folders in different places...
         int nameCount = path.getNameCount();
-        return path.getName(nameCount-2).toString();
+        return path.getName(nameCount - 2).toString();
     }
 
     public abstract void changeEtat(Fichier fs) throws IOException;
@@ -66,7 +72,28 @@ public abstract class Fichier {
         return res;
     }
 
-    public void setEtat(Etat etat){
-        this.etat = etat;
+    public String getEtatString() {
+        String str = "";
+        switch (getEtat()) {
+            case ORPHAN:
+                str = "ORPHAN";
+                break;
+            case SAME:
+                str = "SAME";
+                break;
+            case PARTIAL_SAME:
+                str = "PARTIAL_SAME";
+                break;
+            case NEWER:
+                str = "NEWER";
+                break;
+            case OLDER:
+                str = "OLDER";
+                break;
+        }
+        return str;
+
     }
+
+
 }
