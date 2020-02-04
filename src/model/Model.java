@@ -10,6 +10,8 @@ import javafx.scene.layout.StackPane;
 import javafx.stage.Stage;
 
 import java.nio.file.Paths;
+import javafx.scene.layout.HBox;
+import javafx.scene.layout.VBox;
 
 public class Model extends Application {
 
@@ -31,6 +33,8 @@ public class Model extends Application {
                 typeCol = new TreeTableColumn<>("Type"),
                 dateCol = new TreeTableColumn<>("Date modif"),
                 sizeCol = new TreeTableColumn<>("Taille");
+        
+        
 
 
         nameCol.setCellValueFactory(r -> new SimpleObjectProperty<>(r.getValue().getValue()));
@@ -56,12 +60,14 @@ public class Model extends Application {
 
         treeTableView.getColumns().setAll(nameCol,typeCol, dateCol, sizeCol);
 
-        StackPane root = new StackPane();
-        StackPane root2 = new StackPane();
-        root.getChildren().add(treeTableView);
-        root2.getChildren().add(treeTableView2);
+        HBox hBox = new HBox();
+        VBox pane1 = new VBox();
+        VBox pane2 = new VBox();
+        pane1.getChildren().add(treeTableView);
+        pane2.getChildren().add(treeTableView2);
+        hBox.getChildren().addAll(pane1,pane2);
 
-        Scene scene = new Scene(root, 300, 250);
+        Scene scene = new Scene(hBox, 600, 600);
 
         primaryStage.setTitle("Beyon Compare");
         primaryStage.setScene(scene);

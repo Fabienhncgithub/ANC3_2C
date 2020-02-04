@@ -71,29 +71,4 @@ public abstract class Fichier {
         }
         return res;
     }
-
-    public String getEtatString() {
-        String str = "";
-        switch (getEtat()) {
-            case ORPHAN:
-                str = "ORPHAN";
-                break;
-            case SAME:
-                str = "SAME";
-                break;
-            case PARTIAL_SAME:
-                str = "PARTIAL_SAME";
-                break;
-            case NEWER:
-                str = "NEWER";
-                break;
-            case OLDER:
-                str = "OLDER";
-                break;
-        }
-        return str;
-
-    }
-
-
 }
