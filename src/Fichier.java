@@ -7,7 +7,6 @@ public abstract class Fichier {
     private LocalDateTime modifDate;
     private Path path;
     private Etat etat = Etat.UNDEFINED;
-    private int finalIdxSubPath = 7;
 
     public Fichier(String nom, Path path) {
         this.nom = nom;
@@ -44,10 +43,6 @@ public abstract class Fichier {
             res += "\t";
         return res;
     }
-
-//    public Path stringToPath() throws IOException {
-//        return Paths.get(getNom()).toRealPath();
-//    }
 
     public String getLastDirName(Path path){ //TODO at the moment it checks only the parent name and not the entire path... so 2 folders in different places...
         int nameCount = path.getNameCount();

@@ -20,10 +20,6 @@ public class Dossier extends Fichier {
         super(nom, path);
     }
 
-    public Map<String, Integer> getNomEnfant() {
-        return nomEnfant;
-    }
-
     public void setNomEnfant() {
         List<String> tmpPathsList = contenu.stream().map(f -> f.getNom()).collect(Collectors.toList());
         for (int i = 0; i < (tmpPathsList.size()); i++) {
@@ -39,12 +35,6 @@ public class Dossier extends Fichier {
         }
         return true;
     }
-
-//    public void rempliNomEnfant() {
-//        for (Fichier f : contenu) {
-//            nomEnfant.put(f.getNom(), contenu.indexOf(f));
-//        }
-//    }
 
     public String getLastPathElement(Path path) {
         int nameCount = path.getNameCount();
@@ -83,24 +73,6 @@ public class Dossier extends Fichier {
             res.append(f.formatAffichage(decalage + 1));
         return res.toString();
     }
-
-//    public void compareTopFolders(Dossier d) throws IOException {
-//        for (Fichier enfant : this.contenu) {
-//            if (d.nomEnfant.containsKey(enfant.getNom())) {
-//                if (enfant.type() == d.contenu.get((d.nomEnfant.get(enfant.getNom()))).type()) {
-//                    enfant.changeEtat(d.contenu.get(d.nomEnfant.get(enfant.getNom())));
-//                } else {
-//                    enfant.setEtat(Etat.ORPHAN);
-//                }
-//            } else {
-//                if (enfant.type() == 'F') {
-//                    enfant.setEtat(Etat.ORPHAN);
-//                } else {
-//                    ((Dossier) enfant).setAllChildrenOrphan();
-//                }
-//            }
-//        }
-//    }
 
     @Override
     public void changeEtat(Fichier fs) throws IOException {
@@ -183,13 +155,6 @@ public class Dossier extends Fichier {
         for (Fichier f : this.contenu) {
             if (f.type() == 'F' && f.getEtat() == Etat.UNDEFINED) {
                 f.setEtat(Etat.ORPHAN);
-//                String parent = f.getLastDirName(f.getPath());
-//                for (Fichier fParent : this.contenu) {
-//                    if (fParent.getNom().equals(parent)) {
-//                        Dossier d = (Dossier) fParent;
-//                        d.setAllChildrenOrphan();
-//                    }
-//                }
             } else if (f.type() == 'D' && f.getEtat() == Etat.UNDEFINED) {
                 f.setEtat(Etat.ORPHAN);
                 Dossier d = (Dossier) f;
@@ -199,32 +164,12 @@ public class Dossier extends Fichier {
         this.setEtat(Etat.ORPHAN);
     }
 
-//    public void changeEtatDossier (Dossier d){
-//                Etat tmpEtat = Etat.INDEFINED;
-//                for(Fichier fichierDirA: this.contenu){
-//                    for(Fichier fichierDirB  : d.contenu){
-//                            if(fichierDirA.getEtat().equals(fichierDirB.getEtat())){
-//                                if(this.getEtat().equals(Etat.SAME)){
-//                                        tmpEtat=Etat.SAME;
-//                                    }else if(this.getEtat().equals(Etat.PARTIAL_SAME)){
-//                                        tmpEtat=Etat.PARTIAL_SAME;
-//                                    }else if(this.getEtat().equals(Etat.ORPHAN)){
-//                                        tmpEtat=Etat.ORPHAN;
-//
-//                                }
-//                            }
-//                    }
-//                }
-//    }
-
     public boolean toBeOrphan() {
-//        if(this.contenu.size() != 0) {
         for (Fichier f : this.contenu) {
             if (f.getEtat() != Etat.ORPHAN) {
                 return false;
             }
         }
-//        }
         return true;
     }
 
@@ -236,16 +181,6 @@ public class Dossier extends Fichier {
         }
         return true;
     }
-
-    //
-//    public boolean toBePartialSame() {
-//        for (Fichier f : this.contenu) {
-//            if (f.getEtat() != Etat.ORPHAN) {
-//                return false;
-//            }
-//        }
-//        return true;
-//    }
 
     public boolean toBeOlder() {
         int fOlder = 0;
@@ -270,26 +205,6 @@ public class Dossier extends Fichier {
         }
         return fNewer > 0;
     }
-//            if (this.contenu.containsAll(other.contenu)) {
-//                System.out.println("those dir are the same");
-//            }else{
-//                System.out.println("those dir dont containt the same files");
-//                if (this.getNom() == fs.getNom()) {
-//                    if (this.getModifDate(this.getPath().subpath(5, 7)).isEqual(fs.getModifDate(fs.getPath().subpath(3, 4)))) {
-//                        fs.setEtat(Etat.SAME);
-//                        this.setEtat(Etat.SAME);
-//                    } else {
-//                        if (this.getModifDate(this.getPath().subpath(5, 7)).isAfter(fs.getModifDate(fs.getPath().subpath(3, 4)))) {
-//                            fs.setEtat(Etat.OLDER);
-//                            this.setEtat(Etat.NEWER);
-//                        } else {
-//                            fs.setEtat(Etat.NEWER);
-//                            this.setEtat(Etat.OLDER);
-//                        }
-//                    }
-//                }
-//            }
-//        }
 
     @Override
     public void ajoutFichier(Fichier f) {
