@@ -1,7 +1,19 @@
-.FICHIER {
+.ORPHAN {
     -fx-text-fill: blueviolet;
 }
 
-.DOSSIER {
+.SAME {
     -fx-text-fill: green;
+}
+
+.PARTIAL_SAME {
+    -fx-text-fill: orange;
+}
+
+.NEWER {
+    -fx-text-fill: red;
+}
+
+.OLDER {
+    -fx-text-fill: brown;
 }

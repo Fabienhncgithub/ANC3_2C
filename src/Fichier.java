@@ -13,11 +13,15 @@ public abstract class Fichier {
         this.path = path;
     }
 
+    public abstract Iterable<Fichier> getContenu();
+
     public void setModifDate(LocalDateTime modifDate) {
         this.modifDate = modifDate;
     }
 
     public abstract char type();
+
+    public abstract boolean isDirectory();
 
     public Path getPath() {
         return path;

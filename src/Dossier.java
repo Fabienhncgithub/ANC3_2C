@@ -41,6 +41,7 @@ public class Dossier extends Fichier {
         return path.getName(nameCount - 1).toString();
     }
 
+    @Override
     public List<Fichier> getContenu() {
         return contenu;
     }
@@ -48,6 +49,11 @@ public class Dossier extends Fichier {
     @Override
     public char type() {
         return 'D'; // D pour Dossier
+    }
+
+    @Override
+    public boolean isDirectory() {
+        return true;
     }
 
     @Override

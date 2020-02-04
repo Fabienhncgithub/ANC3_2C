@@ -22,6 +22,16 @@ public class FichierSimple extends Fichier {
     }
 
     @Override
+    public Iterable<Fichier> getContenu() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public boolean isDirectory() {
+        return false;
+    }
+
+    @Override
     public long taille() {
         return taille;
     }
