@@ -16,7 +16,7 @@ public class Dossier extends Fichier {
     private Map<String, Integer> nomEnfant = new TreeMap<>();
     private List<Fichier> contenu = new ArrayList<>();
 
-    public Dossier(String nom, Path path) throws IOException {
+    public Dossier(String nom, Path path) {
         super(nom, path);
     }
 
@@ -131,15 +131,13 @@ public class Dossier extends Fichier {
                     }
                 }
             }
-            if (other.contenu.size() > this.contenu.size()) {
-                for (Fichier f : other.contenu) {
-                    if ((f.getEtat() == Etat.UNDEFINED)) {
-                        if (f.type() == 'D') {
-                            ((Dossier) f).setAllChildrenOrphan();
-                            f.setEtat(Etat.ORPHAN);
-                        }
-                        other.setEtat(Etat.ORPHAN);
+            for (Fichier f : other.contenu) {
+                if ((f.getEtat() == Etat.UNDEFINED)) {
+                    if (f.type() == 'D') {
+                        ((Dossier) f).setAllChildrenOrphan();
                     }
+                    f.setEtat(Etat.ORPHAN);
+                    other.setEtat(Etat.ORPHAN);
                 }
             }
             if (this.areAllChildrenEtatSet() && other.areAllChildrenEtatSet()) {
