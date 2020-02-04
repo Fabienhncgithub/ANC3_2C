@@ -29,7 +29,6 @@ public class FichierSimple extends Fichier {
     public void changeEtat(Fichier fs) throws IOException {
         if (this.getLastDirName(getPath()).equals(fs.getLastDirName(fs.getPath()))) { // TODO check getLastDirName()
            // System.out.println(this.getLastDirName(getPath()));
-            if (fs.type() == 'F'){
             if (this.getNom().equals(fs.getNom())) {
                 if (this.getModifDate(this.getPath()).isEqual(fs.getModifDate(fs.getPath()))) {
                     fs.setEtat(Etat.SAME);
@@ -43,15 +42,13 @@ public class FichierSimple extends Fichier {
                         this.setEtat(Etat.OLDER);
                     }
                 }
-                } else {
-                    this.setEtat(Etat.ORPHAN);
-                    fs.setEtat(Etat.ORPHAN);
-                }
-            }else{
-                this.setEtat(Etat.ORPHAN);
+            }
+//                } else {
+//                    this.setEtat(Etat.ORPHAN);
+//                    fs.setEtat(Etat.ORPHAN);
+//                }
             }
         }
-    }
 
 
     @Override
