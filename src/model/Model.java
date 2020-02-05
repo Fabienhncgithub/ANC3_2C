@@ -2,10 +2,13 @@ package model;
 
 import javafx.application.Application;
 import javafx.beans.property.SimpleObjectProperty;
+import javafx.geometry.Pos;
 import javafx.scene.Scene;
+import javafx.scene.control.Label;
 import javafx.scene.control.TreeItem;
 import javafx.scene.control.TreeTableColumn;
 import javafx.scene.control.TreeTableView;
+import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.HBox;
 import javafx.stage.Stage;
 
@@ -25,6 +28,7 @@ public class Model extends Application {
         Fichier dirRight = new CopyBuilder().build(Paths.get(rootRight));
         TreeTableView treeTableView = new TreeTableView(makeTreeRoot(dirLeft));
         TreeTableView treeTableView2 = new TreeTableView(makeTreeRoot(dirRight));
+
         TreeTableColumn<Fichier, Fichier>
 
                 nameCol = new TreeTableColumn<>("Nom"),
@@ -39,18 +43,10 @@ public class Model extends Application {
 
         nameCol.setPrefWidth(250);
 
-        nameCol.setCellFactory((param) -> {
-            return new NomFichierCell();
-        });
-        typeCol.setCellFactory((param) -> {
-            return new TypeFichierCell();
-        });
-        dateCol.setCellFactory((param) -> {
-            return new DateModifFichierCell();
-        });
-        sizeCol.setCellFactory((param) -> {
-            return new TailleFichierCell();
-        });
+        nameCol.setCellFactory((param) -> new NomFichierCell());
+        typeCol.setCellFactory((param) -> new TypeFichierCell());
+        dateCol.setCellFactory((param) -> new DateModifFichierCell());
+        sizeCol.setCellFactory((param) -> new TailleFichierCell());
 
 
         treeTableView.getColumns().setAll(nameCol, typeCol, dateCol, sizeCol);
@@ -69,33 +65,35 @@ public class Model extends Application {
 
         nameCol2.setPrefWidth(250);
 
-        nameCol2.setCellFactory((param) -> {
-            return new NomFichierCell();
-        });
-        typeCol2.setCellFactory((param) -> {
-            return new TypeFichierCell();
-        });
-        dateCol2.setCellFactory((param) -> {
-            return new DateModifFichierCell();
-        });
-        sizeCol2.setCellFactory((param) -> {
-            return new TailleFichierCell();
-        });
+        nameCol2.setCellFactory((param) -> new NomFichierCell());
+        typeCol2.setCellFactory((param) -> new TypeFichierCell());
+        dateCol2.setCellFactory((param) -> new DateModifFichierCell());
+        sizeCol2.setCellFactory((param) -> new TailleFichierCell());
 
 
         treeTableView.getColumns().setAll(nameCol, typeCol, dateCol, sizeCol);
         treeTableView2.getColumns().setAll(nameCol2, typeCol2, dateCol2, sizeCol2);
 
-        HBox hBox = new HBox();
-        hBox.getChildren().addAll(treeTableView, treeTableView2);
+        HBox hBoxCenter = new HBox();
+        hBoxCenter.getChildren().addAll(treeTableView, treeTableView2);
 
-        Scene scene = new Scene(hBox, 950, 600);
+        HBox hBoxTop = new HBox();
+        hBoxTop.getChildren().addAll
+                (new Label(dirLeft.getPath().toAbsolutePath().toString()),
+                (new Label(dirRight.getPath().toAbsolutePath().toString())));
+        hBoxTop.setAlignment(Pos.CENTER);
 
+        BorderPane bPane = new BorderPane();
+        bPane.setTop(hBoxTop);
+        bPane.setCenter(hBoxCenter);
+        bPane.setBottom(new Label(Etat.values().toString()));
+        Scene scene = new Scene(bPane, 950, 600);
+//        bPane.getStylesheets().add("model/cssView.css");
         primaryStage.setTitle("Beyond Compare");
         primaryStage.setScene(scene);
+//        primaryStage.getScene().getStylesheets().add(getClass().getResource("cssView.css").toExternalForm());
         primaryStage.show();
     }
-
     public TreeItem<Fichier> makeTreeRoot(Fichier root) {
 
         TreeItem<Fichier> res = new TreeItem<>(root);
@@ -108,20 +106,5 @@ public class Model extends Application {
 
         return res;
     }
-//        try { //    subPath     0   1       2           3                   4           5       6
-//
-//            String rootRight = "TestBC/RootBC_Right";
-//            String rootLeft = "TestBC/RootBC_Left";
-//            Fichier dirLeft = new CopyBuilder().build(Paths.get(rootLeft));
-//            Fichier dirRight = new CopyBuilder().build(Paths.get(rootRight));
-//
-//            dirLeft.changeEtat(dirRight);
-//            System.out.println(dirLeft);
-//            System.out.println("----------------------------------------------------------");
-//            System.out.println(dirRight);
-//        } catch (IOException e) {
-//            e.getMessage();
-//        }
-//    }
 
 }
