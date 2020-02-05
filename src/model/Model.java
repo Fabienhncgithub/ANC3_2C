@@ -13,6 +13,7 @@ import javafx.scene.layout.HBox;
 import javafx.stage.Stage;
 
 import java.nio.file.Paths;
+import java.util.Arrays;
 
 public class Model extends Application {
 
@@ -28,6 +29,7 @@ public class Model extends Application {
         Fichier dirRight = new CopyBuilder().build(Paths.get(rootRight));
         TreeTableView treeTableView = new TreeTableView(makeTreeRoot(dirLeft));
         TreeTableView treeTableView2 = new TreeTableView(makeTreeRoot(dirRight));
+        dirLeft.changeEtat(dirRight);
 
         TreeTableColumn<Fichier, Fichier>
 
@@ -86,7 +88,7 @@ public class Model extends Application {
         BorderPane bPane = new BorderPane();
         bPane.setTop(hBoxTop);
         bPane.setCenter(hBoxCenter);
-        bPane.setBottom(new Label(Etat.values().toString()));
+        bPane.setBottom(new Label(Arrays.toString(Etat.values())));
         Scene scene = new Scene(bPane, 950, 600);
 //        bPane.getStylesheets().add("model/cssView.css");
         primaryStage.setTitle("Beyond Compare");
