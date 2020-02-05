@@ -6,12 +6,10 @@ import javafx.scene.Scene;
 import javafx.scene.control.TreeItem;
 import javafx.scene.control.TreeTableColumn;
 import javafx.scene.control.TreeTableView;
-import javafx.scene.layout.StackPane;
+import javafx.scene.layout.HBox;
 import javafx.stage.Stage;
 
 import java.nio.file.Paths;
-import javafx.scene.layout.HBox;
-import javafx.scene.layout.VBox;
 
 public class Model extends Application {
 
@@ -33,9 +31,6 @@ public class Model extends Application {
                 typeCol = new TreeTableColumn<>("Type"),
                 dateCol = new TreeTableColumn<>("Date modif"),
                 sizeCol = new TreeTableColumn<>("Taille");
-        
-        
-
 
         nameCol.setCellValueFactory(r -> new SimpleObjectProperty<>(r.getValue().getValue()));
         typeCol.setCellValueFactory(r -> new SimpleObjectProperty<>(r.getValue().getValue()));
@@ -58,18 +53,45 @@ public class Model extends Application {
         });
 
 
-        treeTableView.getColumns().setAll(nameCol,typeCol, dateCol, sizeCol);
+        treeTableView.getColumns().setAll(nameCol, typeCol, dateCol, sizeCol);
+
+        TreeTableColumn<Fichier, Fichier>
+
+                nameCol2 = new TreeTableColumn<>("Nom"),
+                typeCol2 = new TreeTableColumn<>("Type"),
+                dateCol2 = new TreeTableColumn<>("Date modif"),
+                sizeCol2 = new TreeTableColumn<>("Taille");
+
+        nameCol2.setCellValueFactory(r -> new SimpleObjectProperty<>(r.getValue().getValue()));
+        typeCol2.setCellValueFactory(r -> new SimpleObjectProperty<>(r.getValue().getValue()));
+        dateCol2.setCellValueFactory(r -> new SimpleObjectProperty<>(r.getValue().getValue()));
+        sizeCol2.setCellValueFactory(r -> new SimpleObjectProperty<>(r.getValue().getValue()));
+
+        nameCol2.setPrefWidth(250);
+
+        nameCol2.setCellFactory((param) -> {
+            return new NomFichierCell();
+        });
+        typeCol2.setCellFactory((param) -> {
+            return new TypeFichierCell();
+        });
+        dateCol2.setCellFactory((param) -> {
+            return new DateModifFichierCell();
+        });
+        sizeCol2.setCellFactory((param) -> {
+            return new TailleFichierCell();
+        });
+
+
+        treeTableView.getColumns().setAll(nameCol, typeCol, dateCol, sizeCol);
+        treeTableView2.getColumns().setAll(nameCol2, typeCol2, dateCol2, sizeCol2);
 
         HBox hBox = new HBox();
-        VBox pane1 = new VBox();
-        VBox pane2 = new VBox();
-        pane1.getChildren().add(treeTableView);
-        pane2.getChildren().add(treeTableView2);
-        hBox.getChildren().addAll(pane1,pane2);
+        hBox.getChildren().addAll(treeTableView, treeTableView2);
 
-        Scene scene = new Scene(hBox, 600, 600);
+        Scene scene = new Scene(hBox, 950, 600);
 
-        primaryStage.setTitle("Beyon Compare");
+        primaryStage.setTitle("Beyond Compare");
         primaryStage.setScene(scene);
         primaryStage.show();
     }
