@@ -8,6 +8,7 @@ import javafx.scene.control.Label;
 import javafx.scene.control.TreeItem;
 import javafx.scene.control.TreeTableColumn;
 import javafx.scene.control.TreeTableView;
+import javafx.scene.image.Image;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
@@ -85,9 +86,6 @@ public class Model extends Application {
         HBox hBoxCenter = new HBox();
         hBoxCenter.getChildren().addAll(treeTableView, treeTableView2);
         hBoxCenter.setAlignment(Pos.CENTER);
-//       hBoxCenter.setMinSize(900,800);
-
-
 
         HBox hBoxTop = new HBox();
         Label label_right = new Label(dirLeft.getPath().toAbsolutePath().toString());
@@ -105,6 +103,7 @@ public class Model extends Application {
         hBoxBot.getStylesheets().add("model/cssView.css");
         hBoxBot.setAlignment(Pos.CENTER);
         hBoxBot.setSpacing(30);
+
         for (Etat e : Etat.values()) {
             if (e != Etat.UNDEFINED) {
                 Label l = new Label(e.toString());
@@ -115,6 +114,7 @@ public class Model extends Application {
 
         Scene scene = new Scene(vbox, 800, 600);
         primaryStage.setTitle("Beyond Compare");
+        primaryStage.getIcons().add(new Image("Images/syncFilesIcon.png"));
         primaryStage.setScene(scene);
         primaryStage.show();
     }
