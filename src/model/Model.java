@@ -76,16 +76,16 @@ public class Model extends Application {
         treeTableView.getColumns().setAll(nameCol, typeCol, dateCol, sizeCol);
         treeTableView2.getColumns().setAll(nameCol2, typeCol2, dateCol2, sizeCol2);
 
-        treeTableView.setPrefWidth(600);
-        treeTableView2.setPrefWidth(600);
+        treeTableView.setPrefWidth(400);
+        treeTableView2.setPrefWidth(400);
 
-        treeTableView.setPrefHeight(900);
-        treeTableView2.setPrefHeight(900);
+        treeTableView.setPrefHeight(500);
+        treeTableView2.setPrefHeight(500);
 
         HBox hBoxCenter = new HBox();
         hBoxCenter.getChildren().addAll(treeTableView, treeTableView2);
         hBoxCenter.setAlignment(Pos.CENTER);
-       hBoxCenter.setMinSize(900,800);
+//       hBoxCenter.setMinSize(900,800);
 
 
 
@@ -113,7 +113,7 @@ public class Model extends Application {
             }
         }
 
-        Scene scene = new Scene(vbox, 800, 900);
+        Scene scene = new Scene(vbox, 800, 600);
         primaryStage.setTitle("Beyond Compare");
         primaryStage.setScene(scene);
         primaryStage.show();
