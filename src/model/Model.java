@@ -8,12 +8,12 @@ import javafx.scene.control.Label;
 import javafx.scene.control.TreeItem;
 import javafx.scene.control.TreeTableColumn;
 import javafx.scene.control.TreeTableView;
-import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.HBox;
+import javafx.scene.layout.VBox;
+import javafx.scene.paint.Color;
 import javafx.stage.Stage;
 
 import java.nio.file.Paths;
-import java.util.Arrays;
 
 public class Model extends Application {
 
@@ -79,23 +79,52 @@ public class Model extends Application {
         HBox hBoxCenter = new HBox();
         hBoxCenter.getChildren().addAll(treeTableView, treeTableView2);
 
-        HBox hBoxTop = new HBox();
-        hBoxTop.getChildren().addAll
-                (new Label(dirLeft.getPath().toAbsolutePath().toString()),
-                (new Label(dirRight.getPath().toAbsolutePath().toString())));
-        hBoxTop.setAlignment(Pos.CENTER);
 
-        BorderPane bPane = new BorderPane();
-        bPane.setTop(hBoxTop);
-        bPane.setCenter(hBoxCenter);
-        bPane.setBottom(new Label(Arrays.toString(Etat.values())));
-        Scene scene = new Scene(bPane, 950, 600);
-//        bPane.getStylesheets().add("model/cssView.css");
+        HBox hBoxTop = new HBox();
+        Label label_right = new Label(dirLeft.getPath().toAbsolutePath().toString());
+        Label label_left = new Label(dirRight.getPath().toAbsolutePath().toString());
+        hBoxTop.setSpacing(60);
+        label_right.setStyle(" -fx-font-weight: bold;");
+        label_left.setStyle(" -fx-font-weight: bold;");
+
+        hBoxTop.getChildren().addAll
+                (label_right, label_left);
+
+        hBoxTop.setAlignment(Pos.CENTER);
+        //   BorderPane bPane = new BorderPane();
+        HBox hBoxBot = new HBox();
+        VBox vbox = new VBox(hBoxTop, hBoxCenter, hBoxBot);
+        hBoxBot.getStylesheets().add("model/cssView.css");
+        hBoxBot.setAlignment(Pos.CENTER);
+        hBoxBot.setSpacing(30);
+
+
+        for (Etat e : Etat.values()) {
+            if (e != Etat.UNDEFINED) {
+                Label l = new Label(e.toString());
+                l.getStyleClass().add(e.toString());
+                hBoxBot.getChildren().add(l);
+            }
+        }
+        //   bPane.getChildren().add(hBoxBot);
+        //  bPane.getStylesheets().add("model/cssView.css");
+        //    bPane.setTop(hBoxTop);
+        //  bPane.setCenter(hBoxCenter);
+        // Label label_bottom = new Label(Arrays.toString(Etat.values()));
+        //bPane.setBottom(l);
+        //  bPane.setAlignment(label_bottom, Pos.CENTER);
+
+        Scene scene = new Scene(vbox, 1000, 400);
+        scene.setFill(Color.DEEPSKYBLUE);
         primaryStage.setTitle("Beyond Compare");
+        //  primaryStage.initStyle(StageStyle.DECORATED);
+    //    scene.getStylesheets().add(
+    //            this.getClass().getClassLoader().getResource("model/cssView.css").toString());
         primaryStage.setScene(scene);
-//        primaryStage.getScene().getStylesheets().add(getClass().getResource("cssView.css").toExternalForm());
+//      primaryStage.getScene().getStylesheets().add(getClass().getResource("cssView.css").toExternalForm());
         primaryStage.show();
     }
+
     public TreeItem<Fichier> makeTreeRoot(Fichier root) {
 
         TreeItem<Fichier> res = new TreeItem<>(root);
