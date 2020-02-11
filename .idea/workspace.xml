@@ -1,11 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="0c777b5d-34a2-47ef-b49f-5789669eb0c3" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/model/FichierSimple.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/model/FichierSimple.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/model/Model.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/model/Model.java" afterDir="false" />
-    </list>
+    <list default="true" id="0c777b5d-34a2-47ef-b49f-5789669eb0c3" name="Default Changelist" comment="" />
     <list id="40b2938f-2337-400f-9d68-60fbdb45432a" name="Revert &quot;working on build() output&quot;" comment="Revert &quot;working on build() output&quot;&#10;&#10;This reverts commit 1a99efc5" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -371,7 +367,14 @@
       <option name="project" value="LOCAL" />
       <updated>1581428544753</updated>
     </task>
-    <option name="localTasksCounter" value="33" />
+    <task id="LOCAL-00033" summary="Model -&gt; resize Vbox + Hbox + scene">
+      <created>1581444560913</created>
+      <option name="number" value="00033" />
+      <option name="presentableId" value="LOCAL-00033" />
+      <option name="project" value="LOCAL" />
+      <updated>1581444560913</updated>
+    </task>
+    <option name="localTasksCounter" value="34" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -436,7 +439,6 @@
   <component name="VcsManagerConfiguration">
     <option name="CHECK_CODE_CLEANUP_BEFORE_PROJECT_COMMIT" value="true" />
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
-    <MESSAGE value="modifying the composite DP" />
     <MESSAGE value="constructor implementation with path parameter (problem : when creating a new Fichier cannot know if Dossier or FichierSimple)" />
     <MESSAGE value="method build in CopyBuilder implemented (it returns a Dossier)" />
     <MESSAGE value="implementation final list&lt;Fichier&gt;" />
@@ -461,7 +463,8 @@
     <MESSAGE value="Model -&gt; second Treetableview added" />
     <MESSAGE value="Model -&gt; working on the bottom pane and the css" />
     <MESSAGE value="Model -&gt; Label color + path" />
-    <option name="LAST_COMMIT_MESSAGE" value="Model -&gt; Label color + path" />
+    <MESSAGE value="Model -&gt; resize Vbox + Hbox + scene" />
+    <option name="LAST_COMMIT_MESSAGE" value="Model -&gt; resize Vbox + Hbox + scene" />
     <option name="OPTIMIZE_IMPORTS_BEFORE_PROJECT_COMMIT" value="true" />
     <option name="REARRANGE_BEFORE_PROJECT_COMMIT" value="true" />
   </component>
