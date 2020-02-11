@@ -18,10 +18,10 @@ public class FichierSimple extends Fichier {
         setModifDate(fileTime.toInstant().atZone(ZoneId.systemDefault()).toLocalDateTime());
     }
 
-    @Override
-    public char type() {
-        return 'F'; //F pour Fichier
-    }
+//    @Override
+//    public char type() { //supprimer cette methode et gerer le char dans l'affichage.
+//        return 'F'; //F pour Fichier
+//    }
 
     @Override
     public Iterable<Fichier> getContenu() {
@@ -68,7 +68,7 @@ public class FichierSimple extends Fichier {
         StringBuilder res = new StringBuilder();
         res.append(super.formatAffichage(decalage))
                 .append(" ").append(getNom())
-                .append(" - type : ").append(this.type())
+                .append(" - type : ").append("F") //changer cette ligne par (this.isDirectory() ? "D" : "F")
                 .append(" - date : ").append(getModifDate(getPath()).format(DateTimeFormatter.ofPattern("dd/MM/yyyy HH:mm:ss")))
                 .append(" - taille : ").append(taille())
                 .append(" - etat : ").append(getEtat())

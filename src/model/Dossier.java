@@ -48,10 +48,10 @@ public class Dossier extends Fichier {
         return contenu;
     }
 
-    @Override
-    public char type() {
-        return 'D'; // D pour Dossier
-    }
+//    @Override
+//    public char type() { //supprimer cette methode et gerer le char dans l'affichage.
+//        return 'D'; // D pour Dossier
+//    }
 
     @Override
     public boolean isDirectory() {
@@ -72,7 +72,7 @@ public class Dossier extends Fichier {
         StringBuilder res = new StringBuilder();
         res.append(super.formatAffichage(decalage))
                 .append(getNom())
-                .append(" - type : ").append(this.type())
+                .append(" - type : ").append("D") //(this.isDirectory() ? "D" : "F")
                 .append(" - date : ").append(getModifDate(this.getPath()).format(DateTimeFormatter.ofPattern("dd/MM/yyyy HH:mm:ss")))
                 .append(" - taille : ").append(taille())
                 .append(" - etat : ").append(getEtat())
@@ -84,20 +84,20 @@ public class Dossier extends Fichier {
 
     @Override
     public void changeEtat(Fichier fs) throws IOException {
-        if (fs instanceof Dossier) {
+        if (fs.isDirectory()) { // remplacer ce code par fd.isDirectory()
             Dossier other = (Dossier) fs;
             setNomEnfant();
             other.setNomEnfant();
             for (Fichier fichier : this.contenu) {
                 if ((!other.nomEnfant.containsKey(fichier.getNom()))) {
-                    if (fichier.type() == 'D') {
+                    if (fichier.isDirectory()) {
                         ((Dossier) fichier).setAllChildrenOrphan(); // TODO ces trois lignes dans un func()
                     }
                     fichier.setEtat(Etat.ORPHAN);
                 } else {
                     Fichier fCorrespondant = other.contenu.get(other.nomEnfant.get(fichier.getNom()));
-                    if (fCorrespondant.type() != fichier.type()) {
-                        if (fichier.type() == 'F') {
+                    if (fCorrespondant.isDirectory() != fichier.isDirectory()) {
+                        if (!fichier.isDirectory()) {
                             fichier.setEtat(Etat.ORPHAN);
                             other.setAllChildrenOrphan();           // TODO ces trois lignes dans un func()
                             other.setEtat(Etat.ORPHAN);
@@ -112,8 +112,8 @@ public class Dossier extends Fichier {
                 }
             }
             for (Fichier f : other.contenu) {
-                if ((f.getEtat() == Etat.UNDEFINED)) {
-                    if (f.type() == 'D') {
+                if ((f.getEtat() == Etat.UNDEFINED)) { //Mettre PARTIAL_SAME comme etat de base cela va permettre de faire un teste en moin.
+                    if (f.isDirectory()) {
                         ((Dossier) f).setAllChildrenOrphan();
                     }
                     f.setEtat(Etat.ORPHAN);
@@ -138,7 +138,7 @@ public class Dossier extends Fichier {
         } else if (this.toBeNewer()) {
             this.setEtat(Etat.NEWER);
         } else {
-            this.setEtat(Etat.PARTIAL_SAME);
+            this.setEtat(Etat.PARTIAL_SAME); //ce teste peut être enlever si on met PARTIAL_SAME comme valeure de base
         }
     }
 
@@ -161,9 +161,9 @@ public class Dossier extends Fichier {
 
     private void setAllChildrenOrphan() {
         for (Fichier f : this.contenu) {
-            if (f.type() == 'F' && f.getEtat() == Etat.UNDEFINED) {
+            if (!f.isDirectory() && f.getEtat() == Etat.UNDEFINED) {
                 f.setEtat(Etat.ORPHAN);
-            } else if (f.type() == 'D' && f.getEtat() == Etat.UNDEFINED) {
+            } else if (f.isDirectory() && f.getEtat() == Etat.UNDEFINED) { //changer f.type() == 'D' par f.isDirectory()
                 f.setEtat(Etat.ORPHAN);
                 Dossier d = (Dossier) f;
                 d.setAllChildrenOrphan();

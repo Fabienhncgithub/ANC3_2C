@@ -6,9 +6,9 @@ import java.time.LocalDateTime;
 
 public abstract class Fichier {
     private final String nom;
-    private LocalDateTime modifDate;
-    private Path path;
-    private Etat etat = Etat.UNDEFINED;
+    private LocalDateTime modifDate; 
+        private Path path;
+    private Etat etat = Etat.UNDEFINED; //Mettre comme valeure par défaut PARTIAL_SAME ca va permettre de faire un test en moin.
 
     public Fichier(String nom, Path path) {
         this.nom = nom;
@@ -21,12 +21,10 @@ public abstract class Fichier {
         this.modifDate = modifDate;
     }
 
-    public abstract char type();
-
     public abstract boolean isDirectory();
 
     public Path getPath() {
-        return path;
+        return path; //on peut mettre Paths.get(getNom()).toRealPath ce qui va permettre d'avoir une variable en moin.
     }
 
     public abstract long taille();
