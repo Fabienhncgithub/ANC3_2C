@@ -10,7 +10,6 @@ import javafx.scene.control.TreeTableColumn;
 import javafx.scene.control.TreeTableView;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
-import javafx.scene.paint.Color;
 import javafx.stage.Stage;
 
 import java.nio.file.Paths;
@@ -43,7 +42,7 @@ public class Model extends Application {
         dateCol.setCellValueFactory(r -> new SimpleObjectProperty<>(r.getValue().getValue()));
         sizeCol.setCellValueFactory(r -> new SimpleObjectProperty<>(r.getValue().getValue()));
 
-        nameCol.setPrefWidth(250);
+        nameCol.setPrefWidth(300);
 
         nameCol.setCellFactory((param) -> new NomFichierCell());
         typeCol.setCellFactory((param) -> new TypeFichierCell());
@@ -65,7 +64,8 @@ public class Model extends Application {
         dateCol2.setCellValueFactory(r -> new SimpleObjectProperty<>(r.getValue().getValue()));
         sizeCol2.setCellValueFactory(r -> new SimpleObjectProperty<>(r.getValue().getValue()));
 
-        nameCol2.setPrefWidth(250);
+        nameCol2.setPrefWidth(300);
+
 
         nameCol2.setCellFactory((param) -> new NomFichierCell());
         typeCol2.setCellFactory((param) -> new TypeFichierCell());
@@ -76,8 +76,17 @@ public class Model extends Application {
         treeTableView.getColumns().setAll(nameCol, typeCol, dateCol, sizeCol);
         treeTableView2.getColumns().setAll(nameCol2, typeCol2, dateCol2, sizeCol2);
 
+        treeTableView.setPrefWidth(600);
+        treeTableView2.setPrefWidth(600);
+
+        treeTableView.setPrefHeight(900);
+        treeTableView2.setPrefHeight(900);
+
         HBox hBoxCenter = new HBox();
         hBoxCenter.getChildren().addAll(treeTableView, treeTableView2);
+        hBoxCenter.setAlignment(Pos.CENTER);
+       hBoxCenter.setMinSize(900,800);
+
 
 
         HBox hBoxTop = new HBox();
@@ -86,19 +95,16 @@ public class Model extends Application {
         hBoxTop.setSpacing(60);
         label_right.setStyle(" -fx-font-weight: bold;");
         label_left.setStyle(" -fx-font-weight: bold;");
-
-        hBoxTop.getChildren().addAll
-                (label_right, label_left);
-
+        hBoxTop.getChildren().addAll(label_right, label_left);
         hBoxTop.setAlignment(Pos.CENTER);
-        //   BorderPane bPane = new BorderPane();
+
+
         HBox hBoxBot = new HBox();
         VBox vbox = new VBox(hBoxTop, hBoxCenter, hBoxBot);
+        vbox.autosize();
         hBoxBot.getStylesheets().add("model/cssView.css");
         hBoxBot.setAlignment(Pos.CENTER);
         hBoxBot.setSpacing(30);
-
-
         for (Etat e : Etat.values()) {
             if (e != Etat.UNDEFINED) {
                 Label l = new Label(e.toString());
@@ -106,27 +112,14 @@ public class Model extends Application {
                 hBoxBot.getChildren().add(l);
             }
         }
-        //   bPane.getChildren().add(hBoxBot);
-        //  bPane.getStylesheets().add("model/cssView.css");
-        //    bPane.setTop(hBoxTop);
-        //  bPane.setCenter(hBoxCenter);
-        // Label label_bottom = new Label(Arrays.toString(Etat.values()));
-        //bPane.setBottom(l);
-        //  bPane.setAlignment(label_bottom, Pos.CENTER);
 
-        Scene scene = new Scene(vbox, 1000, 400);
-        scene.setFill(Color.DEEPSKYBLUE);
+        Scene scene = new Scene(vbox, 800, 900);
         primaryStage.setTitle("Beyond Compare");
-        //  primaryStage.initStyle(StageStyle.DECORATED);
-    //    scene.getStylesheets().add(
-    //            this.getClass().getClassLoader().getResource("model/cssView.css").toString());
         primaryStage.setScene(scene);
-//      primaryStage.getScene().getStylesheets().add(getClass().getResource("cssView.css").toExternalForm());
         primaryStage.show();
     }
 
     public TreeItem<Fichier> makeTreeRoot(Fichier root) {
-
         TreeItem<Fichier> res = new TreeItem<>(root);
         res.setExpanded(true);
         if (root.isDirectory()) {
