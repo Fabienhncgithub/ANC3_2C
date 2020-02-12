@@ -17,7 +17,7 @@ public abstract class FichierCell extends TextFieldTreeTableCell<Fichier, Fichie
             return;
         }
         this.setText(texte(elem));
-       this.getStyleClass().set(0, elem.getEtat().name()); //TODO not working cause .name returns UNDEFINED
+       this.getStyleClass().set(0, elem.getEtat().name()); 
 
     }
 

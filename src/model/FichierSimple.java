@@ -42,7 +42,7 @@ public class FichierSimple extends Fichier {
         if (this.getLastDirName(getPath()).equals(fs.getLastDirName(fs.getPath()))) { // TODO check getLastDirName()
            // System.out.println(this.getLastDirName(getPath()));
             if (this.getNom().equals(fs.getNom())) {
-                System.out.println(this.getNom() + fs.getNom());
+//                System.out.println(this.getNom() + fs.getNom());
 
                 if (this.getModifDate(this.getPath()).isEqual(fs.getModifDate(fs.getPath()))) {
                     fs.setEtat(Etat.SAME);

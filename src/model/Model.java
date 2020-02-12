@@ -9,6 +9,7 @@ import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 import java.nio.file.Paths;
+import javafx.scene.image.Image;
 
 public class Model extends Application {
 
@@ -26,21 +27,33 @@ public class Model extends Application {
         MyTreeTableView treeView2 = new MyTreeTableView(dirRight.getPath().toAbsolutePath().toString(), makeTreeRoot(dirRight));
  
 
-        HBox hBoxCenter = new HBox();
-        hBoxCenter.getChildren().addAll(treeView1,treeView2);
-        hBoxCenter.setAlignment(Pos.CENTER);
-        hBoxCenter.setMinSize(900, 800);
+        HBox hBoxCenter = hBoxCenter(treeView1, treeView2);  
 
-        HBox hBoxTop = new HBox();
-        hBoxTop.setSpacing(60);
-        hBoxTop.setAlignment(Pos.CENTER);
+        HBox hBoxTop = hBoxTop();
 
-        HBox hBoxBot = new HBox();
+        HBox hBoxBot = hBoxBot();
+        
         VBox vbox = new VBox(hBoxTop, hBoxCenter, hBoxBot);
         vbox.autosize();
+
+        etatValues(hBoxBot);
+
+        Scene scene = new Scene(vbox, 900, 600);
+        primaryStage.setTitle("Beyond Compare");
+        primaryStage.getIcons().add(new Image("Images/syncFilesIcon.png"));
+        primaryStage.setScene(scene);
+        primaryStage.show();
+    }
+
+    private HBox hBoxBot() {
+        HBox hBoxBot = new HBox();
         hBoxBot.getStylesheets().add("model/cssView.css");
         hBoxBot.setAlignment(Pos.CENTER);
         hBoxBot.setSpacing(30);
+        return hBoxBot;
+    }
+
+    private void etatValues(HBox hBoxBot) {
         for (Etat e : Etat.values()) {
             if (e != Etat.UNDEFINED) {
                 Label l = new Label(e.toString());
@@ -48,11 +61,22 @@ public class Model extends Application {
                 hBoxBot.getChildren().add(l);
             }
         }
+    }
 
-        Scene scene = new Scene(vbox, 800, 900);
-        primaryStage.setTitle("Beyond Compare");
-        primaryStage.setScene(scene);
-        primaryStage.show();
+    private HBox hBoxTop() {
+        HBox hBoxTop = new HBox();
+        hBoxTop.setSpacing(60);
+        hBoxTop.setAlignment(Pos.CENTER);
+        return hBoxTop;
+    }
+
+    private HBox hBoxCenter(MyTreeTableView treeView1, MyTreeTableView treeView2) {
+        HBox hBoxCenter = new HBox();
+        hBoxCenter.getChildren().addAll(treeView1,treeView2);
+        hBoxCenter.getStylesheets().add("model/cssView.css");
+        hBoxCenter.setAlignment(Pos.CENTER);
+        hBoxCenter.setMinSize(800, 500);
+        return hBoxCenter;
     }
 
     public TreeItem<Fichier> makeTreeRoot(Fichier root) {
