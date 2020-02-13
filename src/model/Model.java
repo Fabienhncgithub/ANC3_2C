@@ -5,11 +5,12 @@ import javafx.geometry.Pos;
 import javafx.scene.Scene;
 import javafx.scene.control.Label;
 import javafx.scene.control.TreeItem;
+import javafx.scene.image.Image;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
+
 import java.nio.file.Paths;
-import javafx.scene.image.Image;
 
 public class Model extends Application {
 
@@ -25,7 +26,7 @@ public class Model extends Application {
         Fichier dirRight = new CopyBuilder().build(Paths.get(rootRight));
         MyTreeTableView treeView1 = new MyTreeTableView(dirLeft.getPath().toAbsolutePath().toString(), makeTreeRoot(dirLeft));
         MyTreeTableView treeView2 = new MyTreeTableView(dirRight.getPath().toAbsolutePath().toString(), makeTreeRoot(dirRight));
- 
+        dirLeft.changeEtat(dirRight);
 
         HBox hBoxCenter = hBoxCenter(treeView1, treeView2);  
 
