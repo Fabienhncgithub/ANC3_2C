@@ -4,6 +4,7 @@ import javafx.application.Application;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
 import javafx.scene.control.Label;
+import javafx.scene.control.ToggleButton;
 import javafx.scene.control.TreeItem;
 import javafx.scene.image.Image;
 import javafx.scene.layout.HBox;
@@ -28,13 +29,18 @@ public class Model extends Application {
         MyTreeTableView treeView2 = new MyTreeTableView(dirRight.getPath().toAbsolutePath().toString(), makeTreeRoot(dirRight));
         dirLeft.changeEtat(dirRight);
 
+
+        HBox hBoxFilter  = hBoxFilter();
+
         HBox hBoxCenter = hBoxCenter(treeView1, treeView2);
 
         HBox hBoxTop = hBoxTop();
 
         HBox hBoxBot = hBoxBot();
         
-        VBox vbox = new VBox(hBoxTop, hBoxCenter, hBoxBot);
+        VBox vbox = new VBox(hBoxFilter, hBoxTop, hBoxCenter, hBoxBot);
+
+
 
         etatValues(hBoxBot);
 
@@ -63,6 +69,27 @@ public class Model extends Application {
             }
         }
     }
+
+    private HBox hBoxFilter(){
+        HBox hBoxFilter  = new HBox();
+        ToggleButton all = new ToggleButton("All");
+        all.setSelected(false);
+        ToggleButton newerLeft = new ToggleButton("Newer Left");
+        newerLeft.setSelected(false);
+        ToggleButton newerRight = new ToggleButton("Newer Right");
+        newerRight.setSelected(false);
+        ToggleButton orphans = new ToggleButton("Orphans");
+        orphans.setSelected(false);
+        ToggleButton same = new ToggleButton("Same");
+        same.setSelected(false);
+        ToggleButton foldersOnly = new ToggleButton("Folders Only");
+        foldersOnly.setSelected(false);
+        hBoxFilter.getChildren().addAll(all, newerLeft, newerRight, orphans, same,foldersOnly);
+        hBoxFilter.setAlignment(Pos.CENTER);
+        hBoxFilter.setSpacing(30);
+        return hBoxFilter;
+    }
+
 
     private HBox hBoxTop() {
         HBox hBoxTop = new HBox();

@@ -1,11 +1,9 @@
 package model;
 
 import javafx.beans.property.SimpleObjectProperty;
-import javafx.scene.control.Label;
-import javafx.scene.control.TreeItem;
-import javafx.scene.control.TreeTableColumn;
-import javafx.scene.control.TreeTableView;
+import javafx.scene.control.*;
 import javafx.scene.layout.VBox;
+import javafx.stage.DirectoryChooser;
 
 /**
  *
@@ -15,17 +13,20 @@ public class MyTreeTableView extends VBox {
 
     private final Label label = new Label();
     private TreeTableView treeView = new TreeTableView();
+    Button buttonFolder = new Button("Choose");
+   private DirectoryChooser dirChooser = new DirectoryChooser();
 
     {
-        getChildren().addAll(label, treeView);
+        getChildren().addAll(label, buttonFolder, treeView);
         treeView.getStylesheets().add("model/cssView.css");
     }
 
-    public MyTreeTableView(String labelText, TreeItem<Fichier> f) {
-        this.label.setText(labelText);
-        treeView.setRoot(f);
-        setPrefWidth(400);
 
+    public MyTreeTableView(String labelText, TreeItem<Fichier> f) {
+
+       this.label.setText(labelText);
+        treeView.setRoot(f);
+        setPrefWidth(8000);
         addColumn();
     }
 
