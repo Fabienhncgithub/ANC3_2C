@@ -28,18 +28,18 @@ public class Model extends Application {
         MyTreeTableView treeView2 = new MyTreeTableView(dirRight.getPath().toAbsolutePath().toString(), makeTreeRoot(dirRight));
         dirLeft.changeEtat(dirRight);
 
-        HBox hBoxCenter = hBoxCenter(treeView1, treeView2);  
+        HBox hBoxCenter = hBoxCenter(treeView1, treeView2);
 
         HBox hBoxTop = hBoxTop();
 
         HBox hBoxBot = hBoxBot();
         
         VBox vbox = new VBox(hBoxTop, hBoxCenter, hBoxBot);
-        vbox.autosize();
 
         etatValues(hBoxBot);
 
         Scene scene = new Scene(vbox, 900, 600);
+        scene.getStylesheets().add("model/cssView.css");
         primaryStage.setTitle("Beyond Compare");
         primaryStage.getIcons().add(new Image("Images/syncFilesIcon.png"));
         primaryStage.setScene(scene);
@@ -49,7 +49,7 @@ public class Model extends Application {
     private HBox hBoxBot() {
         HBox hBoxBot = new HBox();
         hBoxBot.getStylesheets().add("model/cssView.css");
-        hBoxBot.setAlignment(Pos.CENTER);
+        hBoxBot.setAlignment(Pos.TOP_CENTER);
         hBoxBot.setSpacing(30);
         return hBoxBot;
     }

@@ -18,7 +18,6 @@ public class MyTreeTableView extends VBox {
 
     {
         getChildren().addAll(label, treeView);
-        //getStylesheets().add("model/cssView.css");
         treeView.getStylesheets().add("model/cssView.css");
     }
 
@@ -28,9 +27,6 @@ public class MyTreeTableView extends VBox {
         setPrefWidth(400);
 
         addColumn();
-
-        label.setStyle(" -fx-font-weight: bold;");
-        label.setStyle(" -fx-font-weight: bold;");
     }
 
     
