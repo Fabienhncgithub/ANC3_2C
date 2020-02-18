@@ -57,10 +57,6 @@ public class FichierSimple extends Fichier {
                     }
                 }
             }
-//                } else {
-//                    this.setEtat(Etat.ORPHAN);
-//                    fs.setEtat(Etat.ORPHAN);
-//                }
             }
         }
 

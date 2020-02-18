@@ -29,12 +29,6 @@ public class MyTreeTableView extends VBox {
         addColumn();
     }
 
-    
-    
-    
-    
-    
-    
     private void addColumn() {
         TreeTableColumn<Fichier, Fichier> nameCol = new TreeTableColumn<>("Nom"),
                 typeCol = new TreeTableColumn<>("Type"),

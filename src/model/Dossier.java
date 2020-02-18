@@ -90,6 +90,7 @@ public class Dossier extends Fichier {
             other.setNomEnfant();
             for (Fichier fichier : this.contenu) {
                 if ((!other.nomEnfant.containsKey(fichier.getNom()))) {
+
                     if (fichier.isDirectory()) {
                         ((Dossier) fichier).setAllChildrenOrphan(); // TODO ces trois lignes dans un func()
                     }
