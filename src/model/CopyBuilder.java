@@ -7,7 +7,7 @@ import java.nio.file.Path;
 import java.nio.file.attribute.BasicFileAttributes;
 
 public class CopyBuilder {
-    static Fichier build(Path path) throws IOException {
+    public static Fichier build(Path path) throws IOException {
         Fichier result;
         if (Files.isDirectory(path)) {
             result = new Dossier(path.getFileName().toString(), path);

@@ -1,9 +1,14 @@
 package model;
 
+import java.io.File;
 import javafx.beans.property.SimpleObjectProperty;
+import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
 import javafx.scene.control.*;
 import javafx.scene.layout.VBox;
 import javafx.stage.DirectoryChooser;
+import javafx.stage.FileChooser;
+import javafx.stage.Stage;
 
 /**
  *
@@ -13,21 +18,32 @@ public class MyTreeTableView extends VBox {
 
     private final Label label = new Label();
     private TreeTableView treeView = new TreeTableView();
-    Button buttonFolder = new Button("Choose");
-   private DirectoryChooser dirChooser = new DirectoryChooser();
+    private Button buttonFolder = new Button("Choose");
+    private DirectoryChooser dirChooser = new DirectoryChooser();
+    private Stage primaryStage;
 
     {
         getChildren().addAll(label, buttonFolder, treeView);
         treeView.getStylesheets().add("model/cssView.css");
     }
 
-
     public MyTreeTableView(String labelText, TreeItem<Fichier> f) {
 
-       this.label.setText(labelText);
+        this.label.setText(labelText);
         treeView.setRoot(f);
         setPrefWidth(8000);
         addColumn();
+        buttonFolder.setOnAction(new EventHandler<ActionEvent>() {
+            @Override
+            public void handle(ActionEvent event) {
+                File dir = dirChooser.showDialog(primaryStage);
+                if (dir != null) {
+                    label.setText(dir.getAbsolutePath());
+                } else {
+                    label.setText(null);
+                }
+            }
+        });
     }
 
     private void addColumn() {
@@ -46,4 +62,5 @@ public class MyTreeTableView extends VBox {
         sizeCol.setCellFactory((param) -> new TailleFichierCell());
         treeView.getColumns().setAll(nameCol, typeCol, dateCol, sizeCol);
     }
+
 }
