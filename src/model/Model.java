@@ -10,6 +10,7 @@ import javafx.scene.image.Image;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
+import view.MyTreeTableView;
 
 import java.nio.file.Paths;
 
@@ -37,7 +38,7 @@ public class Model extends Application {
         HBox hBoxTop = hBoxTop();
 
         HBox hBoxBot = hBoxBot();
-        
+
         VBox vbox = new VBox(hBoxFilter, hBoxTop, hBoxCenter, hBoxBot);
 
 
