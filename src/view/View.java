@@ -35,7 +35,8 @@ public class View extends VBox{
     private Fichier dirLeft;
     private Fichier dirRight;
     private HBox hBoxCenter = new HBox();
-    private HBox hBoxBot = new HBox();
+    private HBox hBoxBot = hBoxBot();
+    private HBox hBoxFilter  = new HBox();
     private VBox vbox = new VBox();
 
     public View(Stage primaryStage) throws IOException {
@@ -46,12 +47,14 @@ public class View extends VBox{
         left = new MyTreeTableView(Paths.get(rootLeft).toAbsolutePath().toString(), makeTreeRoot(dirLeft));
         right = new MyTreeTableView(Paths.get(rootRight).toAbsolutePath().toString(), makeTreeRoot(dirRight));
         dirLeft.changeEtat(dirRight);
-        etatValues(hBoxCenter);
+        etatValues(hBoxBot);
 
         hBoxCenter.getChildren().addAll(left,right);
-        hBoxBot = hBoxBot();
+        hBoxFilter.getChildren().addAll(all, newerLeft, newerRight, orphans, same,foldersOnly);
+        hBoxFilter.setAlignment(Pos.CENTER);
+        hBoxFilter.setSpacing(30);
 
-    vbox.getChildren().addAll(hBoxCenter,hBoxBot);
+        vbox.getChildren().addAll(hBoxFilter, hBoxCenter, hBoxBot);
 
         Scene scene = new Scene(vbox, 900, 600);
         scene.getStylesheets().add("model/cssView.css");
@@ -73,7 +76,7 @@ public class View extends VBox{
 
         return res;
     }
-    
+
     private void etatValues(HBox hBoxBot) {
         for (Etat e : Etat.values()) {
             if (e != Etat.UNDEFINED) {
@@ -83,7 +86,7 @@ public class View extends VBox{
             }
         }
     }
-    
+
     private HBox hBoxBot() {
         HBox hBoxBot = new HBox();
         hBoxBot.getStylesheets().add("model/cssView.css");
