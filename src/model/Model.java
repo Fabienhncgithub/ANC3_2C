@@ -1,18 +1,46 @@
 package model;
 
-import javafx.application.Application;
-import javafx.stage.Stage;
-import view.View;
+import javafx.geometry.Pos;
+import javafx.scene.control.Label;
+import javafx.scene.layout.HBox;
 
-public class Model extends Application {
+import java.io.IOException;
+import java.nio.file.Paths;
 
-    public static void main(String[] args) {
-        launch(args);
+public class Model {
+
+    private Fichier dirLeft;
+    private Fichier dirRight;
+
+    public Model(String rootLeft, String rootRight) throws IOException {
+        dirLeft = new CopyBuilder().build(Paths.get(rootLeft));
+        dirRight = new CopyBuilder().build(Paths.get(rootRight));
+        dirLeft.changeEtat(dirRight);
     }
 
-    @Override
-    public void start(Stage primaryStage) throws Exception {
-        View view = new View(primaryStage);
+    public Fichier getDirLeft() {
+        return dirLeft;
     }
 
+    public Fichier getDirRight() {
+        return dirRight;
+    }
+
+    private void etatValues(HBox hBoxBot) {
+        for (Etat e : Etat.values()) {
+            if (e != Etat.UNDEFINED) {
+                Label l = new Label(e.toString());
+                l.getStyleClass().add(e.toString());
+                hBoxBot.getChildren().add(l);
+            }
+        }
+    }
+
+    private HBox hBoxBot() {
+        HBox hBoxBot = new HBox();
+        hBoxBot.getStylesheets().add("model/cssView.css");
+        hBoxBot.setAlignment(Pos.TOP_CENTER);
+        hBoxBot.setSpacing(30);
+        return hBoxBot;
+    }
 }

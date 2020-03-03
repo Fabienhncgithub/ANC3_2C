@@ -2,6 +2,7 @@ package view;
 
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
+import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.ToggleButton;
 import javafx.scene.control.TreeItem;
@@ -9,12 +10,9 @@ import javafx.scene.image.Image;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
-import model.CopyBuilder;
 import model.Etat;
 import model.Fichier;
-
-import java.io.IOException;
-import java.nio.file.Paths;
+import vm.VM;
 
 /**
  *
@@ -22,37 +20,29 @@ import java.nio.file.Paths;
  */
 public class View extends VBox{
 
-    private ToggleButton all = new ToggleButton("All");
+    private Button all = new Button("All");
     private ToggleButton newerLeft = new ToggleButton("Newer left");
     private ToggleButton newerRight = new ToggleButton("Newer right");
     private ToggleButton orphans = new ToggleButton("Orphans");
     private ToggleButton same = new ToggleButton("Same");
-    private ToggleButton foldersOnly = new ToggleButton("Folers only");
+    private ToggleButton foldersOnly = new ToggleButton("Folders only");
     private String rootLeft;
     private String rootRight;
     private MyTreeTableView left;
     private MyTreeTableView right;
-    private Fichier dirLeft;
-    private Fichier dirRight;
     private HBox hBoxCenter = new HBox();
     private HBox hBoxBot = hBoxBot();
     private HBox hBoxFilter  = new HBox();
     private VBox vbox = new VBox();
 
-    public View(Stage primaryStage) throws IOException {
-        rootRight = "TestBC/RootBC_Right";
-        rootLeft = "TestBC/RootBC_Left";
-        dirLeft = new CopyBuilder().build(Paths.get(rootLeft));
-        dirRight = new CopyBuilder().build(Paths.get(rootRight));
-        left = new MyTreeTableView(Paths.get(rootLeft).toAbsolutePath().toString(), makeTreeRoot(dirLeft));
-        right = new MyTreeTableView(Paths.get(rootRight).toAbsolutePath().toString(), makeTreeRoot(dirRight));
-        dirLeft.changeEtat(dirRight);
-        etatValues(hBoxBot);
-
+    public View(Stage primaryStage, VM vm) {
+        left = new MyTreeTableView(vm.getLabelPathLeft(), vm.getTiLeft());
+        right = new MyTreeTableView(vm.getLabelPathRight(), vm.getTiRight());
         hBoxCenter.getChildren().addAll(left,right);
         hBoxFilter.getChildren().addAll(all, newerLeft, newerRight, orphans, same,foldersOnly);
         hBoxFilter.setAlignment(Pos.CENTER);
         hBoxFilter.setSpacing(30);
+        etatValues(hBoxBot);
 
         vbox.getChildren().addAll(hBoxFilter, hBoxCenter, hBoxBot);
 
@@ -77,7 +67,7 @@ public class View extends VBox{
         return res;
     }
 
-    private void etatValues(HBox hBoxBot) {
+    private void etatValues(HBox hBoxBot) {  //TODO en public temporairement
         for (Etat e : Etat.values()) {
             if (e != Etat.UNDEFINED) {
                 Label l = new Label(e.toString());
