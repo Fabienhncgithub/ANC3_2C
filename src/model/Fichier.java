@@ -9,10 +9,15 @@ public abstract class Fichier {
     private LocalDateTime modifDate; 
         private Path path;
     private Etat etat = Etat.UNDEFINED; //Mettre comme valeure par défaut PARTIAL_SAME ca va permettre de faire un test en moin.
+    boolean selected = true;
 
     public Fichier(String nom, Path path) {
         this.nom = nom;
         this.path = path;
+    }
+
+    public boolean isSelected() {
+        return selected;
     }
 
     public abstract Iterable<Fichier> getContenu();

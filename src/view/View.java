@@ -5,13 +5,11 @@ import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.ToggleButton;
-import javafx.scene.control.TreeItem;
 import javafx.scene.image.Image;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 import model.Etat;
-import model.Fichier;
 import vm.VM;
 
 /**
@@ -53,18 +51,6 @@ public class View extends VBox{
         primaryStage.setScene(scene);
         primaryStage.show();
 
-    }
-
-    public TreeItem<Fichier> makeTreeRoot(Fichier root) {
-        TreeItem<Fichier> res = new TreeItem<>(root);
-        res.setExpanded(true);
-        if (root.isDirectory()) {
-            root.getContenu().forEach(se -> {
-                res.getChildren().add(makeTreeRoot(se));
-            });
-        }
-
-        return res;
     }
 
     private void etatValues(HBox hBoxBot) {  //TODO en public temporairement

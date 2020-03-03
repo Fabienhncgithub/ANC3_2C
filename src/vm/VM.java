@@ -61,7 +61,8 @@ public class VM {
         res.setExpanded(true);
         if (root.isDirectory()) {
             root.getContenu().forEach(se -> {
-                res.getChildren().add(makeTreeRoot(se));
+                if(se.isSelected())
+                    res.getChildren().add(makeTreeRoot(se));
             });
         }
         return res;
