@@ -12,11 +12,11 @@ import model.Model;
 public class VM {
     private final Model model;
 
-    private final BooleanProperty newerLeftDisabled = new SimpleBooleanProperty(true);
-    private final BooleanProperty newerRightDisabled = new SimpleBooleanProperty(true);
-    private final BooleanProperty orphansDisabled = new SimpleBooleanProperty(true);
-    private final BooleanProperty sameDisabled = new SimpleBooleanProperty(true);
-    private final BooleanProperty foldersOnlyDisabled = new SimpleBooleanProperty(true);
+    private final BooleanProperty newerLeftSelected = new SimpleBooleanProperty(true);
+    private final BooleanProperty newerRightSelected = new SimpleBooleanProperty(true);
+    private final BooleanProperty orphansSelected = new SimpleBooleanProperty(true);
+    private final BooleanProperty sameSelected = new SimpleBooleanProperty(true);
+    private final BooleanProperty foldersOnlySelected = new SimpleBooleanProperty(true);
 
     private final StringProperty labelPathLeft = new SimpleStringProperty("");
     private final StringProperty labelPathRight = new SimpleStringProperty("");
@@ -55,6 +55,26 @@ public class VM {
     public TreeItem getTiRight() {
         return tiRight;
     }
+    
+        public BooleanProperty getNewerLeftSelected() {
+        return newerLeftSelected;
+    }
+
+    public BooleanProperty getNewerRightSelected() {
+        return newerRightSelected;
+    }
+
+    public BooleanProperty getOrphansSelected() {
+        return orphansSelected;
+    }
+
+    public BooleanProperty getSameSelected() {
+        return sameSelected;
+    }
+
+    public BooleanProperty getFoldersOnlySelected() {
+        return foldersOnlySelected;
+    }
 
     public TreeItem<Fichier> makeTreeRoot(Fichier root) {
         TreeItem<Fichier> res = new TreeItem<>(root);
@@ -68,4 +88,8 @@ public class VM {
         return res;
     }
 
+    public void foldersOnlyAction() {
+        foldersOnlySelected.setValue(true);
+        model.foldersOnly();
+    }
 }

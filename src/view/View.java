@@ -24,14 +24,13 @@ public class View extends VBox{
     private ToggleButton orphans = new ToggleButton("Orphans");
     private ToggleButton same = new ToggleButton("Same");
     private ToggleButton foldersOnly = new ToggleButton("Folders only");
-    private String rootLeft;
-    private String rootRight;
     private MyTreeTableView left;
     private MyTreeTableView right;
     private HBox hBoxCenter = new HBox();
     private HBox hBoxBot = hBoxBot();
     private HBox hBoxFilter  = new HBox();
     private VBox vbox = new VBox();
+    private VM vm;
 
     public View(Stage primaryStage, VM vm) {
         left = new MyTreeTableView(vm.getLabelPathLeft(), vm.getTiLeft());
@@ -69,6 +68,12 @@ public class View extends VBox{
         hBoxBot.setAlignment(Pos.TOP_CENTER);
         hBoxBot.setSpacing(30);
         return hBoxBot;
+    }
+    
+    public void configAction() {
+        foldersOnly.setOnAction(e -> {
+            vm.foldersOnlyAction();
+        });
     }
 
 }

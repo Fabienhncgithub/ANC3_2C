@@ -21,4 +21,12 @@ public class Model {
     public Fichier getDirRight() {
         return dirRight;
     }
+
+    public void foldersOnly() {
+        for(Fichier f : dirLeft.getContenu()) {
+            if(f.isDirectory()) {
+                f.selected = true;
+            }
+        }
+    }
 }
