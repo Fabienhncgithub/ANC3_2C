@@ -76,7 +76,7 @@ public class VM {
         return foldersOnlySelected;
     }
 
-    public TreeItem<Fichier> makeTreeRoot(Fichier root) {
+    public static TreeItem<Fichier> makeTreeRoot(Fichier root) {
         TreeItem<Fichier> res = new TreeItem<>(root);
         res.setExpanded(true);
         if (root.isDirectory()) {

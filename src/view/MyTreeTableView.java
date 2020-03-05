@@ -8,8 +8,11 @@ import javafx.scene.layout.VBox;
 import javafx.stage.DirectoryChooser;
 import javafx.stage.Stage;
 import model.*;
+import vm.VM;
 
 import java.io.File;
+import java.io.IOException;
+import java.nio.file.Paths;
 
 /**
  * @author momo
@@ -28,7 +31,7 @@ public class MyTreeTableView extends VBox {
     }
 
     public MyTreeTableView(String labelText, TreeItem<Fichier> f) {
-        this.label.setText(labelText);
+        label.setText(labelText);
         treeView.setRoot(f);
         setPrefWidth(8000);
         addColumn();
@@ -39,6 +42,13 @@ public class MyTreeTableView extends VBox {
                 File dir = dirChooser.showDialog(primaryStage);
                 if (dir != null) {
                     label.setText(dir.getAbsolutePath());
+                    try {
+                        Fichier newFichier = new CopyBuilder().build(Paths.get(dir.getAbsolutePath()));
+                        TreeItem<Fichier> treeItem = VM.makeTreeRoot(newFichier);
+                        treeView.setRoot(treeItem);
+                    } catch (IOException e) {
+                        e.printStackTrace();
+                    }
                 }
             }
         });
