@@ -4,6 +4,8 @@ import javafx.beans.property.SimpleObjectProperty;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.scene.control.*;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.scene.layout.VBox;
 import javafx.stage.DirectoryChooser;
 import javafx.stage.Stage;
@@ -21,12 +23,15 @@ public class MyTreeTableView extends VBox {
 
     private final Label label = new Label();
     private TreeTableView treeView = new TreeTableView();
-    private Button buttonFolder = new Button("Choose");
+    Image imageDecline = new Image("Images/flat_folder.png");
+    private Button buttonFolder = new Button();
     private DirectoryChooser dirChooser = new DirectoryChooser();
     private Stage primaryStage;
 
     {
         getChildren().addAll(label, buttonFolder, treeView);
+        buttonFolder.setGraphic(new ImageView(imageDecline));
+        buttonFolder.setMaxSize(50,50);
         treeView.getStylesheets().add("model/cssView.css");
     }
 

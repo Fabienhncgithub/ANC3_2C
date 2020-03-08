@@ -13,10 +13,9 @@ import model.Etat;
 import vm.VM;
 
 /**
- *
  * @author momo
  */
-public class View extends VBox{
+public class View extends VBox {
 
     private Button all = new Button("All");
     private ToggleButton newerLeft = new ToggleButton("Newer left");
@@ -28,18 +27,19 @@ public class View extends VBox{
     private MyTreeTableView right;
     private HBox hBoxCenter = new HBox();
     private HBox hBoxBot = hBoxBot();
-    private HBox hBoxFilter  = new HBox();
+    private HBox hBoxFilter = new HBox();
     private VBox vbox = new VBox();
     private VM vm;
 
     public View(Stage primaryStage, VM vm) {
         left = new MyTreeTableView(vm.getLabelPathLeft(), vm.getTiLeft());
         right = new MyTreeTableView(vm.getLabelPathRight(), vm.getTiRight());
-        hBoxCenter.getChildren().addAll(left,right);
-        hBoxFilter.getChildren().addAll(all, newerLeft, newerRight, orphans, same,foldersOnly);
+        hBoxCenter.getChildren().addAll(left, right);
+        hBoxFilter.getChildren().addAll(all, newerLeft, newerRight, orphans, same, foldersOnly);
         hBoxFilter.setAlignment(Pos.CENTER);
         hBoxFilter.setSpacing(30);
         etatValues(hBoxBot);
+        newerRight.disableProperty().bind(vm.newerDisabledProperty());
 
         vbox.getChildren().addAll(hBoxFilter, hBoxCenter, hBoxBot);
 
@@ -49,7 +49,7 @@ public class View extends VBox{
         primaryStage.getIcons().add(new Image("Images/syncFilesIcon.png"));
         primaryStage.setScene(scene);
         primaryStage.show();
-
+        configAction(vm);
     }
 
     private void etatValues(HBox hBoxBot) {  //TODO en public temporairement
@@ -69,11 +69,14 @@ public class View extends VBox{
         hBoxBot.setSpacing(30);
         return hBoxBot;
     }
-    
-    public void configAction() {
+
+    public void configAction(VM vm) {
         foldersOnly.setOnAction(e -> {
-            vm.foldersOnlyAction();
+            if (foldersOnly.isSelected()) {
+                vm.foldersOnlyAction();
+            } else {
+                // à faire
+            }
         });
     }
-
 }

@@ -4,6 +4,7 @@ import javafx.beans.property.BooleanProperty;
 import javafx.beans.property.SimpleBooleanProperty;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.property.StringProperty;
+import javafx.beans.value.ObservableValue;
 import javafx.scene.control.TreeItem;
 import javafx.stage.DirectoryChooser;
 import model.Fichier;
@@ -17,6 +18,8 @@ public class VM {
     private final BooleanProperty orphansSelected = new SimpleBooleanProperty(true);
     private final BooleanProperty sameSelected = new SimpleBooleanProperty(true);
     private final BooleanProperty foldersOnlySelected = new SimpleBooleanProperty(true);
+    private final BooleanProperty newerDisabled = new SimpleBooleanProperty(false);
+
 
     private final StringProperty labelPathLeft = new SimpleStringProperty("");
     private final StringProperty labelPathRight = new SimpleStringProperty("");
@@ -56,7 +59,7 @@ public class VM {
         return tiRight;
     }
     
-        public BooleanProperty getNewerLeftSelected() {
+    public BooleanProperty getNewerLeftSelected() {
         return newerLeftSelected;
     }
 
@@ -89,7 +92,11 @@ public class VM {
     }
 
     public void foldersOnlyAction() {
-        foldersOnlySelected.setValue(true);
         model.foldersOnly();
+        VM vmUD = new VM(model);
+    }
+
+    public ObservableValue<? extends Boolean> newerDisabledProperty() {
+        return newerDisabled;
     }
 }

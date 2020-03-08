@@ -5,12 +5,15 @@ import java.nio.file.Paths;
 
 public class Model {
 
+    private static final String INIT_DATA_L = "TestBC/RootBC_Left";
+    private static final String INIT_DATA_R = "TestBC/RootBC_Right";
+
     private Fichier dirLeft;
     private Fichier dirRight;
 
-    public Model(String rootLeft, String rootRight) throws IOException {
-        dirLeft = new CopyBuilder().build(Paths.get(rootLeft));
-        dirRight = new CopyBuilder().build(Paths.get(rootRight));
+    public Model() throws IOException {
+        dirLeft = new CopyBuilder().build(Paths.get(INIT_DATA_L));
+        dirRight = new CopyBuilder().build(Paths.get(INIT_DATA_R));
         dirLeft.changeEtat(dirRight);
     }
 
@@ -23,7 +26,8 @@ public class Model {
     }
 
     public void foldersOnly() {
-        for(Fichier f : dirLeft.getContenu()) {
+        System.out.println("avant le for");
+        for(Fichier f : dirRight.getContenu()) {
             if(f.isDirectory()) {
                 f.selected = true;
             }
