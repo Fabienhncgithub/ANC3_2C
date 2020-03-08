@@ -540,9 +540,10 @@
     <state x="434" y="0" key="#com.intellij.refactoring.rename.AutomaticRenamingDialog/0.0.1366.738/1366.0.1280.994@0.0.1366.738" timestamp="1580847897653" />
     <state x="71" y="115" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog" timestamp="1580847897653" />
     <state x="71" y="115" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog/0.0.1366.738@0.0.1366.738" timestamp="1580847897653" />
-    <state x="191" y="0" width="861" height="620" key="CommitChangelistDialog2" timestamp="1583407025835">
-      <screen x="0" y="0" width="1366" height="738" />
+    <state x="179" y="0" width="861" height="620" key="CommitChangelistDialog2" timestamp="1583670741967">
+      <screen x="0" y="0" width="1280" height="680" />
     </state>
+    <state x="179" y="0" key="CommitChangelistDialog2/0.0.1280.680@0.0.1280.680" timestamp="1583670741967" />
     <state x="182" y="-960" key="CommitChangelistDialog2/0.0.1366.738/0.-1024.1280.994@0.-1024.1280.994" timestamp="1583265217846" />
     <state x="191" y="0" key="CommitChangelistDialog2/0.0.1366.738/0.-1024.1280.994@0.0.1366.738" timestamp="1582047214114" />
     <state x="235" y="26" width="861" height="620" key="CommitChangelistDialog2/0.0.1366.738/1366.0.1280.994@0.0.1366.738" timestamp="1580847897653" />
