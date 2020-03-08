@@ -3,9 +3,11 @@ package view;
 import javafx.beans.property.SimpleObjectProperty;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
+import javafx.geometry.Pos;
 import javafx.scene.control.*;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.stage.DirectoryChooser;
 import javafx.stage.Stage;
@@ -27,9 +29,14 @@ public class MyTreeTableView extends VBox {
     private Button buttonFolder = new Button();
     private DirectoryChooser dirChooser = new DirectoryChooser();
     private Stage primaryStage;
+    HBox hbox = new HBox();
 
     {
-        getChildren().addAll(label, buttonFolder, treeView);
+        hbox.getChildren().add(label);
+        hbox.getChildren().add(buttonFolder);
+        hbox.setSpacing(200);
+        hbox.setAlignment(Pos.CENTER);
+        getChildren().addAll(hbox, treeView);
         buttonFolder.setGraphic(new ImageView(imageDecline));
         buttonFolder.setMaxSize(50,50);
         treeView.getStylesheets().add("model/cssView.css");
