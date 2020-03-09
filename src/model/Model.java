@@ -25,11 +25,66 @@ public class Model {
         return dirRight;
     }
 
-    public void foldersOnly() {
-        System.out.println("avant le for");
+    public void foldersOnlySet(){
+        foldersOnly(dirLeft);
+        foldersOnly(dirRight);
+    }
+
+    public void foldersOnly(Fichier dir) {
+        for(Fichier f : dir.getContenu()) {
+            if(!f.isDirectory()) {
+                f.selected = false;
+            }
+            else{
+                foldersOnly(f);
+            }
+        }
+
+        for(Fichier f : dirLeft.getContenu()){
+            if(!f.isDirectory()){
+                f.selected = false;
+            }
+        }
+    }
+
+    public void same() {
         for(Fichier f : dirRight.getContenu()) {
-            if(f.isDirectory()) {
-                f.selected = true;
+            if(f.getEtat() != Etat.SAME) {
+                f.selected = false;
+            }
+        }
+        for(Fichier f : dirLeft.getContenu()){
+            if(f.getEtat() != Etat.SAME) {
+                f.selected = false;
+            }
+        }
+    }
+
+    public void orphan() {
+        for(Fichier f : dirRight.getContenu()) {
+            if(f.getEtat() != Etat.ORPHAN) {
+                f.selected = false;
+            }
+        }
+        for(Fichier f : dirLeft.getContenu()){
+            if(f.getEtat() != Etat.ORPHAN) {
+                f.selected = false;
+            }
+        }
+    }
+
+    public void newerRight() {
+        for(Fichier f : dirRight.getContenu()) {
+            if(f.getEtat() != Etat.NEWER) {
+                f.selected = false;
+            }
+        }
+    }
+
+    public void newerLeft() {
+        for(Fichier f : dirLeft.getContenu()) {
+            if(f.getEtat() != Etat.NEWER) {
+                f.selected = false;
             }
         }
     }

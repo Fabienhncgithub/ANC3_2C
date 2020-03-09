@@ -39,17 +39,25 @@ public class View extends VBox {
         hBoxFilter.setAlignment(Pos.CENTER);
         hBoxFilter.setSpacing(30);
         etatValues(hBoxBot);
-        newerRight.disableProperty().bind(vm.newerDisabledProperty());
+        foldersOnly.setOnAction(e -> { if (foldersOnly.isSelected()) {
+            vm.foldersOnlyAction();
+            left.setRoot(vm.getTiLeft());
+            right.setRoot(vm.getTiRight());
+        } else {
+            //vm.allAction();// à faire
+        }
+        });
+//        newerRight.disableProperty().bind(vm.newerDisabledProperty());
 
         vbox.getChildren().addAll(hBoxFilter, hBoxCenter, hBoxBot);
 
-        Scene scene = new Scene(vbox, 900, 600);
+        Scene scene = new Scene(vbox, 900, 500);
         scene.getStylesheets().add("model/cssView.css");
         primaryStage.setTitle("Beyond Compare");
         primaryStage.getIcons().add(new Image("Images/syncFilesIcon.png"));
         primaryStage.setScene(scene);
         primaryStage.show();
-        configAction(vm);
+
     }
 
     private void etatValues(HBox hBoxBot) {  //TODO en public temporairement
@@ -70,13 +78,4 @@ public class View extends VBox {
         return hBoxBot;
     }
 
-    public void configAction(VM vm) {
-        foldersOnly.setOnAction(e -> {
-            if (foldersOnly.isSelected()) {
-                vm.foldersOnlyAction();
-            } else {
-                // à faire
-            }
-        });
-    }
 }
