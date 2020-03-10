@@ -20,6 +20,10 @@ public abstract class Fichier {
         return selected;
     }
 
+    public void setSelected(boolean selected) {
+        this.selected = selected;
+    }
+
     public abstract Iterable<Fichier> getContenu();
 
     public void setModifDate(LocalDateTime modifDate) {

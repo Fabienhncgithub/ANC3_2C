@@ -103,6 +103,11 @@ public class View extends VBox {
             right.setRoot(vm.getTiRight());
         });
 
+        foldersOnly.selectedProperty().bindBidirectional(vm.getFoldersOnlySelected());
+        same.selectedProperty().bindBidirectional(vm.getSameSelected());
+        newerLeft.selectedProperty().bindBidirectional(vm.getNewerLeftSelected());
+        newerRight.selectedProperty().bindBidirectional(vm.getNewerRightSelected());
+        orphans.selectedProperty().bindBidirectional(vm.getOrphansSelected());
 
         vbox.getChildren().addAll(hBoxFilter, hBoxCenter, hBoxBot);
 
