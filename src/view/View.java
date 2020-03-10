@@ -102,15 +102,7 @@ public class View extends VBox {
             left.setRoot(vm.getTiLeft());
             right.setRoot(vm.getTiRight());
         });
-
-        foldersOnly.selectedProperty().bindBidirectional(vm.getFoldersOnlySelected());
-        same.selectedProperty().bindBidirectional(vm.getSameSelected());
-        newerLeft.selectedProperty().bindBidirectional(vm.getNewerLeftSelected());
-        newerRight.selectedProperty().bindBidirectional(vm.getNewerRightSelected());
-        orphans.selectedProperty().bindBidirectional(vm.getOrphansSelected());
-
-        left.
-
+        
         vbox.getChildren().addAll(hBoxFilter, hBoxCenter, hBoxBot);
 
         Scene scene = new Scene(vbox, 900, 500);
