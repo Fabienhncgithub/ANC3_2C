@@ -17,8 +17,6 @@ public class VM {
     private final BooleanProperty orphansSelected = new SimpleBooleanProperty(false);
     private final BooleanProperty sameSelected = new SimpleBooleanProperty(false);
     private final BooleanProperty foldersOnlySelected = new SimpleBooleanProperty(false);
-//    private final BooleanProperty newerDisabled = new SimpleBooleanProperty(false);
-
 
     private final StringProperty labelPathLeft = new SimpleStringProperty("");
     private final StringProperty labelPathRight = new SimpleStringProperty("");
@@ -47,9 +45,7 @@ public class VM {
         return labelPathRight;
     }
 
-    public TreeItem getTiLeft() {
-        return makeTreeRoot(model.getDirLeft());
-    }
+    public TreeItem getTiLeft() { return makeTreeRoot(model.getDirLeft()); }
 
     public TreeItem getTiRight() {
         return makeTreeRoot(model.getDirRight());
@@ -89,30 +85,26 @@ public class VM {
 
     public void foldersOnlyAction() {
         model.foldersOnlySet();
-//        VM vmUD = new VM(model);
-        labelPathLeft.setValue(model.getDirLeft().getPath().toString());
-        labelPathRight.setValue(model.getDirRight().getPath().toString());
-//        MyTreeTableView mTTV = new MyTreeTableView()
     }
 
-    public void SameAction() {
-        model.same();
-        VM vmUD = new VM(model);
+    public void sameAction() {
+        model.sameSet();
     }
 
-    public void OrphanAction() {
-        model.orphan();
-        VM vmUD = new VM(model);
+    public void orphanAction() {
+        model.orphanSet();
     }
 
-    public void NewerRightAction() {
-        model.newerRight();
-        VM vmUD = new VM(model);
+    public void newerRightAction() {
+        model.newerRightSet();
     }
 
-    public void NewerLeftAction() {
-        model.newerLeft();
-        VM vmUD = new VM(model);
+    public void newerLeftAction() {
+        model.newerLeftSet();
+    }
+
+    public void allAction() {
+        model.showAll();
     }
 
 //    public ObservableValue<? extends Boolean> newerDisabledProperty() {
