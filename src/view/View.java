@@ -25,8 +25,8 @@ public class View extends VBox {
     private ToggleButton same = new ToggleButton("Same");
     private ToggleButton foldersOnly = new ToggleButton("Folders only");
     private ToggleGroup newerGroup = new ToggleGroup();
-    private MyTreeTableView left;
-    private MyTreeTableView right;
+    private final MyTreeTableView left;
+    private final MyTreeTableView right;
     private HBox hBoxCenter = new HBox();
     private HBox hBoxBot = hBoxBot();
     private HBox hBoxFilter = new HBox();
@@ -61,7 +61,7 @@ public class View extends VBox {
             right.setRoot(vm.getTiRight());
         });
 
-        same.setOnAction(e -> {
+        same.selectedProperty().addListener(e -> {
             if (same.isSelected()) {
                 vm.sameAction();
             }else {
@@ -71,7 +71,7 @@ public class View extends VBox {
             right.setRoot(vm.getTiRight());
         });
 
-        orphans.setOnAction(e -> {
+        orphans.selectedProperty().addListener(e -> {
             if (orphans.isSelected()) {
                 vm.orphanAction();
             }else {
@@ -81,18 +81,20 @@ public class View extends VBox {
             right.setRoot(vm.getTiRight());
         });
 
-        newerRight.setOnAction(e -> {
+        newerRight.selectedProperty().addListener(e -> {
             if (newerRight.isSelected()) {
+                vm.allAction();
                 vm.newerRightAction();
             }else {
                 vm.allAction();
             }
-            left.setRoot(vm.getTiLeft());
             right.setRoot(vm.getTiRight());
+            left.setRoot(vm.getTiLeft());
         });
 
-        newerLeft.setOnAction(e -> {
+        newerLeft.selectedProperty().addListener(e -> {
             if (newerLeft.isSelected()) {
+                vm.allAction();
                 vm.newerLeftAction();
             }else {
                 vm.allAction();

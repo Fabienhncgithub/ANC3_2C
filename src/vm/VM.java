@@ -45,9 +45,9 @@ public class VM {
         return labelPathRight;
     }
 
-    public TreeItem getTiLeft() { return makeTreeRoot(model.getDirLeft()); }
+    public TreeItem<Fichier> getTiLeft() { return makeTreeRoot(model.getDirLeft()); }
 
-    public TreeItem getTiRight() {
+    public TreeItem<Fichier> getTiRight() {
         return makeTreeRoot(model.getDirRight());
     }
     

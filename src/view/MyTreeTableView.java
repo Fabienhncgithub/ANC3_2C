@@ -22,7 +22,7 @@ import java.nio.file.Paths;
 public class MyTreeTableView extends VBox {
 
     private final Label label = new Label();
-    private TreeTableView treeView = new TreeTableView();
+    private TreeTableView<Fichier> treeView = new TreeTableView<>();
 //    private ObjectProperty<TreeItem<Fichier>> rootProperty = treeView.rootProperty();
     Image imageButtonChoose = new Image("Images/flat_folder.png");
     private Button buttonFolder = new Button();

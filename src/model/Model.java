@@ -11,8 +11,8 @@ public class Model {
     private Fichier dirLeft;
     private Fichier dirRight;
 
-    private Fichier currentDirLeft;
-    private Fichier currentDirRight;
+//    private Fichier currentDirLeft;
+//    private Fichier currentDirRight;
 
     public Model() throws IOException {
         dirLeft = new CopyBuilder().build(Paths.get(INIT_DATA_L));
@@ -24,44 +24,43 @@ public class Model {
         return dirLeft;
     }
 
-    public Fichier getDirRight() {
-        return dirRight;
-    }
-
     public void setDirLeft(Fichier dirLeft) {
         this.dirLeft = dirLeft;
+    }
+
+    public Fichier getDirRight() {
+        return dirRight;
     }
 
     public void setDirRight(Fichier dirRight) {
         this.dirRight = dirRight;
     }
 
-    public void foldersOnlySet(){
+    public void foldersOnlySet() {
         foldersOnly(dirLeft);
         foldersOnly(dirRight);
     }
 
     public void foldersOnly(Fichier dir) {
-        for(Fichier f : dir.getContenu()) {
-            if(!f.isDirectory()) {
+        for (Fichier f : dir.getContenu()) {
+            if (!f.isDirectory()) {
                 f.selected = false;
-            }
-            else{
+            } else {
                 foldersOnly(f);
             }
         }
     }
 
-    public void sameSet(){
+    public void sameSet() {
         same(dirLeft);
         same(dirRight);
     }
 
     public void same(Fichier dir) {
-        for(Fichier f : dir.getContenu()) {
-            if(f.getEtat() != Etat.SAME) {
+        for (Fichier f : dir.getContenu()) {
+            if (f.getEtat() != Etat.SAME) {
                 f.selected = false;
-            }else {
+            } else {
                 dir.selected = true;
             }
             if (f.isDirectory()) {
@@ -70,54 +69,62 @@ public class Model {
         }
     }
 
-    public void orphanSet(){
+    public void orphanSet() {
         orphan(dirLeft);
         orphan(dirRight);
     }
 
     public void orphan(Fichier dir) {
-        for(Fichier f : dir.getContenu()) {
-            if(f.getEtat() != Etat.ORPHAN) {
+        for (Fichier f : dir.getContenu()) {
+            if (f.getEtat() != Etat.ORPHAN) {
                 f.selected = false;
-            }else {
+            } else {
                 dir.selected = true;
             }
             if (f.isDirectory()) {
-                same(f);
+                orphan(f);
             }
         }
     }
 
-    public void newerRightSet(){
-        newerRight(dirRight);
+    public void newerRightSet() {
+        newer(dirRight);
+        older(dirLeft);
     }
 
-    public void newerRight(Fichier dir) {
-        for(Fichier f : dir.getContenu()) {
-            if(f.getEtat() != Etat.NEWER) {
+    public void newerLeftSet() {
+        newer(dirLeft);
+        older(dirRight);
+    }
+
+    public void newer(Fichier dir) {
+        for (Fichier f : dir.getContenu()) {
+            if (f.getEtat() != Etat.NEWER) {
                 f.selected = false;
-            }else {
-                dir.selected = true;
             }
             if (f.isDirectory()) {
-                same(f);
+                newer(f);
+                for (Fichier fichier : f.getContenu()) {
+                    if (fichier.isSelected()) {
+                        f.selected = true;
+                    }
+                }
             }
         }
     }
 
-    public void newerLeftSet(){
-        newerLeft(dirLeft);
-    }
-
-    public void newerLeft(Fichier dir) {
-        for(Fichier f : dir.getContenu()) {
-            if(f.getEtat() != Etat.NEWER) {
+    public void older(Fichier dir) {
+        for (Fichier f : dir.getContenu()) {
+            if (f.getEtat() != Etat.OLDER) {
                 f.selected = false;
-            }else {
-                dir.selected = true;
             }
             if (f.isDirectory()) {
-                same(f);
+                older(f);
+                for (Fichier fichier : f.getContenu()) {
+                    if (fichier.isSelected()) {
+                        f.selected = true;
+                    }
+                }
             }
         }
     }
@@ -128,7 +135,7 @@ public class Model {
     }
 
     private void setAll(Fichier dir) {
-        for(Fichier f : dir.getContenu()) {
+        for (Fichier f : dir.getContenu()) {
             f.selected = true;
             if (f.isDirectory()) {
                 setAll(f);

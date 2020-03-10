@@ -18,11 +18,6 @@ public class FichierSimple extends Fichier {
         setModifDate(fileTime.toInstant().atZone(ZoneId.systemDefault()).toLocalDateTime());
     }
 
-//    @Override
-//    public char type() { //supprimer cette methode et gerer le char dans l'affichage.
-//        return 'F'; //F pour Fichier
-//    }
-
     @Override
     public Iterable<Fichier> getContenu() {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
@@ -40,10 +35,7 @@ public class FichierSimple extends Fichier {
 
     public void changeEtat(Fichier fs) throws IOException {
         if (this.getLastDirName(getPath()).equals(fs.getLastDirName(fs.getPath()))) { // TODO check getLastDirName()
-           // System.out.println(this.getLastDirName(getPath()));
             if (this.getNom().equals(fs.getNom())) {
-//                System.out.println(this.getNom() + fs.getNom());
-
                 if (this.getModifDate(this.getPath()).isEqual(fs.getModifDate(fs.getPath()))) {
                     fs.setEtat(Etat.SAME);
                     this.setEtat(Etat.SAME);
@@ -57,8 +49,8 @@ public class FichierSimple extends Fichier {
                     }
                 }
             }
-            }
         }
+    }
 
 
     @Override

@@ -66,12 +66,11 @@ public abstract class Fichier {
 
     @Override
     public String toString() {
-        String res = "toString Fichier";
         try {
             return formatAffichage(0);
         } catch (IOException e) {
             e.printStackTrace();
         }
-        return res;
+        return "";
     }
 }
