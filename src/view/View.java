@@ -109,6 +109,8 @@ public class View extends VBox {
         newerRight.selectedProperty().bindBidirectional(vm.getNewerRightSelected());
         orphans.selectedProperty().bindBidirectional(vm.getOrphansSelected());
 
+        left.
+
         vbox.getChildren().addAll(hBoxFilter, hBoxCenter, hBoxBot);
 
         Scene scene = new Scene(vbox, 900, 500);
