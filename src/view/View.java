@@ -2,10 +2,7 @@ package view;
 
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
-import javafx.scene.control.Button;
 import javafx.scene.control.Label;
-import javafx.scene.control.ToggleButton;
-import javafx.scene.control.ToggleGroup;
 import javafx.scene.image.Image;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
@@ -18,13 +15,7 @@ import vm.VM;
  */
 public class View extends VBox {
 
-    private Button all = new Button("All");
-    private ToggleButton newerLeft = new ToggleButton("Newer left");
-    private ToggleButton newerRight = new ToggleButton("Newer right");
-    private ToggleButton orphans = new ToggleButton("Orphans");
-    private ToggleButton same = new ToggleButton("Same");
-    private ToggleButton foldersOnly = new ToggleButton("Folders only");
-    private ToggleGroup newerGroup = new ToggleGroup();
+    private MyButtonFilters myButtonFilters;
     private final MyTreeTableView left;
     private final MyTreeTableView right;
     private HBox hBoxCenter = new HBox();
@@ -37,72 +28,12 @@ public class View extends VBox {
         left = new MyTreeTableView(vm.getLabelPathLeft(), vm.getTiLeft());
         right = new MyTreeTableView(vm.getLabelPathRight(), vm.getTiRight());
         hBoxCenter.getChildren().addAll(left, right);
-        newerLeft.setToggleGroup(newerGroup);
-        newerRight.setToggleGroup(newerGroup);
-        hBoxFilter.getChildren().addAll(all, newerLeft, newerRight, orphans, same, foldersOnly);
+        myButtonFilters = new MyButtonFilters(vm, this);
+        hBoxFilter.getChildren().addAll(myButtonFilters);
         hBoxFilter.setAlignment(Pos.CENTER);
         hBoxFilter.setSpacing(30);
         etatValues(hBoxBot);
-        all.setOnMouseClicked(e -> {
-            newerLeft.setSelected(false);
-            newerRight.setSelected(false);
-            orphans.setSelected(false);
-            same.setSelected(false);
-            foldersOnly.setSelected(false);
-        });
 
-        foldersOnly.selectedProperty().addListener(e -> {
-            if (foldersOnly.isSelected()) {
-                vm.foldersOnlyAction();
-            } else {
-                vm.allAction();
-            }
-            left.setRoot(vm.getTiLeft());
-            right.setRoot(vm.getTiRight());
-        });
-
-        same.selectedProperty().addListener(e -> {
-            if (same.isSelected()) {
-                vm.sameAction();
-            }else {
-                vm.allAction();
-            }
-            left.setRoot(vm.getTiLeft());
-            right.setRoot(vm.getTiRight());
-        });
-
-        orphans.selectedProperty().addListener(e -> {
-            if (orphans.isSelected()) {
-                vm.orphanAction();
-            }else {
-                vm.allAction();
-            }
-            left.setRoot(vm.getTiLeft());
-            right.setRoot(vm.getTiRight());
-        });
-
-        newerRight.selectedProperty().addListener(e -> {
-            if (newerRight.isSelected()) {
-                vm.allAction();
-                vm.newerRightAction();
-            }else {
-                vm.allAction();
-            }
-            right.setRoot(vm.getTiRight());
-            left.setRoot(vm.getTiLeft());
-        });
-
-        newerLeft.selectedProperty().addListener(e -> {
-            if (newerLeft.isSelected()) {
-                vm.allAction();
-                vm.newerLeftAction();
-            }else {
-                vm.allAction();
-            }
-            left.setRoot(vm.getTiLeft());
-            right.setRoot(vm.getTiRight());
-        });
-        
         vbox.getChildren().addAll(hBoxFilter, hBoxCenter, hBoxBot);
 
         Scene scene = new Scene(vbox, 900, 500);
@@ -114,7 +45,15 @@ public class View extends VBox {
 
     }
 
-    private void etatValues(HBox hBoxBot) {  //TODO en public temporairement
+    public MyTreeTableView getLeft() {
+        return left;
+    }
+
+    public MyTreeTableView getRight() {
+        return right;
+    }
+
+    private void etatValues(HBox hBoxBot) {
         for (Etat e : Etat.values()) {
             if (e != Etat.UNDEFINED) {
                 Label l = new Label(e.toString());
