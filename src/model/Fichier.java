@@ -5,9 +5,10 @@ import java.nio.file.Path;
 import java.time.LocalDateTime;
 
 public abstract class Fichier {
+
     private final String nom;
-    private LocalDateTime modifDate; 
-        private Path path;
+    private LocalDateTime modifDate;
+    private Path path;
     private Etat etat = Etat.UNDEFINED; //Mettre comme valeure par défaut PARTIAL_SAME ca va permettre de faire un test en moin.
     boolean selected = true;
 
@@ -19,6 +20,12 @@ public abstract class Fichier {
     public boolean isSelected() {
         return selected;
     }
+
+    public void setSelected(boolean selected) {
+        this.selected = selected;
+    }
+    
+    
 
     public abstract Iterable<Fichier> getContenu();
 
@@ -52,8 +59,9 @@ public abstract class Fichier {
 
     protected String formatAffichage(int decalage) throws IOException {
         String res = "";
-        for (int i = 0; i < decalage; ++i)
+        for (int i = 0; i < decalage; ++i) {
             res += "\t";
+        }
         return res;
     }
 

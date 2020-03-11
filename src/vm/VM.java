@@ -10,6 +10,7 @@ import model.Fichier;
 import model.Model;
 
 public class VM {
+
     private final Model model;
 
     private final BooleanProperty newerLeftSelected = new SimpleBooleanProperty(false);
@@ -21,7 +22,6 @@ public class VM {
     private final StringProperty labelPathLeft = new SimpleStringProperty("");
     private final StringProperty labelPathRight = new SimpleStringProperty("");
     private final DirectoryChooser choose = new DirectoryChooser();
-
 
     public VM(Model model) {
         this.model = model;
@@ -45,12 +45,14 @@ public class VM {
         return labelPathRight;
     }
 
-    public TreeItem<Fichier> getTiLeft() { return makeTreeRoot(model.getDirLeft()); }
+    public TreeItem<Fichier> getTiLeft() {
+        return makeTreeRoot(model.getDirLeft());
+    }
 
     public TreeItem<Fichier> getTiRight() {
         return makeTreeRoot(model.getDirRight());
     }
-    
+
     public BooleanProperty getNewerLeftSelected() {
         return newerLeftSelected;
     }
@@ -76,8 +78,9 @@ public class VM {
         res.setExpanded(true);
         if (root.isDirectory()) {
             root.getContenu().forEach(se -> {
-                if(se.isSelected())
+                if (se.isSelected()) {
                     res.getChildren().add(makeTreeRoot(se));
+                }
             });
         }
         return res;
@@ -87,12 +90,24 @@ public class VM {
         model.foldersOnlySet();
     }
 
+    public void unSelectedFoldersOnlyAction() {
+        model.unSelectedFoldersOnlySet();
+    }
+
     public void sameAction() {
         model.sameSet();
     }
 
+    public void unSelectedSameAction() {
+        model.unSelectedSameSet();
+    }
+
     public void orphanAction() {
         model.orphanSet();
+    }
+    
+     public void unSelectedOrphanAction() {
+        model.unSelectedOrphanSet();
     }
 
     public void newerRightAction() {
@@ -106,8 +121,4 @@ public class VM {
     public void allAction() {
         model.showAll();
     }
-
-//    public ObservableValue<? extends Boolean> newerDisabledProperty() {
-//        return newerDisabled;
-//    }
 }

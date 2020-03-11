@@ -46,7 +46,8 @@ public class MyButtonFilters extends VBox {
             if (foldersOnly.isSelected()) {
                 vm.foldersOnlyAction();
             } else {
-                vm.allAction();
+                //vm.allAction();
+                vm.unSelectedFoldersOnlyAction();
             }
             view.getLeft().setRoot(vm.getTiLeft());
             view.getRight().setRoot(vm.getTiRight());
@@ -56,7 +57,8 @@ public class MyButtonFilters extends VBox {
             if (same.isSelected()) {
                 vm.sameAction();
             }else {
-                vm.allAction();
+               // vm.allAction();
+               vm.unSelectedSameAction();
             }
             view.getLeft().setRoot(vm.getTiLeft());
             view.getRight().setRoot(vm.getTiRight());
@@ -66,7 +68,8 @@ public class MyButtonFilters extends VBox {
             if (orphans.isSelected()) {
                 vm.orphanAction();
             }else {
-                vm.allAction();
+                //vm.allAction();
+                vm.unSelectedOrphanAction();
             }
             view.getLeft().setRoot(vm.getTiLeft());
             view.getRight().setRoot(vm.getTiRight());

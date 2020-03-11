@@ -13,7 +13,6 @@ public class Model {
 
 //    private Fichier currentDirLeft;
 //    private Fichier currentDirRight;
-
     public Model() throws IOException {
         dirLeft = new CopyBuilder().build(Paths.get(INIT_DATA_L));
         dirRight = new CopyBuilder().build(Paths.get(INIT_DATA_R));
@@ -44,9 +43,24 @@ public class Model {
     public void foldersOnly(Fichier dir) {
         for (Fichier f : dir.getContenu()) {
             if (!f.isDirectory()) {
-                f.selected = false;
+                f.setSelected(false);
             } else {
                 foldersOnly(f);
+            }
+        }
+    }
+
+    public void unSelectedFoldersOnlySet() {
+        unSelectedFoldersOnly(dirLeft);
+        unSelectedFoldersOnly(dirRight);
+    }
+
+    public void unSelectedFoldersOnly(Fichier dir) {
+        for (Fichier f : dir.getContenu()) {
+            if(!f.isDirectory()) {
+                f.setSelected(true);
+            } else {
+                unSelectedFoldersOnly(f);
             }
         }
     }
@@ -59,12 +73,31 @@ public class Model {
     public void same(Fichier dir) {
         for (Fichier f : dir.getContenu()) {
             if (f.getEtat() != Etat.SAME) {
-                f.selected = false;
-            } else {
-                dir.selected = true;
+                f.setSelected(false);
             }
             if (f.isDirectory()) {
                 same(f);
+                for (Fichier fichier : f.getContenu()) {
+                    if (fichier.isSelected()) {
+                        f.setSelected(true);
+                    }
+                }
+            }
+        }
+    }
+
+    public void unSelectedSameSet() {
+        unSelectedSame(dirLeft);
+        unSelectedSame(dirRight);
+    }
+
+    public void unSelectedSame(Fichier dir) {
+        for (Fichier f : dir.getContenu()) {
+            if (f.getEtat() != Etat.SAME) {
+                f.setSelected(true);
+            }
+            if (f.isDirectory()) {
+                unSelectedSame(f);
             }
         }
     }
@@ -83,6 +116,21 @@ public class Model {
             }
             if (f.isDirectory()) {
                 orphan(f);
+            }
+        }
+    }
+    
+    public void unSelectedOrphanSet() {
+        unSelectedOrphan(dirLeft);
+        unSelectedOrphan(dirRight);
+    }
+    
+    public void unSelectedOrphan(Fichier dir) {
+         for (Fichier f : dir.getContenu()) {
+            if (f.getEtat() != Etat.ORPHAN) {
+                f.setSelected(true);
+            } if (f.isDirectory()) {
+                unSelectedOrphan(f);
             }
         }
     }
