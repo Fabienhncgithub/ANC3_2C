@@ -9,7 +9,8 @@ import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.stage.DirectoryChooser;
 import javafx.stage.Stage;
-import model.*;
+import model.CopyBuilder;
+import model.Fichier;
 import vm.VM;
 
 import java.io.File;
@@ -22,28 +23,29 @@ import java.nio.file.Paths;
 public class MyTreeTableView extends VBox {
 
     private final Label label = new Label();
-    private TreeTableView<Fichier> treeView = new TreeTableView<>();
-//    private ObjectProperty<TreeItem<Fichier>> rootProperty = treeView.rootProperty();
+    private TreeTableView<Fichier> treeTableView = new TreeTableView<>();
     Image imageButtonChoose = new Image("Images/flat_folder.png");
     private Button buttonFolder = new Button();
     private DirectoryChooser dirChooser = new DirectoryChooser();
     private Stage primaryStage;
+
     HBox hbox = new HBox();
     {
         hbox.getChildren().add(label);
         hbox.getChildren().add(buttonFolder);
         hbox.setSpacing(200);
         hbox.setAlignment(Pos.CENTER);
-        getChildren().addAll(hbox, treeView);
+        getChildren().addAll(hbox, treeTableView);
         buttonFolder.setGraphic(new ImageView(imageButtonChoose));
         buttonFolder.setMaxSize(50,50);
-        treeView.getStylesheets().add("model/cssView.css");
+        treeTableView.getStylesheets().add("model/cssView.css");
+
     }
 
-    public MyTreeTableView(String labelText, TreeItem<Fichier> f) {
-        treeView.setShowRoot(false);
+    public MyTreeTableView(String labelText, TreeItem<Fichier> f, VM vm) {
+        treeTableView.setShowRoot(false);
         label.setText(labelText);
-        treeView.setRoot(f);
+        treeTableView.setRoot(f);
         setPrefWidth(8000);
         addColumn();
         buttonFolder.setOnAction(event -> {
@@ -53,7 +55,7 @@ public class MyTreeTableView extends VBox {
                 try {
                     Fichier newFichier = new CopyBuilder().build(Paths.get(dir.getAbsolutePath()));
                     TreeItem<Fichier> treeItem = VM.makeTreeRoot(newFichier);
-                    setRoot(treeItem);
+                    treeTableView.setRoot(treeItem);
                 } catch (IOException e) {
                     e.printStackTrace();
                 }
@@ -75,10 +77,14 @@ public class MyTreeTableView extends VBox {
         typeCol.setCellFactory((param) -> new TypeFichierCell());
         dateCol.setCellFactory((param) -> new DateModifFichierCell());
         sizeCol.setCellFactory((param) -> new TailleFichierCell());
-        treeView.getColumns().setAll(nameCol, typeCol, dateCol, sizeCol);
+        treeTableView.getColumns().setAll(nameCol, typeCol, dateCol, sizeCol);
+    }
+
+    public TreeTableView<Fichier> getTreeTableView() {
+        return treeTableView;
     }
 
     public void setRoot(TreeItem<Fichier> f){
-        treeView.setRoot(f);
+        treeTableView.setRoot(f);
     }
 }

@@ -11,8 +11,6 @@ public class Model {
     private Fichier dirLeft;
     private Fichier dirRight;
 
-//    private Fichier currentDirLeft;
-//    private Fichier currentDirRight;
     public Model() throws IOException {
         dirLeft = new CopyBuilder().build(Paths.get(INIT_DATA_L));
         dirRight = new CopyBuilder().build(Paths.get(INIT_DATA_R));
@@ -23,16 +21,8 @@ public class Model {
         return dirLeft;
     }
 
-    public void setDirLeft(Fichier dirLeft) {
-        this.dirLeft = dirLeft;
-    }
-
     public Fichier getDirRight() {
         return dirRight;
-    }
-
-    public void setDirRight(Fichier dirRight) {
-        this.dirRight = dirRight;
     }
 
     public void foldersOnlySet() {

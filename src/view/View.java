@@ -25,8 +25,8 @@ public class View extends VBox {
     private VM vm;
 
     public View(Stage primaryStage, VM vm) {
-        left = new MyTreeTableView(vm.getLabelPathLeft(), vm.getTiLeft());
-        right = new MyTreeTableView(vm.getLabelPathRight(), vm.getTiRight());
+        left = new MyTreeTableView(vm.getLabelPathLeft(), vm.getTiLeft(), vm);
+        right = new MyTreeTableView(vm.getLabelPathRight(), vm.getTiRight(), vm);
         hBoxCenter.getChildren().addAll(left, right);
         myButtonFilters = new MyButtonFilters(vm, this);
         hBoxFilter.getChildren().addAll(myButtonFilters);
@@ -42,7 +42,6 @@ public class View extends VBox {
         primaryStage.getIcons().add(new Image("Images/syncFilesIcon.png"));
         primaryStage.setScene(scene);
         primaryStage.show();
-
     }
 
     public MyTreeTableView getLeft() {
@@ -70,5 +69,4 @@ public class View extends VBox {
         hBoxBot.setSpacing(30);
         return hBoxBot;
     }
-
 }

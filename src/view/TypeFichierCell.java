@@ -1,4 +1,6 @@
-package model;
+package view;
+
+import model.Fichier;
 
 public class TypeFichierCell extends FichierCell {
 

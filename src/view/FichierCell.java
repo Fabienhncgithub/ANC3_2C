@@ -1,6 +1,7 @@
-package model;
+package view;
 
 import javafx.scene.control.cell.TextFieldTreeTableCell;
+import model.Fichier;
 
 public abstract class FichierCell extends TextFieldTreeTableCell<Fichier, Fichier> {
 

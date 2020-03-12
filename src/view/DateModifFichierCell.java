@@ -1,4 +1,6 @@
-package model;
+package view;
+
+import model.Fichier;
 
 import java.io.IOException;
 import java.time.format.DateTimeFormatter;
