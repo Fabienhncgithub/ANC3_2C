@@ -8,10 +8,11 @@ import javafx.scene.control.TreeItem;
 import javafx.stage.DirectoryChooser;
 import model.Fichier;
 import model.Model;
+import view.MyTreeTableView;
 
 public class VM {
 
-    private final Model model;
+    private Model model;
 
 //    private final BooleanProperty newerLeftSelected = new SimpleBooleanProperty(false);
 //    private final BooleanProperty newerRightSelected = new SimpleBooleanProperty(false);
@@ -30,11 +31,19 @@ public class VM {
 
     public VM(Model model) {
         this.model = model;
+//        labelPathLeft.addListener((obj, old, act) -> {
+//            System.out.println("test left choose");
+//            this.model = new Model(act, model.getDirRight().getPath().toString());
+//            obsTreeItemLeft.bind(model.getDirLeft());
+//        });
+//        labelPathRight.addListener((obj, old, act) -> {
+//            this.model = new Model(act, model.getDirLeft().getPath().toString());
+//            obsTreeItemRight.setValue(makeTreeRoot(model.getDirRight()));
+//        });
         labelPathLeft.setValue(model.getDirLeft().getPath().toString());
         labelPathRight.setValue(model.getDirRight().getPath().toString());
-        obsTreeItemLeft.setValue(makeTreeRoot(model.getDirLeft()));
-        obsTreeItemRight.setValue(makeTreeRoot(model.getDirRight()));
-
+//        labelPathLeft.bind(model.getPathDirLeft());
+//        labelPathRight.bind(model.getPathDirRight());
     }
 
     public String getLabelPathLeft() {
@@ -66,8 +75,8 @@ public class VM {
         return res;
     }
 
-    public void foldersOnlyAction() {
-        model.foldersOnlySet();
+    public void foldersOnlyAction(MyTreeTableView left, MyTreeTableView right) {
+        model.foldersOnlySet(left, right);
     }
 
     public void unSelectedFoldersOnlyAction() {
@@ -85,7 +94,7 @@ public class VM {
     public void orphanAction() {
         model.orphanSet();
     }
-    
+
      public void unSelectedOrphanAction() {
         model.unSelectedOrphanSet();
     }
@@ -100,5 +109,15 @@ public class VM {
 
     public void allAction() {
         model.showAll();
+    }
+
+    public void setNewDirLeft(Fichier newDirLeft) {
+        model.setDirLeft(newDirLeft);
+        makeTreeRoot(model.getDirLeft());
+    }
+
+    public void setNewDirRight(Fichier newDirRight) {
+        model.setDirRight(newDirRight);
+        makeTreeRoot(model.getDirRight());
     }
 }

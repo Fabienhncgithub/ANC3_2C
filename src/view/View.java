@@ -25,8 +25,10 @@ public class View extends VBox {
     private VM vm;
 
     public View(Stage primaryStage, VM vm) {
-        left = new MyTreeTableView(vm.getLabelPathLeft(), vm.getTiLeft(), vm);
-        right = new MyTreeTableView(vm.getLabelPathRight(), vm.getTiRight(), vm);
+        left = new MyTreeTableView(vm.getLabelPathLeft(), vm.getTiLeft(), 'L', vm);
+        right = new MyTreeTableView(vm.getLabelPathRight(), vm.getTiRight(), 'R', vm);
+        left.getTreeTableView().getRoot().parentProperty();
+        right.getTreeTableView().getRoot().parentProperty();
         hBoxCenter.getChildren().addAll(left, right);
         myButtonFilters = new MyButtonFilters(vm, this);
         hBoxFilter.getChildren().addAll(myButtonFilters);

@@ -1,5 +1,9 @@
 package model;
 
+import javafx.beans.property.Property;
+import javafx.beans.property.StringProperty;
+import view.MyTreeTableView;
+
 import java.io.IOException;
 import java.nio.file.Paths;
 
@@ -8,14 +12,47 @@ public class Model {
     private static final String INIT_DATA_L = "TestBC/RootBC_Left";
     private static final String INIT_DATA_R = "TestBC/RootBC_Right";
 
+    private StringProperty pathDirLeft;
+    private StringProperty pathDirRight;
+
     private Fichier dirLeft;
     private Fichier dirRight;
 
-    public Model() throws IOException {
-        dirLeft = new CopyBuilder().build(Paths.get(INIT_DATA_L));
-        dirRight = new CopyBuilder().build(Paths.get(INIT_DATA_R));
-        dirLeft.changeEtat(dirRight);
+    public Model(){
+        try {
+            dirLeft = new CopyBuilder().build(Paths.get(INIT_DATA_L));
+            dirRight = new CopyBuilder().build(Paths.get(INIT_DATA_R));
+            dirLeft.changeEtat(dirRight);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
+
+    public Model(String fLeft, String fRight) {
+        try {
+            dirLeft = new CopyBuilder().build(Paths.get(fLeft));
+            dirRight = new CopyBuilder().build(Paths.get(fRight));
+            dirLeft.changeEtat(dirRight);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    public Property<String> getPathDirLeft() {
+        return pathDirLeft;
+    }
+
+//    public StringProperty pathDirLeftProperty() {
+//        return pathDirLeft;
+//    }
+
+    public Property<String> getPathDirRight() {
+        return pathDirRight;
+    }
+//
+//    public StringProperty pathDirRightProperty() {
+//        return pathDirRight;
+//    }
 
     public Fichier getDirLeft() {
         return dirLeft;
@@ -25,9 +62,9 @@ public class Model {
         return dirRight;
     }
 
-    public void foldersOnlySet() {
-        foldersOnly(dirLeft);
-        foldersOnly(dirRight);
+    public void foldersOnlySet(MyTreeTableView left, MyTreeTableView right) {
+        foldersOnly(left.getTreeTableView().getRoot().getValue());
+        foldersOnly(right.getTreeTableView().getRoot().getValue());
     }
 
     public void foldersOnly(Fichier dir) {
@@ -178,6 +215,24 @@ public class Model {
             if (f.isDirectory()) {
                 setAll(f);
             }
+        }
+    }
+
+    public void setDirRight(Fichier newDirRight) {
+        dirRight = newDirRight;
+        try {
+            dirLeft.changeEtat(dirRight);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    public void setDirLeft(Fichier newDirLeft) {
+        dirLeft = newDirLeft;
+        try {
+            dirLeft.changeEtat(dirRight);
+        } catch (IOException e) {
+            e.printStackTrace();
         }
     }
 }

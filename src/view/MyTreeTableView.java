@@ -23,13 +23,13 @@ import java.nio.file.Paths;
 public class MyTreeTableView extends VBox {
 
     private final Label label = new Label();
-    private TreeTableView<Fichier> treeTableView = new TreeTableView<>();
     Image imageButtonChoose = new Image("Images/flat_folder.png");
+    HBox hbox = new HBox();
+    private TreeTableView<Fichier> treeTableView = new TreeTableView<>();
     private Button buttonFolder = new Button();
     private DirectoryChooser dirChooser = new DirectoryChooser();
     private Stage primaryStage;
 
-    HBox hbox = new HBox();
     {
         hbox.getChildren().add(label);
         hbox.getChildren().add(buttonFolder);
@@ -37,12 +37,12 @@ public class MyTreeTableView extends VBox {
         hbox.setAlignment(Pos.CENTER);
         getChildren().addAll(hbox, treeTableView);
         buttonFolder.setGraphic(new ImageView(imageButtonChoose));
-        buttonFolder.setMaxSize(50,50);
+        buttonFolder.setMaxSize(50, 50);
         treeTableView.getStylesheets().add("model/cssView.css");
 
     }
 
-    public MyTreeTableView(String labelText, TreeItem<Fichier> f, VM vm) {
+    public MyTreeTableView(String labelText, TreeItem<Fichier> f, char side, VM vm) {
         treeTableView.setShowRoot(false);
         label.setText(labelText);
         treeTableView.setRoot(f);
@@ -52,12 +52,23 @@ public class MyTreeTableView extends VBox {
             File dir = dirChooser.showDialog(primaryStage);
             if (dir != null) {
                 label.setText(dir.getAbsolutePath());
-                try {
-                    Fichier newFichier = new CopyBuilder().build(Paths.get(dir.getAbsolutePath()));
-                    TreeItem<Fichier> treeItem = VM.makeTreeRoot(newFichier);
-                    treeTableView.setRoot(treeItem);
-                } catch (IOException e) {
-                    e.printStackTrace();
+                switch (side) {
+                    case ('R'):
+                        try {
+                            Fichier newFichierR = new CopyBuilder().build(Paths.get(dir.getAbsolutePath()));
+                            vm.setNewDirRight(newFichierR);
+                        } catch (IOException e) {
+                            e.printStackTrace();
+                        }
+                        treeTableView.setRoot(vm.getTiRight());
+                    case ('L'):
+                        try {
+                            Fichier newFichierL = new CopyBuilder().build(Paths.get(dir.getAbsolutePath()));
+                            vm.setNewDirLeft(newFichierL);
+                        } catch (IOException e) {
+                            e.printStackTrace();
+                        }
+                        treeTableView.setRoot(vm.getTiLeft());
                 }
             }
         });
@@ -84,7 +95,7 @@ public class MyTreeTableView extends VBox {
         return treeTableView;
     }
 
-    public void setRoot(TreeItem<Fichier> f){
+    public void setRoot(TreeItem<Fichier> f) {
         treeTableView.setRoot(f);
     }
 }
