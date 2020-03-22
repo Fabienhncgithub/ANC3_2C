@@ -14,18 +14,10 @@ public class VM {
 
     private Model model;
 
-//    private final BooleanProperty newerLeftSelected = new SimpleBooleanProperty(false);
-//    private final BooleanProperty newerRightSelected = new SimpleBooleanProperty(false);
-//    private final BooleanProperty orphansSelected = new SimpleBooleanProperty(false);
-//    private final BooleanProperty sameSelected = new SimpleBooleanProperty(false);
-//    private final BooleanProperty foldersOnlySelected = new SimpleBooleanProperty(false);
-
     private final StringProperty labelPathLeft = new SimpleStringProperty("");
     private final StringProperty labelPathRight = new SimpleStringProperty("");
     private ObjectProperty<TreeItem<Fichier>> obsTreeItemLeft = new SimpleObjectProperty<>();
     private ObjectProperty<TreeItem<Fichier>> obsTreeItemRight = new SimpleObjectProperty<>();
-
-//    private final ObservableList<TreeItem<Fichier>> obsTreeItem = new SimpleListProperty<>();
 
     private final DirectoryChooser choose = new DirectoryChooser();
 
@@ -113,11 +105,10 @@ public class VM {
 
     public void setNewDirLeft(Fichier newDirLeft) {
         model.setDirLeft(newDirLeft);
-        makeTreeRoot(model.getDirLeft());
     }
 
     public void setNewDirRight(Fichier newDirRight) {
         model.setDirRight(newDirRight);
-        makeTreeRoot(model.getDirRight());
     }
+
 }

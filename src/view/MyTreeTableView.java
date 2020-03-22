@@ -2,42 +2,38 @@ package view;
 
 import javafx.beans.property.SimpleObjectProperty;
 import javafx.geometry.Pos;
-import javafx.scene.control.*;
-import javafx.scene.image.Image;
-import javafx.scene.image.ImageView;
+import javafx.scene.control.Label;
+import javafx.scene.control.TreeItem;
+import javafx.scene.control.TreeTableColumn;
+import javafx.scene.control.TreeTableView;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
-import javafx.stage.DirectoryChooser;
-import javafx.stage.Stage;
-import model.CopyBuilder;
 import model.Fichier;
 import vm.VM;
 
-import java.io.File;
-import java.io.IOException;
-import java.nio.file.Paths;
+import java.nio.file.Path;
 
 /**
  * @author momo
  */
 public class MyTreeTableView extends VBox {
 
-    private final Label label = new Label();
-    Image imageButtonChoose = new Image("Images/flat_folder.png");
     HBox hbox = new HBox();
     private TreeTableView<Fichier> treeTableView = new TreeTableView<>();
-    private Button buttonFolder = new Button();
-    private DirectoryChooser dirChooser = new DirectoryChooser();
-    private Stage primaryStage;
+//    Image imageButtonChoose = new Image("Images/flat_folder.png");
+//    private Button buttonFolder = new Button();
+//    private DirectoryChooser dirChooser = new DirectoryChooser();
+//    private Stage primaryStage;
+    private Label label = new Label();
 
     {
         hbox.getChildren().add(label);
-        hbox.getChildren().add(buttonFolder);
+//        hbox.getChildren().add(buttonFolder);
         hbox.setSpacing(200);
         hbox.setAlignment(Pos.CENTER);
         getChildren().addAll(hbox, treeTableView);
-        buttonFolder.setGraphic(new ImageView(imageButtonChoose));
-        buttonFolder.setMaxSize(50, 50);
+//        buttonFolder.setGraphic(new ImageView(imageButtonChoose));
+//        buttonFolder.setMaxSize(50,50);
         treeTableView.getStylesheets().add("model/cssView.css");
 
     }
@@ -48,30 +44,30 @@ public class MyTreeTableView extends VBox {
         treeTableView.setRoot(f);
         setPrefWidth(8000);
         addColumn();
-        buttonFolder.setOnAction(event -> {
-            File dir = dirChooser.showDialog(primaryStage);
-            if (dir != null) {
-                label.setText(dir.getAbsolutePath());
-                switch (side) {
-                    case ('R'):
-                        try {
-                            Fichier newFichierR = new CopyBuilder().build(Paths.get(dir.getAbsolutePath()));
-                            vm.setNewDirRight(newFichierR);
-                        } catch (IOException e) {
-                            e.printStackTrace();
-                        }
-                        treeTableView.setRoot(vm.getTiRight());
-                    case ('L'):
-                        try {
-                            Fichier newFichierL = new CopyBuilder().build(Paths.get(dir.getAbsolutePath()));
-                            vm.setNewDirLeft(newFichierL);
-                        } catch (IOException e) {
-                            e.printStackTrace();
-                        }
-                        treeTableView.setRoot(vm.getTiLeft());
-                }
-            }
-        });
+//        buttonFolder.setOnAction(event -> {
+//            File dir = dirChooser.showDialog(primaryStage);
+//            if (dir != null) {
+//                label.setText(dir.getAbsolutePath());
+//                switch (side) {
+//                    case('R'):
+//                        try {
+//                            Fichier newFichierR = new CopyBuilder().build(Paths.get(dir.getAbsolutePath()));
+//                            vm.setNewDirRight(newFichierR);
+//                        } catch (IOException e) {
+//                            e.printStackTrace();
+//                        }
+//                        treeTableView.setRoot(vm.getTiRight());
+//                    case ('L'):
+//                        try {
+//                            Fichier newFichierL = new CopyBuilder().build(Paths.get(dir.getAbsolutePath()));
+//                            vm.setNewDirLeft(newFichierL);
+//                        } catch (IOException e) {
+//                            e.printStackTrace();
+//                        }
+//                        treeTableView.setRoot(vm.getTiLeft());
+//                }
+//            }
+//        });
     }
 
     private void addColumn() {
@@ -95,7 +91,11 @@ public class MyTreeTableView extends VBox {
         return treeTableView;
     }
 
-    public void setRoot(TreeItem<Fichier> f) {
+    public void setRoot(TreeItem<Fichier> f){
         treeTableView.setRoot(f);
+    }
+
+    public void setLabel(Path path) {
+        label.setText(path.toString());
     }
 }

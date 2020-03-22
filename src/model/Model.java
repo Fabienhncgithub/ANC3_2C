@@ -42,17 +42,9 @@ public class Model {
         return pathDirLeft;
     }
 
-//    public StringProperty pathDirLeftProperty() {
-//        return pathDirLeft;
-//    }
-
     public Property<String> getPathDirRight() {
         return pathDirRight;
     }
-//
-//    public StringProperty pathDirRightProperty() {
-//        return pathDirRight;
-//    }
 
     public Fichier getDirLeft() {
         return dirLeft;
@@ -220,19 +212,9 @@ public class Model {
 
     public void setDirRight(Fichier newDirRight) {
         dirRight = newDirRight;
-        try {
-            dirLeft.changeEtat(dirRight);
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
     }
 
     public void setDirLeft(Fichier newDirLeft) {
         dirLeft = newDirLeft;
-        try {
-            dirLeft.changeEtat(dirRight);
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
     }
 }
