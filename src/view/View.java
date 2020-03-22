@@ -1,10 +1,12 @@
 package view;
 
+import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.stage.DirectoryChooser;
@@ -27,12 +29,14 @@ public class View extends VBox {
     private final MyTreeTableView right;
     private MyButtonFilters myButtonFilters;
     private HBox hBoxCenter = new HBox();
+    Image imageButtonChoose = new Image("Images/flat_folder.png");
     private HBox hBoxBot = hBoxBot();
     private HBox hBoxFilter = new HBox();
     private VBox vbox = new VBox();
     private VM vm;
-    private Button buttonFolderL = new Button("buttonChooseL");
-    private Button buttonFolderR = new Button("buttonChooseR");
+    private HBox hBoxButtonFolder = new HBox();
+    private Button buttonFolderL = new Button();
+    private Button buttonFolderR = new Button();
     private DirectoryChooser dirChooser = new DirectoryChooser();
     private Stage primaryStage;
 
@@ -85,13 +89,21 @@ public class View extends VBox {
             }
         });
         hBoxCenter.getChildren().addAll(left, right);
+        buttonFolderL.setGraphic(new ImageView(imageButtonChoose));
+        buttonFolderR.setGraphic(new ImageView(imageButtonChoose));
+
+
+        hBoxButtonFolder.getChildren().addAll(buttonFolderL,buttonFolderR);
+        hBoxButtonFolder.setAlignment(Pos.CENTER);
+        hBoxButtonFolder.setSpacing(30);
         myButtonFilters = new MyButtonFilters(vm, this);
-        hBoxFilter.getChildren().addAll(myButtonFilters, buttonFolderL, buttonFolderR);
+        hBoxFilter.getChildren().addAll(myButtonFilters);
         hBoxFilter.setAlignment(Pos.CENTER);
-        hBoxFilter.setSpacing(30);
+        hBoxFilter.setSpacing(100);
+        hBoxFilter.setPadding(new Insets(15,20, 10,10));
         etatValues(hBoxBot);
 
-        vbox.getChildren().addAll(hBoxFilter, hBoxCenter, hBoxBot);
+        vbox.getChildren().addAll(hBoxFilter, hBoxButtonFolder, hBoxCenter, hBoxBot);
 
 
 
