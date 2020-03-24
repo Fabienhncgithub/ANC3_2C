@@ -1,19 +1,19 @@
 package view;
 
-import javafx.beans.property.SimpleObjectProperty;
 import javafx.geometry.Pos;
 import javafx.scene.control.Label;
 import javafx.scene.control.TreeItem;
 import javafx.scene.control.TreeTableColumn;
 import javafx.scene.control.TreeTableView;
+import javafx.scene.control.cell.TreeItemPropertyValueFactory;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import model.Fichier;
+import model.FichierSimple;
 import vm.VM;
 
 import java.nio.file.Path;
 import java.time.LocalDateTime;
-import javafx.scene.control.cell.TreeItemPropertyValueFactory;
 
 /**
  * @author momo
@@ -42,21 +42,22 @@ public class MyTreeTableView extends VBox {
     }
 
     private void addColumn() {
-        TreeTableColumn<Fichier, Fichier> nameCol = new TreeTableColumn<>("Nom"),
-                typeCol = new TreeTableColumn<>("Type"),
-                sizeCol = new TreeTableColumn<>("Size");
+        TreeTableColumn<Fichier, String> nameCol = new TreeTableColumn<>("Nom");
+        TreeTableColumn<Fichier, Fichier> typeCol = new TreeTableColumn<>("Type");
+        TreeTableColumn<Fichier, FichierSimple> sizeCol = new TreeTableColumn<>("Size");
+
         TreeTableColumn<Fichier, LocalDateTime> dateCol = new TreeTableColumn<>("date modif");
-        nameCol.setCellValueFactory(r -> new SimpleObjectProperty<>(r.getValue().getValue()));
-        typeCol.setCellValueFactory(r -> new SimpleObjectProperty<>(r.getValue().getValue()));
+        nameCol.setCellValueFactory(new TreeItemPropertyValueFactory<>("name"));
+        typeCol.setCellValueFactory(new TreeItemPropertyValueFactory<>("type"));
         dateCol.setCellValueFactory(new TreeItemPropertyValueFactory<>("dateTime"));
-        sizeCol.setCellValueFactory(r -> new SimpleObjectProperty<>(r.getValue().getValue()));
+        sizeCol.setCellValueFactory(new TreeItemPropertyValueFactory<>("size"));
         
         nameCol.setPrefWidth(300);
         
-        nameCol.setCellFactory((param) -> new NomFichierCell());
-        typeCol.setCellFactory((param) -> new TypeFichierCell());
+        nameCol.setCellFactory((param) -> {return new NomFichierCell(); });
+        typeCol.setCellFactory((param) -> {return new TypeFichierCell(); });
         dateCol.setCellFactory((param) -> { return new DateModifFichierCell(); });
-        sizeCol.setCellFactory((param) -> new SizeFichierCell());
+        //sizeCol.setCellFactory((param) -> {return new SizeFichierCell(); });
         treeTableView.getColumns().setAll(nameCol, typeCol, dateCol, sizeCol);
     }
 

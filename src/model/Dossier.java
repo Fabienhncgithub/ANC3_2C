@@ -23,7 +23,7 @@ public class Dossier extends Fichier {
     }
 
     public void setNomEnfant() {
-        List<String> tmpPathsList = contenu.stream().map(f -> f.getNom()).collect(Collectors.toList());
+        List<String> tmpPathsList = contenu.stream().map(f -> f.getName()).collect(Collectors.toList());
         for (int i = 0; i < (tmpPathsList.size()); i++) {
             nomEnfant.put(tmpPathsList.get(i), i);
         }
@@ -71,7 +71,7 @@ public class Dossier extends Fichier {
     protected String formatAffichage(int decalage) throws IOException {
         StringBuilder res = new StringBuilder();
         res.append(super.formatAffichage(decalage))
-                .append(getNom())
+                .append(getName())
                 .append(" - type : ").append("D") //(this.isDirectory() ? "D" : "F")
                 .append(" - date : ").append(getModifDate(this.getPath()).format(DateTimeFormatter.ofPattern("dd/MM/yyyy HH:mm:ss")))
                 .append(" - size : ").append(size())
@@ -89,13 +89,13 @@ public class Dossier extends Fichier {
             setNomEnfant();
             other.setNomEnfant();
             for (Fichier fichier : this.contenu) {
-                if ((!other.nomEnfant.containsKey(fichier.getNom()))) {
+                if ((!other.nomEnfant.containsKey(fichier.getName()))) {
                     if (fichier.isDirectory()) {
                         ((Dossier) fichier).setAllChildrenOrphan(); // TODO ces trois lignes dans un func()
                     }
                     fichier.setEtat(Etat.ORPHAN);
                 } else {
-                    Fichier fCorrespondant = other.contenu.get(other.nomEnfant.get(fichier.getNom()));
+                    Fichier fCorrespondant = other.contenu.get(other.nomEnfant.get(fichier.getName()));
                     if (fCorrespondant.isDirectory() != fichier.isDirectory()) {
                         if (!fichier.isDirectory()) {
                             fichier.setEtat(Etat.ORPHAN);
@@ -143,7 +143,7 @@ public class Dossier extends Fichier {
     }
 
     public void checkEmptyDir(Dossier other) {
-        if (this.getNom().equals(other.getNom())) {
+        if (this.getName().equals(other.getName())) {
             if (this.contenu.size() == 0 && other.contenu.size() == 0) {
                 this.setEtat(Etat.SAME);
                 other.setEtat(Etat.SAME);

@@ -1,12 +1,10 @@
 package view;
 
-import model.Fichier;
-
-public class NomFichierCell extends FichierCell<Fichier> {
+public class NomFichierCell extends FichierCell<String> {
 
     @Override
-    String texte(Fichier elem) {
-        return elem.getNom();
+    String texte(String elem) {
+        return "" + elem;
     }
     
 }

@@ -1,16 +1,13 @@
 package model;
 
+import javafx.beans.property.*;
+import javafx.beans.value.ObservableStringValue;
+import javafx.beans.value.ObservableValue;
 import javafx.scene.control.TreeTableView;
 
 import java.io.IOException;
 import java.nio.file.Path;
 import java.time.LocalDateTime;
-import javafx.beans.property.ObjectProperty;
-import javafx.beans.property.ReadOnlyObjectProperty;
-import javafx.beans.property.SimpleObjectProperty;
-import javafx.beans.property.SimpleStringProperty;
-import javafx.beans.property.StringProperty;
-import javafx.beans.value.ObservableValue;
 
 public abstract class Fichier extends TreeTableView<Fichier> {
 
@@ -25,6 +22,9 @@ public abstract class Fichier extends TreeTableView<Fichier> {
         this.dateTime = new SimpleObjectProperty<>(LocalDateTime.now());
         this.path = path;
     }
+
+
+
 
     public boolean isSelected() {
         return selected;
@@ -68,9 +68,14 @@ public abstract class Fichier extends TreeTableView<Fichier> {
 
     public abstract LocalDateTime getModifDate(Path path) throws IOException;
 
-    public String getNom() {
+    public String getName() {
         return name.get();
     }
+
+    public ObservableStringValue nameProperty(){
+        return name;
+    }
+
 
     public Etat getEtat() {
         return etat;

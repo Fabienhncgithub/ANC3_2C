@@ -1,11 +1,11 @@
 package view;
 
-import model.Fichier;
+import model.FichierSimple;
 
-public class SizeFichierCell extends FichierCell<Fichier> {
+public class SizeFichierCell extends FichierCell<FichierSimple> {
 
     @Override
-    String texte(Fichier elem) {
+    String texte(FichierSimple elem) {
         return ""+elem.size();
     }
     
