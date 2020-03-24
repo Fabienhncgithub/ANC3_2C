@@ -1,15 +1,17 @@
 package model;
 
+import javafx.scene.control.TreeTableView;
+
 import java.io.IOException;
 import java.nio.file.Path;
 import java.time.LocalDateTime;
 
-public abstract class Fichier {
+public abstract class Fichier extends TreeTableView<Fichier> {
 
     private final String nom;
     private LocalDateTime modifDate;
     private Path path;
-    private Etat etat = Etat.UNDEFINED; //Mettre comme valeure par défaut PARTIAL_SAME ca va permettre de faire un test en moin.
+    private Etat etat = Etat.UNDEFINED;
     boolean selected = true;
 
     public Fichier(String nom, Path path) {
@@ -39,7 +41,7 @@ public abstract class Fichier {
         return path; //on peut mettre Paths.get(getNom()).toRealPath ce qui va permettre d'avoir une variable en moin.
     }
 
-    public abstract long taille();
+    public abstract long size();
 
     public abstract void ajoutFichier(Fichier f);
 

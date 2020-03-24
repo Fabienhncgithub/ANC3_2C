@@ -74,7 +74,7 @@ public class MyTreeTableView extends VBox {
         TreeTableColumn<Fichier, Fichier> nameCol = new TreeTableColumn<>("Nom"),
                 typeCol = new TreeTableColumn<>("Type"),
                 dateCol = new TreeTableColumn<>("Date modif"),
-                sizeCol = new TreeTableColumn<>("Taille");
+                sizeCol = new TreeTableColumn<>("Size");
         nameCol.setCellValueFactory(r -> new SimpleObjectProperty<>(r.getValue().getValue()));
         typeCol.setCellValueFactory(r -> new SimpleObjectProperty<>(r.getValue().getValue()));
         dateCol.setCellValueFactory(r -> new SimpleObjectProperty<>(r.getValue().getValue()));
@@ -83,7 +83,7 @@ public class MyTreeTableView extends VBox {
         nameCol.setCellFactory((param) -> new NomFichierCell());
         typeCol.setCellFactory((param) -> new TypeFichierCell());
         dateCol.setCellFactory((param) -> new DateModifFichierCell());
-        sizeCol.setCellFactory((param) -> new TailleFichierCell());
+        sizeCol.setCellFactory((param) -> new SizeFichierCell());
         treeTableView.getColumns().setAll(nameCol, typeCol, dateCol, sizeCol);
     }
 

@@ -59,10 +59,10 @@ public class Dossier extends Fichier {
     }
 
     @Override
-    public long taille() {
+    public long size() {
         long result = 0;
         for (Fichier f : contenu) {
-            result += f.taille();
+            result += f.size();
         }
         return result;
     }
@@ -74,7 +74,7 @@ public class Dossier extends Fichier {
                 .append(getNom())
                 .append(" - type : ").append("D") //(this.isDirectory() ? "D" : "F")
                 .append(" - date : ").append(getModifDate(this.getPath()).format(DateTimeFormatter.ofPattern("dd/MM/yyyy HH:mm:ss")))
-                .append(" - taille : ").append(taille())
+                .append(" - size : ").append(size())
                 .append(" - etat : ").append(getEtat())
                 .append(" - contient : ").append("\n");
         for (Fichier f : contenu)

@@ -18,7 +18,11 @@ public class CopyBuilder {
             }
         } else {
             BasicFileAttributes attrs = Files.readAttributes(path, BasicFileAttributes.class);
-            result = new FichierSimple(path.getFileName().toString(), attrs.size(), attrs.lastModifiedTime(), path);
+            if(path.getFileName().toString().endsWith(".txt")) {
+                result = new FichierText(path.getFileName().toString(), attrs.size(), attrs.lastModifiedTime(), path);
+            }else{
+                result = new FichierSimple(path.getFileName().toString(), attrs.size(), attrs.lastModifiedTime(), path);
+            }
         }
         return result;
     }

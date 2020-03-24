@@ -10,11 +10,11 @@ import java.time.format.DateTimeFormatter;
 
 public class FichierSimple extends Fichier {
 
-    private long taille;
+    private long size;
 
-    public FichierSimple(String nom, long taille, FileTime fileTime, Path path) {
+    public FichierSimple(String nom, long size, FileTime fileTime, Path path) {
         super(nom, path);
-        this.taille = taille;
+        this.size = size;
         setModifDate(fileTime.toInstant().atZone(ZoneId.systemDefault()).toLocalDateTime());
     }
 
@@ -29,8 +29,12 @@ public class FichierSimple extends Fichier {
     }
 
     @Override
-    public long taille() {
-        return taille;
+    public long size() {
+        return size;
+    }
+
+    public void setSize(Long size) {
+        this.size = size;
     }
 
     public void changeEtat(Fichier fs) throws IOException {
@@ -60,7 +64,7 @@ public class FichierSimple extends Fichier {
                 .append(" ").append(getNom())
                 .append(" - type : ").append("F") //changer cette ligne par (this.isDirectory() ? "D" : "F")
                 .append(" - date : ").append(getModifDate(getPath()).format(DateTimeFormatter.ofPattern("dd/MM/yyyy HH:mm:ss")))
-                .append(" - taille : ").append(taille())
+                .append(" - size : ").append(size())
                 .append(" - etat : ").append(getEtat())
                 .append("\n");
         return res.toString();
