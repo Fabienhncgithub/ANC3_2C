@@ -5,17 +5,24 @@ import javafx.scene.control.TreeTableView;
 import java.io.IOException;
 import java.nio.file.Path;
 import java.time.LocalDateTime;
+import javafx.beans.property.ObjectProperty;
+import javafx.beans.property.ReadOnlyObjectProperty;
+import javafx.beans.property.SimpleObjectProperty;
+import javafx.beans.property.SimpleStringProperty;
+import javafx.beans.property.StringProperty;
+import javafx.beans.value.ObservableValue;
 
 public abstract class Fichier extends TreeTableView<Fichier> {
 
-    private final String nom;
-    private LocalDateTime modifDate;
+    private final StringProperty name;
+    private ObjectProperty<LocalDateTime> dateTime;
     private Path path;
     private Etat etat = Etat.UNDEFINED;
     boolean selected = true;
 
     public Fichier(String nom, Path path) {
-        this.nom = nom;
+        this.name = new SimpleStringProperty(nom);
+        this.dateTime = new SimpleObjectProperty<>(LocalDateTime.now());
         this.path = path;
     }
 
@@ -31,14 +38,28 @@ public abstract class Fichier extends TreeTableView<Fichier> {
 
     public abstract Iterable<Fichier> getContenu();
 
-    public void setModifDate(LocalDateTime modifDate) {
-        this.modifDate = modifDate;
+    public void setDateTime(LocalDateTime modifDate) {
+        this.dateTime.setValue(modifDate);
     }
+    
+    public LocalDateTime getDateTime() {
+        return dateTime.getValue();
+    }
+    
+    
+    public ReadOnlyObjectProperty<LocalDateTime> dateTimeProperty() {
+        return dateTime;
+    }
+    
+    final void bindDateTimeTo(ObservableValue<LocalDateTime> value) {
+        dateTime.bind(value);
+    }
+    
 
     public abstract boolean isDirectory();
 
     public Path getPath() {
-        return path; //on peut mettre Paths.get(getNom()).toRealPath ce qui va permettre d'avoir une variable en moin.
+        return path; 
     }
 
     public abstract long size();
@@ -48,7 +69,7 @@ public abstract class Fichier extends TreeTableView<Fichier> {
     public abstract LocalDateTime getModifDate(Path path) throws IOException;
 
     public String getNom() {
-        return nom;
+        return name.get();
     }
 
     public Etat getEtat() {

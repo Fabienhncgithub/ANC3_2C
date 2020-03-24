@@ -15,7 +15,7 @@ public class FichierSimple extends Fichier {
     public FichierSimple(String nom, long size, FileTime fileTime, Path path) {
         super(nom, path);
         this.size = size;
-        setModifDate(fileTime.toInstant().atZone(ZoneId.systemDefault()).toLocalDateTime());
+        setDateTime(fileTime.toInstant().atZone(ZoneId.systemDefault()).toLocalDateTime());
     }
 
     @Override
@@ -63,7 +63,7 @@ public class FichierSimple extends Fichier {
         res.append(super.formatAffichage(decalage))
                 .append(" ").append(getNom())
                 .append(" - type : ").append("F") //changer cette ligne par (this.isDirectory() ? "D" : "F")
-                .append(" - date : ").append(getModifDate(getPath()).format(DateTimeFormatter.ofPattern("dd/MM/yyyy HH:mm:ss")))
+                .append(" - date : ").append(getDateTime())
                 .append(" - size : ").append(size())
                 .append(" - etat : ").append(getEtat())
                 .append("\n");

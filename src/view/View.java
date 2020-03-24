@@ -29,7 +29,7 @@ public class View extends VBox {
     private final MyTreeTableView right;
     private MyButtonFilters myButtonFilters;
     private HBox hBoxCenter = new HBox();
-    Image imageButtonChoose = new Image("Images/flat_folder.png");
+    private Image imageButtonChoose = new Image("Images/flat_folder.png");
     private HBox hBoxBot = hBoxBot();
     private HBox hBoxFilter = new HBox();
     private VBox vbox = new VBox();

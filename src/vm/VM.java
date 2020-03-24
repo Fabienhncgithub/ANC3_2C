@@ -23,19 +23,8 @@ public class VM {
 
     public VM(Model model) {
         this.model = model;
-//        labelPathLeft.addListener((obj, old, act) -> {
-//            System.out.println("test left choose");
-//            this.model = new Model(act, model.getDirRight().getPath().toString());
-//            obsTreeItemLeft.bind(model.getDirLeft());
-//        });
-//        labelPathRight.addListener((obj, old, act) -> {
-//            this.model = new Model(act, model.getDirLeft().getPath().toString());
-//            obsTreeItemRight.setValue(makeTreeRoot(model.getDirRight()));
-//        });
         labelPathLeft.setValue(model.getDirLeft().getPath().toString());
         labelPathRight.setValue(model.getDirRight().getPath().toString());
-//        labelPathLeft.bind(model.getPathDirLeft());
-//        labelPathRight.bind(model.getPathDirRight());
     }
 
     public String getLabelPathLeft() {
