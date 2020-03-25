@@ -18,7 +18,7 @@ public abstract class FichierCell<T> extends TreeTableCell<Fichier, T> {
         super.updateItem(elem, isEmpty);
         
         if (isEmpty || elem == null) {
-            setText("");
+            setText("null");
             return;
         }
 

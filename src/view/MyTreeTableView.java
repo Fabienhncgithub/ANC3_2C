@@ -9,9 +9,7 @@ import javafx.scene.control.cell.TreeItemPropertyValueFactory;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import model.Fichier;
-import model.FichierSimple;
 import vm.VM;
-
 import java.nio.file.Path;
 import java.time.LocalDateTime;
 
@@ -44,20 +42,28 @@ public class MyTreeTableView extends VBox {
     private void addColumn() {
         TreeTableColumn<Fichier, String> nameCol = new TreeTableColumn<>("Nom");
         TreeTableColumn<Fichier, Fichier> typeCol = new TreeTableColumn<>("Type");
-        TreeTableColumn<Fichier, FichierSimple> sizeCol = new TreeTableColumn<>("Size");
+        TreeTableColumn<Fichier, Long> sizeCol = new TreeTableColumn<>("Size");
 
         TreeTableColumn<Fichier, LocalDateTime> dateCol = new TreeTableColumn<>("date modif");
         nameCol.setCellValueFactory(new TreeItemPropertyValueFactory<>("name"));
         typeCol.setCellValueFactory(new TreeItemPropertyValueFactory<>("type"));
         dateCol.setCellValueFactory(new TreeItemPropertyValueFactory<>("dateTime"));
         sizeCol.setCellValueFactory(new TreeItemPropertyValueFactory<>("size"));
-        
+
         nameCol.setPrefWidth(300);
-        
-        nameCol.setCellFactory((param) -> {return new NomFichierCell(); });
-        typeCol.setCellFactory((param) -> {return new TypeFichierCell(); });
-        dateCol.setCellFactory((param) -> { return new DateModifFichierCell(); });
-        //sizeCol.setCellFactory((param) -> {return new SizeFichierCell(); });
+
+        nameCol.setCellFactory((param) -> {
+            return new NomFichierCell();
+        });
+        typeCol.setCellFactory((param) -> {
+            return new TypeFichierCell();
+        });
+        dateCol.setCellFactory((param) -> {
+            return new DateModifFichierCell();
+        });
+        sizeCol.setCellFactory((param) -> {
+            return new SizeFichierCell();
+        });
         treeTableView.getColumns().setAll(nameCol, typeCol, dateCol, sizeCol);
     }
 
@@ -65,7 +71,7 @@ public class MyTreeTableView extends VBox {
         return treeTableView;
     }
 
-    public void setRoot(TreeItem<Fichier> f){
+    public void setRoot(TreeItem<Fichier> f) {
         treeTableView.setRoot(f);
     }
 

@@ -23,9 +23,6 @@ public abstract class Fichier extends TreeTableView<Fichier> {
         this.path = path;
     }
 
-
-
-
     public boolean isSelected() {
         return selected;
     }
@@ -33,49 +30,34 @@ public abstract class Fichier extends TreeTableView<Fichier> {
     public void setSelected(boolean selected) {
         this.selected = selected;
     }
-    
-    
-
-    public abstract Iterable<Fichier> getContenu();
 
     public void setDateTime(LocalDateTime modifDate) {
         this.dateTime.setValue(modifDate);
     }
-    
+
     public LocalDateTime getDateTime() {
         return dateTime.getValue();
     }
-    
-    
+
     public ReadOnlyObjectProperty<LocalDateTime> dateTimeProperty() {
         return dateTime;
     }
-    
+
     final void bindDateTimeTo(ObservableValue<LocalDateTime> value) {
         dateTime.bind(value);
     }
-    
-
-    public abstract boolean isDirectory();
 
     public Path getPath() {
-        return path; 
+        return path;
     }
-
-    public abstract long size();
-
-    public abstract void ajoutFichier(Fichier f);
-
-    public abstract LocalDateTime getModifDate(Path path) throws IOException;
 
     public String getName() {
         return name.get();
     }
 
-    public ObservableStringValue nameProperty(){
+    public ObservableStringValue nameProperty() {
         return name;
     }
-
 
     public Etat getEtat() {
         return etat;
@@ -98,8 +80,6 @@ public abstract class Fichier extends TreeTableView<Fichier> {
         return path.getName(nameCount - 2).toString();
     }
 
-    public abstract void changeEtat(Fichier fs) throws IOException;
-
     @Override
     public String toString() {
         try {
@@ -109,4 +89,16 @@ public abstract class Fichier extends TreeTableView<Fichier> {
         }
         return "";
     }
+
+    public abstract void changeEtat(Fichier fs) throws IOException;
+
+    public abstract Iterable<Fichier> getContenu();
+
+    public abstract long size();
+
+    public abstract void ajoutFichier(Fichier f);
+
+    public abstract LocalDateTime getModifDate(Path path) throws IOException;
+
+    public abstract boolean isDirectory();
 }

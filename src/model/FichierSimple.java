@@ -36,11 +36,6 @@ public class FichierSimple extends Fichier {
         return size.get();
     }
 
-
-    public long getSize() {
-        return size.get();
-    }
-
     public void setSize(long size) {
         this.size.set(size);
     }
@@ -51,9 +46,9 @@ public class FichierSimple extends Fichier {
 
     final  void bindSizeTo(ObservableValue<Long>value){
         size.bind(value);
-
     }
 
+    @Override
     public void changeEtat(Fichier fs) throws IOException {
         if (this.getLastDirName(getPath()).equals(fs.getLastDirName(fs.getPath()))) { // TODO check getLastDirName()
             if (this.getName().equals(fs.getName())) {
