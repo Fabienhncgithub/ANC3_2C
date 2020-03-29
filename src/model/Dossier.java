@@ -21,8 +21,8 @@ public class Dossier extends Fichier {
     private Map<String, Integer> nomEnfant = new TreeMap<>();
     private List<Fichier> contenu = new ArrayList<>();
 
-    public Dossier(String nom, Path path) {
-        super(nom, path);
+    public Dossier(String nom, Path path, Long size) {
+        super(nom, path, size);
         bindDateTimeTo(dateTimeBinding);
         
     }

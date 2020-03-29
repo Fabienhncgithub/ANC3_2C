@@ -1,9 +1,5 @@
 package model;
 
-import javafx.beans.property.LongProperty;
-import javafx.beans.property.SimpleLongProperty;
-import javafx.beans.value.ObservableValue;
-
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
@@ -13,11 +9,8 @@ import java.time.ZoneId;
 
 public class FichierSimple extends Fichier {
 
-    private LongProperty size;
-
     public FichierSimple(String nom, long size, FileTime fileTime, Path path) {
-        super(nom, path);
-        this.size = new SimpleLongProperty(size);
+        super(nom, path, size);
         setDateTime(fileTime.toInstant().atZone(ZoneId.systemDefault()).toLocalDateTime());
     }
 
@@ -40,10 +33,6 @@ public class FichierSimple extends Fichier {
     public void addFile(Fichier f) {
         throw new UnsupportedOperationException("Not supported operation.");
     }
-
-//    final  void bindSizeTo(ObservableValue<Long>value){
-//        size.bind(value);
-//    }
 
     @Override
     public void changeEtat(Fichier fs) throws IOException {

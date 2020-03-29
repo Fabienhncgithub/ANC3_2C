@@ -8,16 +8,17 @@ import java.nio.file.attribute.BasicFileAttributes;
 
 public class CopyBuilder {
     public static Fichier build(Path path) throws IOException {
+        BasicFileAttributes attrs = Files.readAttributes(path, BasicFileAttributes.class);
         Fichier result;
         if (Files.isDirectory(path)) {
-            result = new Dossier(path.getFileName().toString(), path);
+            result = new Dossier(path.getFileName().toString(), path, attrs.size());
             try (DirectoryStream<Path> dir = Files.newDirectoryStream(path)) {
                 for (Path p : dir) {
                     result.ajoutFichier(build(p));
                 }
             }
         } else {
-            BasicFileAttributes attrs = Files.readAttributes(path, BasicFileAttributes.class);
+            //BasicFileAttributes attrs = Files.readAttributes(path, BasicFileAttributes.class);
             if(path.getFileName().toString().endsWith(".txt")) {
                 result = new FichierText(path.getFileName().toString(), attrs.size(), attrs.lastModifiedTime(), path);
             }else{

@@ -17,18 +17,11 @@ public abstract class FichierCell<T> extends TreeTableCell<Fichier, T> {
     public void updateItem(T elem, boolean isEmpty) {
         super.updateItem(elem, isEmpty);
         
-//        if (isEmpty || elem == null) {
-//            setText("null");
-//            return;
-//        }
-
-        if(isEmpty) {
-            setText("Vide");
-            return ;
-        } else if(elem == null) {
-            setText("Null");
-            return ;
+        if (isEmpty || elem == null) {
+            setText("null");
+            return;
         }
+
 
         setText(texte(elem));
         

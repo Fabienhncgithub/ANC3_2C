@@ -7,21 +7,22 @@ import javafx.scene.control.TreeItem;
 import java.io.IOException;
 import java.nio.file.Paths;
 import java.time.LocalDateTime;
+import javafx.beans.property.SimpleStringProperty;
 
 public class Model {
 
-    private static final String INIT_DATA_L = "TestBC/RootBC_Left";
-    private static final String INIT_DATA_R = "TestBC/RootBC_Right";
+//    private static final String INIT_DATA_L = "TestBC/RootBC_Left";
+//    private static final String INIT_DATA_R = "TestBC/RootBC_Right";
     private static int seqNb = 1;
-    private StringProperty pathDirLeft;
-    private StringProperty pathDirRight;
+    private StringProperty pathDirLeft = new SimpleStringProperty("TestBC/RootBC_Left");
+    private StringProperty pathDirRight = new SimpleStringProperty("TestBC/RootBC_Right");
     private Fichier dirLeft;
     private Fichier dirRight;
 
     public Model(){
         try {
-            dirLeft = new CopyBuilder().build(Paths.get(INIT_DATA_L));
-            dirRight = new CopyBuilder().build(Paths.get(INIT_DATA_R));
+            dirLeft = new CopyBuilder().build(Paths.get(pathDirLeft.getValue()));
+            dirRight = new CopyBuilder().build(Paths.get(pathDirRight.getValue()));
             dirLeft.changeEtat(dirRight);
         } catch (IOException e) {
             e.printStackTrace();

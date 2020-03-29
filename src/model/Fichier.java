@@ -12,24 +12,25 @@ import java.time.LocalDateTime;
 public abstract class Fichier extends TreeItem<Fichier> {
 
     private final StringProperty name;
-    private final LongProperty size;
+    private final LongProperty size = new SimpleLongProperty(0L);
     boolean selected = true;
     private ObjectProperty<LocalDateTime> dateTime;
     private Path path;
     private Etat etat = Etat.UNDEFINED;
 
-    public Fichier(String nom, Path path) {
+    public Fichier(String nom, Path path, Long size) {
         this.name = new SimpleStringProperty(nom);
         this.dateTime = new SimpleObjectProperty<>(LocalDateTime.now());
         this.path = path;
-        this.size = new SimpleLongProperty(0L);
+        //this.size = new SimpleLongProperty(0L);
+        this.size.set(size);
         setExpanded(true);
         setValue(this);
     }
 
     Fichier(String name) {
         this.name = new SimpleStringProperty(name);
-        size = new SimpleLongProperty(0L);
+        //size = new SimpleLongProperty(0L);
         dateTime = new SimpleObjectProperty<>(LocalDateTime.now());
         setExpanded(true);
         setValue(this); // L'info du TreeItem se trouve dans lui-même
