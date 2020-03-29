@@ -1,5 +1,8 @@
 package model;
 
+import javafx.beans.Observable;
+import javafx.beans.binding.ObjectBinding;
+
 import java.io.IOException;
 import java.nio.file.DirectoryStream;
 import java.nio.file.Files;
@@ -8,18 +11,25 @@ import java.nio.file.attribute.BasicFileAttributes;
 import java.time.LocalDateTime;
 import java.time.ZoneId;
 import java.time.format.DateTimeFormatter;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Map;
-import java.util.TreeMap;
+import java.util.*;
 import java.util.stream.Collectors;
 
 public class Dossier extends Fichier {
     private Map<String, Integer> nomEnfant = new TreeMap<>();
     private List<Fichier> contenu = new ArrayList<>();
+    private final SizeBinding sizeBinding = new SizeBinding();
+    private final DateTimeBinding dateTimeBinding = new DateTimeBinding();
+    List<String> listNames = null;
 
     public Dossier(String nom, Path path) {
         super(nom, path);
+    }
+
+    public List<String> getFileNamesContenu() {
+        for (Fichier f : contenu) {
+          listNames.add(f.getName());
+        }
+        return Collections.unmodifiableList(listNames);
     }
 
     public void setNomEnfant() {
@@ -66,6 +76,21 @@ public class Dossier extends Fichier {
         }
         return result;
     }
+
+    @Override
+    public void addFile(Fichier file) {
+        // Taille et date dépendent des tailles et dates des enfants
+        addToSizeBinding(file.sizeProperty());
+        addToDateTimeBinding(file.dateTimeProperty());
+        _addFile(file);
+    }
+
+    // Ajoute une Observable dont dépend le Binding et provoque un recalcul
+    private void addToSizeBinding(javafx.beans.Observable obs) {
+        sizeBinding.addBinding(obs);
+        sizeBinding.invalidate();
+    }
+
 
     @Override
     protected String formatAffichage(int decalage) throws IOException {
@@ -234,6 +259,44 @@ public class Dossier extends Fichier {
             }
         }
         return result;
+    }
+
+    // Ajoute une Observable dont dépend le Binding et provoque un recalcul
+    private void addToDateTimeBinding(Observable obs) {
+        dateTimeBinding.addBinding(obs);
+        dateTimeBinding.invalidate();
+    }
+
+    // Un Binding pour le recalcul de la taille
+    private class SizeBinding extends ObjectBinding<Long> {
+
+        @Override // La taille est la sommme des taille des enfants
+        protected Long computeValue() {
+            return getChildren().stream().map(f -> f.getValue().getSize()).reduce(0L, (s1, s2) -> s1 + s2);
+        }
+
+        // Chaque Observable modifiée provoque un recalcul
+        // Ajoute une Observable dont dépend le Binding
+        void addBinding(Observable obs) {
+            super.bind(obs);
+        }
+
+    }
+
+    // Un Binding pour le recalcul de la date
+    private class DateTimeBinding extends ObjectBinding<LocalDateTime> {
+
+        @Override // La date est la plus récente des dates des enfants ou la date actuelle
+        protected LocalDateTime computeValue() {
+            return getChildren().isEmpty() ? LocalDateTime.now() : getChildren().stream().map(f -> f.getValue().getDateTime()).max(LocalDateTime::compareTo).get();
+        }
+
+        // Chaque Observable modifiée provoque un recalcul
+        // Ajoute une Observable dont dépend le Binding
+        void addBinding(Observable obs) {
+            super.bind(obs);
+        }
+
     }
 }
 

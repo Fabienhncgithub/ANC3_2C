@@ -28,4 +28,5 @@ public class FichierText extends FichierSimple {
     public ObservableIntegerValue textLengthProperty() {
         return text.length();
     }
+
 }

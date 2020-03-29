@@ -3,16 +3,17 @@ package model;
 import javafx.beans.property.*;
 import javafx.beans.value.ObservableStringValue;
 import javafx.beans.value.ObservableValue;
-import javafx.scene.control.TreeTableView;
+import javafx.scene.control.TreeItem;
 
 import java.io.IOException;
 import java.nio.file.Path;
 import java.time.LocalDateTime;
 
-public abstract class Fichier extends TreeTableView<Fichier> {
+public abstract class Fichier extends TreeItem<Fichier> {
 
     private final StringProperty name;
     private ObjectProperty<LocalDateTime> dateTime;
+    private final LongProperty size;
     private Path path;
     private Etat etat = Etat.UNDEFINED;
     boolean selected = true;
@@ -21,6 +22,22 @@ public abstract class Fichier extends TreeTableView<Fichier> {
         this.name = new SimpleStringProperty(nom);
         this.dateTime = new SimpleObjectProperty<>(LocalDateTime.now());
         this.path = path;
+        this.size = new SimpleLongProperty(0L);
+        setExpanded(true);
+        setValue(this);
+    }
+
+    Fichier(String name) {
+        this.name = new SimpleStringProperty(name);
+        size = new SimpleLongProperty(0L);
+        dateTime = new SimpleObjectProperty<>(LocalDateTime.now());
+        setExpanded(true);
+        setValue(this); // L'info du TreeItem se trouve dans lui-même
+    }
+
+    Fichier(String name, long size) {
+        this(name);
+        this.size.set(size);
     }
 
     public boolean isSelected() {
@@ -90,15 +107,34 @@ public abstract class Fichier extends TreeTableView<Fichier> {
         return "";
     }
 
+    final void _addFile(Fichier f) {
+        // Utilise super car la version redéfinie renvoie un immuable
+        super.getChildren().add(f);
+    }
+
     public abstract void changeEtat(Fichier fs) throws IOException;
 
     public abstract Iterable<Fichier> getContenu();
 
     public abstract long size();
 
+    public ReadOnlyLongProperty sizeProperty() {
+        return size;
+    }
+
+    public abstract void addFile(Fichier file);
+
     public abstract void ajoutFichier(Fichier f);
 
     public abstract LocalDateTime getModifDate(Path path) throws IOException;
 
     public abstract boolean isDirectory();
+
+    public long getSize(){
+        return size.get();
+    }
+
+    void setSize(long size) {
+        this.size.set(size);
+    }
 }
