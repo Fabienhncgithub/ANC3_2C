@@ -45,7 +45,8 @@ public class View extends VBox {
 
     public View(Stage primaryStage, VM vm) {
         setBindingAndListeners(vm);
-        configColumns();
+        configColumns(tTVLeft);
+        configColumns(tTVRight);
         setupScene(primaryStage);
     }
 
@@ -65,7 +66,7 @@ public class View extends VBox {
 //        });
     }
 
-    private void configColumns() {
+    private void configColumns(TreeTableView tTV) {
         TreeTableColumn<Fichier, String> nameCol = new TreeTableColumn<>("Nom");
         TreeTableColumn<Fichier, Fichier> typeCol = new TreeTableColumn<>("Type");
         TreeTableColumn<Fichier, Long> sizeCol = new TreeTableColumn<>("Size");
@@ -90,8 +91,7 @@ public class View extends VBox {
         sizeCol.setCellFactory((param) -> {
             return new SizeFichierCell();
         });
-        tTVLeft.getColumns().setAll(nameCol, typeCol, dateCol, sizeCol);
-        tTVRight.getColumns().setAll(nameCol, typeCol, dateCol, sizeCol);
+        tTV.getColumns().setAll(nameCol, typeCol, dateCol, sizeCol);
     }
 
     private void setupScene(Stage primaryStage) {
