@@ -43,84 +43,8 @@ public class View extends VBox {
     private TreeTableView<Fichier> tTVRight = new TreeTableView<>();
 
 
-//    public View(Stage primaryStage, VM vm) {
-//        left = new MyTreeTableView(vm.getLabelPathLeft(), vm.getTiLeft(), 'L', vm);
-//        right = new MyTreeTableView(vm.getLabelPathRight(), vm.getTiRight(), 'R', vm);
-//        left.getTreeTableView().getRoot().parentProperty();
-//        right.getTreeTableView().getRoot().parentProperty();
-//        buttonFolderL.setOnAction(event -> {
-//            File dir = dirChooser.showDialog(primaryStage);
-//            if (dir != null) {
-//                Fichier newFichierL = null;
-//                try {
-//                    newFichierL = new CopyBuilder().build(Paths.get(dir.getAbsolutePath()));
-//                    left.setLabel(newFichierL.getPath());
-//                } catch (IOException e) {
-//                    e.printStackTrace();
-//                }
-//                vm.setNewDirLeft(newFichierL);
-//                vm.setNewDirRight(right.getTreeTableView().getRoot().getValue());
-//                try {
-//                    vm.getTiRight().getValue().changeEtat(vm.getTiLeft().getValue());
-//                } catch (IOException e) {
-//                    e.printStackTrace();
-//                }
-//                left.setRoot(vm.getTiLeft());
-//                right.setRoot(vm.getTiRight());
-//            }
-//        });
-//
-//        buttonFolderR.setOnAction(event -> {
-//            File dir = dirChooser.showDialog(primaryStage);
-//            if (dir != null) {
-//                Fichier newFichierR = null;
-//                try {
-//                    newFichierR = new CopyBuilder().build(Paths.get(dir.getAbsolutePath()));
-//                    right.setLabel(newFichierR.getPath());
-//                } catch (IOException e) {
-//                    e.printStackTrace();
-//                }
-//                vm.setNewDirRight(newFichierR);
-//                vm.setNewDirLeft(left.getTreeTableView().getRoot().getValue());
-//                try {
-//                    vm.getTiRight().getValue().changeEtat(vm.getTiLeft().getValue());
-//                } catch (IOException e) {
-//                    e.printStackTrace();
-//                }
-//                left.setRoot(vm.getTiLeft());
-//                right.setRoot(vm.getTiRight());
-//            }
-//        });
-//        hBoxCenter.getChildren().addAll(tTVLeft, tTVRight);
-//        buttonFolderL.setGraphic(new ImageView(imageButtonChoose));
-//        buttonFolderR.setGraphic(new ImageView(imageButtonChoose));
-//        setBindingAndListeners(vm);
-//
-//        hBoxButtonFolder.getChildren().addAll(buttonFolderL,buttonFolderR);
-//        hBoxButtonFolder.setAlignment(Pos.CENTER);
-//        hBoxButtonFolder.setSpacing(30);
-//        myButtonFilters = new MyButtonFilters(vm, this);
-//        hBoxFilter.getChildren().addAll(myButtonFilters);
-//        hBoxFilter.setAlignment(Pos.CENTER);
-//        hBoxFilter.setSpacing(100);
-//        hBoxFilter.setPadding(new Insets(15,20, 10,10));
-//        etatValues(hBoxBot);
-//
-//        vbox.getChildren().addAll(hBoxFilter, hBoxButtonFolder, hBoxCenter, hBoxBot);
-//
-//
-//
-//        Scene scene = new Scene(vbox, 900, 500);
-//        scene.getStylesheets().add("model/cssView.css");
-//        primaryStage.setTitle("Beyond Compare");
-//        primaryStage.getIcons().add(new Image("Images/syncFilesIcon.png"));
-//        primaryStage.setScene(scene);
-//        primaryStage.show();
-//    }
-
     public View(Stage primaryStage, VM vm) {
         setBindingAndListeners(vm);
-        System.out.println(tTVLeft.getRoot());
         configColumns();
         setupScene(primaryStage);
     }
@@ -128,20 +52,17 @@ public class View extends VBox {
     private void setBindingAndListeners(VM vm) {
         tTVLeft.rootProperty().bind(vm.rootPropertyLeft());
         tTVRight.rootProperty().bind(vm.rootPropertyRight());
-//        vm.selectedTreeProperty().bind(tTVLeft.getSelectionModel().selectedItemProperty());
-//        vm.selectedTreeProperty().bind(tTVRight.getSelectionModel().selectedItemProperty());
-        //foldersOnly.selectedProperty().bindBidirectional(vm.foldersOnlyProperty());
 
-        tTVLeft.setOnMousePressed(e -> {
-            if (e.getClickCount() == 2) {
-                vm.fireAction();
-            }
-        });
-        tTVRight.setOnMousePressed(e -> {
-            if (e.getClickCount() == 2) {
-                vm.fireAction();
-            }
-        });
+//        tTVLeft.setOnMousePressed(e -> {
+//            if (e.getClickCount() == 2) {
+//                vm.fireAction();
+//            }
+//        });
+//        tTVRight.setOnMousePressed(e -> {
+//            if (e.getClickCount() == 2) {
+//                vm.fireAction();
+//            }
+//        });
     }
 
     private void configColumns() {

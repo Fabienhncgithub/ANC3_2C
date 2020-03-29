@@ -41,27 +41,9 @@ public class FichierSimple extends Fichier {
         throw new UnsupportedOperationException("Not supported operation.");
     }
 
-    @Override
-    public long getSize() {
-        return size.get();
-    }
-
-    public void setSize(long size) {
-        this.size.set(size);
-    }
-
-    @Override
-    public long size() {
-        return size.get();
-    }
-
-    public LongProperty sizeProperty() {
-        return size;
-    }
-
-    final  void bindSizeTo(ObservableValue<Long>value){
-        size.bind(value);
-    }
+//    final  void bindSizeTo(ObservableValue<Long>value){
+//        size.bind(value);
+//    }
 
     @Override
     public void changeEtat(Fichier fs) throws IOException {

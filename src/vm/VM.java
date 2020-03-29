@@ -32,8 +32,7 @@ public class VM {
 
     public VM(Model model) {
         this.model = model;
-//        labelPathLeft.setValue(model.getDirLeft().getPath().toString());
-//        labelPathRight.setValue(model.getDirRight().getPath().toString());
+
         editor = new EditVM(this);
         setRoot();
     }
@@ -64,7 +63,6 @@ public class VM {
     }
 
 //start of code to show file txt
-
     public TreeItem<Fichier> getTiRight() {
         return makeTreeRoot(model.getDirRight());
     }
@@ -88,7 +86,6 @@ public class VM {
     }
 
 // end of this part
-
     public EditVM getEditVM() {
         return editor;
     }
@@ -105,43 +102,6 @@ public class VM {
         return selectedTree;
     }
 
-//
-//    public void foldersOnlyAction(MyTreeTableView left, MyTreeTableView right) {
-//        model.foldersOnlySet(left, right);
-//    }
-//
-//    public void unSelectedFoldersOnlyAction() {
-//        model.unSelectedFoldersOnlySet();
-//    }
-//
-//    public void sameAction() {
-//        model.sameSet();
-//    }
-//
-//    public void unSelectedSameAction() {
-//        model.unSelectedSameSet();
-//    }
-//
-//    public void orphanAction() {
-//        model.orphanSet();
-//    }
-//
-//     public void unSelectedOrphanAction() {
-//        model.unSelectedOrphanSet();
-//    }
-//
-//    public void newerRightAction() {
-//        model.newerRightSet();
-//    }
-//
-//    public void newerLeftAction() {
-//        model.newerLeftSet();
-//    }
-//
-//    public void allAction() {
-//        model.showAll();
-//    }
-
     public void setNewDirLeft(Fichier newDirLeft) {
         model.setDirLeft(newDirLeft);
     }
@@ -151,12 +111,12 @@ public class VM {
     }
 
     private void setRoot() {
-        obsTreeItemLeft.setValue(model.getRootLeft());
-        obsTreeItemRight.setValue(model.getRootRight());
+        obsTreeItemLeft.setValue(makeTreeRoot(model.getRootLeft().getValue()));
+        obsTreeItemRight.setValue(makeTreeRoot(model.getRootRight().getValue()));
     }
 
     public void fireAction() {
-            model.modif(selectedTree.getValue().getValue());
-            setRoot();
+        model.modif(selectedTree.getValue().getValue());
+        setRoot();
     }
 }

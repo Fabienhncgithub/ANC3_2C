@@ -23,6 +23,8 @@ public class Dossier extends Fichier {
 
     public Dossier(String nom, Path path) {
         super(nom, path);
+        bindDateTimeTo(dateTimeBinding);
+        
     }
 
     public List<String> getFileNamesContenu() {
@@ -57,11 +59,6 @@ public class Dossier extends Fichier {
     public List<Fichier> getContenu() {
         return contenu;
     }
-
-//    @Override
-//    public char type() { //supprimer cette methode et gerer le char dans l'affichage.
-//        return 'D'; // D pour Dossier
-//    }
 
     @Override
     public boolean isDirectory() {

@@ -40,6 +40,26 @@ public abstract class Fichier extends TreeItem<Fichier> {
         this.size.set(size);
     }
 
+    final void bindSizeTo(ObservableValue<Long> value) {
+        size.bind(value);
+    }
+
+    public long getSize() {
+        return size.get();
+    }
+
+    public void setSize(long size) {
+        this.size.set(size);
+    }
+
+    public long size() {
+        return size.get();
+    }
+
+    public LongProperty sizeProperty() {
+        return size;
+    }
+
     public boolean isSelected() {
         return selected;
     }
@@ -116,11 +136,11 @@ public abstract class Fichier extends TreeItem<Fichier> {
 
     public abstract Iterable<Fichier> getContenu();
 
-    public abstract long size();
+    //public abstract long size();
 
-    public ReadOnlyLongProperty sizeProperty() {
-        return size;
-    }
+//    public ReadOnlyLongProperty sizeProperty() {
+//        return size;
+//    }
 
     public abstract void addFile(Fichier file);
 
@@ -130,11 +150,11 @@ public abstract class Fichier extends TreeItem<Fichier> {
 
     public abstract boolean isDirectory();
 
-    public long getSize(){
-        return size.get();
-    }
-
-    void setSize(long size) {
-        this.size.set(size);
-    }
+//    public long getSize() {
+//        return size.get();
+//    }
+//
+//    void setSize(long size) {
+//        this.size.set(size);
+//    }
 }
