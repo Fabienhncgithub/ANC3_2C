@@ -1,35 +1,72 @@
+package model;
+
+import javafx.beans.property.LongProperty;
+import javafx.beans.property.SimpleLongProperty;
+import javafx.beans.value.ObservableValue;
+
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.attribute.FileTime;
 import java.time.LocalDateTime;
 import java.time.ZoneId;
-import java.time.format.DateTimeFormatter;
 
 public class FichierSimple extends Fichier {
 
-    private long taille;
+    private LongProperty size;
 
-    public FichierSimple(String nom, long taille, FileTime fileTime, Path path) {
+    public FichierSimple(String nom, long size, FileTime fileTime, Path path) {
         super(nom, path);
-        this.taille = taille;
-        setModifDate(fileTime.toInstant().atZone(ZoneId.systemDefault()).toLocalDateTime());
+        this.size = new SimpleLongProperty(size);
+        setDateTime(fileTime.toInstant().atZone(ZoneId.systemDefault()).toLocalDateTime());
+    }
+
+    FichierSimple(String name, long size) {
+        super(name, size);
     }
 
     @Override
-    public char type() {
-        return 'F'; //F pour Fichier
+    public Iterable<Fichier> getContenu() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
     @Override
-    public long taille() {
-        return taille;
+    public boolean isDirectory() {
+        return false;
     }
 
+
+    @Override
+    public void addFile(Fichier f) {
+        throw new UnsupportedOperationException("Not supported operation.");
+    }
+
+    @Override
+    public long getSize() {
+        return size.get();
+    }
+
+    public void setSize(long size) {
+        this.size.set(size);
+    }
+
+    @Override
+    public long size() {
+        return size.get();
+    }
+
+    public LongProperty sizeProperty() {
+        return size;
+    }
+
+    final  void bindSizeTo(ObservableValue<Long>value){
+        size.bind(value);
+    }
+
+    @Override
     public void changeEtat(Fichier fs) throws IOException {
         if (this.getLastDirName(getPath()).equals(fs.getLastDirName(fs.getPath()))) { // TODO check getLastDirName()
-           // System.out.println(this.getLastDirName(getPath()));
-            if (this.getNom().equals(fs.getNom())) {
+            if (this.getName().equals(fs.getName())) {
                 if (this.getModifDate(this.getPath()).isEqual(fs.getModifDate(fs.getPath()))) {
                     fs.setEtat(Etat.SAME);
                     this.setEtat(Etat.SAME);
@@ -42,8 +79,6 @@ public class FichierSimple extends Fichier {
                         this.setEtat(Etat.OLDER);
                     }
                 }
-            } else {
-                this.setEtat(Etat.ORPHAN);
             }
         }
     }
@@ -53,10 +88,10 @@ public class FichierSimple extends Fichier {
     protected String formatAffichage(int decalage) throws IOException {
         StringBuilder res = new StringBuilder();
         res.append(super.formatAffichage(decalage))
-                .append(" ").append(getNom())
-                .append(" - type : ").append(this.type())
-                .append(" - date : ").append(getModifDate(getPath()).format(DateTimeFormatter.ofPattern("dd/MM/yyyy HH:mm:ss")))
-                .append(" - taille : ").append(taille())
+                .append(" ").append(getName())
+                .append(" - type : ").append("F") //changer cette ligne par (this.isDirectory() ? "D" : "F")
+                .append(" - date : ").append(getDateTime())
+                .append(" - size : ").append(size())
                 .append(" - etat : ").append(getEtat())
                 .append("\n");
         return res.toString();
