@@ -20,7 +20,7 @@ public abstract class Fichier extends TreeItem<Fichier> {
 
     public Fichier(String nom, Path path, Long size) {
         this.name = new SimpleStringProperty(nom);
-        this.dateTime = new SimpleObjectProperty<>(LocalDateTime.now());
+        this.dateTime = new SimpleObjectProperty<>();
         this.path = path;
         //this.size = new SimpleLongProperty(0L);
         this.size.set(size);
@@ -31,7 +31,7 @@ public abstract class Fichier extends TreeItem<Fichier> {
     Fichier(String name) {
         this.name = new SimpleStringProperty(name);
         //size = new SimpleLongProperty(0L);
-        dateTime = new SimpleObjectProperty<>(LocalDateTime.now());
+        dateTime = new SimpleObjectProperty<>();
         setExpanded(true);
         setValue(this); // L'info du TreeItem se trouve dans lui-même
     }

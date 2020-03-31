@@ -22,9 +22,29 @@ public class Dossier extends Fichier {
     private List<Fichier> contenu = new ArrayList<>();
 
     public Dossier(String nom, Path path, Long size) {
-        super(nom, path, size);
+        super(nom);
+
+        // Si la liste des enfants change, taille et date doivent être recalculées
+        addToSizeBinding(getChildren());
+        addToDateTimeBinding(getChildren());
+
+        // taille et date sont liées au Bindings
+        bindSizeTo(sizeBinding);
         bindDateTimeTo(dateTimeBinding);
         
+    }
+
+    public Dossier(String nom, Path path) {
+        super(nom);
+
+        // Si la liste des enfants change, taille et date doivent être recalculées
+        addToSizeBinding(getChildren());
+        addToDateTimeBinding(getChildren());
+
+        // taille et date sont liées au Bindings
+        bindSizeTo(sizeBinding);
+        bindDateTimeTo(dateTimeBinding);
+
     }
 
     public List<String> getFileNamesContenu() {
@@ -239,6 +259,9 @@ public class Dossier extends Fichier {
     @Override
     public void ajoutFichier(Fichier f) {
         contenu.add(f);
+        addToSizeBinding(f.sizeProperty());
+        addToDateTimeBinding(f.dateTimeProperty());
+        _addFile(f);
     }
 
     @Override

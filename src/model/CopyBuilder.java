@@ -11,7 +11,7 @@ public class CopyBuilder {
         BasicFileAttributes attrs = Files.readAttributes(path, BasicFileAttributes.class);
         Fichier result;
         if (Files.isDirectory(path)) {
-            result = new Dossier(path.getFileName().toString(), path, attrs.size());
+            result = new Dossier(path.getFileName().toString(), path);
             try (DirectoryStream<Path> dir = Files.newDirectoryStream(path)) {
                 for (Path p : dir) {
                     result.ajoutFichier(build(p));

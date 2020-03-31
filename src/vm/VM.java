@@ -119,4 +119,9 @@ public class VM {
         model.modif(selectedTree.getValue().getValue());
         setRoot();
     }
+
+    public void setSize() {
+        model.modif(obsTreeItemLeft.getValue().getValue());
+        model.modif(obsTreeItemRight.getValue().getValue());
+    }
 }
