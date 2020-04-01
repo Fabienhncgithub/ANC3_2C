@@ -15,10 +15,14 @@ import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.stage.DirectoryChooser;
 import javafx.stage.Stage;
+import model.CopyBuilder;
 import model.Etat;
 import model.Fichier;
 import vm.VM;
 
+import java.io.File;
+import java.io.IOException;
+import java.nio.file.Paths;
 import java.time.LocalDateTime;
 
 /**
@@ -36,8 +40,8 @@ public class View extends VBox {
     private VBox vbox = new VBox();
     private VM vm;
     private HBox hBoxButtonFolder = new HBox();
-    private Button buttonFolderL = new Button();
-    private Button buttonFolderR = new Button();
+    private Button buttonFolderL = new Button("L");
+    private Button buttonFolderR = new Button("R");
     private DirectoryChooser dirChooser = new DirectoryChooser();
     private Stage primaryStage;
     private TreeTableView<Fichier> tTVLeft = new TreeTableView<>();
@@ -49,35 +53,38 @@ public class View extends VBox {
         setBindingAndListeners(vm);
         configColumns(tTVLeft);
         configColumns(tTVRight);
-        dirChooserButtons();
+        dirChooserButtons(buttonFolderR, vm);
+        dirChooserButtons(buttonFolderL, vm);
         setupScene(primaryStage);
     }
 
-    private void dirChooserButtons() {
-//        buttonFolder.setOnAction(event -> {
-//            File dir = dirChooser.showDialog(primaryStage);
-//            if (dir != null) {
-//                label.setText(dir.getAbsolutePath());
-//                switch (side) {
-//                    case('R'):
-//                        try {
-//                            Fichier newFichierR = new CopyBuilder().build(Paths.get(dir.getAbsolutePath()));
-//                            vm.setNewDirRight(newFichierR);
-//                        } catch (IOException e) {
-//                            e.printStackTrace();
-//                        }
-//                        treeTableView.setRoot(vm.getTiRight());
-//                    case ('L'):
-//                        try {
-//                            Fichier newFichierL = new CopyBuilder().build(Paths.get(dir.getAbsolutePath()));
-//                            vm.setNewDirLeft(newFichierL);
-//                        } catch (IOException e) {
-//                            e.printStackTrace();
-//                        }
-//                        treeTableView.setRoot(vm.getTiLeft());
-//                }
-//            }
-//        });
+    private void dirChooserButtons(Button button, VM vm) {
+        button.setOnAction(event -> {
+            File dir = dirChooser.showDialog(primaryStage);
+            if (dir != null) {
+                System.out.println(button.getText());
+                switch (button.getText()) {
+                    case("R"):
+                        try {
+                            labelR.setText(dir.getAbsolutePath());
+                            Fichier newFichierR = new CopyBuilder().build(Paths.get(dir.getAbsolutePath()));
+                            vm.setNewDirRight(newFichierR);
+                            vm.setRoot();  //TODO this case modifies alse the left root...
+                        } catch (IOException e) {
+                            e.printStackTrace();
+                        }
+                    case ("L"):
+                        try {
+                            labelL.setText(dir.getAbsolutePath());
+                            Fichier newFichierL = new CopyBuilder().build(Paths.get(dir.getAbsolutePath()));
+                            vm.setNewDirLeft(newFichierL);
+                            vm.setRoot();
+                        } catch (IOException e) {
+                            e.printStackTrace();
+                        }
+                }
+            }
+        });
     }
 
     private void setBindingAndListeners(VM vm) {

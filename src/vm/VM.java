@@ -110,7 +110,7 @@ public class VM {
         model.setDirRight(newDirRight);
     }
 
-    private void setRoot() {
+    public void setRoot() {
         obsTreeItemLeft.setValue(makeTreeRoot(model.getRootLeft().getValue()));
         obsTreeItemRight.setValue(makeTreeRoot(model.getRootRight().getValue()));
     }
