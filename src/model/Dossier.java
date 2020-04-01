@@ -8,6 +8,7 @@ import java.nio.file.DirectoryStream;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.attribute.BasicFileAttributes;
+import java.nio.file.attribute.FileTime;
 import java.time.LocalDateTime;
 import java.time.ZoneId;
 import java.time.format.DateTimeFormatter;
@@ -21,30 +22,24 @@ public class Dossier extends Fichier {
     private Map<String, Integer> nomEnfant = new TreeMap<>();
     private List<Fichier> contenu = new ArrayList<>();
 
-    public Dossier(String nom, Path path, Long size) {
+    public Dossier(String nom, Path path, Long size, FileTime fileTime) {
         super(nom);
-
         // Si la liste des enfants change, taille et date doivent être recalculées
         addToSizeBinding(getChildren());
         addToDateTimeBinding(getChildren());
-
         // taille et date sont liées au Bindings
         bindSizeTo(sizeBinding);
         bindDateTimeTo(dateTimeBinding);
-        
     }
 
     public Dossier(String nom, Path path) {
         super(nom);
-
         // Si la liste des enfants change, taille et date doivent être recalculées
         addToSizeBinding(getChildren());
         addToDateTimeBinding(getChildren());
-
         // taille et date sont liées au Bindings
         bindSizeTo(sizeBinding);
         bindDateTimeTo(dateTimeBinding);
-
     }
 
     public List<String> getFileNamesContenu() {

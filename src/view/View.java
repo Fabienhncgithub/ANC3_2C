@@ -1,5 +1,6 @@
 package view;
 
+import javafx.beans.property.SimpleObjectProperty;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
@@ -67,13 +68,16 @@ public class View extends VBox {
     }
 
     private void configColumns(TreeTableView tTV) {
+        tTV.setShowRoot(false);
+//        Label root = tTV.rootProperty();
+        setPrefWidth(8000);
         TreeTableColumn<Fichier, String> nameCol = new TreeTableColumn<>("Nom");
         TreeTableColumn<Fichier, Fichier> typeCol = new TreeTableColumn<>("Type");
         TreeTableColumn<Fichier, Long> sizeCol = new TreeTableColumn<>("Size");
         TreeTableColumn<Fichier, LocalDateTime> dateCol = new TreeTableColumn<>("Date modif");
 
         nameCol.setCellValueFactory(new TreeItemPropertyValueFactory<>("name"));
-        typeCol.setCellValueFactory(new TreeItemPropertyValueFactory<>("type"));
+        typeCol.setCellValueFactory(r -> new SimpleObjectProperty<>(r.getValue().getValue()));
         dateCol.setCellValueFactory(new TreeItemPropertyValueFactory<>("dateTime"));
         sizeCol.setCellValueFactory(new TreeItemPropertyValueFactory<>("size"));
 
@@ -82,9 +86,8 @@ public class View extends VBox {
         nameCol.setCellFactory((param) -> {
             return new NomFichierCell();
         });
-        typeCol.setCellFactory((param) -> {
-            return new TypeFichierCell();
-        });
+        typeCol.setCellFactory((param) -> new TypeFichierCell());
+
         dateCol.setCellFactory((param) -> {
             return new DateModifFichierCell();
         });
@@ -120,14 +123,6 @@ public class View extends VBox {
         primaryStage.setScene(scene);
         primaryStage.show();
     }
-//
-//    public MyTreeTableView getLeft() {
-//        return left;
-//    }
-//
-//    public MyTreeTableView getRight() {
-//        return right;
-//    }
 
     private void etatValues(HBox hBoxBot) {
         for (Etat e : Etat.values()) {
