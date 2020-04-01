@@ -42,13 +42,42 @@ public class View extends VBox {
     private Stage primaryStage;
     private TreeTableView<Fichier> tTVLeft = new TreeTableView<>();
     private TreeTableView<Fichier> tTVRight = new TreeTableView<>();
-
+    private Label labelL = new Label();
+    private Label labelR = new Label();
 
     public View(Stage primaryStage, VM vm) {
         setBindingAndListeners(vm);
         configColumns(tTVLeft);
         configColumns(tTVRight);
+        dirChooserButtons();
         setupScene(primaryStage);
+    }
+
+    private void dirChooserButtons() {
+//        buttonFolder.setOnAction(event -> {
+//            File dir = dirChooser.showDialog(primaryStage);
+//            if (dir != null) {
+//                label.setText(dir.getAbsolutePath());
+//                switch (side) {
+//                    case('R'):
+//                        try {
+//                            Fichier newFichierR = new CopyBuilder().build(Paths.get(dir.getAbsolutePath()));
+//                            vm.setNewDirRight(newFichierR);
+//                        } catch (IOException e) {
+//                            e.printStackTrace();
+//                        }
+//                        treeTableView.setRoot(vm.getTiRight());
+//                    case ('L'):
+//                        try {
+//                            Fichier newFichierL = new CopyBuilder().build(Paths.get(dir.getAbsolutePath()));
+//                            vm.setNewDirLeft(newFichierL);
+//                        } catch (IOException e) {
+//                            e.printStackTrace();
+//                        }
+//                        treeTableView.setRoot(vm.getTiLeft());
+//                }
+//            }
+//        });
     }
 
     private void setBindingAndListeners(VM vm) {
@@ -67,9 +96,8 @@ public class View extends VBox {
 //        });
     }
 
-    private void configColumns(TreeTableView tTV) {
+    private void configColumns(TreeTableView<Fichier> tTV) {
         tTV.setShowRoot(false);
-//        Label root = tTV.rootProperty();
         setPrefWidth(8000);
         TreeTableColumn<Fichier, String> nameCol = new TreeTableColumn<>("Nom");
         TreeTableColumn<Fichier, Fichier> typeCol = new TreeTableColumn<>("Type");
@@ -99,10 +127,12 @@ public class View extends VBox {
 
     private void setupScene(Stage primaryStage) {
         hBoxCenter.getChildren().addAll(tTVLeft, tTVRight);
+        labelL.setText(tTVLeft.getRoot().getValue().getPath().toString());
+        labelR.setText(tTVRight.getRoot().getValue().getPath().toString());
         buttonFolderL.setGraphic(new ImageView(imageButtonChoose));
         buttonFolderR.setGraphic(new ImageView(imageButtonChoose));
 
-        hBoxButtonFolder.getChildren().addAll(buttonFolderL,buttonFolderR);
+        hBoxButtonFolder.getChildren().addAll(labelL, buttonFolderL, buttonFolderR, labelR);
         hBoxButtonFolder.setAlignment(Pos.CENTER);
         hBoxButtonFolder.setSpacing(30);
         myButtonFilters = new MyButtonFilters(vm, this);

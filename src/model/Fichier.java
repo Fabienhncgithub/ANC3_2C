@@ -28,8 +28,18 @@ public abstract class Fichier extends TreeItem<Fichier> {
         setValue(this);
     }
 
+    Fichier(String name, Path path) {
+        this.name = new SimpleStringProperty(name);
+        this.path = path;
+        //size = new SimpleLongProperty(0L);
+        dateTime = new SimpleObjectProperty<>();
+        setExpanded(true);
+        setValue(this); // L'info du TreeItem se trouve dans lui-même
+    }
+
     Fichier(String name) {
         this.name = new SimpleStringProperty(name);
+        this.path = path;
         //size = new SimpleLongProperty(0L);
         dateTime = new SimpleObjectProperty<>();
         setExpanded(true);

@@ -23,7 +23,7 @@ public class Dossier extends Fichier {
     private List<Fichier> contenu = new ArrayList<>();
 
     public Dossier(String nom, Path path, Long size, FileTime fileTime) {
-        super(nom);
+        super(nom, path);
         // Si la liste des enfants change, taille et date doivent être recalculées
         addToSizeBinding(getChildren());
         addToDateTimeBinding(getChildren());
@@ -33,7 +33,7 @@ public class Dossier extends Fichier {
     }
 
     public Dossier(String nom, Path path) {
-        super(nom);
+        super(nom, path);
         // Si la liste des enfants change, taille et date doivent être recalculées
         addToSizeBinding(getChildren());
         addToDateTimeBinding(getChildren());
