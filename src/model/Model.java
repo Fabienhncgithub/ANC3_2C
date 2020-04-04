@@ -95,25 +95,36 @@ public class Model {
         }
     }
 
-    public TreeItem<Fichier> getRootLeft(boolean onlyFolders) {
+    public TreeItem<Fichier> getRootLeft(boolean onlyFolders, boolean orphansSelected) {
         if (onlyFolders) {
-            return getOnlyFolders(dirLeft);
+            getOnlyFolders(dirLeft);
         } else {
-
-            return unSelectedOnlyFolders(dirLeft);
+            unSelectedOnlyFolders(dirLeft);
         }
-    }
-    
-    public TreeItem<Fichier> getRootRight(boolean onlyFolders) {
-        if(onlyFolders) {
-            return getOnlyFolders(dirRight);
-        }else {
-            return unSelectedOnlyFolders(dirRight);
+        if (orphansSelected) {
+            orphansSelected(dirLeft);
+        } else {
+            unSelectedOrphans(dirLeft);
         }
+        return dirLeft;
     }
 
+    public TreeItem<Fichier> getRootRight(boolean onlyFolders, boolean orphansSelected) {
+        if (onlyFolders) {
+            getOnlyFolders(dirRight);
+        } else {
+            unSelectedOnlyFolders(dirRight);
+        }
+        if (orphansSelected) {
+            orphansSelected(dirRight);
+        } else {
+            unSelectedOrphans(dirRight);
+        }
+        return dirRight;
+    }
 
-    public TreeItem<Fichier> getOnlyFolders(Fichier dir) {
+
+    public void getOnlyFolders(Fichier dir) {
         for (Fichier f : dir.getContenu()) {
             if (!f.isDirectory()) {
                 f.setSelected(false);
@@ -121,10 +132,9 @@ public class Model {
                 getOnlyFolders(f);
             }
         }
-        return dir;
     }
-     
-    public TreeItem<Fichier> unSelectedOnlyFolders(Fichier dir) {
+
+    public void unSelectedOnlyFolders(Fichier dir) {
         for (Fichier f : dir.getContenu()) {
             if (!f.isDirectory()) {
                 f.setSelected(true);
@@ -132,7 +142,36 @@ public class Model {
                 unSelectedOnlyFolders(f);
             }
         }
-        return dir;
     }
 
+
+    public void orphansSelected(Fichier dir) {
+        if (dir.isDirectory())
+            for (Fichier f : dir.getContenu()) {
+                if (f.getEtat() != Etat.ORPHAN) {
+                    f.selected = false;
+                } else {
+                    dir.selected = true;
+                }
+                if (f.isDirectory()) {
+                    orphansSelected(f);
+                }
+            }
+
+    }
+
+
+    private void unSelectedOrphans(Fichier dir) {
+        if (dir.isDirectory())
+            for (Fichier f : dir.getContenu()) {
+                if (f.getEtat() == Etat.ORPHAN) {
+                    f.selected = false;
+                } else {
+                    dir.selected = true;
+                }
+                if (f.isDirectory()) {
+                    unSelectedOrphans(f);
+                }
+            }
+    }
 }

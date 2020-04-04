@@ -4,7 +4,10 @@ import javafx.beans.property.SimpleObjectProperty;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
-import javafx.scene.control.*;
+import javafx.scene.control.Button;
+import javafx.scene.control.Label;
+import javafx.scene.control.TreeTableColumn;
+import javafx.scene.control.TreeTableView;
 import javafx.scene.control.cell.TreeItemPropertyValueFactory;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
@@ -45,7 +48,8 @@ public class View extends VBox {
     private TreeTableView<Fichier> tTVRight = new TreeTableView<>();
     private Label labelL = new Label();
     private Label labelR = new Label();
-    private ToggleButton testOnlyFolders = new ToggleButton("test");
+
+
 
     public View(Stage primaryStage, VM vm) {
         this.vm = vm;
@@ -95,7 +99,6 @@ public class View extends VBox {
         tTVLeft.rootProperty().bind(vm.rootPropertyLeft());
         tTVRight.rootProperty().bind(vm.rootPropertyRight());
         myButtonFilters.getFoldersOnly().selectedProperty().bindBidirectional(vm.foldersOnlyProperty());
-        testOnlyFolders.selectedProperty().bindBidirectional(vm.foldersOnlyProperty());
 //        tTVLeft.setOnMousePressed(e -> {
 //            if (e.getClickCount() == 2) {
 //                vm.fireAction();
@@ -144,7 +147,7 @@ public class View extends VBox {
         buttonFolderL.setGraphic(new ImageView(imageButtonChoose));
         buttonFolderR.setGraphic(new ImageView(imageButtonChoose));
 
-        hBoxButtonFolder.getChildren().addAll(labelL, buttonFolderL, buttonFolderR, labelR, testOnlyFolders);
+        hBoxButtonFolder.getChildren().addAll(labelL, buttonFolderL, buttonFolderR, labelR);
         hBoxButtonFolder.setAlignment(Pos.CENTER);
         hBoxButtonFolder.setSpacing(30);
         myButtonFilters = new MyButtonFilters(vm, this);

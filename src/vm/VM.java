@@ -27,6 +27,8 @@ public class VM {
     private ObjectProperty<TreeItem<Fichier>> obsTreeItemLeft = new SimpleObjectProperty<>();
     private ObjectProperty<TreeItem<Fichier>> obsTreeItemRight = new SimpleObjectProperty<>();
     private final BooleanProperty foldersOnly = new SimpleBooleanProperty(false);
+    private final BooleanProperty orphans = new SimpleBooleanProperty(false);
+
 
     public VM(Model model) {
         this.model = model;
@@ -40,11 +42,18 @@ public class VM {
             }
 
         });
+        orphans.addListener((obj, old, act) -> {
+            if (orphans.get()) {
+                setRoot();
+            } else {
+                setRoot();
+            }
+        });
     }
 
     public void setRoot() {
-        obsTreeItemLeft.setValue(makeTreeRoot(model.getRootLeft(foldersOnly.getValue()).getValue()));
-        obsTreeItemRight.setValue(makeTreeRoot(model.getRootRight(foldersOnly.getValue()).getValue()));
+        obsTreeItemLeft.setValue(makeTreeRoot(model.getRootLeft(foldersOnly.getValue(), orphans.getValue()).getValue()));
+        obsTreeItemRight.setValue(makeTreeRoot(model.getRootRight(foldersOnly.getValue(), orphans.getValue()).getValue()));
         try {
             model.getDirRight().changeEtat(model.getDirLeft());
         } catch (IOException e) {
@@ -85,7 +94,11 @@ public class VM {
         return foldersOnly;
     }
 
-//
+    public BooleanProperty orphansProperty() {
+        return orphans;
+    }
+
+    //
 //    public void unSelectedFoldersOnlyAction() {
 //        model.unSelectedFoldersOnlySet();
 //    }
@@ -149,7 +162,7 @@ public class VM {
         }
     }
 
-// end of this part
+    // end of this part
     public EditVM getEditVM() {
         return editor;
     }
@@ -183,5 +196,6 @@ public class VM {
         model.modif(obsTreeItemLeft.getValue().getValue());
         model.modif(obsTreeItemRight.getValue().getValue());
     }
+
 
 }
