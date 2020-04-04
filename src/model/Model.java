@@ -164,9 +164,7 @@ public class Model {
     private void unSelectedOrphans(Fichier dir) {
         if (dir.isDirectory())
             for (Fichier f : dir.getContenu()) {
-                if (f.getEtat() == Etat.ORPHAN) {
-                    f.selected = false;
-                } else {
+                if (f.getEtat() != Etat.ORPHAN) {
                     dir.selected = true;
                 }
                 if (f.isDirectory()) {
