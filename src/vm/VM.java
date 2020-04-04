@@ -33,8 +33,12 @@ public class VM {
         editor = new EditVM(this);
         setRoot();
         foldersOnly.addListener((obj, old, act) -> {
-            System.out.println(foldersOnly.getValue());
-            setRoot();
+            if (foldersOnly.get()) {
+                setRoot();
+            } else {
+                setRoot();
+            }
+
         });
     }
 

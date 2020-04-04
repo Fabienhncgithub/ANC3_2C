@@ -36,6 +36,8 @@ public class MyButtonFilters extends VBox {
 
         newerLeft.setToggleGroup(newerGroup);
         newerRight.setToggleGroup(newerGroup);
+        
+        foldersOnly.selectedProperty().bindBidirectional(vm.foldersOnlyProperty());
 
         all.setOnMouseClicked(e -> {
             newerLeft.setSelected(false);

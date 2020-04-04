@@ -96,40 +96,40 @@ public class Model {
     }
 
     public TreeItem<Fichier> getRootLeft(boolean onlyFolders) {
-        if (onlyFolders){
+        if (onlyFolders) {
             return getOnlyFolders(dirLeft);
-    }else{
+        } else {
 
-
-        return dirLeft;
+            return unSelectedOnlyFolders(dirLeft);
+        }
     }
-
-}
+    
     public TreeItem<Fichier> getRootRight(boolean onlyFolders) {
         if(onlyFolders) {
             return getOnlyFolders(dirRight);
         }else {
-            return dirRight;
+            return unSelectedOnlyFolders(dirRight);
         }
     }
 
-//    private TreeItem<Fichier> getOnlyFolders(Fichier folder) {
-//        TreeItem<Fichier> result = new TreeItem<>(folder);
-//        System.out.println("dans getOnlyFolders");
-//        result.setExpanded(true);
-//        folder.getContent().stream().filter((f) -> (f.isDirectory())).forEachOrdered((f) -> {
-//            result.getChildren().add(getOnlyFolders(f));
-//            System.out.println("dans le lambda");
-//        });
-//        return result;
-//    }
 
     public TreeItem<Fichier> getOnlyFolders(Fichier dir) {
         for (Fichier f : dir.getContenu()) {
             if (!f.isDirectory()) {
                 f.setSelected(false);
             } else {
-                foldersOnly(f);
+                getOnlyFolders(f);
+            }
+        }
+        return dir;
+    }
+     
+    public TreeItem<Fichier> unSelectedOnlyFolders(Fichier dir) {
+        for (Fichier f : dir.getContenu()) {
+            if (!f.isDirectory()) {
+                f.setSelected(true);
+            } else {
+                unSelectedOnlyFolders(f);
             }
         }
         return dir;
