@@ -41,7 +41,6 @@ public class VM {
     public void setRoot() {
         obsTreeItemLeft.setValue(makeTreeRoot(model.getRootLeft(foldersOnly.getValue()).getValue()));
         obsTreeItemRight.setValue(makeTreeRoot(model.getRootRight(foldersOnly.getValue()).getValue()));
-
         try {
             model.getDirRight().changeEtat(model.getDirLeft());
         } catch (IOException e) {
