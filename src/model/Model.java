@@ -11,7 +11,7 @@ import java.time.LocalDateTime;
 
 public class Model {
 
-//    private static final String INIT_DATA_L = "TestBC/RootBC_Left";
+    //    private static final String INIT_DATA_L = "TestBC/RootBC_Left";
 //    private static final String INIT_DATA_R = "TestBC/RootBC_Right";
     private static int seqNb = 1;
     private StringProperty pathDirLeft = new SimpleStringProperty("TestBC/RootBC_Left");
@@ -19,7 +19,7 @@ public class Model {
     private Fichier dirLeft;
     private Fichier dirRight;
 
-    public Model(){
+    public Model() {
         try {
             dirLeft = new CopyBuilder().build(Paths.get(pathDirLeft.getValue()));
             dirRight = new CopyBuilder().build(Paths.get(pathDirRight.getValue()));
@@ -96,12 +96,15 @@ public class Model {
     }
 
     public TreeItem<Fichier> getRootLeft(boolean onlyFolders) {
-        if(onlyFolders)
+        if (onlyFolders){
             return getOnlyFolders(dirLeft);
-        else
-            return dirLeft;
+    }else{
+
+
+        return dirLeft;
     }
 
+}
     public TreeItem<Fichier> getRootRight(boolean onlyFolders) {
         if(onlyFolders) {
             return getOnlyFolders(dirRight);

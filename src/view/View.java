@@ -62,17 +62,16 @@ public class View extends VBox {
         button.setOnAction(event -> {
             File dir = dirChooser.showDialog(primaryStage);
             if (dir != null) {
-                switch (button.getText()) {
-                    case("R"):
-                        try {
-                            labelR.setText(dir.getAbsolutePath());
-                            Fichier newFichierR = new CopyBuilder().build(Paths.get(dir.getAbsolutePath()));
-                            vm.setNewDirRight(newFichierR);
-                            vm.setRoot();  //TODO this case modifies also the left root...
-                        } catch (IOException e) {
-                            e.printStackTrace();
-                        }
-                    case ("L"):
+                if (button.getText()== "R") {
+                    try {
+                        labelR.setText(dir.getAbsolutePath());
+                        Fichier newFichierR = new CopyBuilder().build(Paths.get(dir.getAbsolutePath()));
+                        vm.setNewDirRight(newFichierR);
+                        vm.setRoot();  //TODO this case modifies also the left root...
+                    } catch (IOException e) {
+                        e.printStackTrace();
+                    }
+                }else{
                         try {
                             labelL.setText(dir.getAbsolutePath());
                             Fichier newFichierL = new CopyBuilder().build(Paths.get(dir.getAbsolutePath()));

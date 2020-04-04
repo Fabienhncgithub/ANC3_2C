@@ -30,7 +30,6 @@ public class VM {
 
     public VM(Model model) {
         this.model = model;
-
         editor = new EditVM(this);
         setRoot();
         foldersOnly.addListener((obj, old, act) -> {
@@ -40,8 +39,9 @@ public class VM {
     }
 
     public void setRoot() {
-        obsTreeItemRight.setValue(makeTreeRoot(model.getRootRight(foldersOnly.getValue()).getValue()));
         obsTreeItemLeft.setValue(makeTreeRoot(model.getRootLeft(foldersOnly.getValue()).getValue()));
+        obsTreeItemRight.setValue(makeTreeRoot(model.getRootRight(foldersOnly.getValue()).getValue()));
+
         try {
             model.getDirRight().changeEtat(model.getDirLeft());
         } catch (IOException e) {
