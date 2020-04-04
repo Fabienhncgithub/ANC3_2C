@@ -1,9 +1,6 @@
 package vm;
 
-import javafx.beans.property.ObjectProperty;
-import javafx.beans.property.SimpleObjectProperty;
-import javafx.beans.property.SimpleStringProperty;
-import javafx.beans.property.StringProperty;
+import javafx.beans.property.*;
 import javafx.beans.value.ObservableValue;
 import javafx.scene.control.TreeItem;
 import javafx.stage.DirectoryChooser;
@@ -29,12 +26,27 @@ public class VM {
     private Model model;
     private ObjectProperty<TreeItem<Fichier>> obsTreeItemLeft = new SimpleObjectProperty<>();
     private ObjectProperty<TreeItem<Fichier>> obsTreeItemRight = new SimpleObjectProperty<>();
+    private final BooleanProperty foldersOnly = new SimpleBooleanProperty(false);
 
     public VM(Model model) {
         this.model = model;
 
         editor = new EditVM(this);
         setRoot();
+        foldersOnly.addListener((obj, old, act) -> {
+            System.out.println(foldersOnly.getValue());
+            setRoot();
+        });
+    }
+
+    public void setRoot() {
+        obsTreeItemRight.setValue(makeTreeRoot(model.getRootRight(foldersOnly.getValue()).getValue()));
+        obsTreeItemLeft.setValue(makeTreeRoot(model.getRootLeft(foldersOnly.getValue()).getValue()));
+        try {
+            model.getDirRight().changeEtat(model.getDirLeft());
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 
     public static TreeItem<Fichier> makeTreeRoot(Fichier root) {
@@ -61,7 +73,56 @@ public class VM {
     public TreeItem<Fichier> getTiLeft() {
         return makeTreeRoot(model.getDirLeft());
     }
+//
+//    public void foldersOnlyAction(TreeTableView<Fichier> left, TreeTableView<Fichier> right) {
+//        model.foldersOnlySet(left, right);
+//    }
 
+    public BooleanProperty foldersOnlyProperty() {
+        return foldersOnly;
+    }
+
+//
+//    public void unSelectedFoldersOnlyAction() {
+//        model.unSelectedFoldersOnlySet();
+//    }
+//
+//    public void sameAction() {
+//        model.sameSet();
+//    }
+//
+//    public void unSelectedSameAction() {
+//        model.unSelectedSameSet();
+//    }
+//
+//    public void orphanAction() {
+//        model.orphanSet();
+//    }
+//
+//    public void unSelectedOrphanAction() {
+//        model.unSelectedOrphanSet();
+//    }
+//
+//    public void newerRightAction() {
+//        model.newerRightSet();
+//    }
+//
+//    public void newerLeftAction() {
+//        model.newerLeftSet();
+//    }
+//
+//    public void allAction() {
+//        model.showAll();
+//    }
+//
+//    public void setNewDirLeft(Fichier newDirLeft) {
+//        model.setDirLeft(newDirLeft);
+//    }
+//
+//    public void setNewDirRight(Fichier newDirRight) {
+//        model.setDirRight(newDirRight);
+//    }
+//
 //start of code to show file txt
     public TreeItem<Fichier> getTiRight() {
         return makeTreeRoot(model.getDirRight());
@@ -110,11 +171,6 @@ public class VM {
         model.setDirRight(newDirRight);
     }
 
-    public void setRoot() {
-        obsTreeItemLeft.setValue(makeTreeRoot(model.getRootLeft().getValue()));
-        obsTreeItemRight.setValue(makeTreeRoot(model.getRootRight().getValue()));
-    }
-
     public void fireAction() {
         model.modif(selectedTree.getValue().getValue());
         setRoot();
@@ -124,4 +180,5 @@ public class VM {
         model.modif(obsTreeItemLeft.getValue().getValue());
         model.modif(obsTreeItemRight.getValue().getValue());
     }
+
 }

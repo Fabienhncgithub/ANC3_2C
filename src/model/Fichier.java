@@ -8,6 +8,9 @@ import javafx.scene.control.TreeItem;
 import java.io.IOException;
 import java.nio.file.Path;
 import java.time.LocalDateTime;
+import java.util.List;
+
+import static java.util.stream.Collectors.toList;
 
 public abstract class Fichier extends TreeItem<Fichier> {
 
@@ -160,6 +163,11 @@ public abstract class Fichier extends TreeItem<Fichier> {
     public abstract LocalDateTime getModifDate(Path path) throws IOException;
 
     public abstract boolean isDirectory();
+
+
+    List<Fichier> getContent() {
+        return getChildren().stream().map(ti -> ti.getValue()).collect(toList());
+    }
 
 //    public long getSize() {
 //        return size.get();

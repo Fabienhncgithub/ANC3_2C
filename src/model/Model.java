@@ -1,13 +1,13 @@
 package model;
 
 import javafx.beans.property.Property;
+import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.property.StringProperty;
 import javafx.scene.control.TreeItem;
 
 import java.io.IOException;
 import java.nio.file.Paths;
 import java.time.LocalDateTime;
-import javafx.beans.property.SimpleStringProperty;
 
 public class Model {
 
@@ -79,4 +79,57 @@ public class Model {
             file.setDateTime(LocalDateTime.now());
         }
     }
+
+    public void foldersOnlySet(Fichier left, Fichier right) {
+        foldersOnly(left);
+        foldersOnly(right);
+    }
+
+    public void foldersOnly(Fichier dir) {
+        for (Fichier f : dir.getContenu()) {
+            if (!f.isDirectory()) {
+                f.setSelected(false);
+            } else {
+                foldersOnly(f);
+            }
+        }
+    }
+
+    public TreeItem<Fichier> getRootLeft(boolean onlyFolders) {
+        if(onlyFolders)
+            return getOnlyFolders(dirLeft);
+        else
+            return dirLeft;
+    }
+
+    public TreeItem<Fichier> getRootRight(boolean onlyFolders) {
+        if(onlyFolders) {
+            return getOnlyFolders(dirRight);
+        }else {
+            return dirRight;
+        }
+    }
+
+//    private TreeItem<Fichier> getOnlyFolders(Fichier folder) {
+//        TreeItem<Fichier> result = new TreeItem<>(folder);
+//        System.out.println("dans getOnlyFolders");
+//        result.setExpanded(true);
+//        folder.getContent().stream().filter((f) -> (f.isDirectory())).forEachOrdered((f) -> {
+//            result.getChildren().add(getOnlyFolders(f));
+//            System.out.println("dans le lambda");
+//        });
+//        return result;
+//    }
+
+    public TreeItem<Fichier> getOnlyFolders(Fichier dir) {
+        for (Fichier f : dir.getContenu()) {
+            if (!f.isDirectory()) {
+                f.setSelected(false);
+            } else {
+                foldersOnly(f);
+            }
+        }
+        return dir;
+    }
+
 }

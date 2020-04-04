@@ -4,10 +4,7 @@ import javafx.beans.property.SimpleObjectProperty;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
-import javafx.scene.control.Button;
-import javafx.scene.control.Label;
-import javafx.scene.control.TreeTableColumn;
-import javafx.scene.control.TreeTableView;
+import javafx.scene.control.*;
 import javafx.scene.control.cell.TreeItemPropertyValueFactory;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
@@ -32,13 +29,13 @@ public class View extends VBox {
 
 //    private final MyTreeTableView left;
 //    private final MyTreeTableView right;
-    private MyButtonFilters myButtonFilters;
     private HBox hBoxCenter = new HBox();
     private Image imageButtonChoose = new Image("Images/flat_folder.png");
     private HBox hBoxBot = hBoxBot();
     private HBox hBoxFilter = new HBox();
     private VBox vbox = new VBox();
     private VM vm;
+    private MyButtonFilters myButtonFilters;
     private HBox hBoxButtonFolder = new HBox();
     private Button buttonFolderL = new Button("L");
     private Button buttonFolderR = new Button("R");
@@ -48,8 +45,11 @@ public class View extends VBox {
     private TreeTableView<Fichier> tTVRight = new TreeTableView<>();
     private Label labelL = new Label();
     private Label labelR = new Label();
+    private ToggleButton testOnlyFolders = new ToggleButton("test");
 
     public View(Stage primaryStage, VM vm) {
+        this.vm = vm;
+        myButtonFilters = new MyButtonFilters(vm, this);
         setBindingAndListeners(vm);
         configColumns(tTVLeft);
         configColumns(tTVRight);
@@ -62,14 +62,13 @@ public class View extends VBox {
         button.setOnAction(event -> {
             File dir = dirChooser.showDialog(primaryStage);
             if (dir != null) {
-                System.out.println(button.getText());
                 switch (button.getText()) {
                     case("R"):
                         try {
                             labelR.setText(dir.getAbsolutePath());
                             Fichier newFichierR = new CopyBuilder().build(Paths.get(dir.getAbsolutePath()));
                             vm.setNewDirRight(newFichierR);
-                            vm.setRoot();  //TODO this case modifies alse the left root...
+                            vm.setRoot();  //TODO this case modifies also the left root...
                         } catch (IOException e) {
                             e.printStackTrace();
                         }
@@ -90,7 +89,8 @@ public class View extends VBox {
     private void setBindingAndListeners(VM vm) {
         tTVLeft.rootProperty().bind(vm.rootPropertyLeft());
         tTVRight.rootProperty().bind(vm.rootPropertyRight());
-
+        myButtonFilters.getFoldersOnly().selectedProperty().bindBidirectional(vm.foldersOnlyProperty());
+        testOnlyFolders.selectedProperty().bindBidirectional(vm.foldersOnlyProperty());
 //        tTVLeft.setOnMousePressed(e -> {
 //            if (e.getClickCount() == 2) {
 //                vm.fireAction();
@@ -139,7 +139,7 @@ public class View extends VBox {
         buttonFolderL.setGraphic(new ImageView(imageButtonChoose));
         buttonFolderR.setGraphic(new ImageView(imageButtonChoose));
 
-        hBoxButtonFolder.getChildren().addAll(labelL, buttonFolderL, buttonFolderR, labelR);
+        hBoxButtonFolder.getChildren().addAll(labelL, buttonFolderL, buttonFolderR, labelR, testOnlyFolders);
         hBoxButtonFolder.setAlignment(Pos.CENTER);
         hBoxButtonFolder.setSpacing(30);
         myButtonFilters = new MyButtonFilters(vm, this);

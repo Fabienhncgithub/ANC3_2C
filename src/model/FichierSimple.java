@@ -28,7 +28,6 @@ public class FichierSimple extends Fichier {
         return false;
     }
 
-
     @Override
     public void addFile(Fichier f) {
         throw new UnsupportedOperationException("Not supported operation.");

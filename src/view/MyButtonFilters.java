@@ -29,6 +29,9 @@ public class MyButtonFilters extends VBox {
         hbox.getStylesheets().add("model/cssView.css");
     }
 
+    public MyButtonFilters(){
+    }
+
     public MyButtonFilters(VM vm, View view){
 
         newerLeft.setToggleGroup(newerGroup);
@@ -41,6 +44,8 @@ public class MyButtonFilters extends VBox {
             same.setSelected(false);
             foldersOnly.setSelected(false);
         });
+
+
 //
 //        foldersOnly.selectedProperty().addListener(e -> {
 //            if (foldersOnly.isSelected()) {
@@ -93,5 +98,29 @@ public class MyButtonFilters extends VBox {
 //            view.getLeft().setRoot(vm.getTiLeft());
 //            view.getRight().setRoot(vm.getTiRight());
 //        });
+    }
+
+    public Button getAll() {
+        return all;
+    }
+
+    public ToggleButton getNewerLeft() {
+        return newerLeft;
+    }
+
+    public ToggleButton getNewerRight() {
+        return newerRight;
+    }
+
+    public ToggleButton getOrphans() {
+        return orphans;
+    }
+
+    public ToggleButton getSame() {
+        return same;
+    }
+
+    public ToggleButton getFoldersOnly() {
+        return foldersOnly;
     }
 }

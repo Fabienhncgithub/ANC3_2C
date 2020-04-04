@@ -16,9 +16,9 @@ public abstract class FichierCell<T> extends TreeTableCell<Fichier, T> {
     @Override
     public void updateItem(T elem, boolean isEmpty) {
         super.updateItem(elem, isEmpty);
-        
-        if (isEmpty || elem == null) {
-            setText("null");
+
+        if (elem == null) {
+            setText("");
             return;
         }
 
@@ -36,8 +36,5 @@ public abstract class FichierCell<T> extends TreeTableCell<Fichier, T> {
         this.getStyleClass().set(0, f.getEtat().toString());
     }
 
-    String texte(T elem) {
-        return "" + elem;
-    }
-
+    abstract String texte(T elem);
 }
