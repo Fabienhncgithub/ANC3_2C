@@ -104,9 +104,17 @@ public class VM {
         return selectedFileName;
     }
 
-    public void openSelectedFile() {
-        FichierText fichierText = (FichierText)selectedTreeLeft.getValue().getValue();
-        if(fichierText.isFichierText()) {
+    public void openSelectedFileLeft() {
+        if(selectedTreeLeft.getValue().getValue().isFichierText()) {
+            FichierText fichierText = (FichierText)selectedTreeLeft.getValue().getValue();
+            editor.setText(fichierText.getTextProperty());
+            editor.setVisible(true);
+        }
+    }
+
+    public void openSelectedFileRight() {
+        if(selectedTreeRight.getValue().getValue().isFichierText()) {
+            FichierText fichierText = (FichierText)selectedTreeRight.getValue().getValue();
             editor.setText(fichierText.getTextProperty());
             editor.setVisible(true);
         }

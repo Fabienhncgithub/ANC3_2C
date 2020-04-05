@@ -102,12 +102,12 @@ public class View extends VBox {
 
         tTVLeft.setOnMousePressed(e -> {
             if (e.getClickCount() == 2) {
-                vm.openSelectedFile();
+                vm.openSelectedFileLeft();
             }
         });
         tTVRight.setOnMousePressed(e -> {
             if (e.getClickCount() == 2) {
-                vm.openSelectedFile();
+                vm.openSelectedFileRight();
             }
         });
     }
