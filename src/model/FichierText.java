@@ -16,12 +16,8 @@ public class FichierText extends FichierSimple {
         public FichierText(String nom, long size, FileTime fileTime, Path path, String text) {
             super(nom, size, fileTime, path);
             textProperty.setValue(text);
-//            addToTextBinding(textProperty);
-//            bindTextTo(textBinding);
-            System.out.println(text);
-//        setSize(textLengthProperty().longValue());
         }
-//
+
 //    private void addToTextBinding(ObservableObjectValue obs) {
 //        textBinding.addBinding(obs);
 //        textBinding.invalidate();

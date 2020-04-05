@@ -48,59 +48,6 @@ public class MyButtonFilters extends VBox {
             foldersOnly.setSelected(false);
         });
 
-
-//
-//        foldersOnly.selectedProperty().addListener(e -> {
-//            if (foldersOnly.isSelected()) {
-//                vm.foldersOnlyAction(view.getLeft(), view.getRight());
-//            } else {
-//                vm.unSelectedFoldersOnlyAction();
-//            }
-//            view.getLeft().setRoot(vm.getTiLeft());
-//            view.getRight().setRoot(vm.getTiRight());
-//        });
-//
-//        same.selectedProperty().addListener(e -> {
-//            if (same.isSelected()) {
-//                vm.sameAction();
-//            }else {
-//               vm.unSelectedSameAction();
-//            }
-//            view.getLeft().setRoot(vm.getTiLeft());
-//            view.getRight().setRoot(vm.getTiRight());
-//        });
-//
-//        orphans.selectedProperty().addListener(e -> {
-//            if (orphans.isSelected()) {
-//                vm.orphanAction();
-//            }else {
-//                vm.unSelectedOrphanAction();
-//            }
-//            view.getLeft().setRoot(vm.getTiLeft());
-//            view.getRight().setRoot(vm.getTiRight());
-//        });
-//
-//        newerRight.selectedProperty().addListener(e -> {
-//            if (newerRight.isSelected()) {
-//                vm.allAction();
-//                vm.newerRightAction();
-//            }else {
-//                vm.allAction();
-//            }
-//            view.getLeft().setRoot(vm.getTiLeft());
-//            view.getRight().setRoot(vm.getTiRight());
-//        });
-//
-//        newerLeft.selectedProperty().addListener(e -> {
-//            if (newerLeft.isSelected()) {
-//                vm.allAction();
-//                vm.newerLeftAction();
-//            }else {
-//                vm.allAction();
-//            }
-//            view.getLeft().setRoot(vm.getTiLeft());
-//            view.getRight().setRoot(vm.getTiRight());
-//        });
     }
 
     public Button getAll() {

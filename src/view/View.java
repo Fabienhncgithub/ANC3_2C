@@ -89,8 +89,6 @@ public class View extends VBox {
                 }
                 vm.setRoot();
             }
-
-
         });
     }
 
