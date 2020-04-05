@@ -29,8 +29,6 @@ public class MyButtonFilters extends VBox {
         hbox.getStylesheets().add("model/cssView.css");
     }
 
-    public MyButtonFilters(){
-    }
 
     public MyButtonFilters(VM vm, View view){
 

@@ -23,22 +23,3 @@
     -fx-font-weight: bold;
 }
 
-/*
-.tree-table-view {
-    -fx-base: #1d1d1d;
-    -fx-control-inner-background: #0d0d0d;
-    -fx-background-color: #0d0d0d;
-    -fx-table-cell-border-color: transparent;
-    -fx-table-header-border-color: transparent;
-}
-.tree-table-view:focused .table-row-cell:filled:focused:selected {
-    -fx-background-color: -fx-focus-color;
-}
-.root{
-        -fx-base: #1d1d1d;
-            -fx-control-inner-background: #1d1d1d;
-            -fx-background-color: #1d1d1d;
-            -fx-table-cell-border-color: transparent;
-            -fx-table-header-border-color: transparent;
-}
-*/

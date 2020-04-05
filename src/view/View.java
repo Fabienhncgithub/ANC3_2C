@@ -30,8 +30,7 @@ import java.time.LocalDateTime;
  */
 public class View extends VBox {
 
-    //    private final MyTreeTableView left;
-//    private final MyTreeTableView right;
+
     private HBox hBoxCenter = new HBox();
     private Image imageButtonChoose = new Image("Images/flat_folder.png");
     private HBox hBoxBot = hBoxBot();

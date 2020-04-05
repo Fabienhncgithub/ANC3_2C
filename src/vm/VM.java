@@ -9,9 +9,6 @@ import model.FichierText;
 import model.Model;
 
 import java.io.IOException;
-import java.nio.file.Files;
-import java.nio.file.Path;
-import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -25,11 +22,11 @@ public class VM {
     private final StringProperty labelPathRight = new SimpleStringProperty("");
     private final DirectoryChooser choose = new DirectoryChooser();
     private final List<String> fileNames = new ArrayList<>();
+    private final BooleanProperty foldersOnly = new SimpleBooleanProperty(false);
+    private final BooleanProperty orphans = new SimpleBooleanProperty(false);
     private Model model;
     private ObjectProperty<TreeItem<Fichier>> obsTreeItemLeft = new SimpleObjectProperty<>();
     private ObjectProperty<TreeItem<Fichier>> obsTreeItemRight = new SimpleObjectProperty<>();
-    private final BooleanProperty foldersOnly = new SimpleBooleanProperty(false);
-    private final BooleanProperty orphans = new SimpleBooleanProperty(false);
 
 
     public VM(Model model) {
@@ -53,16 +50,6 @@ public class VM {
         });
     }
 
-    public void setRoot() {
-        obsTreeItemLeft.setValue(makeTreeRoot(model.getRootLeft(foldersOnly.getValue(), orphans.getValue()).getValue()));
-        obsTreeItemRight.setValue(makeTreeRoot(model.getRootRight(foldersOnly.getValue(), orphans.getValue()).getValue()));
-        try {
-            model.getDirRight().changeEtat(model.getDirLeft());
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-    }
-
     public static TreeItem<Fichier> makeTreeRoot(Fichier root) {
         TreeItem<Fichier> res = new TreeItem<>(root);
         res.setExpanded(true);
@@ -76,12 +63,14 @@ public class VM {
         return res;
     }
 
-    public String getLabelPathLeft() {
-        return labelPathLeft.get();
-    }
-
-    public String getLabelPathRight() {
-        return labelPathRight.get();
+    public void setRoot() {
+        obsTreeItemLeft.setValue(makeTreeRoot(model.getRootLeft(foldersOnly.getValue(), orphans.getValue()).getValue()));
+        obsTreeItemRight.setValue(makeTreeRoot(model.getRootRight(foldersOnly.getValue(), orphans.getValue()).getValue()));
+        try {
+            model.getDirRight().changeEtat(model.getDirLeft());
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 
     public TreeItem<Fichier> getTiLeft() {
@@ -105,8 +94,8 @@ public class VM {
     }
 
     public void openSelectedFileLeft() {
-        if(selectedTreeLeft.getValue().getValue().isFichierText()) {
-            FichierText fichierText = (FichierText)selectedTreeLeft.getValue().getValue();
+        if (selectedTreeLeft.getValue().getValue().isFichierText()) {
+            FichierText fichierText = (FichierText) selectedTreeLeft.getValue().getValue();
             selectedFileName.setValue(fichierText.getName());
             editor.setText(fichierText.getTextProperty());
             editor.setVisible(true);
@@ -114,22 +103,14 @@ public class VM {
     }
 
     public void openSelectedFileRight() {
-        if(selectedTreeRight.getValue().getValue().isFichierText()) {
-            FichierText fichierText = (FichierText)selectedTreeRight.getValue().getValue();
+        if (selectedTreeRight.getValue().getValue().isFichierText()) {
+            FichierText fichierText = (FichierText) selectedTreeRight.getValue().getValue();
             selectedFileName.setValue(fichierText.getName());
             editor.setText(fichierText.getTextProperty());
             editor.setVisible(true);
         }
     }
 
-    private String loadFile(String fileName) {
-        Path path = Paths.get(fileName);
-        try {
-            return new String(Files.readAllBytes(path));
-        } catch (IOException ex) {
-            return "";
-        }
-    }
 
     public EditVM getEditVM() {
         return editor;
@@ -149,21 +130,6 @@ public class VM {
 
     public void setNewDirRight(Fichier newDirRight) {
         model.setDirRight(newDirRight);
-    }
-
-    public void fireActionLeft() {
-        model.modif(rootPropertyLeft().getValue().getValue());
-        setRoot();
-    }
-
-    public void fireActionRight() {
-        model.modif(rootPropertyRight().getValue().getValue());
-        setRoot();
-    }
-
-    public void setSize() {
-        model.modif(obsTreeItemLeft.getValue().getValue());
-        model.modif(obsTreeItemRight.getValue().getValue());
     }
 
 

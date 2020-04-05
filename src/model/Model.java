@@ -84,10 +84,7 @@ public class Model {
         }
     }
 
-    public void foldersOnlySet(Fichier left, Fichier right) {
-        foldersOnly(left);
-        foldersOnly(right);
-    }
+
 
     public void foldersOnly(Fichier dir) {
         for (Fichier f : dir.getContenu()) {

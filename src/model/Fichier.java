@@ -25,7 +25,6 @@ public abstract class Fichier extends TreeItem<Fichier> {
         this.name = new SimpleStringProperty(nom);
         this.dateTime = new SimpleObjectProperty<>();
         this.path = path;
-        //this.size = new SimpleLongProperty(0L);
         this.size.set(size);
         setExpanded(true);
         setValue(this);
@@ -34,7 +33,6 @@ public abstract class Fichier extends TreeItem<Fichier> {
     Fichier(String name, Path path) {
         this.name = new SimpleStringProperty(name);
         this.path = path;
-        //size = new SimpleLongProperty(0L);
         dateTime = new SimpleObjectProperty<>();
         setExpanded(true);
         setValue(this); // L'info du TreeItem se trouve dans lui-même
@@ -43,7 +41,6 @@ public abstract class Fichier extends TreeItem<Fichier> {
     Fichier(String name) {
         this.name = new SimpleStringProperty(name);
         this.path = path;
-        //size = new SimpleLongProperty(0L);
         dateTime = new SimpleObjectProperty<>();
         setExpanded(true);
         setValue(this); // L'info du TreeItem se trouve dans lui-même
@@ -150,11 +147,7 @@ public abstract class Fichier extends TreeItem<Fichier> {
 
     public abstract Iterable<Fichier> getContenu();
 
-    //public abstract long size();
 
-//    public ReadOnlyLongProperty sizeProperty() {
-//        return size;
-//    }
 
     public abstract void addFile(Fichier file);
 
@@ -171,11 +164,5 @@ public abstract class Fichier extends TreeItem<Fichier> {
         return getChildren().stream().map(ti -> ti.getValue()).collect(toList());
     }
 
-//    public long getSize() {
-//        return size.get();
-//    }
-//
-//    void setSize(long size) {
-//        this.size.set(size);
-//    }
+
 }
