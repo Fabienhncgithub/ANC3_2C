@@ -30,7 +30,7 @@ import java.time.LocalDateTime;
  */
 public class View extends VBox {
 
-//    private final MyTreeTableView left;
+    //    private final MyTreeTableView left;
 //    private final MyTreeTableView right;
     private HBox hBoxCenter = new HBox();
     private Image imageButtonChoose = new Image("Images/flat_folder.png");
@@ -50,7 +50,6 @@ public class View extends VBox {
     private Label labelR = new Label();
 
 
-
     public View(Stage primaryStage, VM vm) {
         this.vm = vm;
         new EditView(primaryStage, vm.getEditVM());
@@ -67,8 +66,7 @@ public class View extends VBox {
         button.setOnAction(event -> {
             File dir = dirChooser.showDialog(primaryStage);
             if (dir != null) {
-                if (button.getText()== "R") {
-
+                if (button.getText() == "R") {
                     try {
                         labelR.setText(dir.getAbsolutePath());
                         Fichier newFichierR = new CopyBuilder().build(Paths.get(dir.getAbsolutePath()));
@@ -78,16 +76,16 @@ public class View extends VBox {
                     } catch (IOException e) {
                         e.printStackTrace();
                     }
-                }else{
-                        try {
-                            labelL.setText(dir.getAbsolutePath());
-                            Fichier newFichierL = new CopyBuilder().build(Paths.get(dir.getAbsolutePath()));
-                            vm.setNewDirLeft(newFichierL);
-                            vm.setNewDirRight(vm.getTiRight().getValue());
-                            vm.setRoot();
-                        } catch (IOException e) {
-                            e.printStackTrace();
-                        }
+                } else {
+                    try {
+                        labelL.setText(dir.getAbsolutePath());
+                        Fichier newFichierL = new CopyBuilder().build(Paths.get(dir.getAbsolutePath()));
+                        vm.setNewDirLeft(newFichierL);
+                        vm.setNewDirRight(vm.getTiRight().getValue());
+                        vm.setRoot();
+                    } catch (IOException e) {
+                        e.printStackTrace();
+                    }
                 }
                 vm.setRoot();
             }
@@ -99,7 +97,8 @@ public class View extends VBox {
     private void setBindingAndListeners(VM vm) {
         tTVLeft.rootProperty().bind(vm.rootPropertyLeft());
         tTVRight.rootProperty().bind(vm.rootPropertyRight());
-//        vm.selectedFichierProperty().bind(vm.selectedTreeProperty());
+        vm.selectedTreeLeft().bind(tTVLeft.getSelectionModel().selectedItemProperty());
+        vm.selectedTreeRight().bind(tTVRight.getSelectionModel().selectedItemProperty());
 
         tTVLeft.setOnMousePressed(e -> {
             if (e.getClickCount() == 2) {
@@ -156,11 +155,10 @@ public class View extends VBox {
         hBoxFilter.getChildren().addAll(myButtonFilters);
         hBoxFilter.setAlignment(Pos.CENTER);
         hBoxFilter.setSpacing(100);
-        hBoxFilter.setPadding(new Insets(15,20, 10,10));
+        hBoxFilter.setPadding(new Insets(15, 20, 10, 10));
         etatValues(hBoxBot);
 
         vbox.getChildren().addAll(hBoxFilter, hBoxButtonFolder, hBoxCenter, hBoxBot);
-
 
 
         Scene scene = new Scene(vbox, 1100, 500);

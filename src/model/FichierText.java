@@ -32,6 +32,14 @@ public class FichierText extends FichierSimple {
         return true;
     }
 
+    public String getTextProperty() {
+        return textProperty.get();
+    }
+
+    public StringProperty textPropertyProperty() {
+        return textProperty;
+    }
+
     final void bindTextTo(ObservableValue<String> value) {
         textProperty.bind(value);
     }
