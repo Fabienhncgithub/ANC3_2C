@@ -20,7 +20,8 @@ public class CopyBuilder {
         } else {
             //BasicFileAttributes attrs = Files.readAttributes(path, BasicFileAttributes.class);
             if(path.getFileName().toString().endsWith(".txt")) {
-                result = new FichierText(path.getFileName().toString(), attrs.size(), attrs.lastModifiedTime(), path);
+                String text = new String(Files.readAllBytes(path));
+                result = new FichierText(path.getFileName().toString(), attrs.size(), attrs.lastModifiedTime(), path, text);
             }else{
                 result = new FichierSimple(path.getFileName().toString(), attrs.size(), attrs.lastModifiedTime(), path);
             }

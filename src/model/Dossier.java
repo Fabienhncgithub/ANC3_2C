@@ -149,7 +149,7 @@ public class Dossier extends Fichier {
                 }
             }
             for (Fichier f : other.contenu) {
-                if ((f.getEtat() == Etat.UNDEFINED)) { //Mettre PARTIAL_SAME comme etat de base cela va permettre de faire un teste en moin.
+                if ((f.getEtat() == Etat.UNDEFINED)) {
                     if (f.isDirectory()) {
                         ((Dossier) f).setAllChildrenOrphan();
                     }
