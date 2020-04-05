@@ -23,7 +23,7 @@ public class EditVM {
     public ObservableIntegerValue textLengthProperty() {
         return text.length();
     }
-    
+
     public StringProperty fileNameProperty() {
         return viewModel.selectedFileNameProperty();
     }

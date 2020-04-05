@@ -5,18 +5,17 @@ import javafx.beans.value.ObservableValue;
 import javafx.scene.control.TreeItem;
 import javafx.stage.DirectoryChooser;
 import model.Fichier;
+import model.FichierText;
 import model.Model;
 
 import java.io.IOException;
-import java.nio.file.Files;
-import java.nio.file.Path;
-import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.List;
 
 public class VM {
 
     private final StringProperty selectedFileName = new SimpleStringProperty();
+    private final ObjectProperty<Fichier> selectedFichier = new SimpleObjectProperty<>();
     private final EditVM editor;
     private final StringProperty labelPathLeft = new SimpleStringProperty("");
     private final StringProperty labelPathRight = new SimpleStringProperty("");
@@ -28,6 +27,9 @@ public class VM {
     private ObjectProperty<TreeItem<Fichier>> obsTreeItemRight = new SimpleObjectProperty<>();
     private final BooleanProperty foldersOnly = new SimpleBooleanProperty(false);
     private final BooleanProperty orphans = new SimpleBooleanProperty(false);
+
+//    private final StringBinding textBinding = new StringBinding();
+
 
 
     public VM(Model model) {
@@ -73,6 +75,18 @@ public class VM {
         }
         return res;
     }
+//
+//    private class StringBinding extends ObjectBinding<String> {
+//
+//        @Override // La taille est la sommme des taille des enfants
+//        protected String computeValue() {
+//            return ;
+//        }
+//
+//        void addBinding(Observable obs) {
+//            super.bind(obs);
+//        }
+//    }
 
     public String getLabelPathLeft() {
         return labelPathLeft.get();
@@ -144,22 +158,20 @@ public class VM {
         return makeTreeRoot(model.getDirRight());
     }
 
-    public StringProperty selectedFileNameProperty() {
-        return selectedFileName;
+    public ObjectProperty<Fichier> selectedFichierProperty() {
+        return selectedFichier;
     }
 
     public void openSelectedFile() {
-        editor.setText(loadFile(selectedFileName.getValue()));
+        editor.setText(loadFile(selectedFichier.get()));
         editor.setVisible(true);
     }
 
-    private String loadFile(String fileName) {
-        Path path = Paths.get(fileName);
-        try {
-            return new String(Files.readAllBytes(path));
-        } catch (IOException ex) {
-            return "";
+    private String loadFile(Fichier fichier) {
+        if(fichier.isFichierText()){
+            ((FichierText) fichier).getText();
         }
+        return "";
     }
 
     // end of this part
@@ -177,6 +189,10 @@ public class VM {
 
     public ObjectProperty<TreeItem<Fichier>> selectedTreeProperty() {
         return selectedTree;
+    }
+
+    public StringProperty selectedFileNameProperty() {
+        return selectedFileName;
     }
 
     public void setNewDirLeft(Fichier newDirLeft) {

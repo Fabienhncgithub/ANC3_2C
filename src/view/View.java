@@ -53,6 +53,7 @@ public class View extends VBox {
 
     public View(Stage primaryStage, VM vm) {
         this.vm = vm;
+        new EditView(primaryStage, vm.getEditVM());
         myButtonFilters = new MyButtonFilters(vm, this);
         setBindingAndListeners(vm);
         configColumns(tTVLeft);
@@ -98,17 +99,18 @@ public class View extends VBox {
     private void setBindingAndListeners(VM vm) {
         tTVLeft.rootProperty().bind(vm.rootPropertyLeft());
         tTVRight.rootProperty().bind(vm.rootPropertyRight());
-        myButtonFilters.getFoldersOnly().selectedProperty().bindBidirectional(vm.foldersOnlyProperty());
-//        tTVLeft.setOnMousePressed(e -> {
-//            if (e.getClickCount() == 2) {
-//                vm.fireAction();
-//            }
-//        });
-//        tTVRight.setOnMousePressed(e -> {
-//            if (e.getClickCount() == 2) {
-//                vm.fireAction();
-//            }
-//        });
+//        vm.selectedFichierProperty().bind(vm.selectedTreeProperty());
+
+        tTVLeft.setOnMousePressed(e -> {
+            if (e.getClickCount() == 2) {
+                vm.openSelectedFile();
+            }
+        });
+        tTVRight.setOnMousePressed(e -> {
+            if (e.getClickCount() == 2) {
+                vm.openSelectedFile();
+            }
+        });
     }
 
     private void configColumns(TreeTableView<Fichier> tTV) {

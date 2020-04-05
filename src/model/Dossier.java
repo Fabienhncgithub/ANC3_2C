@@ -81,6 +81,11 @@ public class Dossier extends Fichier {
     }
 
     @Override
+    public boolean isFichierText() {
+        return false;
+    }
+
+    @Override
     public long size() {
         long result = 0;
         for (Fichier f : contenu) {

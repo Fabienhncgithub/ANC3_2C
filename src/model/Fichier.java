@@ -164,6 +164,8 @@ public abstract class Fichier extends TreeItem<Fichier> {
 
     public abstract boolean isDirectory();
 
+    public abstract boolean isFichierText();
+
 
     List<Fichier> getContent() {
         return getChildren().stream().map(ti -> ti.getValue()).collect(toList());

@@ -8,6 +8,8 @@ import javafx.scene.control.TreeItem;
 import java.io.IOException;
 import java.nio.file.Paths;
 import java.time.LocalDateTime;
+import java.util.ArrayList;
+import java.util.List;
 
 public class Model {
 
@@ -18,6 +20,8 @@ public class Model {
     private StringProperty pathDirRight = new SimpleStringProperty("TestBC/RootBC_Right");
     private Fichier dirLeft;
     private Fichier dirRight;
+    private final List<String> fileNames = new ArrayList<>();
+
 
     public Model() {
         try {

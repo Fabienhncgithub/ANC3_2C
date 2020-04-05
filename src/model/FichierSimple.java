@@ -29,6 +29,11 @@ public class FichierSimple extends Fichier {
     }
 
     @Override
+    public boolean isFichierText() {
+        return false;
+    }
+
+    @Override
     public void addFile(Fichier f) {
         throw new UnsupportedOperationException("Not supported operation.");
     }
