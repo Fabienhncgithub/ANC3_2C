@@ -27,6 +27,10 @@ public class VM {
     private Model model;
     private ObjectProperty<TreeItem<Fichier>> obsTreeItemLeft = new SimpleObjectProperty<>();
     private ObjectProperty<TreeItem<Fichier>> obsTreeItemRight = new SimpleObjectProperty<>();
+    private ObjectProperty<FichierText>selectedFileProperty = new SimpleObjectProperty<>();
+
+
+
 
 
     public VM(Model model) {
@@ -93,11 +97,16 @@ public class VM {
         return selectedFileName;
     }
 
+
+
+
+
     public void openSelectedFileLeft() {
         if (selectedTreeLeft.getValue().getValue().isFichierText()) {
             FichierText fichierText = (FichierText) selectedTreeLeft.getValue().getValue();
             selectedFileName.setValue(fichierText.getName());
-            editor.setText(fichierText.getTextProperty());
+            selectedFileProperty.setValue(fichierText);
+            editor.setText(fichierText.getText());
             editor.setVisible(true);
         }
     }
@@ -106,10 +115,15 @@ public class VM {
         if (selectedTreeRight.getValue().getValue().isFichierText()) {
             FichierText fichierText = (FichierText) selectedTreeRight.getValue().getValue();
             selectedFileName.setValue(fichierText.getName());
-            editor.setText(fichierText.getTextProperty());
+            selectedFileProperty.setValue(fichierText);
+            editor.setText(fichierText.getText());
             editor.setVisible(true);
         }
     }
+
+
+
+
 
 
     public EditVM getEditVM() {
@@ -140,4 +154,7 @@ public class VM {
     public ObjectProperty<TreeItem<Fichier>> selectedTreeRight() {
         return selectedTreeRight;
     }
+
+    public ObjectProperty<FichierText> selectedFileProperty() {return selectedFileProperty;}
+
 }

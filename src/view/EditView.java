@@ -11,6 +11,8 @@ import javafx.stage.Stage;
 import vm.EditVM;
 
 public class EditView extends Stage{
+
+
     
     public EditView(Stage primaryStage, EditVM editVM) {
         initModality(Modality.WINDOW_MODAL);
@@ -35,6 +37,17 @@ public class EditView extends Stage{
                 concat(editVM.textLengthProperty()).
                 concat(" octets")
         );
+
+       saveButton.setOnMouseClicked(e -> {
+                editVM.saveTxt();
+       });
+
+
     }
-    
+
+
+
+
+
+
 }

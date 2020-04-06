@@ -18,6 +18,7 @@ public class FichierSimple extends Fichier {
         super(name, size);
     }
 
+
     @Override
     public Iterable<Fichier> getContenu() {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
