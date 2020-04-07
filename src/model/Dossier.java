@@ -42,13 +42,6 @@ public class Dossier extends Fichier {
         bindDateTimeTo(dateTimeBinding);
     }
 
-    public List<String> getFileNamesContenu() {
-        for (Fichier f : contenu) {
-          listNames.add(f.getName());
-        }
-        return Collections.unmodifiableList(listNames);
-    }
-
     public void setNomEnfant() {
         List<String> tmpPathsList = contenu.stream().map(f -> f.getName()).collect(Collectors.toList());
         for (int i = 0; i < (tmpPathsList.size()); i++) {
@@ -63,11 +56,6 @@ public class Dossier extends Fichier {
             }
         }
         return true;
-    }
-
-    public String getLastPathElement(Path path) {
-        int nameCount = path.getNameCount();
-        return path.getName(nameCount - 1).toString();
     }
 
     @Override

@@ -29,12 +29,11 @@ public class MyButtonFilters extends VBox {
         hbox.getStylesheets().add("model/cssView.css");
     }
 
-
-    public MyButtonFilters(VM vm, View view){
+    public MyButtonFilters(VM vm, View view) {
 
         newerLeft.setToggleGroup(newerGroup);
         newerRight.setToggleGroup(newerGroup);
-        
+
         foldersOnly.selectedProperty().bindBidirectional(vm.foldersOnlyProperty());
         orphans.selectedProperty().bindBidirectional(vm.orphansProperty());
         same.selectedProperty().bindBidirectional(vm.sameProperty());
@@ -45,8 +44,18 @@ public class MyButtonFilters extends VBox {
             orphans.setSelected(false);
             same.setSelected(false);
             foldersOnly.setSelected(false);
+            vm.setRoot();
         });
 
+        foldersOnly.setOnAction(e -> {
+            vm.setRoot();
+        });
+        orphans.setOnAction(e -> {
+            vm.setRoot();
+        });
+        same.setOnAction(e -> {
+            vm.setRoot();
+        });
     }
 
     public Button getAll() {

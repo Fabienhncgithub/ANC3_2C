@@ -14,10 +14,6 @@ public class FichierSimple extends Fichier {
         setDateTime(fileTime.toInstant().atZone(ZoneId.systemDefault()).toLocalDateTime());
     }
 
-    FichierSimple(String name, long size) {
-        super(name, size);
-    }
-
 
     @Override
     public Iterable<Fichier> getContenu() {

@@ -41,8 +41,6 @@ public class EditView extends Stage{
        saveButton.setOnMouseClicked(e -> {
                 editVM.saveTxt();
        });
-
-
     }
 
 

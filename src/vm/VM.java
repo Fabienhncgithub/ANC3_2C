@@ -3,14 +3,11 @@ package vm;
 import javafx.beans.property.*;
 import javafx.beans.value.ObservableValue;
 import javafx.scene.control.TreeItem;
-import javafx.stage.DirectoryChooser;
 import model.Fichier;
 import model.FichierText;
 import model.Model;
 
 import java.io.IOException;
-import java.util.ArrayList;
-import java.util.List;
 
 public class VM {
 
@@ -18,48 +15,19 @@ public class VM {
     private final ObjectProperty<TreeItem<Fichier>> selectedTreeLeft = new SimpleObjectProperty<>();
     private final ObjectProperty<TreeItem<Fichier>> selectedTreeRight = new SimpleObjectProperty<>();
     private final EditVM editor;
-    private final StringProperty labelPathLeft = new SimpleStringProperty("");
-    private final StringProperty labelPathRight = new SimpleStringProperty("");
-    private final DirectoryChooser choose = new DirectoryChooser();
-    private final List<String> fileNames = new ArrayList<>();
     private final BooleanProperty orphans = new SimpleBooleanProperty(false);
     private final BooleanProperty same = new SimpleBooleanProperty(false);
     private final BooleanProperty foldersOnly = new SimpleBooleanProperty(false);
     private Model model;
     private ObjectProperty<TreeItem<Fichier>> obsTreeItemLeft = new SimpleObjectProperty<>();
     private ObjectProperty<TreeItem<Fichier>> obsTreeItemRight = new SimpleObjectProperty<>();
-    private ObjectProperty<FichierText>selectedFileProperty = new SimpleObjectProperty<>();
-
-
-
-
+    private ObjectProperty<FichierText> selectedFileProperty = new SimpleObjectProperty<>();
 
     public VM(Model model) {
         this.model = model;
         editor = new EditVM(this);
         setRoot();
-        foldersOnly.addListener((obj, old, act) -> {
-            if (foldersOnly.get()) {
-                setRoot();
-            } else {
-                setRoot();
-            }
 
-        });
-        orphans.addListener((obj, old, act) -> {
-            if (orphans.get()) {
-                setRoot();
-            } else {
-                setRoot();
-            }
-        });
-        same.addListener((obj, old, act) -> {
-            if (same.get()) {
-                setRoot();
-            } else {
-                setRoot();
-            }
-        });
     }
 
     public static TreeItem<Fichier> makeTreeRoot(Fichier root) {
@@ -97,7 +65,6 @@ public class VM {
         return orphans;
     }
 
-
     public BooleanProperty sameProperty() {
         return same;
     }
@@ -109,10 +76,6 @@ public class VM {
     public StringProperty selectedFileNameProperty() {
         return selectedFileName;
     }
-
-
-
-
 
     public void openSelectedFileLeft() {
         if (selectedTreeLeft.getValue().getValue().isFichierText()) {
@@ -134,11 +97,6 @@ public class VM {
         }
     }
 
-
-
-
-
-
     public EditVM getEditVM() {
         return editor;
     }
@@ -159,7 +117,6 @@ public class VM {
         model.setDirRight(newDirRight);
     }
 
-
     public ObjectProperty<TreeItem<Fichier>> selectedTreeLeft() {
         return selectedTreeLeft;
     }
@@ -168,6 +125,8 @@ public class VM {
         return selectedTreeRight;
     }
 
-    public ObjectProperty<FichierText> selectedFileProperty() {return selectedFileProperty;}
+    public ObjectProperty<FichierText> selectedFileProperty() {
+        return selectedFileProperty;
+    }
 
 }

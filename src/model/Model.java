@@ -6,22 +6,16 @@ import javafx.beans.property.StringProperty;
 import javafx.scene.control.TreeItem;
 
 import java.io.IOException;
-import java.nio.file.Paths;
-import java.time.LocalDateTime;
-import java.util.ArrayList;
-import java.util.List;
+import java.nio.file.Paths;import static vm.VM.makeTreeRoot;
+;
+
 
 public class Model {
 
-    //    private static final String INIT_DATA_L = "TestBC/RootBC_Left";
-//    private static final String INIT_DATA_R = "TestBC/RootBC_Right";
-    private static int seqNb = 1;
     private StringProperty pathDirLeft = new SimpleStringProperty("TestBC/RootBC_Left");
     private StringProperty pathDirRight = new SimpleStringProperty("TestBC/RootBC_Right");
     private Fichier dirLeft;
     private Fichier dirRight;
-    private final List<String> fileNames = new ArrayList<>();
-
 
     public Model() {
         try {
@@ -43,22 +37,6 @@ public class Model {
         }
     }
 
-    public TreeItem<Fichier> getRootLeft() {
-        return dirLeft;
-    }
-
-    public TreeItem<Fichier> getRootRight() {
-        return dirRight;
-    }
-
-    public Property<String> getPathDirLeft() {
-        return pathDirLeft;
-    }
-
-    public Property<String> getPathDirRight() {
-        return pathDirRight;
-    }
-
     public Fichier getDirLeft() {
         return dirLeft;
     }
@@ -73,27 +51,6 @@ public class Model {
 
     public void setDirRight(Fichier newDirRight) {
         dirRight = newDirRight;
-    }
-
-    public void modif(Fichier file) {
-        if (file.isDirectory()) {
-            file.addFile(new FichierSimple("NouveauFichier" + seqNb++, 10));
-        } else {
-            file.setSize(file.size() + 10);
-            file.setDateTime(LocalDateTime.now());
-        }
-    }
-
-
-
-    public void foldersOnly(Fichier dir) {
-        for (Fichier f : dir.getContenu()) {
-            if (!f.isDirectory()) {
-                f.setSelected(false);
-            } else {
-                foldersOnly(f);
-            }
-        }
     }
 
     public TreeItem<Fichier> getRootLeft(boolean onlyFolders, boolean orphansSelected, boolean sameSelected) {
@@ -134,7 +91,6 @@ public class Model {
         return dirRight;
     }
 
-
     public void getOnlyFolders(Fichier dir) {
         for (Fichier f : dir.getContenu()) {
             if (!f.isDirectory()) {
@@ -155,62 +111,63 @@ public class Model {
         }
     }
 
-
     public void orphansSelected(Fichier dir) {
-        if (dir.isDirectory())
-            for (Fichier f : dir.getContenu()) {
-                if (f.getEtat() != Etat.ORPHAN) {
-                    f.selected = false;
+        if(dir.isDirectory()) {
+            for(Fichier f : dir.getContent()) {
+                if(f.getEtat() == Etat.ORPHAN) {
+                    f.setSelected(true);
                 } else {
-                    dir.selected = true;
+                    f.setSelected(false);
                 }
-                if (f.isDirectory()) {
+                
+                if(f.isDirectory()) {
                     orphansSelected(f);
                 }
             }
-
+        }
+        
     }
 
-
     private void unSelectedOrphans(Fichier dir) {
-        if (dir.isDirectory())
+        if (dir.isDirectory()) {
             for (Fichier f : dir.getContenu()) {
                 if (f.getEtat() != Etat.ORPHAN) {
-                    dir.selected = true;
+                    f.setSelected(true);
                 }
                 if (f.isDirectory()) {
                     unSelectedOrphans(f);
                 }
             }
+        }
     }
 
-
     public void sameSelected(Fichier dir) {
-        if (dir.isDirectory())
-            for (Fichier f : dir.getContenu()) {
-                if (f.getEtat() != Etat.SAME) {
-                    f.selected = false;
+        if (dir.isDirectory()) {
+            for (Fichier f : dir.getContent()) {
+                if (f.getEtat().equals(Etat.SAME)) {
+                    f.setSelected(true);
                 } else {
-                    dir.selected = true;
+                    dir.setSelected(false);
                 }
                 if (f.isDirectory()) {
                     sameSelected(f);
                 }
             }
+        }
 
     }
 
-
     private void unSelectedSame(Fichier dir) {
-        if (dir.isDirectory())
+        if (dir.isDirectory()) {
             for (Fichier f : dir.getContenu()) {
                 if (f.getEtat() != Etat.SAME) {
-                    dir.selected = true;
+                    dir.setSelected(true);
                 }
                 if (f.isDirectory()) {
                     unSelectedSame(f);
                 }
             }
+        }
     }
 
 }
