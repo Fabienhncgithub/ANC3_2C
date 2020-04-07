@@ -96,7 +96,7 @@ public class Model {
         }
     }
 
-    public TreeItem<Fichier> getRootLeft(boolean onlyFolders, boolean orphansSelected) {
+    public TreeItem<Fichier> getRootLeft(boolean onlyFolders, boolean orphansSelected, boolean sameSelected) {
         if (onlyFolders) {
             getOnlyFolders(dirLeft);
         } else {
@@ -107,10 +107,15 @@ public class Model {
         } else {
             unSelectedOrphans(dirLeft);
         }
+        if (sameSelected) {
+            sameSelected(dirLeft);
+        } else {
+            unSelectedSame(dirLeft);
+        }
         return dirLeft;
     }
 
-    public TreeItem<Fichier> getRootRight(boolean onlyFolders, boolean orphansSelected) {
+    public TreeItem<Fichier> getRootRight(boolean onlyFolders, boolean orphansSelected, boolean sameSelected) {
         if (onlyFolders) {
             getOnlyFolders(dirRight);
         } else {
@@ -120,6 +125,11 @@ public class Model {
             orphansSelected(dirRight);
         } else {
             unSelectedOrphans(dirRight);
+        }
+        if (sameSelected) {
+            sameSelected(dirRight);
+        } else {
+            unSelectedSame(dirRight);
         }
         return dirRight;
     }
@@ -173,4 +183,34 @@ public class Model {
                 }
             }
     }
+
+
+    public void sameSelected(Fichier dir) {
+        if (dir.isDirectory())
+            for (Fichier f : dir.getContenu()) {
+                if (f.getEtat() != Etat.SAME) {
+                    f.selected = false;
+                } else {
+                    dir.selected = true;
+                }
+                if (f.isDirectory()) {
+                    sameSelected(f);
+                }
+            }
+
+    }
+
+
+    private void unSelectedSame(Fichier dir) {
+        if (dir.isDirectory())
+            for (Fichier f : dir.getContenu()) {
+                if (f.getEtat() != Etat.SAME) {
+                    dir.selected = true;
+                }
+                if (f.isDirectory()) {
+                    unSelectedSame(f);
+                }
+            }
+    }
+
 }

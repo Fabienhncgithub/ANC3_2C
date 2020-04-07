@@ -22,8 +22,9 @@ public class VM {
     private final StringProperty labelPathRight = new SimpleStringProperty("");
     private final DirectoryChooser choose = new DirectoryChooser();
     private final List<String> fileNames = new ArrayList<>();
-    private final BooleanProperty foldersOnly = new SimpleBooleanProperty(false);
     private final BooleanProperty orphans = new SimpleBooleanProperty(false);
+    private final BooleanProperty same = new SimpleBooleanProperty(false);
+    private final BooleanProperty foldersOnly = new SimpleBooleanProperty(false);
     private Model model;
     private ObjectProperty<TreeItem<Fichier>> obsTreeItemLeft = new SimpleObjectProperty<>();
     private ObjectProperty<TreeItem<Fichier>> obsTreeItemRight = new SimpleObjectProperty<>();
@@ -52,6 +53,13 @@ public class VM {
                 setRoot();
             }
         });
+        same.addListener((obj, old, act) -> {
+            if (same.get()) {
+                setRoot();
+            } else {
+                setRoot();
+            }
+        });
     }
 
     public static TreeItem<Fichier> makeTreeRoot(Fichier root) {
@@ -68,8 +76,8 @@ public class VM {
     }
 
     public void setRoot() {
-        obsTreeItemLeft.setValue(makeTreeRoot(model.getRootLeft(foldersOnly.getValue(), orphans.getValue()).getValue()));
-        obsTreeItemRight.setValue(makeTreeRoot(model.getRootRight(foldersOnly.getValue(), orphans.getValue()).getValue()));
+        obsTreeItemLeft.setValue(makeTreeRoot(model.getRootLeft(foldersOnly.getValue(), orphans.getValue(), same.getValue()).getValue()));
+        obsTreeItemRight.setValue(makeTreeRoot(model.getRootRight(foldersOnly.getValue(), orphans.getValue(), same.getValue()).getValue()));
         try {
             model.getDirRight().changeEtat(model.getDirLeft());
         } catch (IOException e) {
@@ -87,6 +95,11 @@ public class VM {
 
     public BooleanProperty orphansProperty() {
         return orphans;
+    }
+
+
+    public BooleanProperty sameProperty() {
+        return same;
     }
 
     public TreeItem<Fichier> getTiRight() {

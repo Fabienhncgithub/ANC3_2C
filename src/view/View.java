@@ -144,7 +144,6 @@ public class View extends VBox {
         labelR.setText(tTVRight.getRoot().getValue().getPath().toString());
         buttonFolderL.setGraphic(new ImageView(imageButtonChoose));
         buttonFolderR.setGraphic(new ImageView(imageButtonChoose));
-
         hBoxButtonFolder.getChildren().addAll(labelL, buttonFolderL, buttonFolderR, labelR);
         hBoxButtonFolder.setAlignment(Pos.CENTER);
         hBoxButtonFolder.setSpacing(30);
@@ -154,10 +153,7 @@ public class View extends VBox {
         hBoxFilter.setSpacing(100);
         hBoxFilter.setPadding(new Insets(15, 20, 10, 10));
         etatValues(hBoxBot);
-
         vbox.getChildren().addAll(hBoxFilter, hBoxButtonFolder, hBoxCenter, hBoxBot);
-
-
         Scene scene = new Scene(vbox, 1100, 500);
         scene.getStylesheets().add("model/cssView.css");
         primaryStage.setTitle("Beyond Compare");
