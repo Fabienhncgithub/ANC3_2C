@@ -3,26 +3,19 @@ package model;
 import javafx.beans.Observable;
 import javafx.beans.binding.ObjectBinding;
 
-import java.io.IOException;
-import java.nio.file.DirectoryStream;
-import java.nio.file.Files;
 import java.nio.file.Path;
-import java.nio.file.attribute.BasicFileAttributes;
-import java.nio.file.attribute.FileTime;
 import java.time.LocalDateTime;
-import java.time.ZoneId;
-import java.time.format.DateTimeFormatter;
 import java.util.*;
 import java.util.stream.Collectors;
 
 public class Dossier extends Fichier {
+
     private final SizeBinding sizeBinding = new SizeBinding();
     private final DateTimeBinding dateTimeBinding = new DateTimeBinding();
-    List<String> listNames = null;
-    private Map<String, Integer> nomEnfant = new TreeMap<>();
-    private List<Fichier> contenu = new ArrayList<>();
+    private final Map<String, Integer> nomEnfant = new TreeMap<>();
+    private final List<Fichier> contenu = new ArrayList<>();
 
-    public Dossier(String nom, Path path, Long size, FileTime fileTime) {
+    public Dossier(String nom, Path path, Long size, LocalDateTime date) {
         super(nom, path);
         // Si la liste des enfants change, taille et date doivent être recalculées
         addToSizeBinding(getChildren());
@@ -96,24 +89,24 @@ public class Dossier extends Fichier {
         sizeBinding.invalidate();
     }
 
-
     @Override
-    protected String formatAffichage(int decalage) throws IOException {
+    protected String formatAffichage(int decalage) {
         StringBuilder res = new StringBuilder();
         res.append(super.formatAffichage(decalage))
                 .append(getName())
                 .append(" - type : ").append("D") //(this.isDirectory() ? "D" : "F")
-                .append(" - date : ").append(getModifDate(this.getPath()).format(DateTimeFormatter.ofPattern("dd/MM/yyyy HH:mm:ss")))
+                .append(" - date : ").append(getDateTime())
                 .append(" - size : ").append(size())
                 .append(" - etat : ").append(getEtat())
                 .append(" - contient : ").append("\n");
-        for (Fichier f : contenu)
+        for (Fichier f : contenu) {
             res.append(f.formatAffichage(decalage + 1));
+        }
         return res.toString();
     }
 
     @Override
-    public void changeEtat(Fichier fs) throws IOException {
+    public void changeEtat(Fichier fs) {
         if (fs.isDirectory()) { // remplacer ce code par fd.isDirectory()
             Dossier other = (Dossier) fs;
             setNomEnfant();
@@ -168,7 +161,7 @@ public class Dossier extends Fichier {
         } else if (this.toBeNewer()) {
             this.setEtat(Etat.NEWER);
         } else {
-            this.setEtat(Etat.PARTIAL_SAME); //ce teste peut être enlever si on met PARTIAL_SAME comme valeure de base
+            this.setEtat(Etat.PARTIAL_SAME);
         }
     }
 
@@ -193,7 +186,7 @@ public class Dossier extends Fichier {
         for (Fichier f : this.contenu) {
             if (!f.isDirectory() && f.getEtat() == Etat.UNDEFINED) {
                 f.setEtat(Etat.ORPHAN);
-            } else if (f.isDirectory() && f.getEtat() == Etat.UNDEFINED) { //changer f.type() == 'D' par f.isDirectory()
+            } else if (f.isDirectory() && f.getEtat() == Etat.UNDEFINED) {
                 f.setEtat(Etat.ORPHAN);
                 Dossier d = (Dossier) f;
                 d.setAllChildrenOrphan();
@@ -252,22 +245,7 @@ public class Dossier extends Fichier {
         _addFile(f);
     }
 
-    @Override
-    public LocalDateTime getModifDate(Path path) throws IOException {
-        BasicFileAttributes attrs = Files.readAttributes(path, BasicFileAttributes.class);
-        LocalDateTime result = attrs.lastModifiedTime().toInstant().atZone(ZoneId.systemDefault()).toLocalDateTime();
-        if (Files.isDirectory(path)) {
-            try (DirectoryStream<Path> dir = Files.newDirectoryStream(path)) {
-                for (Path p : dir) {
-                    LocalDateTime tmp = getModifDate(p);
-                    if (tmp.isAfter(result)) {
-                        result = tmp;
-                    }
-                }
-            }
-        }
-        return result;
-    }
+    
 
     // Ajoute une Observable dont dépend le Binding et provoque un recalcul
     private void addToDateTimeBinding(Observable obs) {
@@ -296,7 +274,7 @@ public class Dossier extends Fichier {
 
         @Override // La date est la plus récente des dates des enfants ou la date actuelle
         protected LocalDateTime computeValue() {
-            return getChildren().isEmpty() ? LocalDateTime.now() : getChildren().stream().map(f -> f.getValue().getDateTime()).max(LocalDateTime::compareTo).get();
+            return getChildren().isEmpty() ? LocalDateTime.from(CopyBuilder.getModifDate(getPath())) : getChildren().stream().map(f -> f.getValue().getDateTime()).max(LocalDateTime::compareTo).get();
         }
 
         // Chaque Observable modifiée provoque un recalcul
@@ -307,4 +285,3 @@ public class Dossier extends Fichier {
 
     }
 }
-

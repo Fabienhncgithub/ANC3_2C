@@ -6,15 +6,15 @@ import javafx.beans.value.ObservableIntegerValue;
 import javafx.beans.value.ObservableValue;
 
 import java.nio.file.Path;
-import java.nio.file.attribute.FileTime;
+import java.time.LocalDateTime;
 
 public class FichierText extends FichierSimple {
 
 
-    private StringProperty textProperty = new SimpleStringProperty();
+    private final StringProperty textProperty = new SimpleStringProperty();
 
-    public FichierText(String nom, long size, FileTime fileTime, Path path, String text) {
-        super(nom, size, fileTime, path);
+    public FichierText(String nom, long size, LocalDateTime date, Path path, String text) {
+        super(nom, size, date, path);
         textProperty.setValue(text);
     }
 

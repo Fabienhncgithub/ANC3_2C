@@ -7,7 +7,6 @@ import model.Fichier;
 import model.FichierText;
 import model.Model;
 
-import java.io.IOException;
 
 public class VM {
 
@@ -18,10 +17,10 @@ public class VM {
     private final BooleanProperty orphans = new SimpleBooleanProperty(false);
     private final BooleanProperty same = new SimpleBooleanProperty(false);
     private final BooleanProperty foldersOnly = new SimpleBooleanProperty(false);
-    private Model model;
-    private ObjectProperty<TreeItem<Fichier>> obsTreeItemLeft = new SimpleObjectProperty<>();
-    private ObjectProperty<TreeItem<Fichier>> obsTreeItemRight = new SimpleObjectProperty<>();
-    private ObjectProperty<FichierText> selectedFileProperty = new SimpleObjectProperty<>();
+    private final Model model;
+    private final ObjectProperty<TreeItem<Fichier>> obsTreeItemLeft = new SimpleObjectProperty<>();
+    private final ObjectProperty<TreeItem<Fichier>> obsTreeItemRight = new SimpleObjectProperty<>();
+    private final ObjectProperty<FichierText> selectedFileProperty = new SimpleObjectProperty<>();
 
     public VM(Model model) {
         this.model = model;
@@ -46,11 +45,7 @@ public class VM {
     public void setRoot() {
         obsTreeItemLeft.setValue(makeTreeRoot(model.getRootLeft(foldersOnly.getValue(), orphans.getValue(), same.getValue()).getValue()));
         obsTreeItemRight.setValue(makeTreeRoot(model.getRootRight(foldersOnly.getValue(), orphans.getValue(), same.getValue()).getValue()));
-        try {
-            model.getDirRight().changeEtat(model.getDirLeft());
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
+        model.getDirRight().changeEtat(model.getDirLeft());
     }
 
     public TreeItem<Fichier> getTiLeft() {
@@ -128,5 +123,4 @@ public class VM {
     public ObjectProperty<FichierText> selectedFileProperty() {
         return selectedFileProperty;
     }
-
 }

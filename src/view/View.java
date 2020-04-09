@@ -21,7 +21,6 @@ import model.Fichier;
 import vm.VM;
 
 import java.io.File;
-import java.io.IOException;
 import java.nio.file.Paths;
 import java.time.LocalDateTime;
 
@@ -30,24 +29,24 @@ import java.time.LocalDateTime;
  */
 public class View extends VBox {
 
-
-    private HBox hBoxCenter = new HBox();
-    private Image imageButtonChoose = new Image("Images/flat_folder.png");
-    private HBox hBoxBot = hBoxBot();
-    private HBox hBoxFilter = new HBox();
-    private VBox vbox = new VBox();
-    private VM vm;
-    private MyButtonFilters myButtonFilters;
-    private HBox hBoxButtonFolder = new HBox();
-    private Button buttonFolderL = new Button("L");
-    private Button buttonFolderR = new Button("R");
-    private DirectoryChooser dirChooser = new DirectoryChooser();
     private Stage primaryStage;
-    private TreeTableView<Fichier> tTVLeft = new TreeTableView<>();
-    private TreeTableView<Fichier> tTVRight = new TreeTableView<>();
-    private Label labelL = new Label();
-    private Label labelR = new Label();
+    private MyButtonFilters myButtonFilters;
+    private final HBox hBoxCenter = new HBox();
+    private final Image imageButtonChoose = new Image("Images/flat_folder.png");
+    private final HBox hBoxBot = hBoxBot();
+    private final HBox hBoxFilter = new HBox();
+    private final VBox vbox = new VBox();
+    private final VM vm;
 
+    private final HBox hBoxButtonFolder = new HBox();
+    private final Button buttonFolderL = new Button("L");
+    private final Button buttonFolderR = new Button("R");
+    private final DirectoryChooser dirChooser = new DirectoryChooser();
+
+    private final TreeTableView<Fichier> tTVLeft = new TreeTableView<>();
+    private final TreeTableView<Fichier> tTVRight = new TreeTableView<>();
+    private final Label labelL = new Label();
+    private final Label labelR = new Label();
 
     public View(Stage primaryStage, VM vm) {
         this.vm = vm;
@@ -66,25 +65,17 @@ public class View extends VBox {
             File dir = dirChooser.showDialog(primaryStage);
             if (dir != null) {
                 if (button.getText() == "R") {
-                    try {
-                        labelR.setText(dir.getAbsolutePath());
-                        Fichier newFichierR = new CopyBuilder().build(Paths.get(dir.getAbsolutePath()));
-                        vm.setNewDirRight(newFichierR);
-                        vm.setNewDirLeft(vm.getTiLeft().getValue());
-                        vm.setRoot();
-                    } catch (IOException e) {
-                        e.printStackTrace();
-                    }
+                    labelR.setText(dir.getAbsolutePath());
+                    Fichier newFichierR = new CopyBuilder().build(Paths.get(dir.getAbsolutePath()));
+                    vm.setNewDirRight(newFichierR);
+                    vm.setNewDirLeft(vm.getTiLeft().getValue());
+                    vm.setRoot();
                 } else {
-                    try {
-                        labelL.setText(dir.getAbsolutePath());
-                        Fichier newFichierL = new CopyBuilder().build(Paths.get(dir.getAbsolutePath()));
-                        vm.setNewDirLeft(newFichierL);
-                        vm.setNewDirRight(vm.getTiRight().getValue());
-                        vm.setRoot();
-                    } catch (IOException e) {
-                        e.printStackTrace();
-                    }
+                    labelL.setText(dir.getAbsolutePath());
+                    Fichier newFichierL = new CopyBuilder().build(Paths.get(dir.getAbsolutePath()));
+                    vm.setNewDirLeft(newFichierL);
+                    vm.setNewDirRight(vm.getTiRight().getValue());
+                    vm.setRoot();
                 }
                 vm.setRoot();
             }

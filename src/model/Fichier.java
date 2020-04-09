@@ -5,7 +5,6 @@ import javafx.beans.value.ObservableStringValue;
 import javafx.beans.value.ObservableValue;
 import javafx.scene.control.TreeItem;
 
-import java.io.IOException;
 import java.nio.file.Path;
 import java.time.LocalDateTime;
 import java.util.List;
@@ -16,7 +15,7 @@ public abstract class Fichier extends TreeItem<Fichier> {
 
     private final StringProperty name;
     private final LongProperty size = new SimpleLongProperty(0L);
-    boolean selected = true;
+    private boolean selected = true;
     private ObjectProperty<LocalDateTime> dateTime;
     private Path path;
     private Etat etat = Etat.UNDEFINED;
@@ -115,7 +114,7 @@ public abstract class Fichier extends TreeItem<Fichier> {
         this.etat = etat;
     }
 
-    protected String formatAffichage(int decalage) throws IOException {
+    protected String formatAffichage(int decalage) {
         String res = "";
         for (int i = 0; i < decalage; ++i) {
             res += "\t";
@@ -130,12 +129,7 @@ public abstract class Fichier extends TreeItem<Fichier> {
 
     @Override
     public String toString() {
-        try {
-            return formatAffichage(0);
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-        return "";
+        return formatAffichage(0);
     }
 
     final void _addFile(Fichier f) {
@@ -143,7 +137,7 @@ public abstract class Fichier extends TreeItem<Fichier> {
         super.getChildren().add(f);
     }
 
-    public abstract void changeEtat(Fichier fs) throws IOException;
+    public abstract void changeEtat(Fichier fs);
 
     public abstract Iterable<Fichier> getContenu();
 
@@ -153,7 +147,7 @@ public abstract class Fichier extends TreeItem<Fichier> {
 
     public abstract void ajoutFichier(Fichier f);
 
-    public abstract LocalDateTime getModifDate(Path path) throws IOException;
+    //public abstract LocalDateTime getModifDate(Path path);
 
     public abstract boolean isDirectory();
 

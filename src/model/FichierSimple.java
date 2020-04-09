@@ -1,17 +1,14 @@
 package model;
 
-import java.io.IOException;
-import java.nio.file.Files;
+
 import java.nio.file.Path;
-import java.nio.file.attribute.FileTime;
 import java.time.LocalDateTime;
-import java.time.ZoneId;
 
 public class FichierSimple extends Fichier {
 
-    public FichierSimple(String nom, long size, FileTime fileTime, Path path) {
+    public FichierSimple(String nom, long size, LocalDateTime date, Path path) {
         super(nom, path, size);
-        setDateTime(fileTime.toInstant().atZone(ZoneId.systemDefault()).toLocalDateTime());
+        setDateTime(date);
     }
 
 
@@ -36,14 +33,14 @@ public class FichierSimple extends Fichier {
     }
 
     @Override
-    public void changeEtat(Fichier fs) throws IOException {
+    public void changeEtat(Fichier fs) {
         if (this.getLastDirName(getPath()).equals(fs.getLastDirName(fs.getPath()))) { // TODO check getLastDirName()
             if (this.getName().equals(fs.getName())) {
-                if (this.getModifDate(this.getPath()).isEqual(fs.getModifDate(fs.getPath()))) {
+                if (this.getDateTime().isEqual(fs.getDateTime())) {
                     fs.setEtat(Etat.SAME);
                     this.setEtat(Etat.SAME);
                 } else {
-                    if (this.getModifDate(this.getPath()).isAfter(fs.getModifDate(fs.getPath()))) {
+                    if (this.getDateTime().isAfter(fs.getDateTime())) {
                         fs.setEtat(Etat.OLDER);
                         this.setEtat(Etat.NEWER);
                     } else {
@@ -57,7 +54,7 @@ public class FichierSimple extends Fichier {
 
 
     @Override
-    protected String formatAffichage(int decalage) throws IOException {
+    protected String formatAffichage(int decalage) {
         StringBuilder res = new StringBuilder();
         res.append(super.formatAffichage(decalage))
                 .append(" ").append(getName())
@@ -74,8 +71,4 @@ public class FichierSimple extends Fichier {
         throw new UnsupportedOperationException("Not supported.");
     }
 
-    @Override
-    public LocalDateTime getModifDate(Path path) throws IOException {
-        return Files.getLastModifiedTime(path).toInstant().atZone(ZoneId.systemDefault()).toLocalDateTime();
-    }
 }

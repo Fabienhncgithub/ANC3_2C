@@ -10,16 +10,16 @@ import vm.VM;
 
 public class MyButtonFilters extends VBox {
 
-    HBox hbox = new HBox();
-    private Button all = new Button("All");
+    private final HBox hbox = new HBox();
+    private final Button all = new Button("All");
+    private final ToggleGroup newerGroup = new ToggleGroup();
     private ToggleButton newerLeft = new ToggleButton("Newer left");
     private ToggleButton newerRight = new ToggleButton("Newer right");
     private ToggleButton orphans = new ToggleButton("Orphans");
     private ToggleButton same = new ToggleButton("Same");
     private ToggleButton foldersOnly = new ToggleButton("Folders only");
-    private ToggleGroup newerGroup = new ToggleGroup();
-    private VM vm;
-    private View view;
+    
+
 
     {
         hbox.getChildren().addAll(all, newerLeft, newerRight, orphans, same, foldersOnly);
