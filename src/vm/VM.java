@@ -14,6 +14,7 @@ public class VM {
     private final ObjectProperty<TreeItem<Fichier>> selectedTreeLeft = new SimpleObjectProperty<>();
     private final ObjectProperty<TreeItem<Fichier>> selectedTreeRight = new SimpleObjectProperty<>();
     private final EditVM editor;
+    private final BooleanProperty newLeft = new SimpleBooleanProperty(false);
     private final BooleanProperty orphans = new SimpleBooleanProperty(false);
     private final BooleanProperty same = new SimpleBooleanProperty(false);
     private final BooleanProperty foldersOnly = new SimpleBooleanProperty(false);
@@ -43,8 +44,8 @@ public class VM {
     }
 
     public void setRoot() {
-        obsTreeItemLeft.setValue(makeTreeRoot(model.getRootLeft(foldersOnly.getValue(), orphans.getValue(), same.getValue()).getValue()));
-        obsTreeItemRight.setValue(makeTreeRoot(model.getRootRight(foldersOnly.getValue(), orphans.getValue(), same.getValue()).getValue()));
+        obsTreeItemLeft.setValue(makeTreeRoot(model.getRootLeft(newLeft.getValue(), orphans.getValue(), same.getValue(),foldersOnly.getValue()).getValue()));
+        obsTreeItemRight.setValue(makeTreeRoot(model.getRootRight(orphans.getValue(), same.getValue(),foldersOnly.getValue()).getValue()));
         model.getDirRight().changeEtat(model.getDirLeft());
     }
 
@@ -52,8 +53,8 @@ public class VM {
         return makeTreeRoot(model.getDirLeft());
     }
 
-    public BooleanProperty foldersOnlyProperty() {
-        return foldersOnly;
+    public BooleanProperty newLeftProperty(){
+        return newLeft;
     }
 
     public BooleanProperty orphansProperty() {
@@ -62,6 +63,11 @@ public class VM {
 
     public BooleanProperty sameProperty() {
         return same;
+    }
+
+
+    public BooleanProperty foldersOnlyProperty() {
+        return foldersOnly;
     }
 
     public TreeItem<Fichier> getTiRight() {
