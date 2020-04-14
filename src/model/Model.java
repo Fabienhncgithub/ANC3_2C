@@ -5,6 +5,7 @@ import javafx.beans.property.StringProperty;
 import javafx.scene.control.TreeItem;
 
 import java.nio.file.Paths;
+import static vm.VM.makeTreeRoot;
 
 public class Model {
 
@@ -41,58 +42,62 @@ public class Model {
         dirRight = newDirRight;
     }
 
-    public TreeItem<Fichier> getRootLeft(boolean newSelected, boolean orphansSelected, boolean sameSelected, boolean onlyFolders) {
-        if(newSelected){
-            System.out.println("test");
-            newSelected(dirLeft);
-        }else{
-            System.out.println("test2");
-            unSelectedNew(dirLeft);
-        }
-        if (orphansSelected) {
-            orphansSelected(dirLeft);
-        } else {
-            unSelectedOrphans(dirLeft);
-        }
-        if (sameSelected) {
-            sameSelected(dirLeft);
-        } else {
-            unSelectedSame(dirLeft);
-        }
-        if (onlyFolders) {
-            getOnlyFolders(dirLeft);
-        } else {
-            unSelectedOnlyFolders(dirLeft);
-        }
-        return dirLeft;
-    }
+    public TreeItem<Fichier> getRootLeft(boolean newSelected, boolean newRight, boolean orphansSelected, boolean sameSelected, boolean onlyFolders) {
 
-    public TreeItem<Fichier> getRootRight(boolean orphansSelected, boolean sameSelected,boolean onlyFolders) {
+        if (newSelected) {
+            return newSelected(dirLeft);
+        }
+
+        if (newRight) {
+            return oldSelected(dirLeft);
+        }
+
+        if (sameSelected) {
+            return sameSelected(dirLeft);
+        }
 
         if (orphansSelected) {
-            orphansSelected(dirRight);
-        } else {
-            unSelectedOrphans(dirRight);
+            return orphansSelected(dirLeft);
         }
-        if (sameSelected) {
-            sameSelected(dirRight);
-        } else {
-            unSelectedSame(dirRight);
-        }
+
         if (onlyFolders) {
-            getOnlyFolders(dirRight);
-        } else {
-            unSelectedOnlyFolders(dirRight);
+            return getOnlyFolders(dirLeft);
         }
-        return dirRight;
+
+        return makeTreeRoot(dirLeft);
     }
 
-    public void newSelected(Fichier dir) {
+    public TreeItem<Fichier> getRootRight(boolean newSelected, boolean newRight, boolean orphansSelected, boolean sameSelected, boolean onlyFolders) {
+        if (newSelected) {
+            return oldSelected(dirRight);
+        }
+
+        if (newRight) {
+            return newSelected(dirRight);
+        }
+
+        if (sameSelected) {
+            return sameSelected(dirRight);
+        }
+
+        if (orphansSelected) {
+            return orphansSelected(dirRight);
+        }
+        if (onlyFolders) {
+            return getOnlyFolders(dirRight);
+        }                                                                       
+
+        return makeTreeRoot(dirRight);
+    }
+
+    public TreeItem<Fichier> newSelected(Fichier dir) {
         if (dir.isDirectory()) {
             for (Fichier f : dir.getContent()) {
                 if (!f.isDirectory()) {
                     if (f.getEtat() != Etat.NEWER) {
                         f.setSelected(false);
+                    } else {
+                        dir.setSelected(true);
                     }
                 } else {
                     if (f.getEtat() != Etat.NEWER) {
@@ -102,24 +107,35 @@ public class Model {
                     }
                     newSelected(f);
                 }
+                System.out.println(f.getName() + "   " + f.getEtat() + "   " + f.isSelected());
             }
         }
+        return dir;
     }
 
-    private void unSelectedNew(Fichier dir) {
+    public TreeItem<Fichier> oldSelected(Fichier dir) {
         if (dir.isDirectory()) {
-            for (Fichier f : dir.getContenu()) {
-                if (f.getEtat() != Etat.NEWER) {
-                    f.setSelected(true);
-                }
-                if (f.isDirectory()) {
-                    unSelectedNew(f);
+            for (Fichier f : dir.getContent()) {
+                if (!f.isDirectory()) {
+                    if (f.getEtat() != Etat.OLDER) {
+                        f.setSelected(false);
+                    } else {
+                        dir.setSelected(true);
+                    }
+                } else {
+                    if (f.getEtat() != Etat.OLDER) {
+                        f.setSelected(false);
+                    } else {
+                        dir.setSelected(true);
+                    }
+                    oldSelected(f);
                 }
             }
         }
+        return dir;
     }
 
-    public void getOnlyFolders(Fichier dir) {
+    public TreeItem<Fichier> getOnlyFolders(Fichier dir) {
         if (dir.isDirectory()) {
             for (Fichier f : dir.getContent()) {
                 if (!f.isDirectory()) {
@@ -129,19 +145,10 @@ public class Model {
                 }
             }
         }
+        return dir;
     }
 
-    public void unSelectedOnlyFolders(Fichier dir) {
-        for (Fichier f : dir.getContenu()) {
-            if (!f.isDirectory()) {
-                f.setSelected(true);
-            } else {
-                unSelectedOnlyFolders(f);
-            }
-        }
-    }
-
-    public void orphansSelected(Fichier dir) {
+    public TreeItem<Fichier> orphansSelected(Fichier dir) {
         if (dir.isDirectory()) {
             for (Fichier f : dir.getContent()) {
                 if (!f.isDirectory()) {
@@ -158,22 +165,10 @@ public class Model {
                 }
             }
         }
+        return dir;
     }
 
-    private void unSelectedOrphans(Fichier dir) {
-        if (dir.isDirectory()) {
-            for (Fichier f : dir.getContenu()) {
-                if (f.getEtat() != Etat.ORPHAN) {
-                    f.setSelected(true);
-                }
-                if (f.isDirectory()) {
-                    unSelectedOrphans(f);
-                }
-            }
-        }
-    }
-
-    public void sameSelected(Fichier dir) {
+    public TreeItem<Fichier> sameSelected(Fichier dir) {
         if (dir.isDirectory()) {
             for (Fichier f : dir.getContent()) {
                 if (!f.isDirectory()) {
@@ -190,20 +185,6 @@ public class Model {
                 }
             }
         }
-
+        return dir;
     }
-
-    private void unSelectedSame(Fichier dir) {
-        if (dir.isDirectory()) {
-            for (Fichier f : dir.getContenu()) {
-                if (f.getEtat() != Etat.SAME) {
-                    f.setSelected(true);
-                }
-                if (f.isDirectory()) {
-                    unSelectedSame(f);
-                }
-            }
-        }
-    }
-
 }

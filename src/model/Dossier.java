@@ -106,15 +106,15 @@ public class Dossier extends Fichier {
     }
 
     @Override
-    public void changeEtat(Fichier fs) {
-        if (fs.isDirectory()) { // remplacer ce code par fd.isDirectory()
+    public void changeEtat(Fichier fs) { //TODO verifier que les dossier vides ne sont pas specialement orphans
+        if (fs.isDirectory()) {
             Dossier other = (Dossier) fs;
             setNomEnfant();
             other.setNomEnfant();
             for (Fichier fichier : this.contenu) {
                 if ((!other.nomEnfant.containsKey(fichier.getName()))) {
                     if (fichier.isDirectory()) {
-                        ((Dossier) fichier).setAllChildrenOrphan(); // TODO ces trois lignes dans un func()
+                        ((Dossier) fichier).setAllChildrenOrphan(); 
                     }
                     fichier.setEtat(Etat.ORPHAN);
                 } else {
@@ -122,7 +122,7 @@ public class Dossier extends Fichier {
                     if (fCorrespondant.isDirectory() != fichier.isDirectory()) {
                         if (!fichier.isDirectory()) {
                             fichier.setEtat(Etat.ORPHAN);
-                            other.setAllChildrenOrphan();           // TODO ces trois lignes dans un func()
+                            other.setAllChildrenOrphan();          
                             other.setEtat(Etat.ORPHAN);
                         } else {
                             other.setEtat(Etat.ORPHAN);
