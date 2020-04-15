@@ -18,6 +18,8 @@ public class MyButtonFilters extends VBox {
     private ToggleButton orphans = new ToggleButton("Orphans");
     private ToggleButton same = new ToggleButton("Same");
     private ToggleButton foldersOnly = new ToggleButton("Folders only");
+    
+
 
     {
         hbox.getChildren().addAll(all, newerLeft, newerRight, orphans, same, foldersOnly);
@@ -32,8 +34,7 @@ public class MyButtonFilters extends VBox {
         newerLeft.setToggleGroup(newerGroup);
         newerRight.setToggleGroup(newerGroup);
 
-        newerLeft.selectedProperty().bindBidirectional(vm.newLeftProperty());
-        newerRight.selectedProperty().bindBidirectional(vm.newRightProperty());
+       newerLeft.selectedProperty().bindBidirectional(vm.newLeftProperty());
         orphans.selectedProperty().bindBidirectional(vm.orphansProperty());
         same.selectedProperty().bindBidirectional(vm.sameProperty());
         foldersOnly.selectedProperty().bindBidirectional(vm.foldersOnlyProperty());
@@ -46,10 +47,12 @@ public class MyButtonFilters extends VBox {
             foldersOnly.setSelected(false);
             vm.setRoot();
         });
+
         newerLeft.setOnAction(e -> {
             vm.setRoot();
         });
-        newerRight.setOnAction(e -> {
+
+        foldersOnly.setOnAction(e -> {
             vm.setRoot();
         });
         orphans.setOnAction(e -> {
@@ -58,8 +61,29 @@ public class MyButtonFilters extends VBox {
         same.setOnAction(e -> {
             vm.setRoot();
         });
-        foldersOnly.setOnAction(e -> {
-            vm.setRoot();
-        });
+    }
+
+    public Button getAll() {
+        return all;
+    }
+
+    public ToggleButton getNewerLeft() {
+        return newerLeft;
+    }
+
+    public ToggleButton getNewerRight() {
+        return newerRight;
+    }
+
+    public ToggleButton getOrphans() {
+        return orphans;
+    }
+
+    public ToggleButton getSame() {
+        return same;
+    }
+
+    public ToggleButton getFoldersOnly() {
+        return foldersOnly;
     }
 }
