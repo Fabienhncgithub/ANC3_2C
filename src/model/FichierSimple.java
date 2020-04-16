@@ -1,16 +1,14 @@
 package model;
 
-
 import java.nio.file.Path;
 import java.time.LocalDateTime;
 
 public class FichierSimple extends Fichier {
 
-    public FichierSimple(String nom, long size, LocalDateTime date, Path path) {
-        super(nom, path, size);
+    public FichierSimple(String name, long size, LocalDateTime date, Path path) {
+        super(name, path, size);
         setDateTime(date);
     }
-
 
     @Override
     public Iterable<Fichier> getContenu() {
@@ -52,7 +50,6 @@ public class FichierSimple extends Fichier {
         }
     }
 
-
     @Override
     protected String formatAffichage(int decalage) {
         StringBuilder res = new StringBuilder();
@@ -70,5 +67,6 @@ public class FichierSimple extends Fichier {
     public void ajoutFichier(Fichier f) {
         throw new UnsupportedOperationException("Not supported.");
     }
+    
 
 }

@@ -44,6 +44,7 @@ public class EditVM {
         FichierText selectedFichierText = viewModel.selectedFileProperty().getValue();
         selectedFichierText.setDateTime((LocalDateTime.now()));
         selectedFichierText.setSize(textLengthProperty().get());
+        viewModel.setRoot();
         selectedFichierText.setText(text.get());
         viewModel.setRoot();
     }

@@ -102,6 +102,10 @@ public abstract class Fichier extends TreeItem<Fichier> {
         return name.get();
     }
 
+    public void setName(String name) {
+        this.name.setValue(name);
+    }
+
     public ObservableStringValue nameProperty() {
         return name;
     }
@@ -141,22 +145,17 @@ public abstract class Fichier extends TreeItem<Fichier> {
 
     public abstract Iterable<Fichier> getContenu();
 
-
-
     public abstract void addFile(Fichier file);
 
     public abstract void ajoutFichier(Fichier f);
 
     //public abstract LocalDateTime getModifDate(Path path);
-
     public abstract boolean isDirectory();
 
     public abstract boolean isFichierText();
 
-
     public List<Fichier> getContent() {
         return getChildren().stream().map(ti -> ti.getValue()).collect(toList());
     }
-
 
 }
