@@ -50,6 +50,7 @@ public class VM {
         obsTreeItemLeft.setValue(makeTreeRoot(model.getRootLeft(newLeft.getValue(),newRight.getValue(), orphans.getValue(), same.getValue(), foldersOnly.getValue()).getValue()));
         obsTreeItemRight.setValue(makeTreeRoot(model.getRootRight(newLeft.getValue(), newRight.getValue(), orphans.getValue(), same.getValue(), foldersOnly.getValue()).getValue()));
         model.getDirRight().changeEtat(model.getDirLeft());
+        model.getDirLeft().changeEtat(model.getDirRight());
     }
     
     public TreeItem<Fichier> getTiLeft() {

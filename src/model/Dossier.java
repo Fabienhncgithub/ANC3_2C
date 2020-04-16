@@ -114,7 +114,7 @@ public class Dossier extends Fichier {
             for (Fichier fichier : this.contenu) {
                 if ((!other.nomEnfant.containsKey(fichier.getName()))) {
                     if (fichier.isDirectory()) {
-                        ((Dossier) fichier).setAllChildrenOrphan(); 
+                        ((Dossier) fichier).setAllChildrenOrphan();
                     }
                     fichier.setEtat(Etat.ORPHAN);
                 } else {
@@ -122,13 +122,14 @@ public class Dossier extends Fichier {
                     if (fCorrespondant.isDirectory() != fichier.isDirectory()) {
                         if (!fichier.isDirectory()) {
                             fichier.setEtat(Etat.ORPHAN);
-                            other.setAllChildrenOrphan();          
+                            other.setAllChildrenOrphan();
                             other.setEtat(Etat.ORPHAN);
                         } else {
                             other.setEtat(Etat.ORPHAN);
                             ((Dossier) fichier).setAllChildrenOrphan();
                             fichier.setEtat(Etat.ORPHAN);
                         }
+
                     } else {
                         fichier.changeEtat(fCorrespondant);
                     }
@@ -184,9 +185,9 @@ public class Dossier extends Fichier {
 
     private void setAllChildrenOrphan() {
         for (Fichier f : this.contenu) {
-            if (!f.isDirectory() && f.getEtat() == Etat.UNDEFINED) {
+            if (!f.isDirectory()) {
                 f.setEtat(Etat.ORPHAN);
-            } else if (f.isDirectory() && f.getEtat() == Etat.UNDEFINED) {
+            } else if (f.isDirectory()) {
                 f.setEtat(Etat.ORPHAN);
                 Dossier d = (Dossier) f;
                 d.setAllChildrenOrphan();
@@ -244,8 +245,6 @@ public class Dossier extends Fichier {
         addToDateTimeBinding(f.dateTimeProperty());
         _addFile(f);
     }
-
-    
 
     // Ajoute une Observable dont dépend le Binding et provoque un recalcul
     private void addToDateTimeBinding(Observable obs) {

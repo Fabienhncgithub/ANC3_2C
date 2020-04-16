@@ -9,20 +9,20 @@ import static vm.VM.makeTreeRoot;
 
 public class Model {
 
-    private StringProperty pathDirLeft = new SimpleStringProperty("TestBC/RootBC_Left");
-    private StringProperty pathDirRight = new SimpleStringProperty("TestBC/RootBC_Right");
+    private final StringProperty pathDirLeft = new SimpleStringProperty("TestBC/RootBC_Left");
+    private final StringProperty pathDirRight = new SimpleStringProperty("TestBC/RootBC_Right");
     private Fichier dirLeft;
     private Fichier dirRight;
 
     public Model() {
-        dirLeft = new CopyBuilder().build(Paths.get(pathDirLeft.getValue()));
-        dirRight = new CopyBuilder().build(Paths.get(pathDirRight.getValue()));
+        dirLeft = CopyBuilder.build(Paths.get(pathDirLeft.getValue()));
+        dirRight = CopyBuilder.build(Paths.get(pathDirRight.getValue()));
         dirLeft.changeEtat(dirRight);
     }
 
     public Model(String fLeft, String fRight) {
-        dirLeft = new CopyBuilder().build(Paths.get(fLeft));
-        dirRight = new CopyBuilder().build(Paths.get(fRight));
+        dirLeft = CopyBuilder.build(Paths.get(fLeft));
+        dirRight = CopyBuilder.build(Paths.get(fRight));
         dirLeft.changeEtat(dirRight);
     }
 
@@ -64,7 +64,7 @@ public class Model {
             return getOnlyFolders(dirLeft);
         }
 
-        return makeTreeRoot(dirLeft);
+        return dirLeft;
     }
 
     public TreeItem<Fichier> getRootRight(boolean newSelected, boolean newRight, boolean orphansSelected, boolean sameSelected, boolean onlyFolders) {
@@ -85,9 +85,9 @@ public class Model {
         }
         if (onlyFolders) {
             return getOnlyFolders(dirRight);
-        }                                                                       
+        }
 
-        return makeTreeRoot(dirRight);
+        return dirRight;
     }
 
     public TreeItem<Fichier> newSelected(Fichier dir) {
@@ -132,7 +132,7 @@ public class Model {
                 }
             }
         }
-        return dir;
+        return makeTreeRoot(dir);
     }
 
     public TreeItem<Fichier> getOnlyFolders(Fichier dir) {
@@ -145,6 +145,14 @@ public class Model {
                 }
             }
         }
+
+//        TreeItem<Fichier> res = new TreeItem<>(dir);
+//        res.setExpanded(true);
+//
+//        dir.getContent().stream().filter((f) -> (f.isDirectory())).forEachOrdered((f) -> {
+//            res.getChildren().add(getOnlyFolders(f));
+//        });
+//        System.out.println(res.getValue().getName() + "   " + res.getValue().isDirectory());
         return dir;
     }
 
