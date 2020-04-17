@@ -5,6 +5,9 @@ import javafx.beans.property.StringProperty;
 import javafx.scene.control.TreeItem;
 
 import java.nio.file.Paths;
+import java.util.Set;
+import java.util.function.Predicate;
+
 import static vm.VM.makeTreeRoot;
 
 public class Model {
@@ -40,6 +43,54 @@ public class Model {
 
     public void setDirRight(Fichier newDirRight) {
         dirRight = newDirRight;
+    }
+
+    public TreeItem<Fichier> getRoot(Fichier root, Set<Etat> setEtat, boolean foldersOnly) {
+        updateTrees(setEtat);
+        TreeItem<Fichier> res = new TreeItem<>(root);
+        res.setExpanded(true);
+        root.getContent().stream().filter(f -> getPredicatesFilters(setEtat).getPredicateLeft().test(f)).forEachOrdered((f) -> {
+            res.getChildren().add(getRoot(f, setEtat, foldersOnly));
+        });
+        if (foldersOnly) {
+            TreeItem<Fichier> folders = res;
+            folders = getOnlyFolders(res.getValue());
+            return folders;
+        }
+        return res;
+    }
+
+    public void updateTrees(Set<Etat> etats) {
+        PredicateFilters predicateFilters = getPredicatesFilters(etats);
+        dirLeft.toSelect(predicateFilters.getPredicateLeft());
+        dirRight.toSelect(predicateFilters.getPredicateRight());
+    }
+
+    public PredicateFilters getPredicatesFilters(Set<Etat> setEtats) {
+        Predicate<Fichier> pLeft = fichier -> false;
+        Predicate<Fichier> pRight = fichier -> false;
+        for (Etat etat : setEtats) {
+            if (etat == Etat.ORPHAN) {
+                pLeft = pLeft.or(fichier -> fichier.getEtat() == Etat.ORPHAN);
+                pRight = pRight.or(fichier -> fichier.getEtat() == Etat.ORPHAN);
+            }
+            if (etat == Etat.SAME) {
+                pLeft = pLeft.or(fichier -> fichier.getEtat() == Etat.SAME);
+                pRight = pRight.or(fichier -> fichier.getEtat() == Etat.SAME);
+            }
+            if (etat == Etat.NEWER_LEFT) {
+                pLeft = pLeft.or(fichier -> fichier.getEtat() == Etat.NEWER);
+                pRight = pRight.or(fichier -> fichier.getEtat() == Etat.OLDER);
+            }
+            if (etat == Etat.NEWER_RIGHT) {
+                pLeft = pLeft.or(fichier -> fichier.getEtat() == Etat.OLDER);
+                pRight = pRight.or(fichier -> fichier.getEtat() == Etat.NEWER);
+            }
+        }
+        if (setEtats.isEmpty()) {
+            pLeft = pRight = fichier -> true;
+        }
+        return new PredicateFilters(pLeft, pRight);
     }
 
     public TreeItem<Fichier> getRootLeft(boolean newSelected, boolean newRight, boolean orphansSelected, boolean sameSelected, boolean onlyFolders) {
@@ -107,7 +158,6 @@ public class Model {
                     }
                     newSelected(f);
                 }
-                System.out.println(f.getName() + "   " + f.getEtat() + "   " + f.isSelected());
             }
         }
         return dir;

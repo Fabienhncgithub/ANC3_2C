@@ -5,7 +5,11 @@ import javafx.beans.binding.ObjectBinding;
 
 import java.nio.file.Path;
 import java.time.LocalDateTime;
-import java.util.*;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Map;
+import java.util.TreeMap;
+import java.util.function.Predicate;
 import java.util.stream.Collectors;
 
 public class Dossier extends Fichier {
@@ -281,6 +285,18 @@ public class Dossier extends Fichier {
         void addBinding(Observable obs) {
             super.bind(obs);
         }
+    }
 
+    @Override
+    public boolean toSelect(Predicate<Fichier> p) {
+        this.setSelected(false);
+        boolean shouldBeSelected = p.test(this);
+        for (Fichier f : this.getContenu()) {
+            if (f.toSelect(p)) {
+                f.setSelected(true);
+                shouldBeSelected = true;
+            }
+        }
+        return shouldBeSelected;
     }
 }

@@ -8,6 +8,8 @@ import javafx.scene.control.TreeItem;
 import java.nio.file.Path;
 import java.time.LocalDateTime;
 import java.util.List;
+import java.util.Set;
+import java.util.function.Predicate;
 
 import static java.util.stream.Collectors.toList;
 
@@ -16,7 +18,7 @@ public abstract class Fichier extends TreeItem<Fichier> {
     private final StringProperty name;
     private final LongProperty size = new SimpleLongProperty(0L);
     private boolean selected = true;
-    private ObjectProperty<LocalDateTime> dateTime;
+    private final ObjectProperty<LocalDateTime> dateTime;
     private Path path;
     private Etat etat = Etat.UNDEFINED;
 
@@ -140,6 +142,13 @@ public abstract class Fichier extends TreeItem<Fichier> {
         // Utilise super car la version redéfinie renvoie un immuable
         super.getChildren().add(f);
     }
+
+    public Predicate<Fichier> hasThisEtat(Set<Etat> setEtat)
+    {
+        return p -> !setEtat.contains(p.getEtat());
+    }
+
+    public abstract boolean toSelect(Predicate<Fichier> p);
 
     public abstract void changeEtat(Fichier fs);
 

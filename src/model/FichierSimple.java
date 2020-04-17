@@ -2,6 +2,7 @@ package model;
 
 import java.nio.file.Path;
 import java.time.LocalDateTime;
+import java.util.function.Predicate;
 
 public class FichierSimple extends Fichier {
 
@@ -67,6 +68,13 @@ public class FichierSimple extends Fichier {
     public void ajoutFichier(Fichier f) {
         throw new UnsupportedOperationException("Not supported.");
     }
-    
 
+    @Override
+    public boolean toSelect(Predicate<Fichier> p) {
+        if (p.test(this)) {
+            return true;
+        }
+        this.setSelected(false);
+        return false;
+    }
 }

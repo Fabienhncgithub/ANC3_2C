@@ -3,9 +3,13 @@ package vm;
 import javafx.beans.property.*;
 import javafx.beans.value.ObservableValue;
 import javafx.scene.control.TreeItem;
+import model.Etat;
 import model.Fichier;
 import model.FichierText;
 import model.Model;
+
+import java.util.HashSet;
+import java.util.Set;
 
 public class VM {
     
@@ -27,28 +31,37 @@ public class VM {
         this.model = model;
         editor = new EditVM(this);
         setRoot();
-        
     }
     
     public static TreeItem<Fichier> makeTreeRoot(Fichier root) {
         TreeItem<Fichier> res = new TreeItem<>(root);
         res.setExpanded(true);
-//        if (root.isDirectory()) {
-//            root.getContenu().forEach(se -> {
-//                if (se.isSelected()) {
-//                    res.getChildren().add(makeTreeRoot(se));
-//                }
-//            });
-//        }
         root.getContent().stream().filter((f) -> (f.isSelected())).forEachOrdered((f) -> {
             res.getChildren().add(makeTreeRoot(f));
         });
         return res;
     }
-    
+
+    public Set<Etat> getFilters() {
+        Set<Etat> filters = new HashSet<>();
+        if (sameProperty().getValue()){
+            filters.add(Etat.SAME);
+        }
+        if (orphansProperty().getValue()) {
+            filters.add(Etat.ORPHAN);
+        }
+        if (newLeftProperty().getValue()) {
+            filters.add(Etat.NEWER_LEFT);
+        }
+        if (newRightProperty().getValue()) {
+            filters.add(Etat.NEWER_RIGHT);
+        }
+        return filters;
+    }
+
     public void setRoot() {
-        obsTreeItemLeft.setValue(makeTreeRoot(model.getRootLeft(newLeft.getValue(),newRight.getValue(), orphans.getValue(), same.getValue(), foldersOnly.getValue()).getValue()));
-        obsTreeItemRight.setValue(makeTreeRoot(model.getRootRight(newLeft.getValue(), newRight.getValue(), orphans.getValue(), same.getValue(), foldersOnly.getValue()).getValue()));
+        obsTreeItemLeft.setValue(makeTreeRoot(model.getRoot(getTiLeft().getValue(), getFilters(), foldersOnly.getValue()).getValue()));
+        obsTreeItemRight.setValue(makeTreeRoot(model.getRoot(getTiRight().getValue(), getFilters(), foldersOnly.getValue()).getValue()));
         model.getDirRight().changeEtat(model.getDirLeft());
         model.getDirLeft().changeEtat(model.getDirRight());
     }
