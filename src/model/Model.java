@@ -7,6 +7,7 @@ import javafx.scene.control.TreeItem;
 import java.nio.file.Paths;
 import java.util.Set;
 import java.util.function.Predicate;
+
 import static vm.VM.makeTreeRoot;
 
 public class Model {
@@ -28,7 +29,7 @@ public class Model {
         dirLeft.changeEtat(dirRight);
     }
 
-    public TreeItem<Fichier> predicateEtat(Fichier root, Set<Etat> etat) {
+    public TreeItem<Fichier> predicateEtat(Fichier root, Set<Etat> etat, boolean onlyFolders) {
         TreeItem<Fichier> res = new TreeItem<>(root);
         res.setExpanded(true);
 
@@ -38,20 +39,37 @@ public class Model {
 //            res.getChildren().add(predicateEtat(f, etat));
 //            System.out.println(predicate.test(f));
 //        });
+
+
+
         if (root.isDirectory()) {
             root.setSelected(true);
+
             for (Fichier f : root.getContent()) {
+
                 if (!f.isDirectory()) {
                     if ((!etat.isEmpty()) && !predicate.test(f)) {
                         f.setSelected(false);
                         root.setSelected(false);
+
+
+                    } else {
+                        f.setSelected(true);
+                        root.setSelected(true);
                     }
+
+
                 } else {
                     if ((!etat.isEmpty()) && !predicate.test(f)) {
                         f.setSelected(false);
+                    } else {
+                        f.setSelected(true);
                     }
-                    predicateEtat(f, etat);
+                    predicateEtat(f, etat, onlyFolders);
                 }
+            }
+            if (onlyFolders) {
+                res = getOnlyFolders(root);
             }
         }
         return res;
@@ -73,38 +91,6 @@ public class Model {
         dirRight = newDirRight;
     }
 
-    public TreeItem<Fichier> getRootLeft(boolean newSelected, boolean newRight, boolean orphansSelected, boolean sameSelected, boolean onlyFolders) {
-
-        if (newSelected) {
-            return newSelected(dirLeft);
-        }
-
-        if (newRight) {
-            return oldSelected(dirLeft);
-        }
-
-        if (onlyFolders) {
-            return getOnlyFolders(dirLeft);
-        }
-
-        return dirLeft;
-    }
-
-    public TreeItem<Fichier> getRootRight(boolean newSelected, boolean newRight, boolean orphansSelected, boolean sameSelected, boolean onlyFolders) {
-        if (newSelected) {
-            return oldSelected(dirRight);
-        }
-
-        if (newRight) {
-            return newSelected(dirRight);
-        }
-
-        if (onlyFolders) {
-            return getOnlyFolders(dirRight);
-        }
-
-        return dirRight;
-    }
 
     public TreeItem<Fichier> newSelected(Fichier dir) {
         if (dir.isDirectory()) {
@@ -153,6 +139,8 @@ public class Model {
     public TreeItem<Fichier> getOnlyFolders(Fichier dir) {
         if (dir.isDirectory()) {
             for (Fichier f : dir.getContent()) {
+
+
                 if (!f.isDirectory()) {
                     f.setSelected(false);
                 } else {
