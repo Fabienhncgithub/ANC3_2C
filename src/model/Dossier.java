@@ -120,7 +120,7 @@ public class Dossier extends Fichier {
                 } else {
                     Fichier fCorrespondant = other.contenu.get(other.nomEnfant.get(fichier.getName()));
                     if (fCorrespondant.isDirectory() != fichier.isDirectory()) {
-                        if (!fichier.isDirectory()) {
+                        if (!fichier.isDirectory()) { //cette condition me parait bizarre
                             fichier.setEtat(Etat.ORPHAN);
                             other.setAllChildrenOrphan();
                             other.setEtat(Etat.ORPHAN);
@@ -148,7 +148,7 @@ public class Dossier extends Fichier {
                 this.checkEmptyDir(other);
                 this.setFolderEtat();
                 other.setFolderEtat();
-            }
+            } 
         }
     }
 
