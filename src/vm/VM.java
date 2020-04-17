@@ -1,8 +1,11 @@
 package vm;
 
+import java.util.HashSet;
+import java.util.Set;
 import javafx.beans.property.*;
 import javafx.beans.value.ObservableValue;
 import javafx.scene.control.TreeItem;
+import model.Etat;
 import model.Fichier;
 import model.FichierText;
 import model.Model;
@@ -30,16 +33,25 @@ public class VM {
         
     }
     
+    public Set<Etat> listeEtat() {
+        Set<Etat> liste = new HashSet<>();
+        
+        
+        
+        if(sameProperty().getValue()) {
+            liste.add(Etat.SAME);
+        }
+        
+        if(orphansProperty().getValue()) {
+            liste.add(Etat.ORPHAN);
+        }
+        
+        return liste;
+    }
+    
     public static TreeItem<Fichier> makeTreeRoot(Fichier root) {
-        TreeItem<Fichier> res = new TreeItem<>(root);
+        TreeItem<Fichier> res = new TreeItem<>(root.getValue());
         res.setExpanded(true);
-//        if (root.isDirectory()) {
-//            root.getContenu().forEach(se -> {
-//                if (se.isSelected()) {
-//                    res.getChildren().add(makeTreeRoot(se));
-//                }
-//            });
-//        }
         root.getContent().stream().filter((f) -> (f.isSelected())).forEachOrdered((f) -> {
             res.getChildren().add(makeTreeRoot(f));
         });
@@ -47,8 +59,8 @@ public class VM {
     }
     
     public void setRoot() {
-        obsTreeItemLeft.setValue(makeTreeRoot(model.getRootLeft(newLeft.getValue(),newRight.getValue(), orphans.getValue(), same.getValue(), foldersOnly.getValue()).getValue()));
-        obsTreeItemRight.setValue(makeTreeRoot(model.getRootRight(newLeft.getValue(), newRight.getValue(), orphans.getValue(), same.getValue(), foldersOnly.getValue()).getValue()));
+        obsTreeItemLeft.setValue(makeTreeRoot(model.predicateEtat(model.getDirLeft(), listeEtat()).getValue()));
+        obsTreeItemRight.setValue(makeTreeRoot(model.predicateEtat(model.getDirRight(), listeEtat()).getValue()));
         model.getDirRight().changeEtat(model.getDirLeft());
         model.getDirLeft().changeEtat(model.getDirRight());
     }
