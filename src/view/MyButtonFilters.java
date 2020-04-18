@@ -13,11 +13,11 @@ public class MyButtonFilters extends VBox {
     private final HBox hbox = new HBox();
     private final Button all = new Button("All");
     private final ToggleGroup newerGroup = new ToggleGroup();
-    private ToggleButton newerLeft = new ToggleButton("Newer left");
-    private ToggleButton newerRight = new ToggleButton("Newer right");
-    private ToggleButton orphans = new ToggleButton("Orphans");
-    private ToggleButton same = new ToggleButton("Same");
-    private ToggleButton foldersOnly = new ToggleButton("Folders only");
+    private final ToggleButton newerLeft = new ToggleButton("Newer left");
+    private final ToggleButton newerRight = new ToggleButton("Newer right");
+    private final ToggleButton orphans = new ToggleButton("Orphans");
+    private final ToggleButton same = new ToggleButton("Same");
+    private final ToggleButton foldersOnly = new ToggleButton("Folders only");
     
 
 
@@ -35,6 +35,7 @@ public class MyButtonFilters extends VBox {
         newerRight.setToggleGroup(newerGroup);
 
        newerLeft.selectedProperty().bindBidirectional(vm.newLeftProperty());
+       newerRight.selectedProperty().bindBidirectional(vm.newRightProperty());
         orphans.selectedProperty().bindBidirectional(vm.orphansProperty());
         same.selectedProperty().bindBidirectional(vm.sameProperty());
         foldersOnly.selectedProperty().bindBidirectional(vm.foldersOnlyProperty());
@@ -49,6 +50,10 @@ public class MyButtonFilters extends VBox {
         });
 
         newerLeft.setOnAction(e -> {
+            vm.setRoot();
+        });
+
+        newerRight.setOnAction(e -> {
             vm.setRoot();
         });
 

@@ -29,43 +29,28 @@ public class Model {
         dirLeft.changeEtat(dirRight);
     }
 
-    public TreeItem<Fichier> predicateEtat(Fichier root, Set<Etat> etat, boolean onlyFolders) {
+    public TreeItem<Fichier> predicateEtatLeft(Fichier root, Set<Etat> etat, boolean onlyFolders) {
         TreeItem<Fichier> res = new TreeItem<>(root);
         res.setExpanded(true);
-
         Predicate<Fichier> predicate = (Fichier f) -> etat.contains(f.getEtat());
-
 //        root.getContent().stream().filter((f) -> (predicate.test(f))).forEachOrdered((f) -> {
 //            res.getChildren().add(predicateEtat(f, etat));
 //            System.out.println(predicate.test(f));
 //        });
-
-
-
         if (root.isDirectory()) {
             root.setSelected(true);
-
             for (Fichier f : root.getContent()) {
-
                 if (!f.isDirectory()) {
                     if ((!etat.isEmpty()) && !predicate.test(f)) {
                         f.setSelected(false);
                         root.setSelected(false);
-
-
                     } else {
                         f.setSelected(true);
                         root.setSelected(true);
                     }
-
-
                 } else {
-                    if ((!etat.isEmpty()) && !predicate.test(f)) {
-                        f.setSelected(false);
-                    } else {
-                        f.setSelected(true);
-                    }
-                    predicateEtat(f, etat, onlyFolders);
+                    f.setSelected((etat.isEmpty()) || predicate.test(f));
+                    predicateEtatLeft(f, etat, onlyFolders);
                 }
             }
             if (onlyFolders) {
@@ -73,6 +58,49 @@ public class Model {
             }
         }
         return res;
+    }
+
+    public TreeItem<Fichier> predicateEtatRight(Fichier root, Set<Etat> etat, boolean onlyFolders) {
+        TreeItem<Fichier> res = new TreeItem<>(root);
+        res.setExpanded(true);
+        Set<Etat> newSet = inverseSetNewOld(etat);
+        Predicate<Fichier> predicate = (Fichier f) -> newSet.contains(f.getEtat());
+//        root.getContent().stream().filter((f) -> (predicate.test(f))).forEachOrdered((f) -> {
+//            res.getChildren().add(predicateEtat(f, etat));
+//            System.out.println(predicate.test(f));
+//        });
+        if (root.isDirectory()) {
+            root.setSelected(true);
+            for (Fichier f : root.getContent()) {
+                if (!f.isDirectory()) {
+                    if ((!newSet.isEmpty()) && !predicate.test(f)) {
+                        f.setSelected(false);
+                        root.setSelected(false);
+                    } else {
+                        f.setSelected(true);
+                        root.setSelected(true);
+                    }
+                } else {
+                    f.setSelected((newSet.isEmpty()) || predicate.test(f));
+                    predicateEtatRight(f, newSet, onlyFolders);
+                }
+            }
+            if (onlyFolders) {
+                res = getOnlyFolders(root);
+            }
+        }
+        return res;
+    }
+
+    public Set<Etat> inverseSetNewOld(Set<Etat> etats) {
+        if (etats.contains(Etat.NEWER)) {
+            etats.remove(Etat.NEWER);
+            etats.add(Etat.OLDER);
+        }else if (etats.contains(Etat.OLDER)) {
+            etats.remove(Etat.OLDER);
+            etats.add(Etat.NEWER);
+        }
+        return etats;
     }
 
     public Fichier getDirLeft() {
@@ -139,8 +167,6 @@ public class Model {
     public TreeItem<Fichier> getOnlyFolders(Fichier dir) {
         if (dir.isDirectory()) {
             for (Fichier f : dir.getContent()) {
-
-
                 if (!f.isDirectory()) {
                     f.setSelected(false);
                 } else {

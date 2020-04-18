@@ -1,7 +1,5 @@
 package vm;
 
-import java.util.HashSet;
-import java.util.Set;
 import javafx.beans.property.*;
 import javafx.beans.value.ObservableValue;
 import javafx.scene.control.TreeItem;
@@ -9,6 +7,9 @@ import model.Etat;
 import model.Fichier;
 import model.FichierText;
 import model.Model;
+
+import java.util.HashSet;
+import java.util.Set;
 
 public class VM {
     
@@ -30,22 +31,22 @@ public class VM {
         this.model = model;
         editor = new EditVM(this);
         setRoot();
-        
     }
     
     public Set<Etat> listeEtat() {
         Set<Etat> liste = new HashSet<>();
-        
-        
-        
         if(sameProperty().getValue()) {
             liste.add(Etat.SAME);
         }
-        
         if(orphansProperty().getValue()) {
             liste.add(Etat.ORPHAN);
         }
-        
+        if(newLeftProperty().getValue()) {
+            liste.add(Etat.NEWER);
+        }
+        if(newRightProperty().getValue()) {
+            liste.add(Etat.OLDER);
+        }
         return liste;
     }
     
@@ -59,10 +60,11 @@ public class VM {
     }
     
     public void setRoot() {
-        obsTreeItemLeft.setValue(makeTreeRoot(model.predicateEtat(model.getDirLeft(), listeEtat()).getValue()));
-        obsTreeItemRight.setValue(makeTreeRoot(model.predicateEtat(model.getDirRight(), listeEtat()).getValue()));
+        obsTreeItemLeft.setValue(makeTreeRoot(model.predicateEtatLeft(model.getDirLeft(), listeEtat(), foldersOnly.getValue()).getValue()));
+        obsTreeItemRight.setValue(makeTreeRoot(model.predicateEtatRight(model.getDirRight(), listeEtat(), foldersOnly.getValue()).getValue()));
         model.getDirRight().changeEtat(model.getDirLeft());
         model.getDirLeft().changeEtat(model.getDirRight());
+        System.out.println(listeEtat().toString());
     }
     
     public TreeItem<Fichier> getTiLeft() {
