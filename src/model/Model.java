@@ -8,8 +8,6 @@ import java.nio.file.Paths;
 import java.util.Set;
 import java.util.function.Predicate;
 
-import static vm.VM.makeTreeRoot;
-
 public class Model {
 
     private final StringProperty pathDirLeft = new SimpleStringProperty("TestBC/RootBC_Left");
@@ -33,6 +31,11 @@ public class Model {
         TreeItem<Fichier> res = new TreeItem<>(root);
         res.setExpanded(true);
         Predicate<Fichier> predicate = (Fichier f) -> etat.contains(f.getEtat());
+
+
+
+
+
         if (root.isDirectory()) {
             for (Fichier f : root.getContent()) {
                 if (!f.isDirectory()) {
@@ -40,18 +43,18 @@ public class Model {
                         f.setSelected(false);
                     } else {
                         f.setSelected(true);
-                        root.setSelected(true);
+                        f.getParent().getValue().setSelected(true);
                     }
                 } else {
                     if ((!etat.isEmpty()) && !predicate.test(f)) {
                         f.setSelected(false);
                     } else {
                         f.setSelected(true);
-                        root.setSelected(true);
+                        f.getParent().getValue().setSelected(true);
                     }
                     predicateEtat(f, etat, onlyFolders);
-
                 }
+
                 if (onlyFolders) {
                     res = getOnlyFolders(root);
                 }
@@ -61,13 +64,9 @@ public class Model {
     }
 
     public Set<Etat> inverseSetNewOld(Set<Etat> etats) {
-        if (etats.contains(Etat.NEWER)) {
-            etats.remove(Etat.NEWER);
+        etats.remove(Etat.NEWER);
             etats.add(Etat.OLDER);
-        } else if (etats.contains(Etat.OLDER)) {
-            etats.remove(Etat.OLDER);
-            etats.add(Etat.NEWER);
-        }
+
         return etats;
     }
 
@@ -100,4 +99,55 @@ public class Model {
         return dir;
     }
 
+
+
+    public TreeItem<Fichier> newer(Fichier dir){
+        if(dir.isDirectory()){
+            for(Fichier f : dir.getContenu()){
+                if(!f.isDirectory()){
+                    if(f.getEtat() == Etat.NEWER){
+                        f.setSelected(false);
+                    }else{
+                        f.setSelected(true);
+                        dir.setSelected(true);
+                    }
+                }else{
+                    if(f.getEtat() == Etat.NEWER){
+                        f.setSelected(false);
+                    }else{
+                        f.setSelected(true);
+                        dir.setSelected(true);
+                    }
+                }
+                newer(f);
+            }
+        }
+        return dir;
+    }
+
+
+    public TreeItem<Fichier> older(Fichier dir){
+        if(dir.isDirectory()){
+            for(Fichier f : dir.getContenu()){
+                if(!f.isDirectory()){
+                    if(f.getEtat() == Etat.OLDER){
+                        f.setSelected(false);
+                    }else{
+                        f.setSelected(true);
+                        dir.setSelected(true);
+                    }
+
+                }else{
+                    if(f.getEtat() == Etat.OLDER){
+                        f.setSelected(false);
+                    }else{
+                        f.setSelected(true);
+                        dir.setSelected(true);
+                    }
+                }
+                older(f);
+            }
+        }
+        return dir;
+    }
 }

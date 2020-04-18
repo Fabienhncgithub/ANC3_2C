@@ -22,7 +22,6 @@
     <list default="true" id="0c777b5d-34a2-47ef-b49f-5789669eb0c3" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/model/Model.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/model/Model.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/view/MyButtonFilters.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/view/MyButtonFilters.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/vm/VM.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/vm/VM.java" afterDir="false" />
     </list>
     <list id="ef81b322-75c7-4b79-a5d0-2e6ef4de1cf3" name="Revert &quot;ajout du binding dans la vue&quot;" comment="Revert &quot;ajout du binding dans la vue&quot;&#10;&#10;This reverts commit e6b07745" />
@@ -89,7 +88,7 @@
     <property name="project.structure.side.proportion" value="0.2" />
     <property name="restartRequiresConfirmation" value="false" />
     <property name="run.code.analysis.last.selected.profile" value="pProject Default" />
-    <property name="settings.editor.selected.configurable" value="reference.projectsettings.compiler.javacompiler" />
+    <property name="settings.editor.selected.configurable" value="preferences.editor" />
   </component>
   <component name="RecentsManager">
     <key name="MoveFile.RECENT_KEYS">
@@ -559,17 +558,13 @@
         </entry>
         <entry key="MAIN">
           <value>
-            <State />
+            <State>
+              <option name="COLUMN_ORDER" />
+            </State>
           </value>
         </entry>
       </map>
     </option>
-    <option name="OPEN_GENERIC_TABS">
-      <map>
-        <entry key="1" value="TOOL_WINDOW" />
-      </map>
-    </option>
-    <option name="oldMeFiltersMigrated" value="true" />
   </component>
   <component name="VcsManagerConfiguration">
     <option name="CHECK_CODE_CLEANUP_BEFORE_PROJECT_COMMIT" value="true" />
@@ -651,10 +646,11 @@
       <screen x="0" y="0" width="1440" height="920" />
     </state>
     <state x="469" y="317" key="ANALYSIS_DLG_com.intellij.analysis.BaseAnalysisAction$1/0.0.1440.920@0.0.1440.920" timestamp="1583871923825" />
-    <state x="419" y="0" width="861" height="620" key="CommitChangelistDialog2" timestamp="1587157327520">
-      <screen x="0" y="0" width="1280" height="994" />
+    <state x="-306" y="-1440" width="861" height="620" key="CommitChangelistDialog2" timestamp="1587253951113">
+      <screen x="-1144" y="-1440" width="2560" height="1410" />
     </state>
     <state x="179" y="0" key="CommitChangelistDialog2/0.0.1280.680@0.0.1280.680" timestamp="1583670741967" />
+    <state x="-306" y="-1440" key="CommitChangelistDialog2/0.0.1280.689/-1144.-1440.2560.1410@-1144.-1440.2560.1410" timestamp="1587253951113" />
     <state x="489" y="0" key="CommitChangelistDialog2/0.0.1280.689/-1144.-1440.2560.1410@0.0.1280.689" timestamp="1586203702633" />
     <state x="419" y="0" key="CommitChangelistDialog2/0.0.1280.994@0.0.1280.994" timestamp="1587157327520" />
     <state x="182" y="-960" key="CommitChangelistDialog2/0.0.1366.738/0.-1024.1280.994@0.-1024.1280.994" timestamp="1583866246489" />
@@ -679,13 +675,13 @@
     <state x="463" y="123" key="FileChooserDialogImpl/0.0.1366.738@0.0.1366.738" timestamp="1583832907050" />
     <state x="488" y="153" key="FileChooserDialogImpl/0.0.1440.920@0.0.1440.920" timestamp="1583872200254" />
     <state x="694" y="187" key="FileChooserDialogImpl/0.0.2048.1122@0.0.2048.1122" timestamp="1584692017379" />
-    <state width="2005" height="182" key="GridCell.Tab.0.bottom" timestamp="1587203967397">
-      <screen x="0" y="0" width="2048" height="1122" />
+    <state width="2517" height="464" key="GridCell.Tab.0.bottom" timestamp="1587254023704">
+      <screen x="-1144" y="-1440" width="2560" height="1410" />
     </state>
     <state width="1237" height="55" key="GridCell.Tab.0.bottom/0.0.1280.680@0.0.1280.680" timestamp="1583670681921" />
-    <state width="2517" height="62" key="GridCell.Tab.0.bottom/0.0.1280.689/-1144.-1440.2560.1410@-1144.-1440.2560.1410" timestamp="1586214207865" />
+    <state width="2517" height="464" key="GridCell.Tab.0.bottom/0.0.1280.689/-1144.-1440.2560.1410@-1144.-1440.2560.1410" timestamp="1587254023704" />
     <state width="1237" height="69" key="GridCell.Tab.0.bottom/0.0.1280.689/-1144.-1440.2560.1410@0.0.1280.689" timestamp="1586799359061" />
-    <state width="1237" height="69" key="GridCell.Tab.0.bottom/0.0.1280.689@0.0.1280.689" timestamp="1586855429690" />
+    <state width="1237" height="272" key="GridCell.Tab.0.bottom/0.0.1280.689@0.0.1280.689" timestamp="1587220152566" />
     <state width="1237" height="208" key="GridCell.Tab.0.bottom/0.0.1280.994@0.0.1280.994" timestamp="1587159475341" />
     <state width="1237" height="225" key="GridCell.Tab.0.bottom/0.0.1366.738/0.-1024.1280.994@0.-1024.1280.994" timestamp="1583866246521" />
     <state width="1323" height="86" key="GridCell.Tab.0.bottom/0.0.1366.738/0.-1024.1280.994@0.0.1366.738" timestamp="1583873310906" />
@@ -700,13 +696,13 @@
     <state width="1638" height="552" key="GridCell.Tab.0.bottom/0.23.1680.980@0.23.1680.980" timestamp="1586726689706" />
     <state width="1406" height="243" key="GridCell.Tab.0.bottom/89.-1417.2560.1417/0.23.1680.980@89.-1417.2560.1417" timestamp="1586791491167" />
     <state width="2518" height="243" key="GridCell.Tab.0.bottom/89.-1440.2560.1440/0.0.1680.1050@89.-1440.2560.1440" timestamp="1586782525212" />
-    <state width="2005" height="182" key="GridCell.Tab.0.center" timestamp="1587203967397">
-      <screen x="0" y="0" width="2048" height="1122" />
+    <state width="2517" height="464" key="GridCell.Tab.0.center" timestamp="1587254023703">
+      <screen x="-1144" y="-1440" width="2560" height="1410" />
     </state>
     <state width="1237" height="55" key="GridCell.Tab.0.center/0.0.1280.680@0.0.1280.680" timestamp="1583670681921" />
-    <state width="2517" height="62" key="GridCell.Tab.0.center/0.0.1280.689/-1144.-1440.2560.1410@-1144.-1440.2560.1410" timestamp="1586214207865" />
+    <state width="2517" height="464" key="GridCell.Tab.0.center/0.0.1280.689/-1144.-1440.2560.1410@-1144.-1440.2560.1410" timestamp="1587254023703" />
     <state width="1237" height="69" key="GridCell.Tab.0.center/0.0.1280.689/-1144.-1440.2560.1410@0.0.1280.689" timestamp="1586799359061" />
-    <state width="1237" height="69" key="GridCell.Tab.0.center/0.0.1280.689@0.0.1280.689" timestamp="1586855429690" />
+    <state width="1237" height="272" key="GridCell.Tab.0.center/0.0.1280.689@0.0.1280.689" timestamp="1587220152565" />
     <state width="1237" height="208" key="GridCell.Tab.0.center/0.0.1280.994@0.0.1280.994" timestamp="1587159475341" />
     <state width="1237" height="225" key="GridCell.Tab.0.center/0.0.1366.738/0.-1024.1280.994@0.-1024.1280.994" timestamp="1583866246521" />
     <state width="1323" height="86" key="GridCell.Tab.0.center/0.0.1366.738/0.-1024.1280.994@0.0.1366.738" timestamp="1583873310906" />
@@ -721,13 +717,13 @@
     <state width="1638" height="552" key="GridCell.Tab.0.center/0.23.1680.980@0.23.1680.980" timestamp="1586726689705" />
     <state width="1406" height="243" key="GridCell.Tab.0.center/89.-1417.2560.1417/0.23.1680.980@89.-1417.2560.1417" timestamp="1586791491166" />
     <state width="2518" height="243" key="GridCell.Tab.0.center/89.-1440.2560.1440/0.0.1680.1050@89.-1440.2560.1440" timestamp="1586782525210" />
-    <state width="2005" height="182" key="GridCell.Tab.0.left" timestamp="1587203967397">
-      <screen x="0" y="0" width="2048" height="1122" />
+    <state width="2517" height="464" key="GridCell.Tab.0.left" timestamp="1587254023702">
+      <screen x="-1144" y="-1440" width="2560" height="1410" />
     </state>
     <state width="1237" height="55" key="GridCell.Tab.0.left/0.0.1280.680@0.0.1280.680" timestamp="1583670681921" />
-    <state width="2517" height="62" key="GridCell.Tab.0.left/0.0.1280.689/-1144.-1440.2560.1410@-1144.-1440.2560.1410" timestamp="1586214207865" />
+    <state width="2517" height="464" key="GridCell.Tab.0.left/0.0.1280.689/-1144.-1440.2560.1410@-1144.-1440.2560.1410" timestamp="1587254023702" />
     <state width="1237" height="69" key="GridCell.Tab.0.left/0.0.1280.689/-1144.-1440.2560.1410@0.0.1280.689" timestamp="1586799359060" />
-    <state width="1237" height="69" key="GridCell.Tab.0.left/0.0.1280.689@0.0.1280.689" timestamp="1586855429690" />
+    <state width="1237" height="272" key="GridCell.Tab.0.left/0.0.1280.689@0.0.1280.689" timestamp="1587220152565" />
     <state width="1237" height="208" key="GridCell.Tab.0.left/0.0.1280.994@0.0.1280.994" timestamp="1587159475341" />
     <state width="1237" height="225" key="GridCell.Tab.0.left/0.0.1366.738/0.-1024.1280.994@0.-1024.1280.994" timestamp="1583866246521" />
     <state width="1323" height="86" key="GridCell.Tab.0.left/0.0.1366.738/0.-1024.1280.994@0.0.1366.738" timestamp="1583873310906" />
@@ -742,13 +738,13 @@
     <state width="1638" height="552" key="GridCell.Tab.0.left/0.23.1680.980@0.23.1680.980" timestamp="1586726689705" />
     <state width="1406" height="243" key="GridCell.Tab.0.left/89.-1417.2560.1417/0.23.1680.980@89.-1417.2560.1417" timestamp="1586791491165" />
     <state width="2518" height="243" key="GridCell.Tab.0.left/89.-1440.2560.1440/0.0.1680.1050@89.-1440.2560.1440" timestamp="1586782525209" />
-    <state width="2005" height="182" key="GridCell.Tab.0.right" timestamp="1587203967397">
-      <screen x="0" y="0" width="2048" height="1122" />
+    <state width="2517" height="464" key="GridCell.Tab.0.right" timestamp="1587254023703">
+      <screen x="-1144" y="-1440" width="2560" height="1410" />
     </state>
     <state width="1237" height="55" key="GridCell.Tab.0.right/0.0.1280.680@0.0.1280.680" timestamp="1583670681921" />
-    <state width="2517" height="62" key="GridCell.Tab.0.right/0.0.1280.689/-1144.-1440.2560.1410@-1144.-1440.2560.1410" timestamp="1586214207865" />
+    <state width="2517" height="464" key="GridCell.Tab.0.right/0.0.1280.689/-1144.-1440.2560.1410@-1144.-1440.2560.1410" timestamp="1587254023703" />
     <state width="1237" height="69" key="GridCell.Tab.0.right/0.0.1280.689/-1144.-1440.2560.1410@0.0.1280.689" timestamp="1586799359061" />
-    <state width="1237" height="69" key="GridCell.Tab.0.right/0.0.1280.689@0.0.1280.689" timestamp="1586855429690" />
+    <state width="1237" height="272" key="GridCell.Tab.0.right/0.0.1280.689@0.0.1280.689" timestamp="1587220152566" />
     <state width="1237" height="208" key="GridCell.Tab.0.right/0.0.1280.994@0.0.1280.994" timestamp="1587159475341" />
     <state width="1237" height="225" key="GridCell.Tab.0.right/0.0.1366.738/0.-1024.1280.994@0.-1024.1280.994" timestamp="1583866246521" />
     <state width="1323" height="86" key="GridCell.Tab.0.right/0.0.1366.738/0.-1024.1280.994@0.0.1366.738" timestamp="1583873310906" />
@@ -795,9 +791,10 @@
     <state width="1323" height="226" key="GridCell.Tab.1.right/0.0.1366.738@0.0.1366.738" timestamp="1583408843588" />
     <state width="2005" height="345" key="GridCell.Tab.1.right/0.0.2048.1122@0.0.2048.1122" timestamp="1585993326384" />
     <state width="1638" height="326" key="GridCell.Tab.1.right/0.23.1680.980@0.23.1680.980" timestamp="1580847897653" />
-    <state x="592" y="128" key="MultipleFileMergeDialog" timestamp="1585507252456">
-      <screen x="0" y="0" width="2048" height="1122" />
+    <state x="-404" y="-1279" key="MultipleFileMergeDialog" timestamp="1587231637611">
+      <screen x="-1144" y="-1440" width="2560" height="1410" />
     </state>
+    <state x="-404" y="-1279" key="MultipleFileMergeDialog/0.0.1280.689/-1144.-1440.2560.1410@-1144.-1440.2560.1410" timestamp="1587231637611" />
     <state x="395" y="84" key="MultipleFileMergeDialog/0.0.1366.738/1366.0.1280.994@0.0.1366.738" timestamp="1580847897661" />
     <state x="395" y="84" key="MultipleFileMergeDialog/0.0.1366.738@0.0.1366.738" timestamp="1582198612604" />
     <state x="592" y="128" key="MultipleFileMergeDialog/0.0.2048.1122@0.0.2048.1122" timestamp="1585507252456" />
@@ -812,9 +809,10 @@
     <state x="362" y="81" key="RollbackChangesDialog/0.0.1366.738/1366.0.1280.994@0.0.1366.738" timestamp="1580847897661" />
     <state x="362" y="81" key="RollbackChangesDialog/0.0.1366.738@0.0.1366.738" timestamp="1583831162546" />
     <state x="362" y="81" key="RollbackChangesDialog/0.0.2048.1122@0.0.2048.1122" timestamp="1583235016335" />
-    <state x="394" y="-1417" width="1171" height="715" key="SettingsEditor" timestamp="1586702069908">
-      <screen x="89" y="-1417" width="2560" height="1417" />
+    <state x="-839" y="-1440" width="1171" height="715" key="SettingsEditor" timestamp="1587235754258">
+      <screen x="-1144" y="-1440" width="2560" height="1410" />
     </state>
+    <state x="-839" y="-1440" key="SettingsEditor/0.0.1280.689/-1144.-1440.2560.1410@-1144.-1440.2560.1410" timestamp="1587235754258" />
     <state x="153" y="-1024" key="SettingsEditor/0.0.1366.738/0.-1024.1280.994@0.-1024.1280.994" timestamp="1583863239470" />
     <state x="116" y="0" key="SettingsEditor/0.0.1366.738/0.-1024.1280.994@0.0.1366.738" timestamp="1583873302641" />
     <state x="163" y="0" key="SettingsEditor/0.0.1366.738/1366.0.1280.994@0.0.1366.738" timestamp="1580847897661" />
@@ -855,11 +853,11 @@
       <screen x="0" y="0" width="2048" height="1122" />
     </state>
     <state x="754" y="456" key="com.intellij.jarRepository.RepositoryAttachDialog-DOWNLOAD/0.0.2048.1122@0.0.2048.1122" timestamp="1582289583100" />
-    <state x="462" y="384" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2" timestamp="1587158034992">
-      <screen x="0" y="0" width="1280" height="994" />
+    <state x="-221" y="-896" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2" timestamp="1587235423879">
+      <screen x="-1144" y="-1440" width="2560" height="1410" />
     </state>
     <state x="461" y="263" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2/0.0.1280.680@0.0.1280.680" timestamp="1583670476579" />
-    <state x="-221" y="-896" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2/0.0.1280.689/-1144.-1440.2560.1410@-1144.-1440.2560.1410" timestamp="1586981384320" />
+    <state x="-221" y="-896" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2/0.0.1280.689/-1144.-1440.2560.1410@-1144.-1440.2560.1410" timestamp="1587235423879" />
     <state x="461" y="266" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2/0.0.1280.689/-1144.-1440.2560.1410@0.0.1280.689" timestamp="1586904465377" />
     <state x="462" y="384" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2/0.0.1280.994@0.0.1280.994" timestamp="1587158034992" />
     <state x="492" y="285" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2/0.0.1366.738/0.-1024.1280.994@0.0.1366.738" timestamp="1582052912521" />
@@ -901,17 +899,18 @@
     <state x="425" y="0" key="refactoring.ChangeSignatureDialog/0.0.1366.738/1366.0.1280.994@0.0.1366.738" timestamp="1580847897661" />
     <state x="425" y="0" key="refactoring.ChangeSignatureDialog/0.0.1366.738@0.0.1366.738" timestamp="1584040333616" />
     <state x="637" y="0" key="refactoring.ChangeSignatureDialog/0.0.2048.1122@0.0.2048.1122" timestamp="1585314268998" />
-    <state x="-721" y="-1233" width="840" height="851" key="run.anything.popup" timestamp="1586199802680">
+    <state x="-721" y="-1233" width="840" height="851" key="run.anything.popup" timestamp="1587235532515">
       <screen x="-1144" y="-1440" width="2560" height="1410" />
     </state>
-    <state x="-721" y="-1233" width="840" height="851" key="run.anything.popup/0.0.1280.689/-1144.-1440.2560.1410@-1144.-1440.2560.1410" timestamp="1586199802680" />
+    <state x="-721" y="-1233" width="840" height="851" key="run.anything.popup/0.0.1280.689/-1144.-1440.2560.1410@-1144.-1440.2560.1410" timestamp="1587235532515" />
     <state x="211" y="101" width="420" height="416" key="run.anything.popup/0.0.1280.689/-1144.-1440.2560.1410@0.0.1280.689" timestamp="1586013399788" />
     <state x="339" y="165" width="672" height="677" key="run.anything.popup/0.0.1366.738/1366.0.1280.994@0.0.1366.738" timestamp="1580847897661" />
     <state x="339" y="165" width="672" height="677" key="run.anything.popup/0.0.1366.738@0.0.1366.738" timestamp="1583757058320" />
     <state x="338" y="165" width="672" height="677" key="run.anything.popup/0.0.2048.1122@0.0.2048.1122" timestamp="1586090997488" />
-    <state x="426" y="101" width="827" height="901" key="search.everywhere.popup" timestamp="1586091606983">
-      <screen x="0" y="0" width="2048" height="1122" />
+    <state x="-611" y="-1313" width="1034" height="1133" key="search.everywhere.popup" timestamp="1587242898889">
+      <screen x="-1144" y="-1440" width="2560" height="1410" />
     </state>
+    <state x="-611" y="-1313" width="1034" height="1133" key="search.everywhere.popup/0.0.1280.689/-1144.-1440.2560.1410@-1144.-1440.2560.1410" timestamp="1587242898889" />
     <state x="266" y="62" width="672" height="554" key="search.everywhere.popup/0.0.1280.689/-1144.-1440.2560.1410@0.0.1280.689" timestamp="1586024892110" />
     <state x="266" y="-935" width="672" height="799" key="search.everywhere.popup/0.0.1366.738/0.-1024.1280.994@0.-1024.1280.994" timestamp="1583863137392" />
     <state x="346" y="59" width="672" height="678" key="search.everywhere.popup/0.0.1366.738/1366.0.1280.994@0.0.1366.738" timestamp="1580847897661" />
@@ -920,10 +919,10 @@
     <state x="426" y="101" width="827" height="901" key="search.everywhere.popup/0.23.1680.980@0.23.1680.980" timestamp="1580847897661" />
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
-    <SUITE FILE_PATH="coverage/anc3_2c_fabien_giacomo$Model.ic" NAME="Model Coverage Results" MODIFIED="1580574724817" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" />
     <SUITE FILE_PATH="coverage/src$Model__1_.ic" NAME="Model (1) Coverage Results" MODIFIED="1581437938300" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false">
       <FILTER>model.*</FILTER>
     </SUITE>
+    <SUITE FILE_PATH="coverage/anc3_2c_fabien_giacomo$Model.ic" NAME="Model Coverage Results" MODIFIED="1580574724817" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" />
     <SUITE FILE_PATH="coverage/anc3_2c_fabien_giacomo$Main.ic" NAME="Main Coverage Results" MODIFIED="1586695826395" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false">
       <FILTER>main.*</FILTER>
     </SUITE>
