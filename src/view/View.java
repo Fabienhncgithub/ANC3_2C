@@ -89,12 +89,12 @@ public class View extends VBox {
         vm.selectedTreeRight().bind(tTVRight.getSelectionModel().selectedItemProperty());
 
         tTVLeft.setOnMousePressed(e -> {
-            if (e.getClickCount() == 2) {
+            if (e.getClickCount() == 2 && !tTVLeft.getSelectionModel().isEmpty()) {
                 vm.openSelectedFileLeft();
             }
         });
         tTVRight.setOnMousePressed(e -> {
-            if (e.getClickCount() == 2) {
+            if (e.getClickCount() == 2 && !tTVRight.getSelectionModel().isEmpty()) {
                 vm.openSelectedFileRight();
             }
         });

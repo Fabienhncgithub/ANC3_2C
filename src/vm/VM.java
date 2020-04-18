@@ -60,11 +60,10 @@ public class VM {
     }
     
     public void setRoot() {
-        obsTreeItemLeft.setValue(makeTreeRoot(model.predicateEtatLeft(model.getDirLeft(), listeEtat(), foldersOnly.getValue()).getValue()));
-        obsTreeItemRight.setValue(makeTreeRoot(model.predicateEtatRight(model.getDirRight(), listeEtat(), foldersOnly.getValue()).getValue()));
+        obsTreeItemLeft.setValue(makeTreeRoot(model.predicateEtat(model.getDirLeft(), listeEtat(), foldersOnly.getValue()).getValue()));
+        obsTreeItemRight.setValue(makeTreeRoot(model.predicateEtat(model.getDirRight(), listeEtat(), foldersOnly.getValue()).getValue()));
         model.getDirRight().changeEtat(model.getDirLeft());
         model.getDirLeft().changeEtat(model.getDirRight());
-        System.out.println(listeEtat().toString());
     }
     
     public TreeItem<Fichier> getTiLeft() {

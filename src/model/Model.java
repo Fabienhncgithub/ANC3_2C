@@ -29,64 +29,32 @@ public class Model {
         dirLeft.changeEtat(dirRight);
     }
 
-    public TreeItem<Fichier> predicateEtatLeft(Fichier root, Set<Etat> etat, boolean onlyFolders) {
+    public TreeItem<Fichier> predicateEtat(Fichier root, Set<Etat> etat, boolean onlyFolders) {
         TreeItem<Fichier> res = new TreeItem<>(root);
         res.setExpanded(true);
         Predicate<Fichier> predicate = (Fichier f) -> etat.contains(f.getEtat());
-//        root.getContent().stream().filter((f) -> (predicate.test(f))).forEachOrdered((f) -> {
-//            res.getChildren().add(predicateEtat(f, etat));
-//            System.out.println(predicate.test(f));
-//        });
         if (root.isDirectory()) {
-            root.setSelected(true);
             for (Fichier f : root.getContent()) {
                 if (!f.isDirectory()) {
                     if ((!etat.isEmpty()) && !predicate.test(f)) {
                         f.setSelected(false);
-                        root.setSelected(false);
                     } else {
                         f.setSelected(true);
                         root.setSelected(true);
                     }
                 } else {
-                    f.setSelected((etat.isEmpty()) || predicate.test(f));
-                    predicateEtatLeft(f, etat, onlyFolders);
-                }
-            }
-            if (onlyFolders) {
-                res = getOnlyFolders(root);
-            }
-        }
-        return res;
-    }
-
-    public TreeItem<Fichier> predicateEtatRight(Fichier root, Set<Etat> etat, boolean onlyFolders) {
-        TreeItem<Fichier> res = new TreeItem<>(root);
-        res.setExpanded(true);
-        Set<Etat> newSet = inverseSetNewOld(etat);
-        Predicate<Fichier> predicate = (Fichier f) -> newSet.contains(f.getEtat());
-//        root.getContent().stream().filter((f) -> (predicate.test(f))).forEachOrdered((f) -> {
-//            res.getChildren().add(predicateEtat(f, etat));
-//            System.out.println(predicate.test(f));
-//        });
-        if (root.isDirectory()) {
-            root.setSelected(true);
-            for (Fichier f : root.getContent()) {
-                if (!f.isDirectory()) {
-                    if ((!newSet.isEmpty()) && !predicate.test(f)) {
+                    if ((!etat.isEmpty()) && !predicate.test(f)) {
                         f.setSelected(false);
-                        root.setSelected(false);
                     } else {
                         f.setSelected(true);
                         root.setSelected(true);
                     }
-                } else {
-                    f.setSelected((newSet.isEmpty()) || predicate.test(f));
-                    predicateEtatRight(f, newSet, onlyFolders);
+                    predicateEtat(f, etat, onlyFolders);
+
                 }
-            }
-            if (onlyFolders) {
-                res = getOnlyFolders(root);
+                if (onlyFolders) {
+                    res = getOnlyFolders(root);
+                }
             }
         }
         return res;
@@ -96,7 +64,7 @@ public class Model {
         if (etats.contains(Etat.NEWER)) {
             etats.remove(Etat.NEWER);
             etats.add(Etat.OLDER);
-        }else if (etats.contains(Etat.OLDER)) {
+        } else if (etats.contains(Etat.OLDER)) {
             etats.remove(Etat.OLDER);
             etats.add(Etat.NEWER);
         }
@@ -119,51 +87,6 @@ public class Model {
         dirRight = newDirRight;
     }
 
-
-    public TreeItem<Fichier> newSelected(Fichier dir) {
-        if (dir.isDirectory()) {
-            for (Fichier f : dir.getContent()) {
-                if (!f.isDirectory()) {
-                    if (f.getEtat() != Etat.NEWER) {
-                        f.setSelected(false);
-                    } else {
-                        dir.setSelected(true);
-                    }
-                } else {
-                    if (f.getEtat() != Etat.NEWER) {
-                        f.setSelected(false);
-                    } else {
-                        dir.setSelected(true);
-                    }
-                    newSelected(f);
-                }
-            }
-        }
-        return dir;
-    }
-
-    public TreeItem<Fichier> oldSelected(Fichier dir) {
-        if (dir.isDirectory()) {
-            for (Fichier f : dir.getContent()) {
-                if (!f.isDirectory()) {
-                    if (f.getEtat() != Etat.OLDER) {
-                        f.setSelected(false);
-                    } else {
-                        dir.setSelected(true);
-                    }
-                } else {
-                    if (f.getEtat() != Etat.OLDER) {
-                        f.setSelected(false);
-                    } else {
-                        dir.setSelected(true);
-                    }
-                    oldSelected(f);
-                }
-            }
-        }
-        return makeTreeRoot(dir);
-    }
-
     public TreeItem<Fichier> getOnlyFolders(Fichier dir) {
         if (dir.isDirectory()) {
             for (Fichier f : dir.getContent()) {
@@ -174,14 +97,6 @@ public class Model {
                 }
             }
         }
-
-//        TreeItem<Fichier> res = new TreeItem<>(dir);
-//        res.setExpanded(true);
-//
-//        dir.getContent().stream().filter((f) -> (f.isDirectory())).forEachOrdered((f) -> {
-//            res.getChildren().add(getOnlyFolders(f));
-//        });
-//        System.out.println(res.getValue().getName() + "   " + res.getValue().isDirectory());
         return dir;
     }
 
