@@ -31,17 +31,12 @@ public class Model {
         TreeItem<Fichier> res = new TreeItem<>(root);
         res.setExpanded(true);
         Predicate<Fichier> predicate = (Fichier f) -> etat.contains(f.getEtat());
-
-
-
-
-
         if (root.isDirectory()) {
             for (Fichier f : root.getContent()) {
                 if (!f.isDirectory()) {
                     if ((!etat.isEmpty()) && !predicate.test(f)) {
                         f.setSelected(false);
-                    } else {
+                    } else  {
                         f.setSelected(true);
                         f.getParent().getValue().setSelected(true);
                     }
@@ -51,8 +46,13 @@ public class Model {
                     } else {
                         f.setSelected(true);
                         f.getParent().getValue().setSelected(true);
-                    }
+                    } 
                     predicateEtat(f, etat, onlyFolders);
+                }
+                
+                
+                if(f.isSelected()) {
+                    f.getParent().getValue().setSelected(true);
                 }
 
                 if (onlyFolders) {

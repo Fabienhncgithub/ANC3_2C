@@ -18,8 +18,6 @@ public class MyButtonFilters extends VBox {
     private final ToggleButton orphans = new ToggleButton("Orphans");
     private final ToggleButton same = new ToggleButton("Same");
     private final ToggleButton foldersOnly = new ToggleButton("Folders only");
-    
-
 
     {
         hbox.getChildren().addAll(all, newerLeft, newerRight, orphans, same, foldersOnly);
@@ -34,8 +32,8 @@ public class MyButtonFilters extends VBox {
         newerLeft.setToggleGroup(newerGroup);
         newerRight.setToggleGroup(newerGroup);
 
-       newerLeft.selectedProperty().bindBidirectional(vm.newLeftProperty());
-       newerRight.selectedProperty().bindBidirectional(vm.newRightProperty());
+        newerLeft.selectedProperty().bindBidirectional(vm.newLeftProperty());
+        newerRight.selectedProperty().bindBidirectional(vm.newRightProperty());
         orphans.selectedProperty().bindBidirectional(vm.orphansProperty());
         same.selectedProperty().bindBidirectional(vm.sameProperty());
         foldersOnly.selectedProperty().bindBidirectional(vm.foldersOnlyProperty());
