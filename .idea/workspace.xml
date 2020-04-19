@@ -19,10 +19,8 @@
     <select />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="0c777b5d-34a2-47ef-b49f-5789669eb0c3" name="Default Changelist" comment="">
+    <list default="true" id="0c777b5d-34a2-47ef-b49f-5789669eb0c3" name="Default Changelist" comment="PredicateFilters alternative solution">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/TestBC/RootBC_Left/PartialSame/SameFolderContentDiffDate/fichier2.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/TestBC/RootBC_Right/PartialSame/SameFolderContentDiffDate/fichier2.txt" beforeDir="false" />
     </list>
     <list id="ef81b322-75c7-4b79-a5d0-2e6ef4de1cf3" name="Revert &quot;ajout du binding dans la vue&quot;" comment="Revert &quot;ajout du binding dans la vue&quot;&#10;&#10;This reverts commit e6b07745" />
     <list id="40b2938f-2337-400f-9d68-60fbdb45432a" name="Revert &quot;working on build() output&quot;" comment="Revert &quot;working on build() output&quot;&#10;&#10;This reverts commit 1a99efc5" />
@@ -80,7 +78,7 @@
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/../anc3_mvvm_Alexis" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/itération 4 UML" />
     <property name="project.structure.last.edited" value="SDKs" />
     <property name="project.structure.proportion" value="0.15" />
     <property name="project.structure.side.proportion" value="0.2" />
@@ -177,14 +175,7 @@
       <updated>1576319761174</updated>
       <workItem from="1580500684629" duration="347000" />
       <workItem from="1587307283397" duration="825000" />
-      <workItem from="1587308127159" duration="1016000" />
-    </task>
-    <task id="LOCAL-00014" summary="CopyBuilder cleaned!">
-      <created>1580138031368</created>
-      <option name="number" value="00014" />
-      <option name="presentableId" value="LOCAL-00014" />
-      <option name="project" value="LOCAL" />
-      <updated>1580138031368</updated>
+      <workItem from="1587308127159" duration="1884000" />
     </task>
     <task id="LOCAL-00015" summary="working on CopyBuilder">
       <created>1580140653897</created>
@@ -522,7 +513,14 @@
       <option name="project" value="LOCAL" />
       <updated>1587157329929</updated>
     </task>
-    <option name="localTasksCounter" value="63" />
+    <task id="LOCAL-00063" summary="PredicateFilters alternative solution">
+      <created>1587309391323</created>
+      <option name="number" value="00063" />
+      <option name="presentableId" value="LOCAL-00063" />
+      <option name="project" value="LOCAL" />
+      <updated>1587309391324</updated>
+    </task>
+    <option name="localTasksCounter" value="64" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -683,9 +681,10 @@
     <state x="115" y="90" width="1182" height="554" key="DiffContextDialog/0.0.1366.738/1366.0.1280.994@0.0.1366.738" timestamp="1580847897653" />
     <state x="92" y="92" width="1182" height="554" key="DiffContextDialog/0.0.1366.738@0.0.1366.738" timestamp="1581445921943" />
     <state x="97" y="115" key="DiffContextDialog/0.0.1440.920@0.0.1440.920" timestamp="1583868899038" />
-    <state x="434" y="115" key="FileChooserDialogImpl" timestamp="1586798040409">
-      <screen x="0" y="0" width="1280" height="689" />
+    <state x="-276" y="-1205" key="FileChooserDialogImpl" timestamp="1587309322029">
+      <screen x="-1144" y="-1440" width="2560" height="1410" />
     </state>
+    <state x="-276" y="-1205" key="FileChooserDialogImpl/0.0.1280.689/-1144.-1440.2560.1410@-1144.-1440.2560.1410" timestamp="1587309322029" />
     <state x="434" y="115" key="FileChooserDialogImpl/0.0.1280.689/-1144.-1440.2560.1410@0.0.1280.689" timestamp="1586798040409" />
     <state x="463" y="123" key="FileChooserDialogImpl/0.0.1366.738/1366.0.1280.994@0.0.1366.738" timestamp="1580847897653" />
     <state x="463" y="123" key="FileChooserDialogImpl/0.0.1366.738@0.0.1366.738" timestamp="1583832907050" />
@@ -847,9 +846,10 @@
     <state width="613" height="593" key="SwitcherDM/0.23.1680.980@0.23.1680.980" timestamp="1580847897661" />
     <state x="530" y="286" key="VCS.ChangelistChooser" timestamp="1580847897661" />
     <state x="530" y="286" key="VCS.ChangelistChooser/0.0.1366.738/1366.0.1280.994@0.0.1366.738" timestamp="1580847897661" />
-    <state x="39" y="128" width="816" height="535" key="Vcs.Push.Dialog.v2" timestamp="1587157616187">
-      <screen x="0" y="0" width="1280" height="994" />
+    <state x="-1066" y="-1258" width="816" height="535" key="Vcs.Push.Dialog.v2" timestamp="1587309404732">
+      <screen x="-1144" y="-1440" width="2560" height="1410" />
     </state>
+    <state x="-1066" y="-1258" key="Vcs.Push.Dialog.v2/0.0.1280.689/-1144.-1440.2560.1410@-1144.-1440.2560.1410" timestamp="1587309404732" />
     <state x="39" y="89" key="Vcs.Push.Dialog.v2/0.0.1280.689/-1144.-1440.2560.1410@0.0.1280.689" timestamp="1586203708444" />
     <state x="39" y="128" key="Vcs.Push.Dialog.v2/0.0.1280.994@0.0.1280.994" timestamp="1587157616187" />
     <state x="39" y="-895" key="Vcs.Push.Dialog.v2/0.0.1366.738/0.-1024.1280.994@0.-1024.1280.994" timestamp="1583265221686" />
@@ -869,12 +869,13 @@
       <screen x="0" y="0" width="2048" height="1122" />
     </state>
     <state x="754" y="456" key="com.intellij.jarRepository.RepositoryAttachDialog-DOWNLOAD/0.0.2048.1122@0.0.2048.1122" timestamp="1582289583100" />
-    <state x="-221" y="-896" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2" timestamp="1587235423879">
-      <screen x="-1144" y="-1440" width="2560" height="1410" />
+    <state x="462" y="266" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2" timestamp="1587336398131">
+      <screen x="0" y="0" width="1280" height="689" />
     </state>
     <state x="461" y="263" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2/0.0.1280.680@0.0.1280.680" timestamp="1583670476579" />
     <state x="-221" y="-896" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2/0.0.1280.689/-1144.-1440.2560.1410@-1144.-1440.2560.1410" timestamp="1587235423879" />
     <state x="461" y="266" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2/0.0.1280.689/-1144.-1440.2560.1410@0.0.1280.689" timestamp="1586904465377" />
+    <state x="462" y="266" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2/0.0.1280.689@0.0.1280.689" timestamp="1587336398131" />
     <state x="462" y="384" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2/0.0.1280.994@0.0.1280.994" timestamp="1587158034992" />
     <state x="492" y="285" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2/0.0.1366.738/0.-1024.1280.994@0.0.1366.738" timestamp="1582052912521" />
     <state x="492" y="285" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2/0.0.1366.738/1366.0.1280.689@0.0.1366.738" timestamp="1581521796027" />
