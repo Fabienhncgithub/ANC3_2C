@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Diagram>
+  <ID>JAVA</ID>
+  <OriginalElement>model</OriginalElement>
+  <nodes>
+    <node x="1035.0" y="1409.0">view.NomFichierCell</node>
+    <node x="1240.0" y="1263.0">vm.EditVM</node>
+    <node x="0.0" y="1101.0">model.Dossier.DateTimeBinding</node>
+    <node x="0.0" y="1536.0">model.CopyBuilder</node>
+    <node x="188.0" y="1101.0">model.Dossier.SizeBinding</node>
+    <node x="196.0" y="1263.0">view.MyButtonFilters</node>
+    <node x="278.0" y="1536.0">main.Main</node>
+    <node x="140.5" y="0.0">model.Fichier</node>
+    <node x="707.0" y="1263.0">view.FichierCell</node>
+    <node x="693.0" y="1536.0">view.View</node>
+    <node x="431.00000000000006" y="1409.0">view.TypeFichierCell</node>
+    <node x="807.0" y="1409.0">view.DateModifFichierCell</node>
+    <node x="33.0" y="562.0">model.Dossier</node>
+    <node x="0.0" y="1263.0">model.Etat</node>
+    <node x="619.0" y="1409.0">view.SizeFichierCell</node>
+    <node x="355.5" y="661.0">model.FichierSimple</node>
+    <node x="470.0" y="1536.0">view.EditView</node>
+    <node x="344.0" y="1036.0">model.FichierText</node>
+    <node x="714.0" y="0.0">vm.VM</node>
+    <node x="1115.0" y="0.0">model.Model</node>
+  </nodes>
+  <notes />
+  <edges>
+    <edge source="view.SizeFichierCell" target="view.FichierCell">
+      <point x="0.0" y="-26.0" />
+      <point x="703.0" y="1389.0" />
+      <point x="782.0" y="1389.0" />
+      <point x="-25.0" y="48.0" />
+    </edge>
+    <edge source="model.Dossier.DateTimeBinding" target="model.Dossier">
+      <point x="0.0" y="-26.0" />
+      <point x="84.0" y="1011.0" />
+      <point x="101.5" y="1011.0" />
+      <point x="-68.5" y="212.0" />
+    </edge>
+    <edge source="model.Dossier" target="model.Fichier">
+      <point x="0.0" y="-212.0" />
+      <point x="170.0" y="537.0" />
+      <point x="235.0" y="537.0" />
+      <point x="-94.5" y="256.0" />
+    </edge>
+    <edge source="model.Dossier.SizeBinding" target="model.Dossier">
+      <point x="0.0" y="-26.0" />
+      <point x="256.0" y="1011.0" />
+      <point x="238.5" y="1011.0" />
+      <point x="68.5" y="212.0" />
+    </edge>
+    <edge source="model.FichierSimple" target="model.Fichier">
+      <point x="0.0" y="-113.0" />
+      <point x="506.5" y="537.0" />
+      <point x="424.0" y="537.0" />
+      <point x="94.5" y="256.0" />
+    </edge>
+    <edge source="view.TypeFichierCell" target="view.FichierCell">
+      <point x="0.0" y="-26.0" />
+      <point x="515.0" y="1379.0" />
+      <point x="732.0" y="1379.0" />
+      <point x="-75.0" y="48.0" />
+    </edge>
+    <edge source="view.NomFichierCell" target="view.FichierCell">
+      <point x="5.6843418860808015E-14" y="-26.0" />
+      <point x="1115.0" y="1379.0" />
+      <point x="882.0" y="1379.0" />
+      <point x="75.0" y="48.0" />
+    </edge>
+    <edge source="view.DateModifFichierCell" target="view.FichierCell">
+      <point x="0.0" y="-26.0" />
+      <point x="911.0" y="1389.0" />
+      <point x="832.0" y="1389.0" />
+      <point x="25.0" y="48.0" />
+    </edge>
+    <edge source="model.FichierText" target="model.FichierSimple">
+      <point x="0.0" y="-91.0" />
+      <point x="0.0" y="113.0" />
+    </edge>
+  </edges>
+  <settings layout="Hierarchic Group" zoom="0.7000000000000001" x="349.9246031746027" y="756.7142857142857" />
+  <SelectedNodes />
+  <Categories>
+    <Category>Fields</Category>
+    <Category>Constructors</Category>
+    <Category>Methods</Category>
+    <Category>Properties</Category>
+    <Category>Inner Classes</Category>
+  </Categories>
+  <SCOPE>All</SCOPE>
+  <VISIBILITY>public</VISIBILITY>
+</Diagram>
+

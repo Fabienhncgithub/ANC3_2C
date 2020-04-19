@@ -21,8 +21,8 @@
   <component name="ChangeListManager">
     <list default="true" id="0c777b5d-34a2-47ef-b49f-5789669eb0c3" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/model/Model.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/model/Model.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/vm/VM.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/vm/VM.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/TestBC/RootBC_Left/PartialSame/SameFolderContentDiffDate/fichier2.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/TestBC/RootBC_Right/PartialSame/SameFolderContentDiffDate/fichier2.txt" beforeDir="false" />
     </list>
     <list id="ef81b322-75c7-4b79-a5d0-2e6ef4de1cf3" name="Revert &quot;ajout du binding dans la vue&quot;" comment="Revert &quot;ajout du binding dans la vue&quot;&#10;&#10;This reverts commit e6b07745" />
     <list id="40b2938f-2337-400f-9d68-60fbdb45432a" name="Revert &quot;working on build() output&quot;" comment="Revert &quot;working on build() output&quot;&#10;&#10;This reverts commit 1a99efc5" />
@@ -36,9 +36,6 @@
   </component>
   <component name="CoverageViewManager">
     <option name="myElementSize" value="112" />
-  </component>
-  <component name="FavoritesManager">
-    <favorites_list name="anc3_2c_fabien_giacomo" />
   </component>
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
@@ -78,12 +75,13 @@
     <property name="Repository.Attach.Annotations" value="false" />
     <property name="Repository.Attach.JavaDocs" value="false" />
     <property name="Repository.Attach.Sources" value="false" />
+    <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$/../anc3_mvvm_Alexis" />
-    <property name="project.structure.last.edited" value="Project" />
+    <property name="project.structure.last.edited" value="SDKs" />
     <property name="project.structure.proportion" value="0.15" />
     <property name="project.structure.side.proportion" value="0.2" />
     <property name="restartRequiresConfirmation" value="false" />
@@ -111,6 +109,18 @@
     </key>
   </component>
   <component name="RunManager" selected="Application.Main">
+    <configuration name="Main (1)" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="main.Main" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="main.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
     <configuration name="Main" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="main.Main" />
       <module name="anc3_2c_fabien_giacomo" />
@@ -147,6 +157,7 @@
     <recent_temporary>
       <list>
         <item itemvalue="Application.Main" />
+        <item itemvalue="Application.Main (1)" />
         <item itemvalue="Application.Model" />
       </list>
     </recent_temporary>
@@ -165,6 +176,8 @@
       <option name="presentableId" value="Default" />
       <updated>1576319761174</updated>
       <workItem from="1580500684629" duration="347000" />
+      <workItem from="1587307283397" duration="825000" />
+      <workItem from="1587308127159" duration="1016000" />
     </task>
     <task id="LOCAL-00014" summary="CopyBuilder cleaned!">
       <created>1580138031368</created>
@@ -513,7 +526,7 @@
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
-    <option name="version" value="1" />
+    <option name="version" value="2" />
   </component>
   <component name="UnknownFeatures">
     <option featureType="com.intellij.fileTypeFactory" implementationName="*.css" />
@@ -558,13 +571,12 @@
         </entry>
         <entry key="MAIN">
           <value>
-            <State>
-              <option name="COLUMN_ORDER" />
-            </State>
+            <State />
           </value>
         </entry>
       </map>
     </option>
+    <option name="oldMeFiltersMigrated" value="true" />
   </component>
   <component name="VcsManagerConfiguration">
     <option name="CHECK_CODE_CLEANUP_BEFORE_PROJECT_COMMIT" value="true" />
@@ -599,6 +611,10 @@
     <option name="REARRANGE_BEFORE_PROJECT_COMMIT" value="true" />
   </component>
   <component name="WindowStateProjectService">
+    <state x="-167" y="-1116" key="#Main_(1)" timestamp="1587308241330">
+      <screen x="-1144" y="-1440" width="2560" height="1410" />
+    </state>
+    <state x="-167" y="-1116" key="#Main_(1)/0.0.1280.689/-1144.-1440.2560.1410@-1144.-1440.2560.1410" timestamp="1587308241330" />
     <state x="617" y="221" key="#Notifications" timestamp="1582289153263">
       <screen x="0" y="0" width="2048" height="1122" />
     </state>
@@ -675,11 +691,11 @@
     <state x="463" y="123" key="FileChooserDialogImpl/0.0.1366.738@0.0.1366.738" timestamp="1583832907050" />
     <state x="488" y="153" key="FileChooserDialogImpl/0.0.1440.920@0.0.1440.920" timestamp="1583872200254" />
     <state x="694" y="187" key="FileChooserDialogImpl/0.0.2048.1122@0.0.2048.1122" timestamp="1584692017379" />
-    <state width="2517" height="464" key="GridCell.Tab.0.bottom" timestamp="1587254023704">
+    <state width="2517" height="404" key="GridCell.Tab.0.bottom" timestamp="1587308109828">
       <screen x="-1144" y="-1440" width="2560" height="1410" />
     </state>
     <state width="1237" height="55" key="GridCell.Tab.0.bottom/0.0.1280.680@0.0.1280.680" timestamp="1583670681921" />
-    <state width="2517" height="464" key="GridCell.Tab.0.bottom/0.0.1280.689/-1144.-1440.2560.1410@-1144.-1440.2560.1410" timestamp="1587254023704" />
+    <state width="2517" height="404" key="GridCell.Tab.0.bottom/0.0.1280.689/-1144.-1440.2560.1410@-1144.-1440.2560.1410" timestamp="1587308109828" />
     <state width="1237" height="69" key="GridCell.Tab.0.bottom/0.0.1280.689/-1144.-1440.2560.1410@0.0.1280.689" timestamp="1586799359061" />
     <state width="1237" height="272" key="GridCell.Tab.0.bottom/0.0.1280.689@0.0.1280.689" timestamp="1587220152566" />
     <state width="1237" height="208" key="GridCell.Tab.0.bottom/0.0.1280.994@0.0.1280.994" timestamp="1587159475341" />
@@ -696,11 +712,11 @@
     <state width="1638" height="552" key="GridCell.Tab.0.bottom/0.23.1680.980@0.23.1680.980" timestamp="1586726689706" />
     <state width="1406" height="243" key="GridCell.Tab.0.bottom/89.-1417.2560.1417/0.23.1680.980@89.-1417.2560.1417" timestamp="1586791491167" />
     <state width="2518" height="243" key="GridCell.Tab.0.bottom/89.-1440.2560.1440/0.0.1680.1050@89.-1440.2560.1440" timestamp="1586782525212" />
-    <state width="2517" height="464" key="GridCell.Tab.0.center" timestamp="1587254023703">
+    <state width="2517" height="404" key="GridCell.Tab.0.center" timestamp="1587308109828">
       <screen x="-1144" y="-1440" width="2560" height="1410" />
     </state>
     <state width="1237" height="55" key="GridCell.Tab.0.center/0.0.1280.680@0.0.1280.680" timestamp="1583670681921" />
-    <state width="2517" height="464" key="GridCell.Tab.0.center/0.0.1280.689/-1144.-1440.2560.1410@-1144.-1440.2560.1410" timestamp="1587254023703" />
+    <state width="2517" height="404" key="GridCell.Tab.0.center/0.0.1280.689/-1144.-1440.2560.1410@-1144.-1440.2560.1410" timestamp="1587308109828" />
     <state width="1237" height="69" key="GridCell.Tab.0.center/0.0.1280.689/-1144.-1440.2560.1410@0.0.1280.689" timestamp="1586799359061" />
     <state width="1237" height="272" key="GridCell.Tab.0.center/0.0.1280.689@0.0.1280.689" timestamp="1587220152565" />
     <state width="1237" height="208" key="GridCell.Tab.0.center/0.0.1280.994@0.0.1280.994" timestamp="1587159475341" />
@@ -717,11 +733,11 @@
     <state width="1638" height="552" key="GridCell.Tab.0.center/0.23.1680.980@0.23.1680.980" timestamp="1586726689705" />
     <state width="1406" height="243" key="GridCell.Tab.0.center/89.-1417.2560.1417/0.23.1680.980@89.-1417.2560.1417" timestamp="1586791491166" />
     <state width="2518" height="243" key="GridCell.Tab.0.center/89.-1440.2560.1440/0.0.1680.1050@89.-1440.2560.1440" timestamp="1586782525210" />
-    <state width="2517" height="464" key="GridCell.Tab.0.left" timestamp="1587254023702">
+    <state width="2517" height="404" key="GridCell.Tab.0.left" timestamp="1587308109827">
       <screen x="-1144" y="-1440" width="2560" height="1410" />
     </state>
     <state width="1237" height="55" key="GridCell.Tab.0.left/0.0.1280.680@0.0.1280.680" timestamp="1583670681921" />
-    <state width="2517" height="464" key="GridCell.Tab.0.left/0.0.1280.689/-1144.-1440.2560.1410@-1144.-1440.2560.1410" timestamp="1587254023702" />
+    <state width="2517" height="404" key="GridCell.Tab.0.left/0.0.1280.689/-1144.-1440.2560.1410@-1144.-1440.2560.1410" timestamp="1587308109827" />
     <state width="1237" height="69" key="GridCell.Tab.0.left/0.0.1280.689/-1144.-1440.2560.1410@0.0.1280.689" timestamp="1586799359060" />
     <state width="1237" height="272" key="GridCell.Tab.0.left/0.0.1280.689@0.0.1280.689" timestamp="1587220152565" />
     <state width="1237" height="208" key="GridCell.Tab.0.left/0.0.1280.994@0.0.1280.994" timestamp="1587159475341" />
@@ -738,11 +754,11 @@
     <state width="1638" height="552" key="GridCell.Tab.0.left/0.23.1680.980@0.23.1680.980" timestamp="1586726689705" />
     <state width="1406" height="243" key="GridCell.Tab.0.left/89.-1417.2560.1417/0.23.1680.980@89.-1417.2560.1417" timestamp="1586791491165" />
     <state width="2518" height="243" key="GridCell.Tab.0.left/89.-1440.2560.1440/0.0.1680.1050@89.-1440.2560.1440" timestamp="1586782525209" />
-    <state width="2517" height="464" key="GridCell.Tab.0.right" timestamp="1587254023703">
+    <state width="2517" height="404" key="GridCell.Tab.0.right" timestamp="1587308109828">
       <screen x="-1144" y="-1440" width="2560" height="1410" />
     </state>
     <state width="1237" height="55" key="GridCell.Tab.0.right/0.0.1280.680@0.0.1280.680" timestamp="1583670681921" />
-    <state width="2517" height="464" key="GridCell.Tab.0.right/0.0.1280.689/-1144.-1440.2560.1410@-1144.-1440.2560.1410" timestamp="1587254023703" />
+    <state width="2517" height="404" key="GridCell.Tab.0.right/0.0.1280.689/-1144.-1440.2560.1410@-1144.-1440.2560.1410" timestamp="1587308109828" />
     <state width="1237" height="69" key="GridCell.Tab.0.right/0.0.1280.689/-1144.-1440.2560.1410@0.0.1280.689" timestamp="1586799359061" />
     <state width="1237" height="272" key="GridCell.Tab.0.right/0.0.1280.689@0.0.1280.689" timestamp="1587220152566" />
     <state width="1237" height="208" key="GridCell.Tab.0.right/0.0.1280.994@0.0.1280.994" timestamp="1587159475341" />
@@ -809,10 +825,10 @@
     <state x="362" y="81" key="RollbackChangesDialog/0.0.1366.738/1366.0.1280.994@0.0.1366.738" timestamp="1580847897661" />
     <state x="362" y="81" key="RollbackChangesDialog/0.0.1366.738@0.0.1366.738" timestamp="1583831162546" />
     <state x="362" y="81" key="RollbackChangesDialog/0.0.2048.1122@0.0.2048.1122" timestamp="1583235016335" />
-    <state x="-839" y="-1440" width="1171" height="715" key="SettingsEditor" timestamp="1587235754258">
+    <state x="-839" y="-1440" width="1171" height="715" key="SettingsEditor" timestamp="1587308179755">
       <screen x="-1144" y="-1440" width="2560" height="1410" />
     </state>
-    <state x="-839" y="-1440" key="SettingsEditor/0.0.1280.689/-1144.-1440.2560.1410@-1144.-1440.2560.1410" timestamp="1587235754258" />
+    <state x="-839" y="-1440" key="SettingsEditor/0.0.1280.689/-1144.-1440.2560.1410@-1144.-1440.2560.1410" timestamp="1587308179755" />
     <state x="153" y="-1024" key="SettingsEditor/0.0.1366.738/0.-1024.1280.994@0.-1024.1280.994" timestamp="1583863239470" />
     <state x="116" y="0" key="SettingsEditor/0.0.1366.738/0.-1024.1280.994@0.0.1366.738" timestamp="1583873302641" />
     <state x="163" y="0" key="SettingsEditor/0.0.1366.738/1366.0.1280.994@0.0.1366.738" timestamp="1580847897661" />
@@ -922,9 +938,9 @@
     <SUITE FILE_PATH="coverage/src$Model__1_.ic" NAME="Model (1) Coverage Results" MODIFIED="1581437938300" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false">
       <FILTER>model.*</FILTER>
     </SUITE>
-    <SUITE FILE_PATH="coverage/anc3_2c_fabien_giacomo$Model.ic" NAME="Model Coverage Results" MODIFIED="1580574724817" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" />
     <SUITE FILE_PATH="coverage/anc3_2c_fabien_giacomo$Main.ic" NAME="Main Coverage Results" MODIFIED="1586695826395" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false">
       <FILTER>main.*</FILTER>
     </SUITE>
+    <SUITE FILE_PATH="coverage/anc3_2c_fabien_giacomo$Model.ic" NAME="Model Coverage Results" MODIFIED="1580574724817" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" />
   </component>
 </project>
