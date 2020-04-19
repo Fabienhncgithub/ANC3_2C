@@ -38,6 +38,10 @@ public class MyButtonFilters extends VBox {
         same.selectedProperty().bindBidirectional(vm.sameProperty());
         foldersOnly.selectedProperty().bindBidirectional(vm.foldersOnlyProperty());
 
+        configListeners(vm);
+    }
+
+    private void configListeners(VM vm) {
         all.setOnMouseClicked(e -> {
             newerLeft.setSelected(false);
             newerRight.setSelected(false);
@@ -70,23 +74,7 @@ public class MyButtonFilters extends VBox {
         return all;
     }
 
-    public ToggleButton getNewerLeft() {
-        return newerLeft;
-    }
-
-    public ToggleButton getNewerRight() {
-        return newerRight;
-    }
-
-    public ToggleButton getOrphans() {
-        return orphans;
-    }
-
     public ToggleButton getSame() {
         return same;
-    }
-
-    public ToggleButton getFoldersOnly() {
-        return foldersOnly;
     }
 }

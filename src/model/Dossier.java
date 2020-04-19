@@ -52,11 +52,6 @@ public class Dossier extends Fichier {
     }
 
     @Override
-    public List<Fichier> getContenu() {
-        return contenu;
-    }
-
-    @Override
     public boolean isDirectory() {
         return true;
     }
@@ -75,14 +70,6 @@ public class Dossier extends Fichier {
         return result;
     }
 
-    @Override
-    public void addFile(Fichier file) {
-        // Taille et date dépendent des tailles et dates des enfants
-        addToSizeBinding(file.sizeProperty());
-        addToDateTimeBinding(file.dateTimeProperty());
-        _addFile(file);
-    }
-
     // Ajoute une Observable dont dépend le Binding et provoque un recalcul
     private void addToSizeBinding(javafx.beans.Observable obs) {
         sizeBinding.addBinding(obs);
@@ -94,7 +81,7 @@ public class Dossier extends Fichier {
         StringBuilder res = new StringBuilder();
         res.append(super.formatAffichage(decalage))
                 .append(getName())
-                .append(" - type : ").append("D") //(this.isDirectory() ? "D" : "F")
+                .append(" - type : ").append("D") 
                 .append(" - date : ").append(getDateTime())
                 .append(" - size : ").append(size())
                 .append(" - etat : ").append(getEtat())
@@ -106,7 +93,7 @@ public class Dossier extends Fichier {
     }
 
     @Override
-    public void changeEtat(Fichier fs) { //TODO verifier que les dossier vides ne sont pas specialement orphans
+    public void changeEtat(Fichier fs) {
         if (fs.isDirectory()) {
             Dossier other = (Dossier) fs;
             setNomEnfant();
@@ -120,7 +107,7 @@ public class Dossier extends Fichier {
                 } else {
                     Fichier fCorrespondant = other.contenu.get(other.nomEnfant.get(fichier.getName()));
                     if (fCorrespondant.isDirectory() != fichier.isDirectory()) {
-                        if (!fichier.isDirectory()) { //cette condition me parait bizarre
+                        if (!fichier.isDirectory()) { 
                             fichier.setEtat(Etat.ORPHAN);
                             other.setAllChildrenOrphan();
                             other.setEtat(Etat.ORPHAN);
@@ -132,6 +119,13 @@ public class Dossier extends Fichier {
 
                     } else {
                         fichier.changeEtat(fCorrespondant);
+                    }
+
+                    if (fCorrespondant.getSize() == 0
+                            && fichier.getName().equals(fCorrespondant.getName())
+                            && fichier.getDateTime().equals(fCorrespondant.getDateTime())) {
+                        fichier.setEtat(Etat.SAME);
+                        fCorrespondant.setEtat(Etat.SAME);
                     }
                 }
             }
@@ -148,7 +142,7 @@ public class Dossier extends Fichier {
                 this.checkEmptyDir(other);
                 this.setFolderEtat();
                 other.setFolderEtat();
-            } 
+            }
         }
     }
 
@@ -168,14 +162,14 @@ public class Dossier extends Fichier {
 
     public void checkEmptyDir(Dossier other) {
         if (this.getName().equals(other.getName())) {
-            if (this.contenu.size() == 0 && other.contenu.size() == 0) {
+            if (this.contenu.isEmpty() && other.contenu.isEmpty()) {
                 this.setEtat(Etat.SAME);
                 other.setEtat(Etat.SAME);
-            } else if (this.contenu.size() == 0) {
+            } else if (this.contenu.isEmpty()) {
                 this.setEtat(Etat.PARTIAL_SAME);
                 other.setEtat(Etat.PARTIAL_SAME);
                 other.setAllChildrenOrphan();
-            } else if (other.contenu.size() == 0) {
+            } else if (other.contenu.isEmpty()) {
                 other.setEtat(Etat.PARTIAL_SAME);
                 this.setEtat(Etat.PARTIAL_SAME);
                 this.setAllChildrenOrphan();
@@ -184,7 +178,7 @@ public class Dossier extends Fichier {
     }
 
     private void setAllChildrenOrphan() {
-        for (Fichier f : this.contenu) {
+        this.contenu.forEach((f) -> {
             if (!f.isDirectory()) {
                 f.setEtat(Etat.ORPHAN);
             } else if (f.isDirectory()) {
@@ -192,7 +186,7 @@ public class Dossier extends Fichier {
                 Dossier d = (Dossier) f;
                 d.setAllChildrenOrphan();
             }
-        }
+        });
         this.setEtat(Etat.ORPHAN);
     }
 

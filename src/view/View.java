@@ -19,7 +19,6 @@ import model.CopyBuilder;
 import model.Etat;
 import model.Fichier;
 import vm.VM;
-
 import java.io.File;
 import java.nio.file.Paths;
 import java.time.LocalDateTime;
@@ -131,8 +130,8 @@ public class View extends VBox {
 
     private void setupScene(Stage primaryStage) {
         hBoxCenter.getChildren().addAll(tTVLeft, tTVRight);
-//        labelL.setText(tTVLeft.getRoot().getValue().getPath().toString());
-//        labelR.setText(tTVRight.getRoot().getValue().getPath().toString());
+        labelL.setText(tTVLeft.getRoot().getValue().getPath().toString());
+        labelR.setText(tTVRight.getRoot().getValue().getPath().toString());
         buttonFolderL.setGraphic(new ImageView(imageButtonChoose));
         buttonFolderR.setGraphic(new ImageView(imageButtonChoose));
         hBoxButtonFolder.getChildren().addAll(labelL, buttonFolderL, buttonFolderR, labelR);

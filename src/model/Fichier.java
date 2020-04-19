@@ -1,14 +1,11 @@
 package model;
 
 import javafx.beans.property.*;
-import javafx.beans.value.ObservableStringValue;
 import javafx.beans.value.ObservableValue;
 import javafx.scene.control.TreeItem;
-
 import java.nio.file.Path;
 import java.time.LocalDateTime;
 import java.util.List;
-
 import static java.util.stream.Collectors.toList;
 
 public abstract class Fichier extends TreeItem<Fichier> {
@@ -16,8 +13,8 @@ public abstract class Fichier extends TreeItem<Fichier> {
     private final StringProperty name;
     private final LongProperty size = new SimpleLongProperty(0L);
     private boolean selected = true;
-    private ObjectProperty<LocalDateTime> dateTime;
-    private Path path;
+    private final ObjectProperty<LocalDateTime> dateTime;
+    private  Path path;
     private Etat etat = Etat.UNDEFINED;
 
     public Fichier(String nom, Path path, Long size) {
@@ -43,11 +40,6 @@ public abstract class Fichier extends TreeItem<Fichier> {
         dateTime = new SimpleObjectProperty<>();
         setExpanded(true);
         setValue(this); // L'info du TreeItem se trouve dans lui-même
-    }
-
-    Fichier(String name, long size) {
-        this(name);
-        this.size.set(size);
     }
 
     final void bindSizeTo(ObservableValue<Long> value) {
@@ -106,10 +98,6 @@ public abstract class Fichier extends TreeItem<Fichier> {
         this.name.setValue(name);
     }
 
-    public ObservableStringValue nameProperty() {
-        return name;
-    }
-
     public Etat getEtat() {
         return etat;
     }
@@ -126,7 +114,7 @@ public abstract class Fichier extends TreeItem<Fichier> {
         return res;
     }
 
-    public String getLastDirName(Path path) { //TODO at the moment it checks only the parent name and not the entire path... so 2 folders in different places...
+    public String getLastDirName(Path path) { 
         int nameCount = path.getNameCount();
         return path.getName(nameCount - 2).toString();
     }
@@ -142,10 +130,6 @@ public abstract class Fichier extends TreeItem<Fichier> {
     }
 
     public abstract void changeEtat(Fichier fs);
-
-    public abstract Iterable<Fichier> getContenu();
-
-    public abstract void addFile(Fichier file);
 
     public abstract void ajoutFichier(Fichier f);
 

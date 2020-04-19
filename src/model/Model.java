@@ -3,7 +3,6 @@ package model;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.property.StringProperty;
 import javafx.scene.control.TreeItem;
-
 import java.nio.file.Paths;
 import java.util.Set;
 import java.util.function.Predicate;
@@ -63,13 +62,6 @@ public class Model {
         return res;
     }
 
-    public Set<Etat> inverseSetNewOld(Set<Etat> etats) {
-        etats.remove(Etat.NEWER);
-            etats.add(Etat.OLDER);
-
-        return etats;
-    }
-
     public Fichier getDirLeft() {
         return dirLeft;
     }
@@ -94,58 +86,6 @@ public class Model {
                 } else {
                     getOnlyFolders(f);
                 }
-            }
-        }
-        return dir;
-    }
-
-
-
-    public TreeItem<Fichier> newer(Fichier dir){
-        if(dir.isDirectory()){
-            for(Fichier f : dir.getContenu()){
-                if(!f.isDirectory()){
-                    if(f.getEtat() == Etat.NEWER){
-                        f.setSelected(false);
-                    }else{
-                        f.setSelected(true);
-                        dir.setSelected(true);
-                    }
-                }else{
-                    if(f.getEtat() == Etat.NEWER){
-                        f.setSelected(false);
-                    }else{
-                        f.setSelected(true);
-                        dir.setSelected(true);
-                    }
-                }
-                newer(f);
-            }
-        }
-        return dir;
-    }
-
-
-    public TreeItem<Fichier> older(Fichier dir){
-        if(dir.isDirectory()){
-            for(Fichier f : dir.getContenu()){
-                if(!f.isDirectory()){
-                    if(f.getEtat() == Etat.OLDER){
-                        f.setSelected(false);
-                    }else{
-                        f.setSelected(true);
-                        dir.setSelected(true);
-                    }
-
-                }else{
-                    if(f.getEtat() == Etat.OLDER){
-                        f.setSelected(false);
-                    }else{
-                        f.setSelected(true);
-                        dir.setSelected(true);
-                    }
-                }
-                older(f);
             }
         }
         return dir;

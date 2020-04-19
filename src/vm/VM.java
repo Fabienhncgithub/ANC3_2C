@@ -7,7 +7,6 @@ import model.Etat;
 import model.Fichier;
 import model.FichierText;
 import model.Model;
-
 import java.util.HashSet;
 import java.util.Set;
 

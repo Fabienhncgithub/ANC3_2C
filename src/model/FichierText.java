@@ -2,9 +2,6 @@ package model;
 
 import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.property.StringProperty;
-import javafx.beans.value.ObservableIntegerValue;
-import javafx.beans.value.ObservableValue;
-
 import java.nio.file.Path;
 import java.time.LocalDateTime;
 
@@ -31,17 +28,4 @@ public class FichierText extends FichierSimple {
     public void setText(String s) {
         textProperty.setValue(s);
     }
-
-    final void bindTextTo(ObservableValue<String> value) {
-        textProperty.bind(value);
-    }
-
-    public StringProperty textProperty() {
-        return textProperty;
-    }
-
-    public ObservableIntegerValue textLengthProperty() {
-        return textProperty.length();
-    }
-
 }

@@ -11,11 +11,6 @@ public class FichierSimple extends Fichier {
     }
 
     @Override
-    public Iterable<Fichier> getContenu() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-
-    @Override
     public boolean isDirectory() {
         return false;
     }
@@ -23,11 +18,6 @@ public class FichierSimple extends Fichier {
     @Override
     public boolean isFichierText() {
         return false;
-    }
-
-    @Override
-    public void addFile(Fichier f) {
-        throw new UnsupportedOperationException("Not supported operation.");
     }
 
     @Override
@@ -55,7 +45,7 @@ public class FichierSimple extends Fichier {
         StringBuilder res = new StringBuilder();
         res.append(super.formatAffichage(decalage))
                 .append(" ").append(getName())
-                .append(" - type : ").append("F") //changer cette ligne par (this.isDirectory() ? "D" : "F")
+                .append(" - type : ").append("F") 
                 .append(" - date : ").append(getDateTime())
                 .append(" - size : ").append(size())
                 .append(" - etat : ").append(getEtat())
