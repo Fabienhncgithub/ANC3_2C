@@ -10,6 +10,12 @@ public class FichierSimple extends Fichier {
         setDateTime(date);
     }
 
+
+    public FichierSimple(FichierSimple f ){
+        this(f.getName(), f.getSize(), f.getDateTime(), f.getPath());
+    }
+
+
     @Override
     public boolean isDirectory() {
         return false;

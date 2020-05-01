@@ -5,7 +5,10 @@ import javafx.beans.binding.ObjectBinding;
 
 import java.nio.file.Path;
 import java.time.LocalDateTime;
-import java.util.*;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Map;
+import java.util.TreeMap;
 import java.util.stream.Collectors;
 
 public class Dossier extends Fichier {
@@ -34,6 +37,11 @@ public class Dossier extends Fichier {
         bindSizeTo(sizeBinding);
         bindDateTimeTo(dateTimeBinding);
     }
+
+    public Dossier(Dossier d ){
+        this(d.getName(), d.getPath(), d.getSize(), d.getDateTime());
+    }
+
 
     public void setNomEnfant() {
         List<String> tmpPathsList = contenu.stream().map(f -> f.getName()).collect(Collectors.toList());

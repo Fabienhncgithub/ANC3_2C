@@ -7,6 +7,7 @@ import model.Etat;
 import model.Fichier;
 import model.FichierText;
 import model.Model;
+
 import java.util.HashSet;
 import java.util.Set;
 
@@ -170,4 +171,14 @@ public class VM {
     public ObjectProperty<FichierText> selectedFileProperty() {
         return selectedFileProperty;
     }
+
+
+    public void test(){
+            model.copyToMove(model.getDirLeft());
+
+    }
+
+
+
+
 }

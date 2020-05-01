@@ -3,6 +3,7 @@ package model;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.property.StringProperty;
 import javafx.scene.control.TreeItem;
+
 import java.nio.file.Paths;
 import java.util.Set;
 import java.util.function.Predicate;
@@ -89,5 +90,39 @@ public class Model {
             }
         }
         return dir;
+    }
+
+
+    public void copyToMove(Fichier dir) {
+        Dossier newFichier = new Dossier("new Fichier", dirLeft.getPath());
+        if(dir.isDirectory()) {
+            for(Fichier f : dir.getContent()) {
+                if(!f.isDirectory()) {
+                    if(f.getEtat().equals(Etat.ORPHAN)) {
+                        f.setSelected(true);
+                        f.getParent().getValue().setSelected(true);
+                    }
+                } else {
+                    if(f.getEtat().equals(Etat.ORPHAN)) {
+                        f.setSelected(true);
+                        f.getParent().getValue().setSelected(true);
+                    }
+                    copyToMove(f);
+                }
+            }
+        }
+
+        dir.getContent().stream().filter((f) -> (f.isSelected())).forEachOrdered((f) -> {
+            if(f.isDirectory()){
+                Dossier d = new Dossier((Dossier)f);
+                newFichier.ajoutFichier(d);
+
+            }else{
+                FichierSimple fi = new FichierSimple((FichierSimple)f);
+                newFichier.ajoutFichier(fi);
+            }
+        });
+        dirRight.changeEtat(newFichier);
+        System.out.println(newFichier);
     }
 }

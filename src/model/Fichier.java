@@ -3,9 +3,11 @@ package model;
 import javafx.beans.property.*;
 import javafx.beans.value.ObservableValue;
 import javafx.scene.control.TreeItem;
+
 import java.nio.file.Path;
 import java.time.LocalDateTime;
 import java.util.List;
+
 import static java.util.stream.Collectors.toList;
 
 public abstract class Fichier extends TreeItem<Fichier> {
@@ -25,6 +27,7 @@ public abstract class Fichier extends TreeItem<Fichier> {
         setExpanded(true);
         setValue(this);
     }
+
 
     Fichier(String name, Path path) {
         this.name = new SimpleStringProperty(name);

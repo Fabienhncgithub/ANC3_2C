@@ -19,6 +19,7 @@ import model.CopyBuilder;
 import model.Etat;
 import model.Fichier;
 import vm.VM;
+
 import java.io.File;
 import java.nio.file.Paths;
 import java.time.LocalDateTime;
@@ -101,6 +102,11 @@ public class View extends VBox {
                 vm.openSelectedFileRight();
             }
         });
+
+        move.setOnAction( e -> {
+            vm.test();
+        });
+
     }
 
     private void configColumns(TreeTableView<Fichier> tTV) {
