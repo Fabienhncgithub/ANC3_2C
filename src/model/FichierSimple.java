@@ -22,7 +22,7 @@ public class FichierSimple extends Fichier {
 
     @Override
     public void changeEtat(Fichier fs) {
-        if (this.getLastDirName(getPath()).equals(fs.getLastDirName(fs.getPath()))) { // TODO check getLastDirName()
+        if (this.getLastDirName(getPath()).equals(fs.getLastDirName(fs.getPath()))) { 
             if (this.getName().equals(fs.getName())) {
                 if (this.getDateTime().isEqual(fs.getDateTime())) {
                     fs.setEtat(Etat.SAME);

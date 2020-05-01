@@ -21,11 +21,12 @@ public class VM {
     private final BooleanProperty orphans = new SimpleBooleanProperty(false);
     private final BooleanProperty same = new SimpleBooleanProperty(false);
     private final BooleanProperty foldersOnly = new SimpleBooleanProperty(false);
+    private final BooleanProperty moveDisabled = new SimpleBooleanProperty(true);
     private final Model model;
     private final ObjectProperty<TreeItem<Fichier>> obsTreeItemLeft = new SimpleObjectProperty<>();
     private final ObjectProperty<TreeItem<Fichier>> obsTreeItemRight = new SimpleObjectProperty<>();
     private final ObjectProperty<FichierText> selectedFileProperty = new SimpleObjectProperty<>();
-
+   
     public VM(Model model) {
         this.model = model;
         editor = new EditVM(this);
@@ -33,6 +34,8 @@ public class VM {
     }
 
     public Set<Etat> listeEtat(String side, Set<Etat> liste) {
+        moveDisabled.setValue(Boolean.FALSE);
+        
         if (sameProperty().getValue()) {
             liste.add(Etat.SAME);
         }
@@ -56,10 +59,15 @@ public class VM {
                 liste.add(Etat.NEWER);
             }
         }
+        
+        if(foldersOnly.getValue() || same.getValue() || liste.isEmpty()) {
+            moveDisabled.setValue(Boolean.TRUE);
+        }
+        
         return liste;
     }
-
-
+    
+        
     public static TreeItem<Fichier> makeTreeRoot(Fichier root) {
         TreeItem<Fichier> res = new TreeItem<>(root.getValue());
         res.setExpanded(true);
@@ -108,6 +116,9 @@ public class VM {
         return selectedFileName;
     }
 
+    public BooleanProperty moveProperty() {
+        return moveDisabled;
+    }    
     public void openSelectedFileLeft() {
         if (selectedTreeLeft.getValue().getValue().isFichierText()) {
             FichierText fichierText = (FichierText) selectedTreeLeft.getValue().getValue();

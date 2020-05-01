@@ -34,6 +34,7 @@ public class View extends VBox {
     private final Image imageButtonChoose = new Image("Images/flat_folder.png");
     private final HBox hBoxBot = hBoxBot();
     private final HBox hBoxFilter = new HBox();
+    private final HBox hBoxBonus = new HBox();
     private final VBox vbox = new VBox();
     private final VM vm;
 
@@ -46,6 +47,8 @@ public class View extends VBox {
     private final TreeTableView<Fichier> tTVRight = new TreeTableView<>();
     private final Label labelL = new Label();
     private final Label labelR = new Label();
+    
+    private final Button move = new Button("Move Left -> Right");
 
     public View(Stage primaryStage, VM vm) {
         this.vm = vm;
@@ -86,6 +89,7 @@ public class View extends VBox {
         tTVRight.rootProperty().bind(vm.rootPropertyRight());
         vm.selectedTreeLeft().bind(tTVLeft.getSelectionModel().selectedItemProperty());
         vm.selectedTreeRight().bind(tTVRight.getSelectionModel().selectedItemProperty());
+        move.disableProperty().bind(vm.moveProperty());
 
         tTVLeft.setOnMousePressed(e -> {
             if (e.getClickCount() == 2 && !tTVLeft.getSelectionModel().isEmpty()) {
@@ -143,7 +147,8 @@ public class View extends VBox {
         hBoxFilter.setSpacing(100);
         hBoxFilter.setPadding(new Insets(15, 20, 10, 10));
         etatValues(hBoxBot);
-        vbox.getChildren().addAll(hBoxFilter, hBoxButtonFolder, hBoxCenter, hBoxBot);
+        hBoxBonus();
+        vbox.getChildren().addAll(hBoxFilter, hBoxButtonFolder, hBoxCenter, hBoxBot, hBoxBonus);
         Scene scene = new Scene(vbox, 1100, 500);
         scene.getStylesheets().add("model/cssView.css");
         primaryStage.setTitle("Beyond Compare");
@@ -163,10 +168,16 @@ public class View extends VBox {
     }
 
     private HBox hBoxBot() {
-        HBox hBoxBot = new HBox();
-        hBoxBot.getStylesheets().add("model/cssView.css");
-        hBoxBot.setAlignment(Pos.TOP_CENTER);
-        hBoxBot.setSpacing(30);
-        return hBoxBot;
+        HBox hBoxBotom = new HBox();
+        hBoxBotom.getStylesheets().add("model/cssView.css");
+        hBoxBotom.setAlignment(Pos.TOP_CENTER);
+        hBoxBotom.setSpacing(30);
+        return hBoxBotom;
+    }
+    
+    private HBox hBoxBonus() {
+        hBoxBonus.setAlignment(Pos.CENTER);
+        hBoxBonus.getChildren().add(move);
+        return hBoxBonus;
     }
 }

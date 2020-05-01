@@ -81,7 +81,7 @@ public class Dossier extends Fichier {
         StringBuilder res = new StringBuilder();
         res.append(super.formatAffichage(decalage))
                 .append(getName())
-                .append(" - type : ").append("D") 
+                .append(" - type : ").append("D")
                 .append(" - date : ").append(getDateTime())
                 .append(" - size : ").append(size())
                 .append(" - etat : ").append(getEtat())
@@ -107,7 +107,7 @@ public class Dossier extends Fichier {
                 } else {
                     Fichier fCorrespondant = other.contenu.get(other.nomEnfant.get(fichier.getName()));
                     if (fCorrespondant.isDirectory() != fichier.isDirectory()) {
-                        if (!fichier.isDirectory()) { 
+                        if (!fichier.isDirectory()) {
                             fichier.setEtat(Etat.ORPHAN);
                             other.setAllChildrenOrphan();
                             other.setEtat(Etat.ORPHAN);
@@ -121,11 +121,19 @@ public class Dossier extends Fichier {
                         fichier.changeEtat(fCorrespondant);
                     }
 
-                    if (fCorrespondant.getSize() == 0
-                            && fichier.getName().equals(fCorrespondant.getName())
-                            && fichier.getDateTime().equals(fCorrespondant.getDateTime())) {
-                        fichier.setEtat(Etat.SAME);
-                        fCorrespondant.setEtat(Etat.SAME);
+                    if (fCorrespondant.isDirectory() && fichier.isDirectory()) {
+                        if (fCorrespondant.getSize() == 0 && fichier.getName().equals(fCorrespondant.getName())) {
+                            if (fichier.getDateTime().equals(fCorrespondant.getDateTime())) {
+                                fichier.setEtat(Etat.SAME);
+                                fCorrespondant.setEtat(Etat.SAME);
+                            } else if (fichier.getDateTime().isAfter(fCorrespondant.getDateTime())) {
+                                fichier.setEtat(Etat.NEWER);
+                                fCorrespondant.setEtat(Etat.OLDER);
+                            } else {
+                                fCorrespondant.setEtat(Etat.NEWER);
+                                fichier.setEtat(Etat.OLDER);
+                            }
+                        }
                     }
                 }
             }
