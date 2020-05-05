@@ -38,8 +38,17 @@ public class Dossier extends Fichier {
         bindDateTimeTo(dateTimeBinding);
     }
 
+
     public Dossier(Dossier d ){
         this(d.getName(), d.getPath(), d.getSize(), d.getDateTime());
+
+        for(Fichier f : d.getContent()){
+            if(f.isDirectory()){
+                ajoutFichier((new Dossier((Dossier) f)));
+            }else{
+                ajoutFichier(new FichierSimple((FichierSimple)f));
+            }
+        }
     }
 
 

@@ -35,6 +35,7 @@ public class VM {
     }
 
     public Set<Etat> listeEtat(String side, Set<Etat> liste) {
+
         moveDisabled.setValue(Boolean.FALSE);
         
         if (sameProperty().getValue()) {
@@ -174,11 +175,8 @@ public class VM {
 
 
     public void test(){
-            model.copyToMove(model.getDirLeft());
-
+        obsTreeItemRight.setValue(makeTreeRoot(model.copyToMove(model.getDirLeft()).getValue()));
+        model.getDirRight().changeEtat(model.getDirLeft());
+        model.getDirLeft().changeEtat(model.getDirRight());
     }
-
-
-
-
 }

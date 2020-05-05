@@ -36,7 +36,7 @@ public class Model {
                 if (!f.isDirectory()) {
                     if ((!etat.isEmpty()) && !predicate.test(f)) {
                         f.setSelected(false);
-                    } else  {
+                    } else {
                         f.setSelected(true);
                         f.getParent().getValue().setSelected(true);
                     }
@@ -46,12 +46,12 @@ public class Model {
                     } else {
                         f.setSelected(true);
                         f.getParent().getValue().setSelected(true);
-                    } 
+                    }
                     predicateEtat(f, etat, onlyFolders);
                 }
-                
-                
-                if(f.isSelected()) {
+
+
+                if (f.isSelected()) {
                     f.getParent().getValue().setSelected(true);
                 }
 
@@ -92,37 +92,76 @@ public class Model {
         return dir;
     }
 
+//    public TreeItem<Fichier> copyToMove(Fichier dir, Set<Etat> etat) {
+//        Dossier newFichier = new Dossier(dirLeft.getName(), dirLeft.getPath());
+//        newFichier.setExpanded(true);
+//        Predicate<Fichier> predicate = (Fichier f) -> etat.contains(f.getEtat());
+//        if (dir.isDirectory()) {
+//            for (Fichier f : dir.getContent()) {
+//                if (!f.isDirectory()) {
+//                    if ((!etat.isEmpty()) && !predicate.test(f)) {
+//                        f.setSelected(false);
+//                    } else  {
+//                        f.setSelected(true);
+//                        f.getParent().getValue().setSelected(true);
+//                    }
+//                } else {
+//                    if ((!etat.isEmpty()) && !predicate.test(f)) {
+//                        f.setSelected(false);
+//                    } else {
+//                        f.setSelected(true);
+//                        f.getParent().getValue().setSelected(true);
+//                    }
+//                    copyToMove(dir, etat);
+//                }
+//
+//
+//                if(f.isSelected()) {
+//                    f.getParent().getValue().setSelected(true);
+//                }
+//
+//
+//            }
+//        }
+//        return newFichier;
+//    }
+//
+//
+//
+//    }
 
-    public void copyToMove(Fichier dir) {
-        Dossier newFichier = new Dossier("new Fichier", dirLeft.getPath());
-        if(dir.isDirectory()) {
-            for(Fichier f : dir.getContent()) {
-                if(!f.isDirectory()) {
-                    if(f.getEtat().equals(Etat.ORPHAN)) {
+    public TreeItem<Fichier> copyToMove(Fichier dir) {
+        Dossier newFichier = new Dossier(dirLeft.getName(), dirLeft.getPath());
+        if (dir.isDirectory()) {
+            for (Fichier f : dir.getContent()) {
+                if (!f.isDirectory()) {
+                    if (f.getEtat().equals(Etat.ORPHAN) || f.getEtat().equals(Etat.NEWER) || f.getEtat().equals(Etat.OLDER)) {
                         f.setSelected(true);
                         f.getParent().getValue().setSelected(true);
                     }
                 } else {
-                    if(f.getEtat().equals(Etat.ORPHAN)) {
+                    if (f.getEtat().equals(Etat.ORPHAN) || f.getEtat().equals(Etat.NEWER) || f.getEtat().equals(Etat.OLDER)) {
                         f.setSelected(true);
                         f.getParent().getValue().setSelected(true);
                     }
                     copyToMove(f);
+                    System.out.println(copyToMove(f));
+
                 }
             }
         }
 
         dir.getContent().stream().filter((f) -> (f.isSelected())).forEachOrdered((f) -> {
-            if(f.isDirectory()){
-                Dossier d = new Dossier((Dossier)f);
-                newFichier.ajoutFichier(d);
+            newFichier.ajoutFichier(f);
 
-            }else{
-                FichierSimple fi = new FichierSimple((FichierSimple)f);
-                newFichier.ajoutFichier(fi);
-            }
+
         });
         dirRight.changeEtat(newFichier);
-        System.out.println(newFichier);
+        return newFichier;
     }
+
 }
+
+
+
+
