@@ -63,6 +63,4 @@ public class FichierSimple extends Fichier {
     public void ajoutFichier(Fichier f) {
         throw new UnsupportedOperationException("Not supported.");
     }
-    
-
 }

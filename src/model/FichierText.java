@@ -14,6 +14,10 @@ public class FichierText extends FichierSimple {
         super(nom, size, date, path);
         textProperty.setValue(text);
     }
+    
+    public FichierText(FichierText f) {
+        this(f.getName(), f.getSize(), f.getDateTime(), f.getPath(), f.getText());
+    }
 
 
     @Override

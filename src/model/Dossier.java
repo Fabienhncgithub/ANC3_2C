@@ -45,6 +45,9 @@ public class Dossier extends Fichier {
         for(Fichier f : d.getContent()){
             if(f.isDirectory()){
                 ajoutFichier((new Dossier((Dossier) f)));
+                
+            } else if(f.isFichierText()) {
+                ajoutFichier(new FichierText((FichierText) f));
             }else{
                 ajoutFichier(new FichierSimple((FichierSimple)f));
             }

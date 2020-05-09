@@ -92,72 +92,27 @@ public class Model {
         return dir;
     }
 
-//    public TreeItem<Fichier> copyToMove(Fichier dir, Set<Etat> etat) {
-//        Dossier newFichier = new Dossier(dirLeft.getName(), dirLeft.getPath());
-//        newFichier.setExpanded(true);
-//        Predicate<Fichier> predicate = (Fichier f) -> etat.contains(f.getEtat());
-//        if (dir.isDirectory()) {
-//            for (Fichier f : dir.getContent()) {
-//                if (!f.isDirectory()) {
-//                    if ((!etat.isEmpty()) && !predicate.test(f)) {
-//                        f.setSelected(false);
-//                    } else  {
-//                        f.setSelected(true);
-//                        f.getParent().getValue().setSelected(true);
-//                    }
-//                } else {
-//                    if ((!etat.isEmpty()) && !predicate.test(f)) {
-//                        f.setSelected(false);
-//                    } else {
-//                        f.setSelected(true);
-//                        f.getParent().getValue().setSelected(true);
-//                    }
-//                    copyToMove(dir, etat);
-//                }
-//
-//
-//                if(f.isSelected()) {
-//                    f.getParent().getValue().setSelected(true);
-//                }
-//
-//
-//            }
-//        }
-//        return newFichier;
-//    }
-//
-//
-//
-//    }
-
-    public TreeItem<Fichier> copyToMove(Fichier dir) {
-        Dossier newFichier = new Dossier(dirLeft.getName(), dirLeft.getPath());
+    public TreeItem<Fichier> getFileToMove(Fichier dir, Set<Etat> etat) {
+        Dossier newFichier = new Dossier(dir.getName(), dir.getPath());
+        Predicate<Fichier> predicate = (Fichier f) -> etat.contains(f.getEtat());
         if (dir.isDirectory()) {
             for (Fichier f : dir.getContent()) {
                 if (!f.isDirectory()) {
-                    if (f.getEtat().equals(Etat.ORPHAN) || f.getEtat().equals(Etat.NEWER) || f.getEtat().equals(Etat.OLDER)) {
+                    if (predicate.test(f)) {
                         f.setSelected(true);
                         f.getParent().getValue().setSelected(true);
                     }
                 } else {
-                    if (f.getEtat().equals(Etat.ORPHAN) || f.getEtat().equals(Etat.NEWER) || f.getEtat().equals(Etat.OLDER)) {
+                    if (predicate.test(f)) {
                         f.setSelected(true);
                         f.getParent().getValue().setSelected(true);
                     }
-                    copyToMove(f);
-                    System.out.println(copyToMove(f));
-
+                    getFileToMove(f,etat);
                 }
             }
         }
-
-        dir.getContent().stream().filter((f) -> (f.isSelected())).forEachOrdered((f) -> {
-            newFichier.ajoutFichier(f);
-
-
-        });
-        dirRight.changeEtat(newFichier);
-        return newFichier;
+        
+        return dir;
     }
 
 }

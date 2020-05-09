@@ -10,6 +10,8 @@ import model.Model;
 
 import java.util.HashSet;
 import java.util.Set;
+import model.Dossier;
+import model.FichierSimple;
 
 public class VM {
 
@@ -27,7 +29,7 @@ public class VM {
     private final ObjectProperty<TreeItem<Fichier>> obsTreeItemLeft = new SimpleObjectProperty<>();
     private final ObjectProperty<TreeItem<Fichier>> obsTreeItemRight = new SimpleObjectProperty<>();
     private final ObjectProperty<FichierText> selectedFileProperty = new SimpleObjectProperty<>();
-   
+
     public VM(Model model) {
         this.model = model;
         editor = new EditVM(this);
@@ -37,7 +39,7 @@ public class VM {
     public Set<Etat> listeEtat(String side, Set<Etat> liste) {
 
         moveDisabled.setValue(Boolean.FALSE);
-        
+
         if (sameProperty().getValue()) {
             liste.add(Etat.SAME);
         }
@@ -61,15 +63,14 @@ public class VM {
                 liste.add(Etat.NEWER);
             }
         }
-        
-        if(foldersOnly.getValue() || same.getValue() || liste.isEmpty()) {
+
+        if (foldersOnly.getValue() || same.getValue() || liste.isEmpty()) {
             moveDisabled.setValue(Boolean.TRUE);
         }
-        
+
         return liste;
     }
-    
-        
+
     public static TreeItem<Fichier> makeTreeRoot(Fichier root) {
         TreeItem<Fichier> res = new TreeItem<>(root.getValue());
         res.setExpanded(true);
@@ -120,7 +121,8 @@ public class VM {
 
     public BooleanProperty moveProperty() {
         return moveDisabled;
-    }    
+    }
+
     public void openSelectedFileLeft() {
         if (selectedTreeLeft.getValue().getValue().isFichierText()) {
             FichierText fichierText = (FichierText) selectedTreeLeft.getValue().getValue();
@@ -173,10 +175,23 @@ public class VM {
         return selectedFileProperty;
     }
 
+    public void test() {
+        obsTreeItemRight.setValue(makeTreeRoot(model.predicateEtat(copyToMove().getValue(), listeEtat("R", new HashSet<>()), foldersOnly.getValue()).getValue()));
 
-    public void test(){
-        obsTreeItemRight.setValue(makeTreeRoot(model.copyToMove(model.getDirLeft()).getValue()));
-        model.getDirRight().changeEtat(model.getDirLeft());
-        model.getDirLeft().changeEtat(model.getDirRight());
+    }
+
+    public TreeItem<Fichier> copyToMove() {
+        Dossier d = (Dossier) model.getFileToMove(model.getDirLeft(), listeEtat("L", new HashSet<>()));
+        for (Fichier f : d.getContent()) {
+            if (!f.isDirectory()) {
+                model.getDirRight().ajoutFichier(new FichierSimple((FichierSimple) f));
+            } else if (f.isFichierText()) {
+                model.getDirRight().ajoutFichier(new FichierText((FichierText) f));
+            } else {
+                System.out.println(f.getPath());
+                model.getDirRight().ajoutFichier(new Dossier((Dossier) f));
+            }
+        }
+        return d;
     }
 }

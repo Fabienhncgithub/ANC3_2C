@@ -53,7 +53,7 @@ public class View extends VBox {
 
     public View(Stage primaryStage, VM vm) {
         this.vm = vm;
-        new EditView(primaryStage, vm.getEditVM());
+        EditView editView = new EditView(primaryStage, vm.getEditVM());
         myButtonFilters = new MyButtonFilters(vm, this);
         setBindingAndListeners(vm);
         configColumns(tTVLeft);
