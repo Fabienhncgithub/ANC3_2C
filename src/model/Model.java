@@ -49,12 +49,9 @@ public class Model {
                     }
                     predicateEtat(f, etat, onlyFolders);
                 }
-
-
                 if (f.isSelected()) {
                     f.getParent().getValue().setSelected(true);
                 }
-
                 if (onlyFolders) {
                     res = getOnlyFolders(root);
                 }
@@ -93,28 +90,69 @@ public class Model {
     }
 
     public TreeItem<Fichier> getFileToMove(Fichier dir, Set<Etat> etat) {
-        Dossier newFichier = new Dossier(dir.getName(), dir.getPath());
+        Dossier newDossier = new Dossier((Dossier) dir);
         Predicate<Fichier> predicate = (Fichier f) -> etat.contains(f.getEtat());
-        if (dir.isDirectory()) {
-            for (Fichier f : dir.getContent()) {
-                if (!f.isDirectory()) {
-                    if (predicate.test(f)) {
-                        f.setSelected(true);
-                        f.getParent().getValue().setSelected(true);
-                    }
-                } else {
-                    if (predicate.test(f)) {
-                        f.setSelected(true);
-                        f.getParent().getValue().setSelected(true);
-                    }
-                    getFileToMove(f,etat);
+        for (Fichier f : newDossier.getContent()) {
+            if (predicate.test(f)) {
+                f.setSelected(true);
+                f.getParent().getValue().setSelected(true);
+            }
+            if (f.isDirectory()) {
+                getFileToMove(f, etat);
+            }
+        }
+        return newDossier;
+    }
+
+    public void moveCopyToRight(Fichier copyLeft) {
+        for (Fichier fLeft : copyLeft.getContent()) {
+            if (fLeft.isDirectory()) {
+                moveCopyToRight(fLeft);
+            } else {
+//                System.out.println("***************" + fLeft.getPath() + "**************************");
+                for (Fichier fRight : dirRight.getValue().getContent()) {
+//                    System.out.println("***************" + fRight.getPath() + "**************************");
+                    replaceInRight(copyLeft, fRight);
                 }
             }
         }
-        
-        return dir;
     }
 
+    public void replaceInRight(TreeItem<Fichier> copyLeft, TreeItem<Fichier> dirInRight) {
+        for (Fichier fRight : dirInRight.getValue().getContent()) {
+            if (fRight.isDirectory()) {
+                replaceInRight(copyLeft, fRight);
+            } else {
+                for (Fichier fLeft : copyLeft.getValue().getContent()) {
+                    if (fLeft.getPath().subpath(2, fLeft.getPath().getNameCount()).equals(fRight.getPath().subpath(2, fRight.getPath().getNameCount()))) {
+                        System.out.println(fRight);
+                        fRight.getParent().getValue().getChildren().add(fLeft);
+                        fRight.getParent().getValue().getChildren().remove(fRight);
+                        System.out.println("après remove, add");
+                    } else if (fLeft.getEtat() == Etat.ORPHAN) {
+
+                    }
+                }
+            }
+        }
+    }
+
+    public void addOrphan(TreeItem<Fichier> copyLeft, TreeItem<Fichier> dirInRight) {
+        for (Fichier orphanInLeft : copyLeft.getValue().getContent()) {
+            System.out.println(orphanInLeft.getPath());
+            System.out.println(copyLeft.getValue().getPath());
+            System.out.println(dirInRight.getValue().getPath());
+            if (dirInRight.getValue().getChildren().contains(orphanInLeft)) {
+                for (Fichier f : dirInRight.getValue().getContent()) {
+                    if (f.getName().equals(orphanInLeft.getName())) {
+                        addOrphan(orphanInLeft, f);
+                    }
+                }
+            }else{
+                dirInRight.getValue()._addFile(orphanInLeft);
+            }
+        }
+    }
 }
 
 

@@ -104,7 +104,7 @@ public class View extends VBox {
         });
 
         move.setOnAction( e -> {
-            vm.test();
+            vm.moveToRight();
         });
 
     }

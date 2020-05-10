@@ -3,15 +3,10 @@ package vm;
 import javafx.beans.property.*;
 import javafx.beans.value.ObservableValue;
 import javafx.scene.control.TreeItem;
-import model.Etat;
-import model.Fichier;
-import model.FichierText;
-import model.Model;
+import model.*;
 
 import java.util.HashSet;
 import java.util.Set;
-import model.Dossier;
-import model.FichierSimple;
 
 public class VM {
 
@@ -38,7 +33,7 @@ public class VM {
 
     public Set<Etat> listeEtat(String side, Set<Etat> liste) {
 
-        moveDisabled.setValue(Boolean.FALSE);
+        moveDisabled.setValue(false);
 
         if (sameProperty().getValue()) {
             liste.add(Etat.SAME);
@@ -54,7 +49,6 @@ public class VM {
                 liste.add(Etat.OLDER);
             }
         }
-
         if (newRightProperty().getValue()) {
             if (side.equals("L")) {
                 liste.add(Etat.OLDER);
@@ -63,11 +57,9 @@ public class VM {
                 liste.add(Etat.NEWER);
             }
         }
-
         if (foldersOnly.getValue() || same.getValue() || liste.isEmpty()) {
-            moveDisabled.setValue(Boolean.TRUE);
+            moveDisabled.setValue(true);
         }
-
         return liste;
     }
 
@@ -175,23 +167,16 @@ public class VM {
         return selectedFileProperty;
     }
 
-    public void test() {
-        obsTreeItemRight.setValue(makeTreeRoot(model.predicateEtat(copyToMove().getValue(), listeEtat("R", new HashSet<>()), foldersOnly.getValue()).getValue()));
-
-    }
-
-    public TreeItem<Fichier> copyToMove() {
-        Dossier d = (Dossier) model.getFileToMove(model.getDirLeft(), listeEtat("L", new HashSet<>()));
-        for (Fichier f : d.getContent()) {
-            if (!f.isDirectory()) {
-                model.getDirRight().ajoutFichier(new FichierSimple((FichierSimple) f));
-            } else if (f.isFichierText()) {
-                model.getDirRight().ajoutFichier(new FichierText((FichierText) f));
-            } else {
-                System.out.println(f.getPath());
-                model.getDirRight().ajoutFichier(new Dossier((Dossier) f));
-            }
+    public void moveToRight() {
+        TreeItem<Fichier> copy = new Dossier((Dossier) rootPropertyLeft().getValue().getValue());
+        System.out.println(copy);
+        copy.getValue().changeEtat(rootPropertyRight().getValue().getValue());
+//        obsTreeItemRight.setValue(copy);
+        if (orphansProperty().getValue() == true) {
+            model.addOrphan(copy, model.getDirRight());
         }
-        return d;
+        if (newRightProperty().getValue() == true || newLeftProperty().getValue() == true){
+            model.moveCopyToRight(copy.getValue());
+        }
     }
 }
