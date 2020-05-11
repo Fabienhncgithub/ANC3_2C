@@ -38,22 +38,20 @@ public class Dossier extends Fichier {
         bindDateTimeTo(dateTimeBinding);
     }
 
-
     public Dossier(Dossier d ){
         this(d.getName(), d.getPath(), d.getSize(), d.getDateTime());
-
         for(Fichier f : d.getContent()){
-            if(f.isDirectory()){
-                ajoutFichier((new Dossier((Dossier) f)));
-                
-            } else if(f.isFichierText()) {
-                ajoutFichier(new FichierText((FichierText) f));
-            }else{
-                ajoutFichier(new FichierSimple((FichierSimple)f));
+            if (f.isSelected()) {
+                if(f.isDirectory()){
+                    ajoutFichier((new Dossier((Dossier) f)));
+                } else if(f.isFichierText()) {
+                    ajoutFichier(new FichierText((FichierText) f));
+                }else{
+                    ajoutFichier(new FichierSimple((FichierSimple)f));
+                }
             }
         }
     }
-
 
     public void setNomEnfant() {
         List<String> tmpPathsList = contenu.stream().map(f -> f.getName()).collect(Collectors.toList());
@@ -276,33 +274,31 @@ public class Dossier extends Fichier {
 
     // Un Binding pour le recalcul de la taille
     private class SizeBinding extends ObjectBinding<Long> {
-
         @Override // La taille est la sommme des taille des enfants
         protected Long computeValue() {
             return getChildren().stream().map(f -> f.getValue().getSize()).reduce(0L, (s1, s2) -> s1 + s2);
         }
-
         // Chaque Observable modifiée provoque un recalcul
         // Ajoute une Observable dont dépend le Binding
         void addBinding(Observable obs) {
             super.bind(obs);
         }
+    }
 
+    public Map<String, Integer> getNomEnfant() {
+        return nomEnfant;
     }
 
     // Un Binding pour le recalcul de la date
     private class DateTimeBinding extends ObjectBinding<LocalDateTime> {
-
         @Override // La date est la plus récente des dates des enfants ou la date actuelle
         protected LocalDateTime computeValue() {
             return getChildren().isEmpty() ? LocalDateTime.from(CopyBuilder.getModifDate(getPath())) : getChildren().stream().map(f -> f.getValue().getDateTime()).max(LocalDateTime::compareTo).get();
         }
-
         // Chaque Observable modifiée provoque un recalcul
         // Ajoute une Observable dont dépend le Binding
         void addBinding(Observable obs) {
             super.bind(obs);
         }
-
     }
 }

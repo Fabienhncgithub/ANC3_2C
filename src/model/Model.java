@@ -129,8 +129,6 @@ public class Model {
                         fRight.getParent().getValue().getChildren().add(fLeft);
                         fRight.getParent().getValue().getChildren().remove(fRight);
                         System.out.println("après remove, add");
-                    } else if (fLeft.getEtat() == Etat.ORPHAN) {
-
                     }
                 }
             }
@@ -139,17 +137,25 @@ public class Model {
 
     public void addOrphan(TreeItem<Fichier> copyLeft, TreeItem<Fichier> dirInRight) {
         for (Fichier orphanInLeft : copyLeft.getValue().getContent()) {
-            System.out.println(orphanInLeft.getPath());
             System.out.println(copyLeft.getValue().getPath());
             System.out.println(dirInRight.getValue().getPath());
-            if (dirInRight.getValue().getChildren().contains(orphanInLeft)) {
-                for (Fichier f : dirInRight.getValue().getContent()) {
-                    if (f.getName().equals(orphanInLeft.getName())) {
+            for (Fichier f : dirInRight.getValue().getContent()) {
+                System.out.println(" in the for");
+                if (f.getName().equals(orphanInLeft.getName())) {
+                    System.out.println("equal name");
+                    if (f.isDirectory() && orphanInLeft.isDirectory()) {
+                        System.out.println("before recursive method");
                         addOrphan(orphanInLeft, f);
+                    } else {
+                        System.out.println("before add file");
+                        dirInRight.getValue().ajoutFichier(orphanInLeft);
                     }
                 }
-            }else{
-                dirInRight.getValue()._addFile(orphanInLeft);
+            }
+            Dossier dossierRight = (Dossier) dirInRight.getValue();
+            if (!dossierRight.getNomEnfant().containsKey(orphanInLeft.getName())) {
+                System.out.println("apres le for");
+                dirInRight.getValue().ajoutFichier(orphanInLeft);
             }
         }
     }
