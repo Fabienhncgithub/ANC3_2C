@@ -159,6 +159,41 @@ public class Model {
             }
         }
     }
+    public TreeItem<Fichier> filtersize50(Fichier root) {
+        if (root.isDirectory()) {
+            for (Fichier f : root.getContent()) {
+                if (f.getSize() <= 50) {
+                    f.setSelected(false);
+                }
+                if (f.isDirectory()) {
+                    filtersize50(f);
+                }
+            }
+        } else {
+            if (root.getSize() <= 50) {
+                root.setSelected(false);
+            }
+        }
+        return root;
+    }
+    public Fichier deleteFile(Fichier root, Fichier toDelete){
+        if (root.isDirectory()) {
+            for (Fichier f : root.getContent()) {
+                if (!f.isDirectory()) {
+                    if (f.getPath().equals(toDelete.getPath())) {
+                        f.getParent().getChildren().remove(f);
+                    }
+                } else {
+                    if (f.getPath().equals(toDelete.getPath())) {
+                        f.getParent().getChildren().remove(f);
+                    }
+                    deleteFile(f,toDelete);
+                }
+            }
+        }
+        return root;
+    }
+
 }
 
 
