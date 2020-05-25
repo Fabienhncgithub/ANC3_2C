@@ -79,6 +79,27 @@ public class VM {
         model.getDirLeft().changeEtat(model.getDirRight());
     }
 
+    public void filterSizeRight() {
+        obsTreeItemRight.setValue(makeTreeRoot(model.filtersize50(getTiRight().getValue()).getValue()));
+    }
+
+    public void filterSizeLeft(){
+        obsTreeItemLeft.setValue(makeTreeRoot(model.filtersize50(getTiLeft().getValue()).getValue()));
+    }
+
+
+    public void deleteSelectedLeft() {
+
+        Fichier fichierToDeleteToLeft = selectedTreeLeft.getValue().getValue();
+        obsTreeItemLeft.setValue(makeTreeRoot((model.deleteFile(model.getDirLeft(),fichierToDeleteToLeft))));
+    }
+
+    public void deleteSelectedRight() {
+
+        Fichier fichierToDeleteToRight = selectedTreeRight.getValue().getValue();
+        obsTreeItemRight.setValue(makeTreeRoot((model.deleteFile(model.getDirRight(),fichierToDeleteToRight))));
+    }
+
     public TreeItem<Fichier> getTiLeft() {
         return makeTreeRoot(model.getDirLeft());
     }

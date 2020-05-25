@@ -50,6 +50,7 @@ public class View extends VBox {
     private final Label labelR = new Label();
     
     private final Button move = new Button("Move Left -> Right");
+    private final Button filterSize = new Button("BigFile");
 
     public View(Stage primaryStage, VM vm) {
         this.vm = vm;
@@ -96,15 +97,28 @@ public class View extends VBox {
             if (e.getClickCount() == 2 && !tTVLeft.getSelectionModel().isEmpty()) {
                 vm.openSelectedFileLeft();
             }
+            if(e.isAltDown()){
+                vm.deleteSelectedLeft();
+            }
         });
         tTVRight.setOnMousePressed(e -> {
             if (e.getClickCount() == 2 && !tTVRight.getSelectionModel().isEmpty()) {
                 vm.openSelectedFileRight();
             }
+            if(e.isAltDown()){
+                vm.deleteSelectedRight();
+            }
         });
 
         move.setOnAction( e -> {
             vm.moveToRight();
+
+            vm.setRoot();
+            vm.setRoot();
+        });
+        filterSize.setOnAction( e-> {
+            vm.filterSizeRight();
+            vm.filterSizeLeft();
         });
 
     }
@@ -183,7 +197,7 @@ public class View extends VBox {
     
     private HBox hBoxBonus() {
         hBoxBonus.setAlignment(Pos.CENTER);
-        hBoxBonus.getChildren().add(move);
+        hBoxBonus.getChildren().addAll(move,filterSize);
         return hBoxBonus;
     }
 }

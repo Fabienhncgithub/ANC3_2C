@@ -19,6 +19,12 @@ public class MyButtonFilters extends VBox {
     private final ToggleButton same = new ToggleButton("Same");
     private final ToggleButton foldersOnly = new ToggleButton("Folders only");
 
+
+
+    //private final ToggleButton test = new ToggleButton("test");
+    private final Button move = new Button("Move Left -> Right");
+
+
     {
         hbox.getChildren().addAll(all, newerLeft, newerRight, orphans, same, foldersOnly);
         hbox.setSpacing(30);

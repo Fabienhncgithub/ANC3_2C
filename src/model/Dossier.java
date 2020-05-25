@@ -166,13 +166,17 @@ public class Dossier extends Fichier {
             }
             if (this.areAllChildrenEtatSet() && other.areAllChildrenEtatSet()) {
                 this.checkEmptyDir(other);
-                this.setFolderEtat();
-                other.setFolderEtat();
+                this.setFolderEtat(other);
+                other.setFolderEtat(this);
+            }if(other.getEtat().equals(Etat.PARTIAL_SAME)){
+                other.setFolderEtat(this);
+            }else{
+                this.setFolderEtat(other);
             }
         }
     }
 
-    private void setFolderEtat() {
+    private void setFolderEtat(Fichier other) {
         if (this.toBeOrphan()) {
             this.setEtat(Etat.ORPHAN);
         } else if (this.toBeSame()) {
@@ -183,6 +187,7 @@ public class Dossier extends Fichier {
             this.setEtat(Etat.NEWER);
         } else {
             this.setEtat(Etat.PARTIAL_SAME);
+            other.setEtat(Etat.PARTIAL_SAME);
         }
     }
 
