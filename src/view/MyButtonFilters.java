@@ -18,6 +18,7 @@ public class MyButtonFilters extends VBox {
     private final ToggleButton orphans = new ToggleButton("Orphans");
     private final ToggleButton same = new ToggleButton("Same");
     private final ToggleButton foldersOnly = new ToggleButton("Folders only");
+    private final Button filterSize = new Button("BigFile");
 
 
 
@@ -26,7 +27,7 @@ public class MyButtonFilters extends VBox {
 
 
     {
-        hbox.getChildren().addAll(all, newerLeft, newerRight, orphans, same, foldersOnly);
+        hbox.getChildren().addAll(all, newerLeft, newerRight, orphans, same, foldersOnly,filterSize);
         hbox.setSpacing(30);
         hbox.setAlignment(Pos.CENTER);
         getChildren().addAll(hbox);
@@ -73,6 +74,16 @@ public class MyButtonFilters extends VBox {
         });
         same.setOnAction(e -> {
             vm.setRoot();
+        });
+        filterSize.setOnAction( e-> {
+            newerLeft.setSelected(false);
+            newerRight.setSelected(false);
+            orphans.setSelected(false);
+            same.setSelected(false);
+            foldersOnly.setSelected(false);
+            vm.setRoot();
+            vm.filterSizeRight();
+            vm.filterSizeLeft();
         });
     }
 

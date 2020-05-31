@@ -168,7 +168,10 @@ public class Dossier extends Fichier {
                 this.checkEmptyDir(other);
                 this.setFolderEtat(other);
                 other.setFolderEtat(this);
-            }if(other.getEtat().equals(Etat.PARTIAL_SAME)){
+            }
+
+
+            if(other.getEtat().equals(Etat.PARTIAL_SAME)){
                 other.setFolderEtat(this);
             }else{
                 this.setFolderEtat(other);

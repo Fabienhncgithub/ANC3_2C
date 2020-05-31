@@ -159,6 +159,7 @@ public class Model {
             }
         }
     }
+
     public TreeItem<Fichier> filtersize50(Fichier root) {
         if (root.isDirectory()) {
             for (Fichier f : root.getContent()) {
@@ -176,18 +177,15 @@ public class Model {
         }
         return root;
     }
-    public Fichier deleteFile(Fichier root, Fichier toDelete){
+
+    public Fichier deleteFile(Fichier root, Fichier toDelete) {
         if (root.isDirectory()) {
             for (Fichier f : root.getContent()) {
-                if (!f.isDirectory()) {
-                    if (f.getPath().equals(toDelete.getPath())) {
-                        f.getParent().getChildren().remove(f);
-                    }
-                } else {
-                    if (f.getPath().equals(toDelete.getPath())) {
-                        f.getParent().getChildren().remove(f);
-                    }
-                    deleteFile(f,toDelete);
+                if (f.getPath().equals(toDelete.getPath())) {
+                    f.getParent().getChildren().remove(f);
+                }
+                if (f.isDirectory()) {
+                    deleteFile(f, toDelete);
                 }
             }
         }

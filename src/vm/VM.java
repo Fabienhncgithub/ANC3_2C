@@ -83,21 +83,27 @@ public class VM {
         obsTreeItemRight.setValue(makeTreeRoot(model.filtersize50(getTiRight().getValue()).getValue()));
     }
 
-    public void filterSizeLeft(){
+    public void filterSizeLeft() {
         obsTreeItemLeft.setValue(makeTreeRoot(model.filtersize50(getTiLeft().getValue()).getValue()));
     }
 
 
     public void deleteSelectedLeft() {
-
         Fichier fichierToDeleteToLeft = selectedTreeLeft.getValue().getValue();
-        obsTreeItemLeft.setValue(makeTreeRoot((model.deleteFile(model.getDirLeft(),fichierToDeleteToLeft))));
+        obsTreeItemLeft.setValue(makeTreeRoot((model.deleteFile(model.getDirLeft(), fichierToDeleteToLeft))));
+        obsTreeItemRight.setValue(makeTreeRoot(((model.getDirRight()))));
+
+       obsTreeItemRight.getValue().getValue().changeEtat(obsTreeItemLeft.getValue().getValue());
+        obsTreeItemLeft.getValue().getValue().changeEtat(obsTreeItemRight.getValue().getValue());
     }
 
     public void deleteSelectedRight() {
-
         Fichier fichierToDeleteToRight = selectedTreeRight.getValue().getValue();
-        obsTreeItemRight.setValue(makeTreeRoot((model.deleteFile(model.getDirRight(),fichierToDeleteToRight))));
+        obsTreeItemRight.setValue(makeTreeRoot((model.deleteFile(model.getDirRight(), fichierToDeleteToRight))));
+        obsTreeItemLeft.setValue(makeTreeRoot(((model.getDirLeft()))));
+
+        obsTreeItemLeft.getValue().getValue().changeEtat(obsTreeItemRight.getValue().getValue());
+        obsTreeItemRight.getValue().getValue().changeEtat(obsTreeItemLeft.getValue().getValue());
     }
 
     public TreeItem<Fichier> getTiLeft() {
@@ -196,7 +202,7 @@ public class VM {
         if (orphansProperty().getValue() == true) {
             model.addOrphan(copy, model.getDirRight());
         }
-        if (newRightProperty().getValue() == true || newLeftProperty().getValue() == true){
+        if (newRightProperty().getValue() == true || newLeftProperty().getValue() == true) {
             model.moveCopyToRight(copy.getValue());
         }
     }
