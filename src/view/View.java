@@ -98,16 +98,20 @@ public class View extends VBox {
                 vm.openSelectedFileLeft();
             }
             if(e.isAltDown()){
-                vm.deleteSelectedLeft();
+                vm.setNewDirLeft(vm.deleteSelectedLeft());
+                vm.setRoot();
             }
+            vm.setRoot();
         });
         tTVRight.setOnMousePressed(e -> {
             if (e.getClickCount() == 2 && !tTVRight.getSelectionModel().isEmpty()) {
                 vm.openSelectedFileRight();
             }
             if(e.isAltDown()){
-                vm.deleteSelectedRight();
+                vm.setNewDirRight(vm.deleteSelectedRight());
+                vm.setRoot();
             }
+            vm.setRoot();
         });
 
         move.setOnAction( e -> {

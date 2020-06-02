@@ -134,11 +134,9 @@ public class Dossier extends Fichier {
                             ((Dossier) fichier).setAllChildrenOrphan();
                             fichier.setEtat(Etat.ORPHAN);
                         }
-
                     } else {
                         fichier.changeEtat(fCorrespondant);
                     }
-
                     if (fCorrespondant.isDirectory() && fichier.isDirectory()) {
                         if (fCorrespondant.getSize() == 0 && fichier.getName().equals(fCorrespondant.getName())) {
                             if (fichier.getDateTime().equals(fCorrespondant.getDateTime())) {
@@ -169,8 +167,6 @@ public class Dossier extends Fichier {
                 this.setFolderEtat(other);
                 other.setFolderEtat(this);
             }
-
-
             if(other.getEtat().equals(Etat.PARTIAL_SAME)){
                 other.setFolderEtat(this);
             }else{

@@ -88,22 +88,18 @@ public class VM {
     }
 
 
-    public void deleteSelectedLeft() {
+    public Fichier deleteSelectedLeft() {
         Fichier fichierToDeleteToLeft = selectedTreeLeft.getValue().getValue();
-        obsTreeItemLeft.setValue(makeTreeRoot((model.deleteFile(model.getDirLeft(), fichierToDeleteToLeft))));
-        obsTreeItemRight.setValue(makeTreeRoot(((model.getDirRight()))));
-
-       obsTreeItemRight.getValue().getValue().changeEtat(obsTreeItemLeft.getValue().getValue());
-        obsTreeItemLeft.getValue().getValue().changeEtat(obsTreeItemRight.getValue().getValue());
+        Fichier left = model.deleteFile(model.getDirLeft(), fichierToDeleteToLeft);
+        Dossier deepCopyLeft = new Dossier((Dossier) left);
+        return deepCopyLeft;
     }
 
-    public void deleteSelectedRight() {
+    public Fichier deleteSelectedRight() {
         Fichier fichierToDeleteToRight = selectedTreeRight.getValue().getValue();
-        obsTreeItemRight.setValue(makeTreeRoot((model.deleteFile(model.getDirRight(), fichierToDeleteToRight))));
-        obsTreeItemLeft.setValue(makeTreeRoot(((model.getDirLeft()))));
-
-        obsTreeItemLeft.getValue().getValue().changeEtat(obsTreeItemRight.getValue().getValue());
-        obsTreeItemRight.getValue().getValue().changeEtat(obsTreeItemLeft.getValue().getValue());
+        Fichier right = model.deleteFile(model.getDirRight(), fichierToDeleteToRight);
+        Dossier deepCopyRight = new Dossier((Dossier) right);
+        return deepCopyRight;
     }
 
     public TreeItem<Fichier> getTiLeft() {
