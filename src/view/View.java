@@ -48,7 +48,7 @@ public class View extends VBox {
     private final TreeTableView<Fichier> tTVRight = new TreeTableView<>();
     private final Label labelL = new Label();
     private final Label labelR = new Label();
-    
+
     private final Button move = new Button("Move Left -> Right");
 
 
@@ -73,13 +73,11 @@ public class View extends VBox {
                     Fichier newFichierR = new CopyBuilder().build(Paths.get(dir.getAbsolutePath()));
                     vm.setNewDirRight(newFichierR);
                     vm.setNewDirLeft(vm.getTiLeft().getValue());
-                    vm.setRoot();
                 } else {
                     labelL.setText(dir.getAbsolutePath());
                     Fichier newFichierL = new CopyBuilder().build(Paths.get(dir.getAbsolutePath()));
                     vm.setNewDirLeft(newFichierL);
                     vm.setNewDirRight(vm.getTiRight().getValue());
-                    vm.setRoot();
                 }
                 vm.setRoot();
             }
@@ -94,31 +92,32 @@ public class View extends VBox {
         move.disableProperty().bind(vm.moveProperty());
 
         tTVLeft.setOnMousePressed(e -> {
-            if (e.getClickCount() == 2 && !tTVLeft.getSelectionModel().isEmpty()) {
-                vm.openSelectedFileLeft();
-            }
-            if(e.isAltDown()){
-                vm.setNewDirLeft(vm.deleteSelectedLeft());
+            if(!tTVLeft.getSelectionModel().isEmpty()) {
+                if (e.getClickCount() == 2) {
+                    vm.openSelectedFileLeft();
+                }
+                if (e.isAltDown()) {
+                   vm.setNewDirLeft(vm.deleteSelectedLeft());
+                }
+
                 vm.setRoot();
             }
-            vm.setRoot();
         });
         tTVRight.setOnMousePressed(e -> {
-            if (e.getClickCount() == 2 && !tTVRight.getSelectionModel().isEmpty()) {
-                vm.openSelectedFileRight();
-            }
-            if(e.isAltDown()){
-                vm.setNewDirRight(vm.deleteSelectedRight());
+            if(!tTVRight.getSelectionModel().isEmpty()) {
+                if (e.getClickCount() == 2) {
+                    vm.openSelectedFileRight();
+                }
+                if (e.isAltDown()) {
+                   vm.setNewDirRight(vm.deleteSelectedRight());
+                }
                 vm.setRoot();
             }
-            vm.setRoot();
         });
 
-        move.setOnAction( e -> {
+        move.setOnAction(e -> {
             vm.moveToRight();
 
-            vm.setRoot();
-            vm.setRoot();
         });
 
 
@@ -195,7 +194,7 @@ public class View extends VBox {
         hBoxBotom.setSpacing(30);
         return hBoxBotom;
     }
-    
+
     private HBox hBoxBonus() {
         hBoxBonus.setAlignment(Pos.CENTER);
         hBoxBonus.getChildren().addAll(move);

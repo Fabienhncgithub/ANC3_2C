@@ -73,10 +73,10 @@ public class VM {
     }
 
     public void setRoot() {
-        obsTreeItemLeft.setValue(makeTreeRoot(model.predicateEtat(model.getDirLeft(), listeEtat("L", new HashSet<>()), foldersOnly.getValue()).getValue()));
-        obsTreeItemRight.setValue(makeTreeRoot(model.predicateEtat(model.getDirRight(), listeEtat("R", new HashSet<>()), foldersOnly.getValue()).getValue()));
         model.getDirRight().changeEtat(model.getDirLeft());
         model.getDirLeft().changeEtat(model.getDirRight());
+        obsTreeItemLeft.setValue(makeTreeRoot(model.predicateEtat(model.getDirLeft(), listeEtat("L", new HashSet<>()), foldersOnly.getValue()).getValue()));
+        obsTreeItemRight.setValue(makeTreeRoot(model.predicateEtat(model.getDirRight(), listeEtat("R", new HashSet<>()), foldersOnly.getValue()).getValue()));
     }
 
     public void filterSizeRight() {
@@ -94,6 +94,7 @@ public class VM {
         Dossier deepCopyLeft = new Dossier((Dossier) left);
         return deepCopyLeft;
     }
+
 
     public Fichier deleteSelectedRight() {
         Fichier fichierToDeleteToRight = selectedTreeRight.getValue().getValue();
